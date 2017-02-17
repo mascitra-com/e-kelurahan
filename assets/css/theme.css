@@ -6,6 +6,7 @@
 	font-family: 'Roboto', sans-serif;
 	--main-color:#50bee2;
 	--second-color:#115F9F;
+	transition: background-color 0.5s ease, color 0.5s ease, border-width 0.3s ease;
 }
 
 div{
@@ -77,8 +78,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 .sidebar-nav > li > a,
 .sidebar-nav-child > li > a{
 	display: block;
-	padding: 10px 30px;
-	margin: 10px 0;
+	padding: 15px 30px;
 	font-family: 'Roboto', sans-serif;
 	font-size: 13px;
 	font-weight: 500;
@@ -95,16 +95,16 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 }
 
 .sidebar-nav > li > a:hover,
-.sidebar-nav-child > li > a:hover{
+.sidebar-nav-child > li > a:hover,
+.sidebar-nav > li.active > a{px;
 	background-color: #14639f;
 	color: #FFF;
+	border-left: 5px yellow solid;
 	cursor: pointer;
 }
 
 .sidebar-nav > li.active > a{
 	padding-left: 25px;
-	color: #FFF;
-	border-left: 5px yellow solid;
 }
 
 .sidebar-nav-child > li > a{
@@ -208,7 +208,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 .panel .panel-heading{
 	padding-top: 15px;
 	padding-bottom: 15px;
-	/*border:none;*/
+	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
 }
 
@@ -236,6 +236,12 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 
 .panel-theme .panel-heading .panel-title{
 	color: #FFF;
+}
+
+/*TABLE*/
+.table > thead > tr > td{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
 }
 
 /*RESPONSIVE*/
