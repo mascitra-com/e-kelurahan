@@ -7,4 +7,9 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/index');
 	}
+
+	public function signin()
+	{
+		$this->render('_UI/auth/signin');
+	}
 }
