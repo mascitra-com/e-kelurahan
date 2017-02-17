@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 17, 2017 at 12:29 PM
+-- Generation Time: Feb 17, 2017 at 12:58 PM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -159,15 +159,13 @@ CREATE TABLE `galeri_kategori` (
 --
 
 CREATE TABLE `info_organisasi` (
-  `no` int(11) NOT NULL,
-  `id_organisasi` int(11) NOT NULL,
-  `deskripsi` text NOT NULL,
-  `alamat` text NOT NULL,
-  `telepon` varchar(30) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `kode_pos` varchar(20) NOT NULL,
-  `facebook` text DEFAULT NULL,
-  `twitter` text DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `id_organisasi` varchar(16) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `isi` text NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `pos` int(11) NOT NULL COMMENT 'urutan menu',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -224,13 +222,15 @@ CREATE TABLE `pengumuman` (
 --
 
 CREATE TABLE `profil_organisasi` (
-  `id` int(11) NOT NULL,
-  `id_organisasi` varchar(16) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `judul` varchar(255) NOT NULL,
-  `isi` text NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `pos` int(11) NOT NULL COMMENT 'urutan menu',
+  `no` int(11) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `alamat` text NOT NULL,
+  `telepon` varchar(30) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `kode_pos` varchar(20) NOT NULL,
+  `facebook` text DEFAULT NULL,
+  `twitter` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -296,7 +296,8 @@ ALTER TABLE `galeri_kategori`
 -- Indexes for table `info_organisasi`
 --
 ALTER TABLE `info_organisasi`
-  ADD PRIMARY KEY (`no`),
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`),
   ADD KEY `id_organisasi` (`id_organisasi`,`created_by`,`updated_by`,`deleted_by`);
 
 --
@@ -319,8 +320,7 @@ ALTER TABLE `pengumuman`
 -- Indexes for table `profil_organisasi`
 --
 ALTER TABLE `profil_organisasi`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug` (`slug`),
+  ADD PRIMARY KEY (`no`),
   ADD KEY `id_organisasi` (`id_organisasi`,`created_by`,`updated_by`,`deleted_by`);
 
 --
@@ -366,7 +366,7 @@ ALTER TABLE `galeri_kategori`
 -- AUTO_INCREMENT for table `info_organisasi`
 --
 ALTER TABLE `info_organisasi`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `organisasi`
 --
@@ -381,7 +381,7 @@ ALTER TABLE `pengumuman`
 -- AUTO_INCREMENT for table `profil_organisasi`
 --
 ALTER TABLE `profil_organisasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
