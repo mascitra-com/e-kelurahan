@@ -1,11 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller {
-    # Inisialisasi atribut
-    protected $_data; # atribut data
-    protected $_view; # atribut view
-    protected $_accessable; # atribut view
-    protected $_privileges;
 
     public function __construct()
     {
@@ -24,10 +19,9 @@ class MY_Controller extends CI_Controller {
     /**
      * Berfungsi untuk mengeksekusi view
      */
-    protected function init()
+    protected function render($view, $data = array())
     {
-        $this->_data['_view'] = $this->_view;
-        $this->load->view($this->_view['template'], $this->_data);
+        $this->blade->render($view, $data);
     }
 
     /**
