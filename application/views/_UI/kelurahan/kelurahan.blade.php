@@ -61,7 +61,7 @@
 </div>
 <div class="row">
 	<div class="col-xs-12">
-		<div class="panel panel-warning">
+		<div class="panel panel-theme">
 			<div class="panel-heading">
 				<h3 class="panel-title pull-left">Pengajuan Data Kelurahan Baru</h3>
 				<div class="btn-group pull-right">
