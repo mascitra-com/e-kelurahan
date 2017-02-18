@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 17, 2017 at 12:58 PM
+-- Generation Time: Feb 18, 2017 at 04:56 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -60,11 +60,16 @@ CREATE TABLE `agenda` (
 --
 
 CREATE TABLE `akun` (
-  `id` int(11) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
   `id_organisasi` int(11) NOT NULL,
   `id_tingkatan` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `salt` varchar(255) DEFAULT NULL,
+  `kode_aktivasi` varchar(40) DEFAULT NULL,
+  `kode_lupa_password` varchar(40) DEFAULT NULL,
+  `waktu_lupa_password` int(10) UNSIGNED DEFAULT NULL,
+  `kode_pengingat` varchar(40) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -105,8 +110,9 @@ CREATE TABLE `berita` (
 --
 
 CREATE TABLE `detail_tingkatan` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(30) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
+  `id_akun` int(11) UNSIGNED NOT NULL,
+  `id_tingkatan` int(10) UNSIGNED NOT NULL,
   `menu` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp
 ) ;
@@ -239,6 +245,24 @@ CREATE TABLE `profil_organisasi` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tingkatan`
+--
+
+CREATE TABLE `tingkatan` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `nama` varchar(30) NOT NULL,
+  `deskripsi` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -324,6 +348,12 @@ ALTER TABLE `profil_organisasi`
   ADD KEY `id_organisasi` (`id_organisasi`,`created_by`,`updated_by`,`deleted_by`);
 
 --
+-- Indexes for table `tingkatan`
+--
+ALTER TABLE `tingkatan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -341,7 +371,7 @@ ALTER TABLE `agenda`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `berita`
 --
@@ -351,7 +381,7 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT for table `detail_tingkatan`
 --
 ALTER TABLE `detail_tingkatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `galeri`
 --
@@ -382,6 +412,11 @@ ALTER TABLE `pengumuman`
 --
 ALTER TABLE `profil_organisasi`
   MODIFY `no` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tingkatan`
+--
+ALTER TABLE `tingkatan`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
