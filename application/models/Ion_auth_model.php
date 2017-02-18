@@ -33,7 +33,7 @@ class Ion_auth_model extends CI_Model
 	 *
 	 * @var string
 	 **/
-	public $activation_code;
+	public $kode_aktivasi;
 
 	/**
 	 * forgotten password key
@@ -449,7 +449,7 @@ class Ion_auth_model extends CI_Model
 		if ($code !== FALSE)
 		{
 			$query = $this->db->select($this->identity_column)
-			                  ->where('activation_code', $code)
+			                  ->where('kode_aktivasi', $code)
 			                  ->where('id', $id)
 			                  ->limit(1)
 		    				  ->order_by('id', 'desc')
@@ -465,7 +465,7 @@ class Ion_auth_model extends CI_Model
 			}
 
 			$data = array(
-			    'activation_code' => NULL,
+			    'kode_aktivasi' => NULL,
 			    'active'          => 1
 			);
 
@@ -475,7 +475,7 @@ class Ion_auth_model extends CI_Model
 		else
 		{
 			$data = array(
-			    'activation_code' => NULL,
+			    'kode_aktivasi' => NULL,
 			    'active'          => 1
 			);
 
@@ -523,11 +523,11 @@ class Ion_auth_model extends CI_Model
                         return FALSE;
                 }
 
-		$activation_code       = sha1(md5(microtime()));
-		$this->activation_code = $activation_code;
+		$kode_aktivasi       = sha1(md5(microtime()));
+		$this->kode_aktivasi = $kode_aktivasi;
 
 		$data = array(
-		    'activation_code' => $activation_code,
+		    'kode_aktivasi' => $kode_aktivasi,
 		    'active'          => 0
 		);
 
@@ -770,16 +770,16 @@ class Ion_auth_model extends CI_Model
 		}
 
 		// All some more randomness
-		$activation_code_part = "";
+		$kode_aktivasi_part = "";
 		if(function_exists("openssl_random_pseudo_bytes")) {
-			$activation_code_part = openssl_random_pseudo_bytes(128);
+			$kode_aktivasi_part = openssl_random_pseudo_bytes(128);
 		}
 
 		for($i=0;$i<1024;$i++) {
-			$activation_code_part = sha1($activation_code_part . mt_rand() . microtime());
+			$kode_aktivasi_part = sha1($kode_aktivasi_part . mt_rand() . microtime());
 		}
 
-		$key = $this->hash_code($activation_code_part.$identity);
+		$key = $this->hash_code($kode_aktivasi_part.$identity);
 
 		// If enable query strings is set, then we need to replace any unsafe characters so that the code can still work
 		if ($key != '' && $this->config->item('permitted_uri_chars') != '' && $this->config->item('enable_query_strings') == FALSE)
@@ -906,9 +906,8 @@ class Ion_auth_model extends CI_Model
 		    $this->identity_column   => $identity,
 		    'username'   => $identity,
 		    'password'   => $password,
-		    'email'      => $email,
 		    'ip_address' => $ip_address,
-		    'created_on' => time(),
+		    'created_on' => date('Y-m-d H:i:s'),
 		    'active'     => ($manual_activation === false ? 1 : 0)
 		);
 
@@ -965,7 +964,7 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events('extra_where');
 
-		$query = $this->db->select($this->identity_column . ', email, id, password, active, last_login')
+		$query = $this->db->select($this->identity_column . ', id, id_organisasi, password, active, last_login')
 		                  ->where($this->identity_column, $identity)
 		                  ->limit(1)
 		    			  ->order_by('id', 'desc')
@@ -1088,6 +1087,11 @@ class Ion_auth_model extends CI_Model
 			}
 		}
 		return FALSE;
+	}
+
+	public function get_current_id_org()
+	{
+		return $this->session->userdata('id_organisasi');
 	}
 
 	/**
@@ -1763,12 +1767,11 @@ class Ion_auth_model extends CI_Model
 		$session_data = array(
 		    'identity'             => $user->{$this->identity_column},
 		    $this->identity_column             => $user->{$this->identity_column},
-		    'email'                => $user->email,
 		    'user_id'              => $user->id, //everyone likes to overwrite id so we'll use user_id
 		    'old_last_login'       => $user->last_login,
 		    'last_check'           => time(),
+		    'id_organisasi'		   => $user->id_organisasi
 		);
-
 		$this->session->set_userdata($session_data);
 
 		$this->trigger_events('post_set_session');
@@ -1851,7 +1854,7 @@ class Ion_auth_model extends CI_Model
 
 		// get the user
 		$this->trigger_events('extra_where');
-		$query = $this->db->select($this->identity_column.', id, email, last_login')
+		$query = $this->db->select($this->identity_column.', id,email, last_login')
 		                  ->where($this->identity_column, urldecode(get_cookie($this->config->item('identity_cookie_name', 'ion_auth'))))
 		                  ->where('remember_code', get_cookie($this->config->item('remember_cookie_name', 'ion_auth')))
 		                  ->limit(1)

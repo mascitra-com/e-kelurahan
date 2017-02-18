@@ -16,7 +16,7 @@
 			<li class="active"><a href="{{base_url('ui')}}"><i class="fa fa-fw fa-cog"></i><span class="nav-label">UI</span></a></li>
 		</ul>
 		<div class="sidebar-footer">
-			<button class="btn btn-default btn-block"><i class="fa fa-fw fa-power-off"></i><span class="nav-label">logout</span></button>
+			<a href="{{ site_url('auth/logout') }}" class="btn btn-default btn-block"><i class="fa fa-fw fa-power-off"></i><span class="nav-label">logout</span></a>
 		</div>
 	</div>
 </div>
