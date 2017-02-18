@@ -17,4 +17,19 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/kelurahan/kelurahan');
 	}
+
+	public function kependudukan()
+	{
+		$this->render('_UI/kependudukan/kependudukan');
+	}
+
+	public function kependudukan_create()
+	{
+		$this->render('_UI/kependudukan/create');
+	}
+
+	public function kependudukan_detail()
+	{
+		$this->render('_UI/kependudukan/detail');
+	}
 }
