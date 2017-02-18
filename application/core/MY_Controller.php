@@ -5,6 +5,7 @@ class MY_Controller extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('ion_auth');
     }
 
     /**
@@ -21,6 +22,7 @@ class MY_Controller extends CI_Controller {
      */
     protected function render($view, $data = array())
     {
+        $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
         $this->blade->render($view, $data);
     }
 

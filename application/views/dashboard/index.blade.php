@@ -1,6 +1,6 @@
 @layout('_layout/dashboard/index')
-@section('title')UI List@endsection
-@section('nama-kelurahan')Lumajang@endsection
+@section('title')Dashboard | Jenis Organisasi@endsection
+@section('nama-kelurahan')Nama Kelurahan@endsection
 
 @section('content')
 <div class="row">
