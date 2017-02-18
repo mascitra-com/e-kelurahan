@@ -9,9 +9,64 @@
 			<div class="panel-heading">
 				<h3 class="panel-title pull-left">Data Kelurahan</h3>
 				<div class="btn-group pull-right">
-					<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal"><i class="fa fa-plus"></i></button>
 					<button class="btn btn-default btn-xs reload"><i class="fa fa-refresh"></i></button>
 					<button class="btn btn-default btn-xs"><i class="fa fa-bars"></i></button>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="panel-body table-responsive table-full">
+				<table class="table table-hover table-stripped table-bordered">
+					<thead>
+						<tr>
+							<td>#</td>
+							<td>Nama Kelurahan</td>
+							<td>Username</td>
+							<td class="text-center" width="15%">Status</td>
+							<td width="15%">Aksi</td>
+						</tr>
+					</thead>
+					<tbody>
+						@for($i=1;$i <= 3;$i++)
+						<tr>
+							<td width="10%">{{str_pad($i,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Kelurahan-{{$i}}</td>
+							<td>Kelurahan-{{$i}}@lumajang</td>
+							<td class="text-center" width="15%"><span class="label label-primary">aktif</span></td>
+							<td width="15%">
+								<a href="#" class="btn btn-xs btn-default" onclick="return confirm('non-aktifkan kelurahan ini?')">
+									<i class="fa fa-power-off text-red"></i>
+								</a>
+							</td>
+						</tr>
+						@endfor
+						<tr>
+							<td width="10%">{{str_pad($i,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Kelurahan-{{$i}}</td>
+							<td>Kelurahan-{{$i}}@lumajang</td>
+							<td class="text-center" width="15%"><span class="label label-danger">non-aktif</span></td>
+							<td width="15%">
+								<a href="#" class="btn btn-xs btn-default" onclick="return confirm('aktifkan kelurahan ini?')">
+									<i class="fa fa-power-off text-primary"></i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="panel-footer">
+				<span class="text-grey">last edited by admin 12-01-2017 17:05</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<h3 class="panel-title pull-left">Pengajuan Data Kelurahan Baru</h3>
+				<div class="btn-group pull-right">
+					<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal"><i class="fa fa-plus"></i></button>
+					<button class="btn btn-default btn-xs reload"><i class="fa fa-refresh"></i></button>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -26,17 +81,23 @@
 						</tr>
 					</thead>
 					<tbody>
-						@for($i=1;$i <= 5;$i++)
+						@for($i=1;$i <= 4;$i++)
 						<tr>
 							<td width="10%">{{str_pad($i,2,'0',STR_PAD_LEFT)}}</td>
 							<td>Kelurahan-{{$i}}</td>
-							<td class="text-center" width="15%"><span class="label label-success">disetujui</span></td>
+							<td class="text-center" width="15%"><span class="label label-warning">menunggu</span></td>
 							<td width="15%">
 								<button href="#" class="btn btn-xs btn-default btn-edit" data-id="{{$i}}" data-nama="kelurahan-{{$i}}"><i class="fa fa-pencil"></i></button>
-								<a href="#" class="btn btn-xs btn-default"><i class="fa fa-trash" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"></i></a>
+								<a href="#" class="btn btn-xs btn-default" onclick="return confirm('Batalkan pengajuan ini?')"><i class="fa fa-close text-red"></i></a>
 							</td>
 						</tr>
 						@endfor
+						<tr>
+							<td width="10%">{{str_pad($i,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Kelurahan-{{$i}}</td>
+							<td class="text-center" width="15%"><span class="label label-danger">Ditolak</span></td>
+							<td width="15%">-</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -85,20 +146,26 @@
 	tbody > tr > td:last-child{
 		text-align: center;
 	}
+	.label{
+		display: block;
+		width: 100%;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
 </style>
 @endsection
 
 @section('javascript')
 <script>
 	$(".btn-edit").click(function(){
-		$(".form input[name='id']").val($(this).data('id'));
-		$(".form input[name='nama']").val($(this).data('nama'));
-		$(".form").attr("action", "{{site_url('edit')}}");
+		$("#modal .form input[name='id']").val($(this).data('id'));
+		$("#modal .form input[name='nama']").val($(this).data('nama'));
+		$("#modal .form").attr("action", "{{site_url('edit')}}");
 		$("#modal").modal('show');
 	});
 
 	$('#modal').on('hidden.bs.modal', function (e) {
-  		$(".form").attr("action", "{{site_url('tambah')}}").trigger("reset");
+		$("#modal .form").attr("action", "{{site_url('tambah')}}").trigger("reset");
 	});
 </script>
 @endsection
