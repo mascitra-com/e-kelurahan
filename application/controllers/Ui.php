@@ -12,4 +12,9 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/auth/signin');
 	}
+
+	public function kelurahan()
+	{
+		$this->render('_UI/kelurahan/kelurahan');
+	}
 }
