@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends MY_Controller
+class Kelurahan extends MY_Controller
 {
 	
 	public function __construct()
@@ -10,12 +10,12 @@ class Dashboard extends MY_Controller
 
 		$this->load->library(array('form_validation'));
 		// $this->load->helper(array(''));
-		// $this->load->model(array(''));
+		$this->load->model(array('organisasi_m'));
 	}
 
 	public function index()
 	{
-		
-		$this->render('dashboard/index');
+		$data['kelurahans'] = $this->organisasi_m->get_all();
+		$this->render('kelurahan/index', $data);
 	}
 }
