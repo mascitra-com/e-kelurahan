@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 18, 2017 at 04:56 AM
+-- Generation Time: Feb 18, 2017 at 07:52 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -62,7 +62,7 @@ CREATE TABLE `agenda` (
 CREATE TABLE `akun` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_organisasi` int(11) NOT NULL,
-  `id_tingkatan` int(11) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `salt` varchar(255) DEFAULT NULL,
@@ -70,13 +70,23 @@ CREATE TABLE `akun` (
   `kode_lupa_password` varchar(40) DEFAULT NULL,
   `waktu_lupa_password` int(10) UNSIGNED DEFAULT NULL,
   `kode_pengingat` varchar(40) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `created_by` int(11) NOT NULL,
+  `last_login` int(10) UNSIGNED DEFAULT NULL,
+  `active` tinyint(1) UNSIGNED NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `deleted_by` int(11) NOT NULL
+  `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `akun`
+--
+
+INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487404106, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(2, 0, '127.0.0.1', 'admin@kelurahan', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, NULL, 1, '2017-02-17 23:03:29', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -114,8 +124,21 @@ CREATE TABLE `detail_tingkatan` (
   `id_akun` int(11) UNSIGNED NOT NULL,
   `id_tingkatan` int(10) UNSIGNED NOT NULL,
   `menu` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp
-) ;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_tingkatan`
+--
+
+INSERT INTO `detail_tingkatan` (`id`, `id_akun`, `id_tingkatan`, `menu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(2, 2, 2, '', '2017-02-18 06:03:29', 0, NULL, NULL, NULL, NULL),
+(4, 1, 1, '', '2017-02-18 06:12:02', 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -224,6 +247,19 @@ CREATE TABLE `pengumuman` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `percobaan_login`
+--
+
+CREATE TABLE `percobaan_login` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `alamat_ip` varchar(15) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `waktu` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `profil_organisasi`
 --
 
@@ -253,8 +289,8 @@ CREATE TABLE `profil_organisasi` (
 
 CREATE TABLE `tingkatan` (
   `id` int(10) UNSIGNED NOT NULL,
-  `nama` varchar(30) NOT NULL,
-  `deskripsi` varchar(100) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `description` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -262,6 +298,15 @@ CREATE TABLE `tingkatan` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tingkatan`
+--
+
+INSERT INTO `tingkatan` (`id`, `name`, `description`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 'Admin Kecamatan', 'Mengakses semua fitur kecamatan', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(2, 'Operator', 'Operator Kelurahan', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(3, 'mem', 'mem', '2017-02-18 06:12:10', 0, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -300,6 +345,14 @@ ALTER TABLE `berita`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `slug` (`slug`),
   ADD KEY `id_organisasi` (`id_organisasi`);
+
+--
+-- Indexes for table `detail_tingkatan`
+--
+ALTER TABLE `detail_tingkatan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_tingkatan` (`id_tingkatan`),
+  ADD KEY `id_akun` (`id_akun`);
 
 --
 -- Indexes for table `galeri`
@@ -341,6 +394,12 @@ ALTER TABLE `pengumuman`
   ADD KEY `id_organisasi` (`id_organisasi`,`created_by`,`updated_by`,`deleted_by`);
 
 --
+-- Indexes for table `percobaan_login`
+--
+ALTER TABLE `percobaan_login`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `profil_organisasi`
 --
 ALTER TABLE `profil_organisasi`
@@ -371,7 +430,7 @@ ALTER TABLE `agenda`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `berita`
 --
@@ -381,7 +440,7 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT for table `detail_tingkatan`
 --
 ALTER TABLE `detail_tingkatan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `galeri`
 --
@@ -408,6 +467,11 @@ ALTER TABLE `organisasi`
 ALTER TABLE `pengumuman`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `percobaan_login`
+--
+ALTER TABLE `percobaan_login`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `profil_organisasi`
 --
 ALTER TABLE `profil_organisasi`
@@ -416,7 +480,18 @@ ALTER TABLE `profil_organisasi`
 -- AUTO_INCREMENT for table `tingkatan`
 --
 ALTER TABLE `tingkatan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `detail_tingkatan`
+--
+ALTER TABLE `detail_tingkatan`
+  ADD CONSTRAINT `detail_tingkatan_ibfk_1` FOREIGN KEY (`id_tingkatan`) REFERENCES `tingkatan` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `detail_tingkatan_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id`) ON DELETE CASCADE;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
