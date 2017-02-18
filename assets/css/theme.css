@@ -6,7 +6,7 @@
 	font-family: 'Roboto', sans-serif;
 	--main-color:#50bee2;
 	--second-color:#115F9F;
-	transition: background-color 0.5s ease, color 0.5s ease, border-width 0.3s ease;
+	transition: background-color 0.5s ease, color 0.5s ease, border-width 0.3s ease, width 0.5s ease, transform 0.5s ease;
 }
 
 div{
@@ -151,7 +151,6 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 
 .sidebar-show #sidebar{
 	transform: translate3d(0, 0, 0);
-	transition: transform 0.4s ease;
 }
 
 #content{
@@ -210,6 +209,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 	padding-bottom: 15px;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
+	text-transform: uppercase;
 }
 
 .panel-default .panel-heading{
@@ -229,9 +229,12 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 	color:#AAA;
 }
 
+.panel-title.pull-left{
+	line-height: 5px;
+}
+
 .panel-theme .panel-heading{
-	background-color: #EF6C40;
-	border-color: #ec4913;
+	background-color: #188ae7;
 }
 
 .panel-theme .panel-heading .panel-title{
@@ -239,9 +242,14 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 }
 
 /*TABLE*/
-.table > thead > tr > td{
+.table > thead > tr > td,
+.table > thead > tr > th{
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
+}
+
+.label, label{
+	font-weight: normal;
 }
 
 /*RESPONSIVE*/
