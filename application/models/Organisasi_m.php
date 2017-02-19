@@ -13,7 +13,7 @@ class Organisasi_m extends MY_Model
 
 	public function __construct()
 	{
-		$this->has_many['akun'] = array('akun_m', 'id', 'created_by');
+		$this->has_many['akuns'] = array('akun_m', 'id', 'id');
 		parent::__construct();
 	}
 }

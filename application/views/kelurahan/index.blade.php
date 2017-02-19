@@ -27,30 +27,21 @@
 					</thead>
 					<tbody>
 						<?php $i=0; ?>
+						<?php $arr=0; ?>
 						@foreach($kelurahans as $kelurahan)
 						<tr>
 							<td width="10%">{{str_pad(++$i,2,'0',STR_PAD_LEFT)}}</td>
-							<td>Kelurahan-{{ $kelurahan->nama }}</td>
-							<td>Kelurahan-username@lumajang</td>
-							<td class="text-center" width="15%"><span class="label label-primary">aktif</span></td>
+							<td>Kelurahan {{ $kelurahan->nama }}</td>
+							<td>{{$kelurahan->akuns[$arr]->username}}</td>
+							<td class="text-center" width="15%"><span class="label label-<?php if($kelurahan->akuns[$arr]->active === '1'){echo 'primary';}else{echo 'danger';}?>">@if($kelurahan->akuns[$arr]->active === '1')aktif @else non-aktif @endif</span></td>
 							<td width="15%">
-								<a href="#" class="btn btn-xs btn-default" onclick="return confirm('non-aktifkan kelurahan ini?')">
+								<a href="{{ site_url('kelurahan/nonaktifkan/'.$kelurahan->akuns[$arr]->id_organisasi) }}" class="btn btn-xs btn-default" onclick="return confirm('non-aktifkan kelurahan ini?')">
 									<i class="fa fa-power-off text-red"></i>
 								</a>
 							</td>
 						</tr>
+						<?php $arr++;?>
 						@endforeach
-						<tr>
-							<td width="10%">{{str_pad($i,2,'0',STR_PAD_LEFT)}}</td>
-							<td>Kelurahan-{{$i}}</td>
-							<td>Kelurahan-{{$i}}@lumajang</td>
-							<td class="text-center" width="15%"><span class="label label-danger">non-aktif</span></td>
-							<td width="15%">
-								<a href="#" class="btn btn-xs btn-default" onclick="return confirm('aktifkan kelurahan ini?')">
-									<i class="fa fa-power-off text-primary"></i>
-								</a>
-							</td>
-						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -86,7 +77,7 @@
 						@foreach($kelurahan_verifs as $kelurahan)
 						<tr>
 							<td width="10%">{{str_pad(++$i,2,'0',STR_PAD_LEFT)}}</td>
-							<td>{{ $kelurahan->nama }}</td>
+							<td>Kelurahan {{ $kelurahan->nama }}</td>
 							<td class="text-center" width="15%"><span class="label label-<?php if($kelurahan->status === '0'){ echo'warning';}else{echo 'danger';}
 							?>">@if($kelurahan->status === '0')menunggu @else ditolak @endif</span></td>
 							<td width="15%">
