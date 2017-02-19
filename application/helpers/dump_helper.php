@@ -13,7 +13,7 @@ if (!function_exists('dump')) {
 
         // Add formatting
         echo '<pre>';
-        var_dump($var);
+        die(var_dump($var));
         echo '</pre>';
         
         // Output
