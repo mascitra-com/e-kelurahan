@@ -95,6 +95,18 @@
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Manajemen Detail Keluarga</td>
+							<td>Halaman untuk memanajemen detail data Keluarga</td>
+							<td>Keluarga</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{base_url('ui/keluarga_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
 					</tbody>
 				</table>
 			</div>
