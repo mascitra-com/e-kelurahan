@@ -641,9 +641,7 @@ class MY_Model extends CI_Model {
         $affected_rows = 0;
         if ($this->soft_deletes === TRUE) {
             if (isset($to_update) && count($to_update) > 0) {
-
                 foreach ($to_update as &$row) {
-                    $row['delete_by'] = $this->add_deleter();
                     $row[$this->_deleted_at_field] = $this->_the_timestamp();
                 }
                 $affected_rows = $this->_database->update_batch($this->table, $to_update, $this->primary_key);
@@ -1646,6 +1644,7 @@ class MY_Model extends CI_Model {
     }
 
     public function add_deleter($data) {
-        return $_SESSION['user_id'];
+        $data['deleted_by'] = $_SESSION['user_id'];
+        return $data;
     }
 }
