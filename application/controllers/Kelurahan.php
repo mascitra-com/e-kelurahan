@@ -23,10 +23,34 @@ class Kelurahan extends MY_Controller
 		$this->render('kelurahan/index', $data);
 	}
 
+	public function pengajuan()
+	{
+		$data = $this->input->post();
+
+		if ($this->organisasi_m->from_form()->insert()) {
+			$this->go('kelurahan');
+		} else {
+			die('terjadi kesalahan saat insert');
+		}
+	}
+
 	public function nonaktifkan($id = NULL)
 	{
 		if ($id != NULL && !empty($id)) {
 			if ($this->akun_m->where('id_organisasi', $id)->update(array('active' => '0'))) {
+				$this->go('kelurahan');
+			}else{
+				die('Terjadi kesalahan saat menonaktifkan');
+			}
+		}else{
+			die('Alamat tidak valid {id NULL atau kosong}');
+		}
+	}
+
+	public function aktifkan($id = NULL)
+	{
+		if ($id != NULL && !empty($id)) {
+			if ($this->akun_m->where('id_organisasi', $id)->update(array('active' => '1'))) {
 				$this->go('kelurahan');
 			}else{
 				die('Terjadi kesalahan saat menonaktifkan');

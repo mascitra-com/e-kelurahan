@@ -35,9 +35,15 @@
 							<td>{{$kelurahan->akuns[$arr]->username}}</td>
 							<td class="text-center" width="15%"><span class="label label-<?php if($kelurahan->akuns[$arr]->active === '1'){echo 'primary';}else{echo 'danger';}?>">@if($kelurahan->akuns[$arr]->active === '1')aktif @else non-aktif @endif</span></td>
 							<td width="15%">
+								@if($kelurahan->akuns[$arr]->active === '1')  
 								<a href="{{ site_url('kelurahan/nonaktifkan/'.$kelurahan->akuns[$arr]->id_organisasi) }}" class="btn btn-xs btn-default" onclick="return confirm('non-aktifkan kelurahan ini?')">
 									<i class="fa fa-power-off text-red"></i>
 								</a>
+								@else
+								<a href="{{ site_url('kelurahan/aktifkan/'.$kelurahan->akuns[$arr]->id_organisasi) }}" class="btn btn-xs btn-default" onclick="return confirm('aktifkan kelurahan ini?')">
+									<i class="fa fa-power-off text-primary"></i>
+								</a>
+								@endif
 							</td>
 						</tr>
 						<?php $arr++;?>
@@ -79,81 +85,85 @@
 							<td width="10%">{{str_pad(++$i,2,'0',STR_PAD_LEFT)}}</td>
 							<td>Kelurahan {{ $kelurahan->nama }}</td>
 							<td class="text-center" width="15%"><span class="label label-<?php if($kelurahan->status === '0'){ echo'warning';}else{echo 'danger';}
-							?>">@if($kelurahan->status === '0')menunggu @else ditolak @endif</span></td>
-							<td width="15%">
-								<button href="#" class="btn btn-xs btn-default btn-edit" data-id="{{ $kelurahan->id }}" data-nama="{{ $kelurahan->nama }}"><i class="fa fa-pencil"></i></button>
-								<a href="#" class="btn btn-xs btn-default" onclick="return confirm('Batalkan pengajuan ini?')"><i class="fa fa-close text-red"></i></a>
-							</td>
-						</tr>
-						@endforeach
-					</tbody>
-				</table>
-			</div>
-			<div class="panel-footer">
-				<span class="text-grey">last edited by admin 12-01-2017 17:05</span>
+								?>">@if($kelurahan->status === '0')menunggu @else ditolak @endif</span></td>
+								<td width="15%">
+									<button href="#" class="btn btn-xs btn-default btn-edit" data-id="{{ $kelurahan->id }}" data-nama="{{ $kelurahan->nama }}"><i class="fa fa-pencil"></i></button>
+									<a href="#" class="btn btn-xs btn-default" onclick="return confirm('Batalkan pengajuan ini?')"><i class="fa fa-close text-red"></i></a>
+								</td>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+				<div class="panel-footer">
+					<span class="text-grey">last edited by admin 12-01-2017 17:05</span>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-@endsection
+	@endsection
 
-@section('modal')
-<div class="modal fade" tabindex="-1" role="dialog" id="modal">
-	<div class="modal-dialog modal-sm" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">Tambah Kelurahan</h4>
+	@section('modal')
+	<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Tambah Kelurahan</h4>
+				</div>
+				<form action="{{ site_url('kelurahan/pengajuan') }}" method="POST" class="form">
+					<div class="modal-body">
+						<div class="form-group">
+						<label for="id">id</label>
+							<input type="text" name="id" class="form-control" placeholder="id" readonly>
+						</div>
+						<div class="form-group">
+							<label for="nama">nama kelurahan</label>
+							{{ form_error('nama') }}
+							<div class="input-group">
+								<span class="input-group-addon">Kelurahan</span>
+								<input type="text" name="nama" class="form-control" placeholder="nama kelurahan">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary" type="submit">tambah</button>
+						<button class="btn btn-default" type="reset" data-dismiss="modal" aria-label="Close">batal</button>
+					</div>
+				</form>
 			</div>
-			<form action="tambah" class="form">
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="">id</label>
-						<input type="text" name="id" class="form-control" placeholder="id" readonly>
-					</div>
-					<div class="form-group">
-						<label for="">nama kelurahan</label>
-						<input type="text" name="nama" class="form-control" placeholder="nama kelurahan">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-primary" type="submit">tambah</button>
-					<button class="btn btn-default" type="reset" data-dismiss="modal" aria-label="Close">batal</button>
-				</div>
-			</form>
 		</div>
 	</div>
-</div>
-@endsection
+	@endsection
 
-@section('style')
-<style>
-	thead > tr > td:first-child,
-	thead > tr > td:last-child,
-	tbody > tr > td:first-child,
-	tbody > tr > td:last-child{
-		text-align: center;
-	}
-	.label{
-		display: block;
-		width: 100%;
-		padding-top: 5px;
-		padding-bottom: 5px;
-	}
-</style>
-@endsection
+	@section('style')
+	<style>
+		thead > tr > td:first-child,
+		thead > tr > td:last-child,
+		tbody > tr > td:first-child,
+		tbody > tr > td:last-child{
+			text-align: center;
+		}
+		.label{
+			display: block;
+			width: 100%;
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+	</style>
+	@endsection
 
-@section('javascript')
-<script>
-	$(".btn-edit").click(function(){
-		$("#modal .form input[name='id']").val($(this).data('id'));
-		$("#modal .form input[name='nama']").val($(this).data('nama'));
-		$("#modal .form").attr("action", "{{site_url('edit')}}");
-		$("#modal").modal('show');
-	});
+	@section('javascript')
+	<script>
+		$(".btn-edit").click(function(){
+			$("#modal .form input[name='id']").val($(this).data('id'));
+			$("#modal .form input[name='nama']").val($(this).data('nama'));
+			$("#modal .form").attr("action", "{{site_url('edit')}}");
+			$("#modal").modal('show');
+		});
 
-	$('#modal').on('hidden.bs.modal', function (e) {
-		$("#modal .form").attr("action", "{{site_url('tambah')}}").trigger("reset");
-	});
-</script>
-@endsection
+		$('#modal').on('hidden.bs.modal', function (e) {
+			$("#modal .form").attr("action", "{{site_url('tambah')}}").trigger("reset");
+		});
+	</script>
+	@endsection
