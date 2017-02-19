@@ -16,6 +16,7 @@ class Kelurahan extends MY_Controller
 	public function index()
 	{
 		$data['kelurahans'] = $this->organisasi_m->get_all();
+		$data['kelurahan_verifs'] = $this->organisasi_m->where('status', array('0','2'))->get_all();
 		$this->render('kelurahan/index', $data);
 	}
 }

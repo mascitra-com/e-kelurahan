@@ -18,7 +18,7 @@
 				<table class="table table-hover table-stripped table-bordered">
 					<thead>
 						<tr>
-							<td>#</td>
+							<td>No</td>
 							<td>Nama Kelurahan</td>
 							<td>Username</td>
 							<td class="text-center" width="15%">Status</td>
@@ -75,30 +75,26 @@
 				<table class="table table-hover table-stripped table-bordered">
 					<thead>
 						<tr>
-							<td>#</td>
+							<td>No</td>
 							<td>Nama Kelurahan</td>
 							<td class="text-center" width="15%">Status Verifikasi</td>
 							<td width="15%">Aksi</td>
 						</tr>
 					</thead>
 					<tbody>
-						@for($i=1;$i <= 4;$i++)
+						<?php $i=0; ?>
+						@foreach($kelurahan_verifs as $kelurahan)
 						<tr>
-							<td width="10%">{{str_pad($i,2,'0',STR_PAD_LEFT)}}</td>
-							<td>Kelurahan-{{$i}}</td>
-							<td class="text-center" width="15%"><span class="label label-warning">menunggu</span></td>
+							<td width="10%">{{str_pad(++$i,2,'0',STR_PAD_LEFT)}}</td>
+							<td>{{ $kelurahan->nama }}</td>
+							<td class="text-center" width="15%"><span class="label label-<?php if($kelurahan->status === '0'){ echo'warning';}else{echo 'danger';}
+							?>">@if($kelurahan->status === '0')menunggu @else ditolak @endif</span></td>
 							<td width="15%">
-								<button href="#" class="btn btn-xs btn-default btn-edit" data-id="{{$i}}" data-nama="kelurahan-{{$i}}"><i class="fa fa-pencil"></i></button>
+								<button href="#" class="btn btn-xs btn-default btn-edit" data-id="{{ $kelurahan->id }}" data-nama="{{ $kelurahan->nama }}"><i class="fa fa-pencil"></i></button>
 								<a href="#" class="btn btn-xs btn-default" onclick="return confirm('Batalkan pengajuan ini?')"><i class="fa fa-close text-red"></i></a>
 							</td>
 						</tr>
-						@endfor
-						<tr>
-							<td width="10%">{{str_pad($i,2,'0',STR_PAD_LEFT)}}</td>
-							<td>Kelurahan-{{$i}}</td>
-							<td class="text-center" width="15%"><span class="label label-danger">Ditolak</span></td>
-							<td width="15%">-</td>
-						</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>
