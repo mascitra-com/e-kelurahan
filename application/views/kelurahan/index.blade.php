@@ -88,7 +88,7 @@
 								?>">@if($kelurahan->status === '0')menunggu @else ditolak @endif</span></td>
 								<td width="15%">
 									<button href="#" class="btn btn-xs btn-default btn-edit" data-id="{{ $kelurahan->id }}" data-nama="{{ $kelurahan->nama }}"><i class="fa fa-pencil"></i></button>
-									<a href="#" class="btn btn-xs btn-default" onclick="return confirm('Batalkan pengajuan ini?')"><i class="fa fa-close text-red"></i></a>
+									<a href="{{ site_url('kelurahan/batal/'.$kelurahan->slug) }}" class="btn btn-xs btn-default" onclick="return confirm('Batalkan pengajuan ini?')"><i class="fa fa-close text-red"></i></a>
 								</td>
 							</tr>
 							@endforeach
@@ -111,7 +111,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title">Tambah Kelurahan</h4>
 				</div>
-				<form action="{{ site_url('kelurahan/pengajuan') }}" method="POST" class="form">
+				<form action="{{ site_url('kelurahan/simpan') }}" method="POST" class="form">
 					<div class="modal-body">
 						<div class="form-group">
 						<label for="id">id</label>
@@ -158,12 +158,12 @@
 		$(".btn-edit").click(function(){
 			$("#modal .form input[name='id']").val($(this).data('id'));
 			$("#modal .form input[name='nama']").val($(this).data('nama'));
-			$("#modal .form").attr("action", "{{site_url('edit')}}");
+			$("#modal .form").attr("action", "{{site_url('kelurahan/ubah')}}");
 			$("#modal").modal('show');
 		});
 
 		$('#modal').on('hidden.bs.modal', function (e) {
-			$("#modal .form").attr("action", "{{site_url('tambah')}}").trigger("reset");
+			$("#modal .form").attr("action", "{{site_url('kelurahan/simpan')}}").trigger("reset");
 		});
 	</script>
 	@endsection

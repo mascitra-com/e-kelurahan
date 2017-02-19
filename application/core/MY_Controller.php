@@ -37,4 +37,19 @@ class MY_Controller extends CI_Controller {
         $this->session->set_flashdata('message', array($msg, $typ));
     }
 
+     /**
+     * @param $table - Table Name
+     * @param $title - Field as reference for slug
+     */
+    protected function slug_config($table, $title){
+      $config = array(
+        'table' => $table,
+        'id' => 'id',
+        'field' => 'slug',
+        'title' => $title,
+            'replacement' => 'dash' // Either dash or underscore
+            );
+      $this->slug->set_config($config);
+    }
+
 }
