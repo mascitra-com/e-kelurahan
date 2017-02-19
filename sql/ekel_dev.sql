@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.6.6
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 18, 2017 at 07:52 AM
+-- Generation Time: Feb 19, 2017 at 06:42 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -85,8 +85,8 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487404106, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 0, '127.0.0.1', 'admin@kelurahan', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, NULL, 1, '2017-02-17 23:03:29', NULL, NULL, NULL, NULL, NULL);
+(1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487483759, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(2, 2, '127.0.0.1', 'Kelurahan-tompokerso@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, NULL, 0, '2017-02-17 23:03:29', 1, '2017-02-18 23:10:12', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -110,6 +110,25 @@ CREATE TABLE `berita` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'jika terisi timestamp, berita dipindah ke bagian arsip',
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_kartu_keluarga`
+--
+
+CREATE TABLE `detail_kartu_keluarga` (
+  `id` int(11) NOT NULL,
+  `no_kk` varchar(40) NOT NULL,
+  `nik` varchar(40) NOT NULL,
+  `status_keluarga` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -206,6 +225,172 @@ CREATE TABLE `info_organisasi` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jenis_pekerjaan`
+--
+
+CREATE TABLE `jenis_pekerjaan` (
+  `id_jenispekerjaan` int(11) NOT NULL,
+  `pekerjaan` varchar(150) NOT NULL,
+  `status_delete` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jenis_pekerjaan`
+--
+
+INSERT INTO `jenis_pekerjaan` (`id_jenispekerjaan`, `pekerjaan`, `status_delete`) VALUES
+(1, 'Pelajar/Mahasiswa', 0),
+(2, 'Buruh Harian', 0),
+(3, 'Petani', 0),
+(4, 'Wiraswasta', 0),
+(5, 'PNS', 0),
+(6, 'Angkatan', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jenis_pendidikan`
+--
+
+CREATE TABLE `jenis_pendidikan` (
+  `id_jenispendidikan` int(11) NOT NULL,
+  `pendidikan` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jenis_pendidikan`
+--
+
+INSERT INTO `jenis_pendidikan` (`id_jenispendidikan`, `pendidikan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 'Tidak Sekolah', '2017-02-18 09:45:24', 0, NULL, NULL, NULL, NULL),
+(2, 'SD / Sederajat', '2017-02-18 09:45:24', 0, NULL, NULL, NULL, NULL),
+(3, 'SMP / Sederajat', '2017-02-18 09:45:24', 0, NULL, NULL, NULL, NULL),
+(4, 'SMA / Sederajat', '2017-02-18 09:45:24', 0, NULL, NULL, NULL, NULL),
+(5, 'Diploma 1', '2017-02-18 09:45:24', 0, NULL, NULL, NULL, NULL),
+(6, 'Diploma 2', '2017-02-18 09:45:24', 0, NULL, NULL, NULL, NULL),
+(7, 'Diploma 3', '2017-02-18 09:45:24', 0, NULL, NULL, NULL, NULL),
+(8, 'Diploma 4 / Strata 1', '2017-02-18 09:45:24', 0, NULL, NULL, NULL, NULL),
+(9, 'Strata 2', '2017-02-18 09:45:24', 0, NULL, NULL, NULL, NULL),
+(10, 'Strata 3', '2017-02-18 09:45:24', 0, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kartu_keluarga`
+--
+
+CREATE TABLE `kartu_keluarga` (
+  `no` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `nama_kepala_keluarga` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `rt` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `rw` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kelahiran`
+--
+
+CREATE TABLE `kelahiran` (
+  `id` int(11) NOT NULL,
+  `no_kk` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `jenis_kelamin` varchar(250) NOT NULL,
+  `tempat_lahir` varchar(200) NOT NULL,
+  `tanggal_lahir` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `nama_ayah` varchar(250) NOT NULL,
+  `nama_ibu` varchar(250) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `rt` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `rw` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `meninggal`
+--
+
+CREATE TABLE `meninggal` (
+  `id` int(11) NOT NULL,
+  `nik` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `tempat` varchar(200) NOT NULL,
+  `sebab` text NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mutasi_keluar`
+--
+
+CREATE TABLE `mutasi_keluar` (
+  `id` int(11) NOT NULL,
+  `nik` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `alamat_tujuan` varchar(100) NOT NULL,
+  `rt_tujuan` varchar(100) NOT NULL,
+  `rw_tujuan` varchar(100) NOT NULL,
+  `kec_tujuan` varchar(100) NOT NULL,
+  `kab_tujuan` varchar(100) NOT NULL,
+  `prop_tujuan` varchar(100) NOT NULL,
+  `keterangan` text NOT NULL,
+  `status_delete` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mutasi_masuk`
+--
+
+CREATE TABLE `mutasi_masuk` (
+  `id` int(11) NOT NULL,
+  `nik` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `alamat_asal` varchar(100) NOT NULL,
+  `rt_asal` varchar(100) NOT NULL,
+  `rw_asal` varchar(100) NOT NULL,
+  `kec_asal` varchar(100) NOT NULL,
+  `kab_asal` varchar(100) NOT NULL,
+  `prop_asal` varchar(100) NOT NULL,
+  `keterangan` text NOT NULL,
+  `status_delete` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `organisasi`
 --
 
@@ -213,13 +398,49 @@ CREATE TABLE `organisasi` (
   `id` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `verified_by` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0=belum disetujui, 1=disetujui',
+  `status` enum('0','1','2') DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `organisasi`
+--
+
+INSERT INTO `organisasi` (`id`, `nama`, `slug`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 'Kecamatan Lumajang', 'kecamatan-lumajang', '1', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(2, 'Tompokerso', 'tompokerso', '1', '2017-02-17 17:00:00', 1, NULL, NULL, NULL, NULL),
+(3, 'Patrang', 'patrang', '0', '2017-02-17 17:00:00', 1, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penduduk`
+--
+
+CREATE TABLE `penduduk` (
+  `nik` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `no_kk` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `tempat_lahir` varchar(100) NOT NULL,
+  `golongan_darah` varchar(2) NOT NULL,
+  `status_nikah` int(11) NOT NULL,
+  `pendidikan` int(11) NOT NULL,
+  `nama_ibu` varchar(200) NOT NULL,
+  `jenis_kelamin` varchar(20) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `agama` int(11) NOT NULL,
+  `pekerjaan` int(11) NOT NULL,
+  `nama_ayah` varchar(100) NOT NULL,
+  `rt` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `rw` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `kewarganegaraan` varchar(20) NOT NULL,
+  `status_delete` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -260,6 +481,28 @@ CREATE TABLE `percobaan_login` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pindahrt`
+--
+
+CREATE TABLE `pindahrt` (
+  `id` int(11) NOT NULL,
+  `nik` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `rt_tujuan` int(11) NOT NULL,
+  `rw_tujuan` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `keterangan` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `profil_organisasi`
 --
 
@@ -278,6 +521,54 @@ CREATE TABLE `profil_organisasi` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status_keluarga`
+--
+
+CREATE TABLE `status_keluarga` (
+  `id_statuskeluarga` int(11) NOT NULL,
+  `nama_statuskeluarga` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `status_keluarga`
+--
+
+INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUES
+(1, 'Suami'),
+(2, 'Istri'),
+(3, 'Anak'),
+(4, 'Cucu'),
+(5, 'Orang Tua'),
+(6, 'Mertua'),
+(7, 'Family Lain');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `surat`
+--
+
+CREATE TABLE `surat` (
+  `id` int(11) NOT NULL,
+  `nik` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `jenis` int(11) NOT NULL,
+  `nomor` varchar(100) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tanggal2` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `keperluan` text NOT NULL,
+  `keterangan` text NOT NULL,
+  `created_at` int(11) NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` int(11) DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -347,6 +638,15 @@ ALTER TABLE `berita`
   ADD KEY `id_organisasi` (`id_organisasi`);
 
 --
+-- Indexes for table `detail_kartu_keluarga`
+--
+ALTER TABLE `detail_kartu_keluarga`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `no_kk` (`no_kk`),
+  ADD KEY `nik` (`nik`),
+  ADD KEY `status_keluarga` (`status_keluarga`);
+
+--
 -- Indexes for table `detail_tingkatan`
 --
 ALTER TABLE `detail_tingkatan`
@@ -376,6 +676,40 @@ ALTER TABLE `info_organisasi`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `slug` (`slug`),
   ADD KEY `id_organisasi` (`id_organisasi`,`created_by`,`updated_by`,`deleted_by`);
+
+--
+-- Indexes for table `jenis_pekerjaan`
+--
+ALTER TABLE `jenis_pekerjaan`
+  ADD PRIMARY KEY (`id_jenispekerjaan`);
+
+--
+-- Indexes for table `jenis_pendidikan`
+--
+ALTER TABLE `jenis_pendidikan`
+  ADD PRIMARY KEY (`id_jenispendidikan`);
+
+--
+-- Indexes for table `kartu_keluarga`
+--
+ALTER TABLE `kartu_keluarga`
+  ADD PRIMARY KEY (`no`),
+  ADD KEY `id_organisasi` (`id_organisasi`);
+
+--
+-- Indexes for table `kelahiran`
+--
+ALTER TABLE `kelahiran`
+  ADD KEY `no_kk` (`no_kk`),
+  ADD KEY `id_organisasi` (`id_organisasi`);
+
+--
+-- Indexes for table `meninggal`
+--
+ALTER TABLE `meninggal`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `nik` (`nik`),
+  ADD KEY `id_organisasi` (`id_organisasi`);
 
 --
 -- Indexes for table `organisasi`
@@ -460,7 +794,7 @@ ALTER TABLE `info_organisasi`
 -- AUTO_INCREMENT for table `organisasi`
 --
 ALTER TABLE `organisasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pengumuman`
 --
