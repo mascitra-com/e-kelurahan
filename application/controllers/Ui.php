@@ -32,4 +32,14 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/kependudukan/detail');
 	}
+
+	public function keluarga()
+	{
+		$this->render('_UI/keluarga/keluarga');
+	}
+
+	public function keluarga_detail()
+	{
+		$this->render('_UI/keluarga/detail');
+	}
 }

@@ -6,6 +6,7 @@
 			<li><a href="#"><i class="fa fa-fw fa-home"></i><span class="nav-label">Dashboard</span></a></li>
 			<li><a href="{{site_url('ui/kelurahan')}}"><i class="fa fa-fw fa-bank"></i><span class="nav-label">Kelurahan</span></a></li>
 			<li><a href="{{site_url('ui/kependudukan')}}"><i class="fa fa-fw fa-users"></i><span class="nav-label">Kependudukan</span></a></li>
+			<li><a href="{{site_url('ui/kependudukan')}}"><i class="fa fa-fw fa-users"></i><span class="nav-label">Kartu Keluarga</span></a></li>
 			<!-- <li>
 				<a href="#nav-dokumen" data-toggle="collapse" aria-controls="nav-dokumen"><i class="fa fa-fw fa-archive"></i><span class="nav-label">Dokumen</span></a>
 				<ul class="sidebar-nav-child collapse collapseable" id="nav-dokumen">

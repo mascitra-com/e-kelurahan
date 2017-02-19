@@ -77,9 +77,21 @@
 							<td>Manajemen Kependudukan</td>
 							<td>Halaman untuk memanajemen data kependudukan</td>
 							<td>kependudukan</td>
-							<td class="text-center"><i class="fa fa-circle text-red"></i></td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/kependudukan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Manajemen Keluarga</td>
+							<td>Halaman untuk memanajemen data Keluarga</td>
+							<td>Keluarga</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{base_url('ui/keluarga')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
