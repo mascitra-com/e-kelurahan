@@ -81,7 +81,7 @@ class Penduduk extends MY_Controller {
             $data['penduduk'] = $this->penduduk->get(array('nik' => $nik));
         }
         $this->message('Data Penduduk Berhasil Diubah', 'success');
-        redirect('penduduk');
+        $this->go('penduduk');
     }
 
     public function hapus($nik = NULL)
@@ -91,5 +91,6 @@ class Penduduk extends MY_Controller {
         } else {
             $this->message('Data Penduduk Gagal Diubah', 'danger');
         }
+        $this->go('penduduk');
     }
 }
