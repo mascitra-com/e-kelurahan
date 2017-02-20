@@ -55,6 +55,7 @@ class Penduduk extends MY_Controller {
             $data['pekerjaan'] = $this->pekerjaan->get_all();
             $this->render('kependudukan/create', $data);
         }
+        $this->message('Data Penduduk Berhasil Ditambahkan', 'success');
         $this->go('penduduk');
     }
 
@@ -79,11 +80,16 @@ class Penduduk extends MY_Controller {
             // TODO View untuk Tanggal Lahir belum benar
             $data['penduduk'] = $this->penduduk->get(array('nik' => $nik));
         }
+        $this->message('Data Penduduk Berhasil Diubah', 'success');
         redirect('penduduk');
     }
 
-    public function hapus($id = NULL)
+    public function hapus($nik = NULL)
     {
-        // TODO How?
+        if($this->penduduk->delete($nik)){
+            $this->message('Data Penduduk Berhasil Diubah', 'success');
+        } else {
+            $this->message('Data Penduduk Gagal Diubah', 'danger');
+        }
     }
 }
