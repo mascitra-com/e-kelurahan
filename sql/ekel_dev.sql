@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 19, 2017 at 06:24 AM
+-- Generation Time: Feb 20, 2017 at 07:20 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -398,7 +398,7 @@ CREATE TABLE `organisasi` (
   `id` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `verified_by` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0=belum disetujui, 1=disetujui',
+  `status` enum('0','1','2') DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -406,6 +406,15 @@ CREATE TABLE `organisasi` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `organisasi`
+--
+
+INSERT INTO `organisasi` (`id`, `nama`, `slug`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 'Kecamatan Lumajang', 'kecamatan-lumajang', '1', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(2, 'Tompokerso', 'tompokerso', '1', '2017-02-17 17:00:00', 1, NULL, NULL, NULL, NULL),
+(3, 'Patrang', 'patrang', '0', '2017-02-17 17:00:00', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -416,23 +425,33 @@ CREATE TABLE `organisasi` (
 CREATE TABLE `penduduk` (
   `nik` varchar(40) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
-  `no_kk` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `tempat_lahir` varchar(100) NOT NULL,
   `golongan_darah` varchar(2) NOT NULL,
-  `status_nikah` int(11) NOT NULL,
-  `pendidikan` int(11) NOT NULL,
-  `nama_ibu` varchar(200) NOT NULL,
-  `jenis_kelamin` varchar(20) NOT NULL,
-  `tanggal_lahir` date NOT NULL,
-  `agama` int(11) NOT NULL,
-  `pekerjaan` int(11) NOT NULL,
-  `nama_ayah` varchar(100) NOT NULL,
+  `status_nikah` tinyint(1) NOT NULL,
+  `jenis_kelamin` enum('0','1') NOT NULL,
+  `tanggal_lahir` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `agama` tinyint(4) NOT NULL,
+  `pekerjaan` tinyint(4) NOT NULL,
   `rt` int(3) UNSIGNED ZEROFILL NOT NULL,
   `rw` int(3) UNSIGNED ZEROFILL NOT NULL,
-  `kewarganegaraan` varchar(20) NOT NULL,
-  `status_delete` int(11) NOT NULL
+  `kewarganegaraan` enum('0','1') NOT NULL,
+  `created_at` timestamp NULL DEFAULT curtime(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `penduduk`
+--
+
+INSERT INTO `penduduk` (`nik`, `id_organisasi`, `nama`, `tempat_lahir`, `golongan_darah`, `status_nikah`, `jenis_kelamin`, `tanggal_lahir`, `agama`, `pekerjaan`, `rt`, `rw`, `kewarganegaraan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+('3764289649123', 2, 'Rizki', 'Sumenep', 'AB', 0, '0', '0000-00-00 00:00:00', 0, 1, 002, 001, '0', '2017-02-19 02:43:22', 2, '2017-02-19 03:06:21', 2, NULL, NULL),
+('83740927349074', 2, 'Rizki Herdatullah', 'Sumenep', 'O', 0, '0', '2017-02-19 17:00:00', 0, 1, 002, 001, '0', '2017-02-19 23:06:40', 2, '2017-02-19 23:10:13', 2, NULL, NULL),
+('389475932753034750954', 2, 'Farida', 'Sumenep', 'O', 2, '1', '0000-00-00 00:00:00', 1, 4, 002, 001, '0', '2017-02-19 23:08:40', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -730,6 +749,7 @@ ALTER TABLE `organisasi`
 -- Indexes for table `penduduk`
 --
 ALTER TABLE `penduduk`
+  ADD KEY `pekerjaan` (`pekerjaan`);
   ADD PRIMARY KEY (`nik`),
   ADD KEY `agama` (`agama`),
   ADD KEY `pekerjaan` (`pekerjaan`),
