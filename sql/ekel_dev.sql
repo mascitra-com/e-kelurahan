@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 20, 2017 at 08:15 AM
+-- Generation Time: Feb 20, 2017 at 08:33 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -124,6 +124,7 @@ CREATE TABLE `detail_kartu_keluarga` (
   `no_kk` varchar(40) NOT NULL,
   `nik` varchar(40) NOT NULL,
   `status_keluarga` int(11) NOT NULL,
+  `no_urut_kk` int(11) UNSIGNED NOT NULL DEFAULT 1,
   `no_paspor` varchar(30) DEFAULT NULL,
   `no_kitap` varchar(40) DEFAULT NULL,
   `ayah` varchar(255) DEFAULT NULL,
