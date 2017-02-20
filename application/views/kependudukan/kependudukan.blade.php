@@ -11,7 +11,7 @@
 				<div class="btn-group pull-right">
 					<a href="{{ site_url('penduduk/tambah') }}" class="btn btn-xs btn-default"><i class="fa fa-plus"></i></a>
 					<button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal"><i class="fa fa-search"></i></button>
-					<a href="{{ site_url('penduduk') }}" class="btn btn-xs btn-default reload"><i class="fa fa-refresh"></i></a>
+					<a href="{{ site_url('penduduk/refresh') }}" class="btn btn-xs btn-default reload"><i class="fa fa-refresh"></i></a>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -20,31 +20,31 @@
 					<thead>
 						<tr>
 							<th>
-								<a href="#" class="btn btn-default btn-xs">NIK</a>
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-sort"></i></a>
+								<a href="{{ site_url('penduduk/urut/nik') }}" class="btn btn-{{ $order_by === 'nik' ? 'primary' : 'default' }} btn-xs">NIK</a>
+								<a href="{{ $order_by === 'nik' ? site_url('penduduk/urut/' . $order_by . '/' . $order_type) : '#' }}" class="btn btn-{{ $order_by === 'nik' ? 'primary' : 'default' }} btn-xs"><i class="fa fa-sort"></i></a>
 							</th>
 							<th>
-								<a href="#" class="btn btn-default btn-xs">Nama</a>
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-sort"></i></a>
+								<a href="{{ site_url('penduduk/urut/nama') }}" class="btn btn-{{ $order_by === 'nama' ? 'primary' : 'default' }} btn-xs">Nama</a>
+								<a href="{{ $order_by === 'nama' ? site_url('penduduk/urut/' . $order_by . '/' . $order_type) : '#' }}" class="btn btn-{{ $order_by === 'nama' ? 'primary' : 'default' }} btn-xs"><i class="fa fa-sort"></i></a>
 							</th>
 							<th>
-								<a href="#" class="btn btn-default btn-xs">Jenis Kelamin</a>
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-sort"></i></a>
+								<a href="{{ site_url('penduduk/urut/jenis_kelamin') }}" class="btn btn-{{ $order_by === 'jenis_kelamin' ? 'primary' : 'default' }} btn-xs">Jenis Kelamin</a>
+								<a href="{{ $order_by === 'jenis_kelamin' ? site_url('penduduk/urut/' . $order_by . '/' . $order_type) : '#' }}" class="btn btn-{{ $order_by === 'jenis_kelamin' ? 'primary' : 'default' }} btn-xs"><i class="fa fa-sort"></i></a>
 							</th>
 							<th>
-								<a href="#" class="btn btn-default btn-xs">Status Nikah</a>
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-sort"></i></a>
+								<a href="{{ site_url('penduduk/urut/status_nikah') }}" class="btn btn-{{ $order_by === 'status_nikah' ? 'primary' : 'default' }} btn-xs">Status Nikah</a>
+								<a href="{{ $order_by === 'status_nikah' ? site_url('penduduk/urut/' . $order_by . '/' . $order_type) : '#' }}" class="btn btn-{{ $order_by === 'status_nikah' ? 'primary' : 'default' }} btn-xs"><i class="fa fa-sort"></i></a>
+							</th>
+							<th>
+								<a href="{{ site_url('penduduk/urut/rt') }}" class="btn btn-{{ $order_by === 'rt' ? 'primary' : 'default' }} btn-xs">RT</a>
+								<a href="{{ $order_by === 'rt' ? site_url('penduduk/urut/' . $order_by . '/' . $order_type) : '#' }}" class="btn btn-{{ $order_by === 'rt' ? 'primary' : 'default' }} btn-xs"><i class="fa fa-sort"></i></a>
+							</th>
+							<th>
+								<a href="{{ site_url('penduduk/urut/rw') }}" class="btn btn-{{ $order_by === 'rw' ? 'primary' : 'default' }} btn-xs">RW</a>
+								<a href="{{ $order_by === 'rt' ? site_url('penduduk/urut/' . $order_by . '/' . $order_type) : '#' }}" class="btn btn-{{ $order_by === 'rw' ? 'primary' : 'default' }} btn-xs"><i class="fa fa-sort"></i></a>
 							</th>
 							<th class="text-center">
-								<a href="#" class="btn btn-default btn-xs">RT</a>
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-sort"></i></a>
-							</th>
-							<th class="text-center">
-								<a href="#" class="btn btn-default btn-xs">RW</a>
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-sort"></i></a>
-							</th>
-							<th class="text-center">
-								aksi
+								Aksi
 							</th>
 						</tr>
 					</thead>
@@ -92,7 +92,7 @@
 				<h4 class="modal-title">Filter Pencarian</h4>
 			</div>
 			<div class="modal-body">
-				<form action="{{ site_url('penduduk/page') }}" method="GET">
+				<form action="{{ site_url('penduduk/search') }}" method="POST">
 					<div class="row">
 						<div class="col-xs-12 col-md-4">
 							<div class="form-group">
