@@ -130,7 +130,7 @@
 				<h4 class="modal-title">Tambah Keluarga</h4>
 			</div>
 			<div class="modal-body">
-				<form action="#">
+				<form action="{{ site_url('keluarga/simpan') }}" method="POST">
 					<div class="form-group">
 						<label for="no">Nomor KK</label>
 						<input type="text" class="form-control" name="no" placeholder="masukkan nomor KK">
@@ -139,7 +139,6 @@
 						<label for="nik">Kepala Keluarga</label>
 						<input list="kepala_keluarga" class="form-control" name="nik" placeholder="masukkan nama atau NIK">
 						<datalist id="kepala_keluarga">
-							<option value="pak deket rumah">
 						</datalist>
 					</div>
 					<div class="form-group">
@@ -185,11 +184,11 @@
 function getKepNik() {
 	$.getJSON('{{ site_url() }}'+'keluarga/ambil_kep_nik', function (result) {
 		$("#kepala_keluarga").empty();
-
+		for (var i = 0; i < result.length; i++) {
+			var penduduk= result[i];
+			$("#kepala_keluarga").append("<option value='"+penduduk.nik + " | " + penduduk.nama+"'");
+		}
 	});
-	// for (var i = 0; i < 2; i++) {
-	// 	$("#kepala_keluarga").append("<option value='pak deket rumah'>");
-	// }
 }
 </script>
 @endsection

@@ -116,4 +116,25 @@ class Penduduk_m extends MY_Model
         parent::__construct();
     }
 
+    public function ambilPendudukHidup($id_organisasi = NULL)
+    {
+        if ($id_organisasi != NULL && !empty($id_organisasi)) {
+            $query= $this->db->select('p.nik, p.nama')
+            ->from('penduduk as p')
+            ->where('id_organisasi', $id_organisasi)
+            ->where('p.nik NOT IN (select nik from meninggal)',NULL,FALSE)
+            ->get();
+
+            if ($query->num_rows() > 0) {
+                foreach ($query->result() as $row) {
+                    $penduduk_hidup[]= $row;
+                }
+                return $penduduk_hidup;
+            }
+            return 'Penduduk tidak ditemukan';
+        }else{
+            return 'Penduduk tidak ditemukan';
+        }
+    }
+
 }
