@@ -108,6 +108,7 @@ class Penduduk_m extends MY_Model
         $this->primary_key = 'nik';
 
         $this->has_many['meninggals'] = array('meninggal_m', 'nik', 'nik');
+        $this->has_many['keluargas'] = array('keluarga_m', 'nik', 'nik');
         
         $this->soft_deletes = TRUE;
         $this->fillable = array('nik', 'id_organisasi', 'nama', 'tempat_lahir', 'golongan_darah', 'status_nikah', 'pendidikan', 'jenis_kelamin', 'tanggal_lahir', 'agama', 'pekerjaan', 'rt', 'rw', 'kewarganegaraan');

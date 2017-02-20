@@ -48,7 +48,9 @@ class Keluarga_m extends MY_Model
 
 	public function __construct()
 	{
-		$this->has_one['organisasi'] = array('Organisasi_m', 'no', 'id_organisasi');
+        $this->has_one['organisasi'] = array('Organisasi_m', 'no', 'id_organisasi');
+        $this->has_one['penduduk'] = array('Penduduk_m', 'nik', 'nik');
+		$this->has_one['detailKK'] = array('Detail_kk_m', 'no_kk', 'no');
 		$this->soft_deletes = TRUE;
 		parent::__construct();
 	}

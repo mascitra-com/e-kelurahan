@@ -42,18 +42,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						@for($i=0;$i < 5;$i++)
+						<?php $i=0; ?>
+						@foreach($keluargas as $keluarga)
 						<tr>
-							<td>122410101086</td>
-							<td>Mohammad Ainul Yaqin</td>
-							<td>Lorem ipsum dolor sit amet, consectetur.</td>
-							<td class="text-center">04</td>
-							<td class="text-center">05</td>
+							<td>{{ $keluarga->no }}</td>
+							<td>{{ $keluarga->penduduk->nama }}</td>
+							<td>{{ $keluarga->alamat }}</td>
+							<td class="text-center">{{ $keluarga->rt }}</td>
+							<td class="text-center">{{ $keluarga->rw }}</td>
 							<td class="text-center">
 								<a href="{{base_url('ui/kependudukan_detail')}}" class="btn btn-default btn-xs"><i class="fa fa-ellipsis-h"></i></a>
 							</td>
 						</tr>
-						@endfor
+						@endforeach
 					</tbody>
 				</table>
 			</div>

@@ -13,7 +13,7 @@ class Detail_kk_m extends MY_Model
 
 	public function __construct()
 	{
-		// $this->has_one['organisasi'] = array('Organisasi_m', 'id', 'id_organisasi');
+		$this->has_one['keluarga'] = array('Keluarga_m', 'no', 'no');
 		parent::__construct();
 	}
 }

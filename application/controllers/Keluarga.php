@@ -16,14 +16,9 @@ class Keluarga extends MY_Controller
 
 	public function index()
 	{
+		$data['keluargas'] = $this->keluarga_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->fields('no, alamat, rt, rw, updated_at')->with_penduduk('fields:nama')->get_all();
 		
-		// $data['kelurahans'] = $this->organisasi_m->where('id >', '1')->fields('id, nama, slug, status, updated_at')->with_akuns('fields:id,id_organisasi,username,active', 'where:`id`>\'1\'')->get_all();
-
-		// $data['kelurahan_verifs'] = $this->organisasi_m->where('id >', '1')->where('status', array('0','2'))->get_all();
-
-		// $penduduk_hidup = $this->penduduk_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->fields('nik, id_organisasi')->with_meninggals('fields:id, id_organisasi')->get_all();
-		
-		$this->render('keluarga/index');
+		$this->render('keluarga/index', $data);
 	}
 
 	public function simpan()
@@ -34,23 +29,19 @@ class Keluarga extends MY_Controller
 		$data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], "|")));
 		$data['rt'] = ltrim($data['rt'], '0');
 		$data['rw'] = ltrim($data['rw'], '0');
+		$id_org = array('id_organisasi' => $current_id_org);
+		$insert= array_merge($data, $id_org);
 		if (!empty($data['nik'])) {
-			dump($data['nik']);
-			// dump($this->keluarga_m->from_form(NULL, array('id_organisasi' => $current_id_org))->insert());
-			if ($this->keluarga_m->from_form(NULL, array('id_organisasi' => $current_id_org))->insert()) {
-				
-				//insert ke detail_kk
-				$insert_detail = array(
-					'no_kk' => $data['no'],
-					'nik' => $data['nik'],
+			$this->keluarga_m->insert($insert);	
+			//insert ke detail_kk
+			$insert_detail = array(
+				'no_kk' => $data['no'],
+				'nik' => $data['nik'],
 				);
-				if ($this->detail_kk_m->insert($insert_detail)) {
-					$this->go('keluarga');
-				}else{
-					die('terjadi kesalahan saat insert tabel detail keluarga');
-				}
-			} else {
-				die('terjadi kesalahan saat insert tabel keluarga');
+			if ($this->detail_kk_m->insert($insert_detail)) {
+				$this->go('keluarga');
+			}else{
+				die('terjadi kesalahan saat insert tabel detail keluarga');
 			}
 		}else{
 			die('terjadi kesalahan saat insert | nik kosong');
