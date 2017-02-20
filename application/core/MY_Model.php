@@ -1471,7 +1471,7 @@ class MY_Model extends CI_Model {
         $previous_page = $page_number - 1;
 
         if ($page_number == 1) {
-            $this->previous_page = $this->pagination_delimiters[0] . $this->pagination_arrows[0] . $this->pagination_delimiters[1];
+            $this->previous_page = $this->pagination_delimiters[0] . '<a href="#">' . $this->pagination_arrows[0] . '</a>' . $this->pagination_delimiters[1];
         } else {
             $uri_array[$segments] = $previous_page;
             $uri_string = implode('/', $uri_array);
@@ -1480,7 +1480,7 @@ class MY_Model extends CI_Model {
         $uri_array[$segments] = $next_page;
         $uri_string = implode('/', $uri_array);
         if (isset($total_rows) && (ceil($total_rows / $rows_per_page) == $page_number)) {
-            $this->next_page = $this->pagination_delimiters[0] . $this->pagination_arrows[1] . $this->pagination_delimiters[1];
+            $this->next_page = $this->pagination_delimiters[0] . '<a href="#">' . $this->pagination_arrows[1] . '</a>' . $this->pagination_delimiters[1];
         } else {
             $this->next_page = $this->pagination_delimiters[0] . anchor($uri_string, $this->pagination_arrows[1]) . $this->pagination_delimiters[1];
         }
