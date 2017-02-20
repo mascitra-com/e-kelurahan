@@ -10,6 +10,7 @@ class Penduduk extends MY_Controller {
         $this->load->model('organisasi_m', 'organisasi');
         $this->load->model('pekerjaan_m', 'pekerjaan');
         $this->load->model('pendidikan_m', 'pendidikan');
+        $this->load->library('form_validation');
     }
 
     /**
@@ -93,7 +94,6 @@ class Penduduk extends MY_Controller {
      */
     public function simpan()
     {
-        $this->load->library('form_validation');
         $this->input->post(NULL, TRUE);
         if ( ! $this->penduduk->from_form(NULL, array('id_organisasi' => $this->ion_auth->get_current_id_org()))->insert())
         {
@@ -127,7 +127,6 @@ class Penduduk extends MY_Controller {
      */
     public function ubah($nik = NULL)
     {
-        $this->load->library('form_validation');
         $data = $this->input->post(NULL, TRUE);
         if ( ! $this->penduduk->from_form()->update($data, $nik))
         {
