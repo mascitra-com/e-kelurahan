@@ -106,11 +106,37 @@ class Penduduk_m extends MY_Model
     {
         $this->table = 'penduduk';
         $this->primary_key = 'nik';
+
+        $this->has_many['meninggals'] = array('meninggal_m', 'nik', 'nik');
+        $this->has_many['keluargas'] = array('keluarga_m', 'nik', 'nik');
+        
         $this->soft_deletes = TRUE;
         $this->fillable = array('nik', 'id_organisasi', 'nama', 'tempat_lahir', 'golongan_darah', 'status_nikah', 'pendidikan', 'jenis_kelamin', 'tanggal_lahir', 'agama', 'pekerjaan', 'rt', 'rw', 'kewarganegaraan');
         $this->pagination_delimiters = array('<li>','</li>');
         $this->pagination_arrows = array('&lt;','&gt;');
         parent::__construct();
+    }
+
+    public function ambilPendudukHidup($id_organisasi = NULL)
+    {
+        if ($id_organisasi != NULL && !empty($id_organisasi)) {
+            $query= $this->db->select('p.nik, p.nama')
+            ->from('penduduk as p')
+            ->where('id_organisasi', $id_organisasi)
+            ->where('p.nik NOT IN (select nik from meninggal)',NULL,FALSE)
+            ->where('p.nik NOT IN (select nik from keluarga)',NULL,FALSE)
+            ->get();
+
+            if ($query->num_rows() > 0) {
+                foreach ($query->result() as $row) {
+                    $penduduk_hidup[]= $row;
+                }
+                return $penduduk_hidup;
+            }
+            return 'Penduduk tidak ditemukan';
+        }else{
+            return 'Penduduk tidak ditemukan';
+        }
     }
 
 }

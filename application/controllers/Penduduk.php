@@ -24,9 +24,9 @@ class Penduduk extends MY_Controller {
             $this->go('penduduk/page/1');
         }
         // Get Filter and Order By from Session
-        $filter = $this->session->userdata('filter');
-        $order_by = $this->session->userdata('order_by');
-        $order_type = $this->session->userdata('order_type');
+        $filter = $this->session->userdata('fp');
+        $order_by = $this->session->userdata('obp');
+        $order_type = $this->session->userdata('otp');
         // Setting up Pagination
         $this->load->library('pagination');
         $total_data = $this->penduduk->where($filter, 'like', '%')->count_rows();
@@ -41,17 +41,6 @@ class Penduduk extends MY_Controller {
     }
 
     /**
-     * Call when user want to search specific data
-     * Store filter in Session
-     */
-    public function search()
-    {
-        $this->session->unset_userdata('filter');
-        $this->session->set_userdata('filter', $this->input->post());
-        $this->go('penduduk');
-    }
-
-    /**
      * Use to make URI looks good
      *
      * @param int $page
@@ -62,19 +51,36 @@ class Penduduk extends MY_Controller {
     }
 
     /**
+     * Order the data
+     *
+     * @param $order_by
+     * @param string $order_type
+     */
+    public function urut($order_by, $order_type = 'asc')
+    {
+        $this->session->unset_userdata(array('obp', 'otp'));
+        $this->session->set_userdata('obp', $order_by);
+        $this->session->set_userdata('otp', $order_type);
+        $this->go('penduduk');
+    }
+
+    /**
+     * Call when user want to search specific data
+     * Store filter in Session
+     */
+    public function search()
+    {
+        $this->session->unset_userdata('fp');
+        $this->session->set_userdata('fp', $this->input->post());
+        $this->go('penduduk');
+    }
+
+    /**
      * Reset any filter made while user search specific data
      */
     public function refresh()
     {
-        $this->session->unset_userdata(array('filter', 'order_by', 'order_type'));
-        $this->go('penduduk');
-    }
-
-    public function urut($order_by, $order_type = 'asc')
-    {
-        $this->session->unset_userdata(array('order_by', 'order_type'));
-        $this->session->set_userdata('order_by', $order_by);
-        $this->session->set_userdata('order_type', $order_type);
+        $this->session->unset_userdata(array('fp', 'obp', 'otp'));
         $this->go('penduduk');
     }
 
