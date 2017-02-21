@@ -51,7 +51,7 @@
 							<td class="text-center">{{ $keluarga->rt }}</td>
 							<td class="text-center">{{ $keluarga->rw }}</td>
 							<td class="text-center">
-								<a href="{{base_url('ui/kependudukan_detail')}}" class="btn btn-default btn-xs"><i class="fa fa-ellipsis-h"></i></a>
+								<a href="{{base_url('keluarga/detail/'.$keluarga->no)}}" class="btn btn-default btn-xs"><i class="fa fa-ellipsis-h"></i></a>
 							</td>
 						</tr>
 						@endforeach
@@ -138,7 +138,7 @@
 					</div>
 					<div class="form-group">
 						<label for="nik">Kepala Keluarga</label>
-						<input list="kepala_keluarga" class="form-control" name="nik" placeholder="masukkan nama atau NIK">
+						<input list="kepala_keluarga" class="form-control" name="nik" placeholder="masukkan nama atau NIK" autocomplete="off">
 						<datalist id="kepala_keluarga">
 						</datalist>
 					</div>
@@ -179,17 +179,19 @@
 @section('javascript')
 <script type="text/javascript">
 	$(document).ready(function(){
-	getKepNik();
-});
-
-function getKepNik() {
-	$.getJSON('{{ site_url() }}'+'keluarga/ambil_kep_nik', function (result) {
-		$("#kepala_keluarga").empty();
-		for (var i = 0; i < result.length; i++) {
-			var penduduk= result[i];
-			$("#kepala_keluarga").append("<option value='"+penduduk.nik + " | " + penduduk.nama+"'");
-		}
+		getKepNik();
 	});
-}
+
+	function getKepNik() {
+		$.getJSON('{{ site_url() }}'+'keluarga/ambil_kep_nik', function (result) {
+			$("#kepala_keluarga").empty();
+			if (result) {
+				for (var i = 0; i < result.length; i++) {
+					var penduduk= result[i];
+					$("#kepala_keluarga").append("<option value='"+penduduk.nik + " | " + penduduk.nama+"'");
+				}
+			}
+		});
+	}
 </script>
 @endsection

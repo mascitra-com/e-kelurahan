@@ -124,6 +124,7 @@ class Penduduk_m extends MY_Model
             ->from('penduduk as p')
             ->where('id_organisasi', $id_organisasi)
             ->where('p.nik NOT IN (select nik from meninggal)',NULL,FALSE)
+            ->where('p.nik NOT IN (select nik from keluarga)',NULL,FALSE)
             ->get();
 
             if ($query->num_rows() > 0) {
