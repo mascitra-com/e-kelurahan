@@ -12,7 +12,7 @@
 					<li role="presentation" class="tab-nav step1 active">Langkah ke-1</li>
 					<li role="presentation" class="tab-nav step2">Langkah ke-2</li>
 					<li role="presentation" class="tab-nav step3">Langkah ke-3</li>
-					<li role="presentation" class="tab-nav step3">Langkah Terakhir</li>
+					<li role="presentation" class="tab-nav step4">Langkah Terakhir</li>
 				</ul>
 			</div>
 			<div class="panel-body">
