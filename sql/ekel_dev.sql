@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 21, 2017 at 10:26 AM
+-- Generation Time: Feb 21, 2017 at 10:42 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -86,7 +86,7 @@ CREATE TABLE `akun` (
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487669795, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 2, '127.0.0.1', 'Kelurahan-tompokerso@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1487669800, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
+(2, 2, '127.0.0.1', 'Kelurahan-tompokerso@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1487673280, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -143,8 +143,8 @@ CREATE TABLE `detail_kartu_keluarga` (
 --
 
 INSERT INTO `detail_kartu_keluarga` (`id`, `no_kk`, `nik`, `id_pendidikan`, `status_keluarga`, `no_urut_kk`, `no_paspor`, `no_kitap`, `ayah`, `ibu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(2, '123', '389475932753034750954', NULL, 0, 1, NULL, NULL, NULL, NULL, '2017-02-20 05:29:09', 2, '2017-02-20 23:15:28', 2, NULL, NULL),
-(3, '678', '83740927349074', NULL, 0, 1, NULL, NULL, NULL, NULL, '2017-02-20 23:01:08', 2, NULL, NULL, NULL, NULL);
+(2, '123', '389475932753034750954', 8, 0, 1, NULL, NULL, NULL, NULL, '2017-02-20 05:29:09', 2, '2017-02-20 23:15:28', 2, NULL, NULL),
+(3, '678', '83740927349074', 7, 0, 1, NULL, NULL, NULL, NULL, '2017-02-20 23:01:08', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -243,21 +243,102 @@ CREATE TABLE `info_organisasi` (
 
 CREATE TABLE `jenis_pekerjaan` (
   `id_jenispekerjaan` int(11) NOT NULL,
-  `pekerjaan` varchar(150) NOT NULL,
-  `status_delete` int(11) NOT NULL
+  `pekerjaan` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jenis_pekerjaan`
 --
 
-INSERT INTO `jenis_pekerjaan` (`id_jenispekerjaan`, `pekerjaan`, `status_delete`) VALUES
-(1, 'Pelajar/Mahasiswa', 0),
-(2, 'Buruh Harian', 0),
-(3, 'Petani', 0),
-(4, 'Wiraswasta', 0),
-(5, 'PNS', 0),
-(6, 'Angkatan', 0);
+INSERT INTO `jenis_pekerjaan` (`id_jenispekerjaan`, `pekerjaan`) VALUES
+(1, 'Belum / Tidak Bekerja'),
+(2, 'Mengurus Rumah Tangga'),
+(3, 'Pelajar / Mahasiswa'),
+(4, 'Pensiunan'),
+(5, 'Pegawai Negeri Sipil'),
+(6, 'Tentara Nasional Indonesia'),
+(7, 'Kepolisian RI'),
+(8, 'Perdagangan'),
+(9, 'Petani / Pekebun'),
+(10, 'Peternak'),
+(11, 'Nelayan / Perikanan'),
+(12, 'Industri'),
+(13, 'Konstruksi'),
+(14, 'Transportasi'),
+(15, 'Karyawan Swasta'),
+(16, 'Karyawan BUMN'),
+(17, 'Karyawan BUMD'),
+(18, 'Karyawan Honorer'),
+(19, 'Buruh Harian Lepas'),
+(20, 'Buruh Tani / Perkebunan'),
+(21, 'Buruh Nelayan / Perikanan'),
+(22, 'Buruh Peternakan'),
+(23, 'Pembantu Rumah Tangga'),
+(24, 'Tukang Cukur'),
+(25, 'Tukang Listrik'),
+(26, 'Tukang Batu'),
+(27, 'Tukang Kayu'),
+(28, 'Tukang Sol Sepatu'),
+(29, 'Tukang Las / Pandai Besi'),
+(30, 'Tukang Jahit'),
+(31, 'Penata Rambut'),
+(32, 'Penata Rias'),
+(33, 'Penata Busana'),
+(34, 'Mekanik'),
+(35, 'Tukang Gigi'),
+(36, 'Seniman'),
+(37, 'Tabib'),
+(38, 'Paraji'),
+(39, 'Perancang Busana'),
+(40, 'Penterjemah'),
+(41, 'Imam Masjid'),
+(42, 'Pendeta'),
+(43, 'Pastur'),
+(44, 'Wartawan'),
+(45, 'Ustadz / Mubaligh'),
+(46, 'Juru Masak'),
+(47, 'Promotor Acara'),
+(48, 'Anggota DPR-RI'),
+(49, 'Anggota DPD'),
+(50, 'Anggota BPK'),
+(51, 'Presiden'),
+(52, 'Wakil Presiden'),
+(53, 'Anggota Mahkamah Konstitusi'),
+(54, 'Anggota Kabinet / Kementerian'),
+(55, 'Duta Besar'),
+(56, 'Gubernur'),
+(57, 'Wakil Gubernur'),
+(58, 'Bupati'),
+(59, 'Wakil Bupati'),
+(60, 'Walikota'),
+(61, 'Wakil Walikota'),
+(62, 'Anggota DPRD Propinsi'),
+(63, 'Anggota DPRD Kabupaten / Kota'),
+(64, 'Dosen'),
+(65, 'Guru'),
+(66, 'Pilot'),
+(67, 'Pengacara'),
+(68, 'Notaris'),
+(69, 'Arsitek'),
+(70, 'Akuntan'),
+(71, 'Konsultan'),
+(72, 'Dokter'),
+(73, 'Bidan'),
+(74, 'Perawat'),
+(75, 'Apoteker'),
+(76, 'Psikiater / Psikolog'),
+(77, 'Penyiar Televisi'),
+(78, 'Penyiar Radio'),
+(79, 'Pelaut'),
+(80, 'Peneliti'),
+(81, 'Sopir'),
+(82, 'Pialang'),
+(83, 'Paranormal'),
+(84, 'Pedagang'),
+(85, 'Perangkat Desa'),
+(86, 'Kepala Desa'),
+(87, 'Biarawati'),
+(88, 'Wiraswasta');
 
 -- --------------------------------------------------------
 
@@ -30612,6 +30693,11 @@ ALTER TABLE `galeri_kategori`
 --
 ALTER TABLE `info_organisasi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jenis_pekerjaan`
+--
+ALTER TABLE `jenis_pekerjaan`
+  MODIFY `id_jenispekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 --
 -- AUTO_INCREMENT for table `meninggal`
 --
