@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 21, 2017 at 10:42 AM
+-- Generation Time: Feb 21, 2017 at 12:45 PM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -85,8 +85,8 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487669795, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 2, '127.0.0.1', 'Kelurahan-tompokerso@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1487673280, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
+(1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487680998, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(2, 2, '127.0.0.1', 'Kelurahan-tompokerso@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1487681106, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -124,7 +124,7 @@ CREATE TABLE `detail_kartu_keluarga` (
   `no_kk` varchar(40) NOT NULL,
   `nik` varchar(40) NOT NULL,
   `id_pendidikan` int(11) DEFAULT NULL,
-  `status_keluarga` int(11) NOT NULL DEFAULT 0,
+  `status_keluarga` int(11) NOT NULL DEFAULT 1,
   `no_urut_kk` int(11) UNSIGNED NOT NULL DEFAULT 1,
   `no_paspor` varchar(30) DEFAULT NULL,
   `no_kitap` varchar(40) DEFAULT NULL,
@@ -143,8 +143,8 @@ CREATE TABLE `detail_kartu_keluarga` (
 --
 
 INSERT INTO `detail_kartu_keluarga` (`id`, `no_kk`, `nik`, `id_pendidikan`, `status_keluarga`, `no_urut_kk`, `no_paspor`, `no_kitap`, `ayah`, `ibu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(2, '123', '389475932753034750954', 8, 0, 1, NULL, NULL, NULL, NULL, '2017-02-20 05:29:09', 2, '2017-02-20 23:15:28', 2, NULL, NULL),
-(3, '678', '83740927349074', 7, 0, 1, NULL, NULL, NULL, NULL, '2017-02-20 23:01:08', 2, NULL, NULL, NULL, NULL);
+(2, '123', '389475932753034750954', 8, 1, 1, 'edit', '', '', '', '2017-02-20 05:29:09', 2, '2017-02-21 05:25:49', 2, NULL, NULL),
+(3, '678', '83740927349074', 7, 1, 1, '', '', '', '', '2017-02-20 23:01:08', 2, '2017-02-21 05:23:14', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -30063,13 +30063,6 @@ CREATE TABLE `meninggal` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `meninggal`
---
-
-INSERT INTO `meninggal` (`id`, `nik`, `id_organisasi`, `tempat`, `sebab`, `tanggal`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, '3764289649123', 2, 'WC', 'diare', '2017-02-19 17:00:00', '2017-02-19 17:00:00', 2, NULL, NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -30384,14 +30377,14 @@ CREATE TABLE `status_keluarga` (
 --
 
 INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUES
-(0, 'Kepala Keluarga'),
-(1, 'Suami'),
-(2, 'Istri'),
-(3, 'Anak'),
-(4, 'Cucu'),
-(5, 'Orang Tua'),
-(6, 'Mertua'),
-(7, 'Family Lain');
+(1, 'Kepala Keluarga'),
+(2, 'Suami'),
+(3, 'Istri'),
+(4, 'Anak'),
+(5, 'Cucu'),
+(6, 'Orang Tua'),
+(7, 'Mertua'),
+(8, 'Family Lain');
 
 -- --------------------------------------------------------
 
@@ -30441,8 +30434,8 @@ CREATE TABLE `tingkatan` (
 --
 
 INSERT INTO `tingkatan` (`id`, `name`, `description`, `menu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 'Admin Kecamatan', 'Mengakses semua fitur kecamatan', '1:2', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 'Operator', 'Operator Kelurahan', '1:3:4', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(1, 'Admin Kecamatan', 'Mengakses semua fitur kecamatan', '1:2:3:4:5:6:7', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(2, 'Operator', 'Operator Kelurahan', '1:8:9:10:11:12:13:14:15:16:17:18', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
 (3, 'mem', 'mem', '', '2017-02-18 06:12:10', 0, NULL, NULL, NULL, NULL);
 
 --
@@ -30702,7 +30695,7 @@ ALTER TABLE `jenis_pekerjaan`
 -- AUTO_INCREMENT for table `meninggal`
 --
 ALTER TABLE `meninggal`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `menu`
 --
