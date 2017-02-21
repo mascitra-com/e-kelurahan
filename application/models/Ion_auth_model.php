@@ -1094,6 +1094,11 @@ class Ion_auth_model extends CI_Model
 		return $this->session->userdata('id_organisasi');
 	}
 
+	public function get_allowed_links()
+	{
+		return $this->session->userdata('menu');
+	}
+
 	/**
 	 * Get number of attempts to login occured from given IP-address or identity
 	 * Based on code from Tank Auth, by Ilya Konyukhov (https://github.com/ilkon/Tank-Auth)
@@ -1447,7 +1452,7 @@ class Ion_auth_model extends CI_Model
 		// if no id was passed use the current users id
 		$id || $id = $this->session->userdata('user_id');
 
-		return $this->db->select($this->tables['users_groups'].'.'.$this->join['groups'].' as id, '.$this->tables['groups'].'.name, '.$this->tables['groups'].'.description')
+		return $this->db->select($this->tables['users_groups'].'.'.$this->join['groups'].' as id, '.$this->tables['groups'].'.name, '.$this->tables['groups'].'.description, '.$this->tables['groups'].'.menu')
 		                ->where($this->tables['users_groups'].'.'.$this->join['users'], $id)
 		                ->join($this->tables['groups'], $this->tables['users_groups'].'.'.$this->join['groups'].'='.$this->tables['groups'].'.id')
 		                ->get($this->tables['users_groups']);
@@ -1764,13 +1769,32 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events('pre_set_session');
 
+		$logged_in_user_groups = $this->get_users_groups($user->id)->result();
+
+		$menus_id = $logged_in_user_groups[0]->menu;
+		$menus_id = explode(':', $menus_id);
+
+		$links=array();
+		$allowed_links = array();
+		for ($i=0; $i <count($menus_id) ; $i++) { 
+			$links[$i] = $this->db->select('link')
+								->from('menu')
+								->where_in('id', $menus_id[$i])
+								->order_by('link', 'asc')
+								->distinct()
+								->get()
+								->result();
+			array_push($allowed_links, $links[$i][0]->link);
+		}  
+
 		$session_data = array(
 		    'identity'             => $user->{$this->identity_column},
 		    $this->identity_column             => $user->{$this->identity_column},
 		    'user_id'              => $user->id, //everyone likes to overwrite id so we'll use user_id
 		    'old_last_login'       => $user->last_login,
 		    'last_check'           => time(),
-		    'id_organisasi'		   => $user->id_organisasi
+		    'id_organisasi'		   => $user->id_organisasi,
+		    'menu' 				   => $allowed_links
 		);
 		$this->session->set_userdata($session_data);
 
