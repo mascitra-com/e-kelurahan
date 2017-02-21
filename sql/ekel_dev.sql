@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 19, 2017 at 08:58 AM
+-- Generation Time: Feb 20, 2017 at 12:51 PM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -85,8 +85,8 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487483759, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 2, '127.0.0.1', 'Kelurahan-tompokerso@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1487488376, 1, '2017-02-17 23:03:29', 1, '2017-02-18 23:10:12', 1, NULL, NULL);
+(1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487491885, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(2, 2, '127.0.0.1', 'Kelurahan-tompokerso@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1487592046, 1, '2017-02-17 23:03:29', 1, '2017-02-20 04:48:23', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -120,10 +120,16 @@ CREATE TABLE `berita` (
 --
 
 CREATE TABLE `detail_kartu_keluarga` (
-  `id` int(11) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
   `no_kk` varchar(40) NOT NULL,
   `nik` varchar(40) NOT NULL,
-  `status_keluarga` int(11) NOT NULL,
+  `id_pendidikan` int(11) DEFAULT NULL,
+  `status_keluarga` int(11) NOT NULL DEFAULT 0,
+  `no_urut_kk` int(11) UNSIGNED NOT NULL DEFAULT 1,
+  `no_paspor` varchar(30) DEFAULT NULL,
+  `no_kitap` varchar(40) DEFAULT NULL,
+  `ayah` varchar(255) DEFAULT NULL,
+  `ibu` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -131,6 +137,13 @@ CREATE TABLE `detail_kartu_keluarga` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_kartu_keluarga`
+--
+
+INSERT INTO `detail_kartu_keluarga` (`id`, `no_kk`, `nik`, `id_pendidikan`, `status_keluarga`, `no_urut_kk`, `no_paspor`, `no_kitap`, `ayah`, `ibu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(2, '123', '389475932753034750954', NULL, 0, 1, NULL, NULL, NULL, NULL, '2017-02-20 05:29:09', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -330,11 +343,40 @@ CREATE TABLE `kelahiran` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `keluarga`
+--
+
+CREATE TABLE `keluarga` (
+  `no` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `nik` varchar(40) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `rt` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `rw` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `kode_pos` varchar(5) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `keluarga`
+--
+
+INSERT INTO `keluarga` (`no`, `id_organisasi`, `nik`, `alamat`, `rt`, `rw`, `kode_pos`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+('123', 2, '389475932753034750954', 'Lorem ipsum dolor sit amet, consectetur.', 002, 011, '68118', '2017-02-20 05:29:09', 2, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `meninggal`
 --
 
 CREATE TABLE `meninggal` (
-  `id` int(11) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
   `nik` varchar(40) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
   `tempat` varchar(200) NOT NULL,
@@ -347,6 +389,13 @@ CREATE TABLE `meninggal` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `meninggal`
+--
+
+INSERT INTO `meninggal` (`id`, `nik`, `id_organisasi`, `tempat`, `sebab`, `tanggal`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, '3764289649123', 2, 'WC', 'diare', '2017-02-19 17:00:00', '2017-02-19 17:00:00', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -398,7 +447,7 @@ CREATE TABLE `organisasi` (
   `id` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `status` enum('0','1','2') DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -414,7 +463,9 @@ CREATE TABLE `organisasi` (
 INSERT INTO `organisasi` (`id`, `nama`, `slug`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (1, 'Kecamatan Lumajang', 'kecamatan-lumajang', '1', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
 (2, 'Tompokerso', 'tompokerso', '1', '2017-02-17 17:00:00', 1, NULL, NULL, NULL, NULL),
-(3, 'Patrang', 'patrang', '0', '2017-02-17 17:00:00', 1, NULL, NULL, NULL, NULL);
+(3, 'Patrang edit', 'patrang-edit', '0', '2017-02-17 17:00:00', 1, '2017-02-19 01:26:50', 1, NULL, NULL),
+(4, 'Deket lapangan', 'deket-lapangan', '0', '2017-02-19 00:50:15', 1, '2017-02-19 01:03:34', 1, '2017-02-19 01:44:45', 1),
+(5, 'Deket lapangan', 'deket-lapangan-1', '0', '2017-02-20 04:48:43', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -429,13 +480,10 @@ CREATE TABLE `penduduk` (
   `tempat_lahir` varchar(100) NOT NULL,
   `golongan_darah` varchar(2) NOT NULL,
   `status_nikah` tinyint(1) NOT NULL,
-  `pendidikan` tinyint(4) NOT NULL,
-  `nama_ibu` varchar(200) NOT NULL,
   `jenis_kelamin` enum('0','1') NOT NULL,
   `tanggal_lahir` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `agama` tinyint(4) NOT NULL,
   `pekerjaan` tinyint(4) NOT NULL,
-  `nama_ayah` varchar(100) NOT NULL,
   `rt` int(3) UNSIGNED ZEROFILL NOT NULL,
   `rw` int(3) UNSIGNED ZEROFILL NOT NULL,
   `kewarganegaraan` enum('0','1') NOT NULL,
@@ -446,6 +494,15 @@ CREATE TABLE `penduduk` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `penduduk`
+--
+
+INSERT INTO `penduduk` (`nik`, `id_organisasi`, `nama`, `tempat_lahir`, `golongan_darah`, `status_nikah`, `jenis_kelamin`, `tanggal_lahir`, `agama`, `pekerjaan`, `rt`, `rw`, `kewarganegaraan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+('3764289649123', 2, 'Rizki', 'Sumenep', 'AB', 0, '0', '0000-00-00 00:00:00', 0, 1, 002, 001, '0', '2017-02-19 02:43:22', 2, '2017-02-19 03:06:21', 2, NULL, NULL),
+('389475932753034750954', 2, 'Farida', 'Sumenep', 'O', 2, '1', '0000-00-00 00:00:00', 1, 4, 002, 001, '0', '2017-02-19 23:08:40', 2, NULL, NULL, NULL, NULL),
+('83740927349074', 2, 'Rizki Herdatullah', 'Sumenep', 'O', 0, '0', '2017-02-19 17:00:00', 0, 1, 002, 001, '0', '2017-02-19 23:06:40', 2, '2017-02-19 23:10:13', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -544,6 +601,7 @@ CREATE TABLE `status_keluarga` (
 --
 
 INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUES
+(0, 'Kepala Keluarga'),
 (1, 'Suami'),
 (2, 'Istri'),
 (3, 'Anak'),
@@ -648,7 +706,8 @@ ALTER TABLE `detail_kartu_keluarga`
   ADD PRIMARY KEY (`id`),
   ADD KEY `no_kk` (`no_kk`),
   ADD KEY `nik` (`nik`),
-  ADD KEY `status_keluarga` (`status_keluarga`);
+  ADD KEY `status_keluarga` (`status_keluarga`),
+  ADD KEY `id_pendidikan` (`id_pendidikan`);
 
 --
 -- Indexes for table `detail_tingkatan`
@@ -691,7 +750,8 @@ ALTER TABLE `jenis_pekerjaan`
 -- Indexes for table `jenis_pendidikan`
 --
 ALTER TABLE `jenis_pendidikan`
-  ADD PRIMARY KEY (`id_jenispendidikan`);
+  ADD PRIMARY KEY (`id_jenispendidikan`),
+  ADD KEY `id_jenispendidikan` (`id_jenispendidikan`);
 
 --
 -- Indexes for table `kartu_keluarga`
@@ -701,11 +761,160 @@ ALTER TABLE `kartu_keluarga`
   ADD KEY `id_organisasi` (`id_organisasi`);
 
 --
+-- Indexes for table `kelahiran`
+--
+ALTER TABLE `kelahiran`
+  ADD KEY `no_kk` (`no_kk`),
+  ADD KEY `id_organisasi` (`id_organisasi`);
+
+--
+-- Indexes for table `keluarga`
+--
+ALTER TABLE `keluarga`
+  ADD PRIMARY KEY (`no`),
+  ADD KEY `id_organisasi` (`id_organisasi`),
+  ADD KEY `nik` (`nik`);
+
+--
+-- Indexes for table `meninggal`
+--
+ALTER TABLE `meninggal`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `nik` (`nik`),
+  ADD KEY `id_organisasi` (`id_organisasi`);
+
+--
+-- Indexes for table `organisasi`
+--
+ALTER TABLE `organisasi`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`),
+  ADD KEY `created_by` (`created_by`,`updated_by`,`deleted_by`);
+
+--
 -- Indexes for table `penduduk`
 --
 ALTER TABLE `penduduk`
-  ADD KEY `pendidikan` (`pendidikan`),
-  ADD KEY `pekerjaan` (`pekerjaan`);
+  ADD PRIMARY KEY (`nik`),
+  ADD KEY `nik` (`nik`);
+
+--
+-- Indexes for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`),
+  ADD KEY `id_organisasi` (`id_organisasi`,`created_by`,`updated_by`,`deleted_by`);
+
+--
+-- Indexes for table `percobaan_login`
+--
+ALTER TABLE `percobaan_login`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `profil_organisasi`
+--
+ALTER TABLE `profil_organisasi`
+  ADD PRIMARY KEY (`no`),
+  ADD KEY `id_organisasi` (`id_organisasi`,`created_by`,`updated_by`,`deleted_by`);
+
+--
+-- Indexes for table `status_keluarga`
+--
+ALTER TABLE `status_keluarga`
+  ADD PRIMARY KEY (`id_statuskeluarga`);
+
+--
+-- Indexes for table `tingkatan`
+--
+ALTER TABLE `tingkatan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `agenda`
+--
+ALTER TABLE `agenda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `akun`
+--
+ALTER TABLE `akun`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `berita`
+--
+ALTER TABLE `berita`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `detail_kartu_keluarga`
+--
+ALTER TABLE `detail_kartu_keluarga`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `detail_tingkatan`
+--
+ALTER TABLE `detail_tingkatan`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `galeri`
+--
+ALTER TABLE `galeri`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `galeri_kategori`
+--
+ALTER TABLE `galeri_kategori`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `info_organisasi`
+--
+ALTER TABLE `info_organisasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `meninggal`
+--
+ALTER TABLE `meninggal`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `organisasi`
+--
+ALTER TABLE `organisasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `percobaan_login`
+--
+ALTER TABLE `percobaan_login`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `profil_organisasi`
+--
+ALTER TABLE `profil_organisasi`
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tingkatan`
+--
+ALTER TABLE `tingkatan`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `detail_tingkatan`
+--
+ALTER TABLE `detail_tingkatan`
+  ADD CONSTRAINT `detail_tingkatan_ibfk_1` FOREIGN KEY (`id_tingkatan`) REFERENCES `tingkatan` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `detail_tingkatan_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
