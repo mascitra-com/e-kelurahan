@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Ui extends MY_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+		$this->_accessable = TRUE;
+	}
+
 	public function index()
 	{
 		$this->render('_UI/index');

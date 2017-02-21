@@ -8,6 +8,8 @@ class MY_Controller extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+
+        $this->load->helper('privileges_sidebar');
         $this->load->library('ion_auth');
 
         $this->_privileges = $this->ion_auth->get_allowed_links();
@@ -58,7 +60,7 @@ class MY_Controller extends CI_Controller {
      */
     protected function render($view, $data = array())
     {
-        $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
+        $data['link_privileges'] = $this->_privileges;
         $this->blade->render($view, $data);
     }
 
