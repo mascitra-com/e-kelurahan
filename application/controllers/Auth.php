@@ -11,6 +11,8 @@ class Auth extends MY_Controller {
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
+		$this->_accessable = TRUE;
+
 		$this->lang->load('auth');
 	}
 
@@ -47,6 +49,10 @@ class Auth extends MY_Controller {
 	// log the user in
 	public function login()
 	{
+		if ($this->ion_auth->logged_in()) {
+			redirect('dashboard', 'refresh');
+		}
+
 		$this->data['title'] = $this->lang->line('login_heading');
 
 		//validate form input

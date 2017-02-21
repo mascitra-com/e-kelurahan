@@ -15,7 +15,6 @@ class Dashboard extends MY_Controller
 
 	public function index()
 	{
-		
 		$this->render('dashboard/index');
 	}
 }
