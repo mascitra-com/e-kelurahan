@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 class Mutasi_keluar_detail_m extends MY_Model
 {
-	public $table = 'mutasi_keluar';
+	public $table = 'mutasi_keluar_detail';
 	public $primary_key = 'id';
     public $protected = array('id');
 
@@ -15,6 +15,7 @@ class Mutasi_keluar_detail_m extends MY_Model
 	{
 		$this->has_one['penduduk'] = array('penduduk_m', 'nik', 'nik');
 		$this->has_one['mutasi_keluar'] = array('mutasi_keluar_m', 'nik', 'nik');
+		$this->soft_deletes = TRUE;
 		parent::__construct();
 	}
 }

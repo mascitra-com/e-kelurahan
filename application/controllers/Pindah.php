@@ -8,15 +8,32 @@ class Pindah extends MY_Controller
     {
         parent::__construct();
         $this->_accessable = TRUE;
-        $this->load->library(array('form_validation', 'slug'));
+        $this->load->library(array('form_validation'));
+        $this->load->helper(array('dump_helper'));
         $this->load->model(array('provinsi_m', 'kabupaten_m', 'kecamatan_m', 'kelurahan_m', 'mutasi_keluar_m', 'mutasi_keluar_detail_m', 'penduduk_m'));
     }
 
     public function index()
     {
-        $data['keluargas'] = $this->keluarga_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->fields('no, alamat, rt, rw, updated_at')->with_penduduk('fields:nama')->get_all();
+        $data['mutasi_keluars'] = $this->mutasi_keluar_m
+        ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+        ->fields('id ,created_at, updated_at')
+        ->with_penduduk('fields:nama')
+        ->get_all();
 
-        $this->render('kelurahan/pindah');
+        $this->render('kelurahan/pindah', $data);
+    }
+
+    public function arsip()
+    {
+        $data['mutasi_keluars'] = $this->mutasi_keluar_m
+        ->fields('id ,created_at, updated_at')
+        ->with_penduduk('fields:nama')
+        ->only_trashed()
+        ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+        ->get_all();
+
+        $this->render('kelurahan/pindah_arsip', $data);
     }
 
     public function tambah()
@@ -27,27 +44,56 @@ class Pindah extends MY_Controller
     
     public function simpan()
     {
-        
+
     }
     
     public function detail($id = NULL)
     {
-        
+
     }
-        
+
     public function edit($id = NULL)
     {
-        
+
     }
     
     public function ubah($id = NULL)
     {
-        
+
     }
     
-    public function hapus($id = NULL)
+    public function arsipkan($id = NULL)
     {
-        
+        if ($id != NULL && !empty($id)) {
+            if ($this->mutasi_keluar_m->delete($id)) {
+                if ($this->mutasi_keluar_detail_m->where('id_mutasi', $id)->delete()) {
+                    $this->go('pindah');
+                }else{
+                    die('terjadi kesalahan saat mengarsipkan mutasi_detail');
+                }
+            }else{
+                die('terjadi kesalahan saat mengarsipkan mutasi');
+            }
+        }else{
+            die('Terjadi kesalahan saat membatalkan pengajuan | id tidak ditemukan');
+        }
+    }
+
+    public function kembalikan($id = NULL)
+    {
+        if ($id != NULL && !empty($id)) {
+            if ($this->mutasi_keluar_m->restore($id)) {
+                if ($this->mutasi_keluar_detail_m->where('id_mutasi', $id)->restore()) {
+                    $this->go('pindah/arsip');
+                }else{
+                    die('terjadi kesalahan saat mengembalikan mutasi_detail');
+                }
+            }else{
+                die('terjadi kesalahan saat mengembalikan mutasi');
+            }
+        }else{
+            die('Terjadi kesalahan saat mengembalikan mutasi | id tidak ditemukan');
+        }
     }
 
     /**
@@ -97,5 +143,4 @@ class Pindah extends MY_Controller
         }
         return json_encode($data);
     }
-}
 }
