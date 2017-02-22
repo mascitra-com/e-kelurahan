@@ -241,6 +241,51 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 	color: #FFF;
 }
 
+/*.alert{
+	position: relative;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+	box-shadow: 0 1px 3px rgba(0,0,0,.5);
+	border-radius: 0;
+}
+
+.alert strong{
+	display: inline-block;
+	padding: 5px;
+	padding-left: 20px;
+	vertical-align: top;
+	font-weight: 500;
+}*/
+
+#alerts > .modal-dialog{
+	margin-top: 100px;
+}
+
+#alerts .modal-body{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 0;
+}
+
+#alerts .modal-header{
+	border: none;
+}
+
+#alerts .modal-info .modal-content{background-color: #4FBDE1}
+#alerts .modal-success .modal-content{background-color: #7bf7b7}
+#alerts .modal-warning .modal-content{background-color: #ffe589}
+#alerts .modal-danger .modal-content{background-color: #fc8480}
+
+#alerts .modal-info *,
+#alerts .modal-success *,
+#alerts .modal-warning *,
+#alerts .modal-danger *{
+	color: rgba(0,0,0,.6);!important
+}
+
 /*TABLE*/
 .table > thead > tr > td,
 .table > thead > tr > th{

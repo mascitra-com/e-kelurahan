@@ -14,9 +14,9 @@
 	<div class="container-fluid" id="wrapper">
 		<!-- SIDEBAR -->
 		@if($this->config->item('coder') == 'front')
-			@include('_layout/dashboard/sidebar-ui')
+		@include('_layout/dashboard/sidebar-ui')
 		@else
-			@include('_layout/dashboard/sidebar')
+		@include('_layout/dashboard/sidebar')
 		@endif
 		<div id="content">
 			<div class="content-nav">
@@ -61,12 +61,34 @@
 		</div>
 	</div>
 	@yield('modal')
+
+	<!-- ALERT -->
+	<?php $message = $this->session->flashdata('message'); ?>
+	@if($message)
+	<div class="modal fade" tabindex="-1" role="dialog" id="alerts">
+		<div class="modal-dialog modal-{{$message[1]}} modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<i class="fa fa-bell fa-5x"></i>
+					<p class="break-20 text-size-18 text-center">{{$message[0]}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	@endif
+	<!-- END ALERT -->
 </body>
 <script src="{{base_url('assets/plugins/jquery/jquery-3.1.1.min.js')}}"></script>
 <script src="{{base_url('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{base_url('assets/js/theme.js')}}"></script>
 <script>
-	$("button.reload").click(function(){location.reload();});
+	$(document).ready(function(){
+		$("button.reload").click(function(){location.reload();});
+		$("#alerts").modal('show');
+	});
 </script>
 @yield('javascript')
 </html>
