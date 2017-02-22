@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mutasi_keluar extends MY_Controller
+class Pindah extends MY_Controller
 {
 
     public function __construct()
