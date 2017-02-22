@@ -7,10 +7,10 @@ class Pindah extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->_accessable = TRUE;
         $this->load->library(array('form_validation'));
         $this->load->helper(array('dump_helper'));
         $this->load->model(array('provinsi_m', 'kabupaten_m', 'kecamatan_m', 'kelurahan_m', 'mutasi_keluar_m', 'mutasi_keluar_detail_m', 'penduduk_m'));
+        $this->_accessable = TRUE;
     }
 
     public function index()
@@ -37,13 +37,26 @@ class Pindah extends MY_Controller
 
     public function tambah()
     {
-//        $this->data['provinsi'] =
-        $this->render('kelurahan/pindah_pengajuan');
+        $data['provinsi'] = $this->provinsi_m->get_all();
+        $data['penduduk'] = $this->penduduk_m->get_all();
+        $this->render('kelurahan/pindah_pengajuan', $data);
     }
     
     public function simpan()
     {
-
+        $data = $this->input->post();
+        $data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
+        $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
+        $pengikut = $data['pengikut'];
+        unset($data['pengikut']);
+        if($id_mutasi = $this->mutasi_keluar_m->insert($data)){
+            $this->message('Berhasil menyimpan data Pindah');
+            foreach ($pengikut as $item){
+                $temp = array('id_mutasi' => $id_mutasi, 'nik' => $item);
+                $this->mutasi_keluar_detail_m->insert($temp);
+            }
+        }
+        $this->go('pindah');
     }
     
     public function detail($id = NULL)
@@ -112,7 +125,7 @@ class Pindah extends MY_Controller
         foreach ($cities as $list) {
             $data[] = "<option value='$list->id'>$list->nama</option>";
         }
-        return json_encode($data);
+        echo json_encode($data);
     }
 
     /**
@@ -121,14 +134,14 @@ class Pindah extends MY_Controller
     public function getDistrictByCity()
     {
         $idCity = $this->input->post('idCity');
-        $districts = $this->kecamatan_m->get_all(array('id_kabupaten', $idCity));
+        $districts = $this->kecamatan_m->where('id_kabupaten', $idCity)->get_all();
         $data = array('<option value="">Pilih Kecamatan Tujuan</option>');
 
         // Store all districts to array as combo box attribute
         foreach ($districts as $list) {
             $data[] = "<option value='$list->id'>$list->nama</option>";
         }
-        return json_encode($data);
+        echo json_encode($data);
     }
 
     /**
@@ -137,13 +150,14 @@ class Pindah extends MY_Controller
     public function getVillageByDistrict()
     {
         $idDistrict = $this->input->post('idDistrict');
-        $villages = $this->kecamatan_m->get_all(array('id_kecamatan', $idDistrict));
+        $villages = $this->kelurahan_m->where('id_kecamatan', $idDistrict)->get_all();
         $data = array('<option value="">Pilih Kelurahan/Desa Tujuan</option>');
 
         // Store all districts to array as combo box attribute
         foreach ($villages as $list) {
             $data[] = "<option value='$list->id'>$list->nama</option>";
         }
-        return json_encode($data);
+        echo json_encode($data);
     }
+}
 }
