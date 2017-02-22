@@ -111,15 +111,18 @@
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">3. Provinsi Tujuan</label>
-												<select name="id_prov_tujuan" class="form-control">
+												<select name="id_prov_tujuan" class="form-control" id="provinces">
 													<option value="" selected>Pilih Provinsi Tujuan</option>
+													@foreach($provinsi as $item)
+														<option value="{{ $item->id }}">{{ $item->nama }}</option>
+													@endforeach
 												</select>
 											</div>
 										</div>
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">4. Kabupaten / Kota Tujuan</label>
-												<select name="id_kab_tujuan" class="form-control">
+												<select name="id_kab_tujuan" class="form-control" id="cities">
 													<option value="" selected>Pilih Kabupaten/Kota Tujuan</option>
 												</select>
 											</div>
@@ -129,7 +132,7 @@
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">5. Kecamatan Tujuan</label>
-												<select name="id_kec_tujuan" class="form-control">
+												<select name="id_kec_tujuan" class="form-control" id="districts">
 													<option value="" selected>Pilih Kecamatan Tujuan</option>
 												</select>
 											</div>
@@ -137,7 +140,7 @@
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">6. Kelurahan/Desa Tujuan</label>
-												<select name="id_kel_tujuan" class="form-control">
+												<select name="id_kel_tujuan" class="form-control" id="villages">
 													<option value="" selected>Pilih Kelurahan/Desa Tujuan</option>
 												</select>
 											</div>
@@ -263,5 +266,28 @@
 			$(".table-pengikut > tbody").append(html);
 		});
 	}
+
+    $("#provinces").on('change', function () {
+        $("#cities").html("<option>Pilih Kabupaten / Kota Tujuan</option>");
+        $("#cities").prop('disabled', true);
+        var id;
+        var x = document.getElementById("provinces");
+        for (var i = 0; i < x.options.length; i++) {
+            if (x.options[i].selected) {
+                id = x.options[i].value;
+            }
+        }
+        $.ajax({
+            type: 'POST',
+            data: { 'idProvince' : id },
+            dataType: "json",
+            url: "getCitiesByProvince",
+            success: function (data) {
+                console.log(data);
+                $("#cities").html(data);
+                $("#cities").prop('disabled', false);
+            }
+        });
+    });
 </script>
 @endsection
