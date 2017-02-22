@@ -16,7 +16,7 @@
 				</ul>
 			</div>
 			<div class="panel-body">
-				<form action="">
+				<form action="{{ site_url('pindah/simpan') }}" method="POST">
 					<div class="tab-content break-20">
 						<!-- TAB 1 -->
 						<div role="tabpanel" class="tab-pane active" id="step1">
@@ -44,7 +44,12 @@
 								<div class="col-xs-12 col-md-6">
 									<div class="form-group">
 										<label class="text-size-14">Masukkan NIK / nama warga</label>
-										<input type="text" class="form-control" name="nik" placeholder="NIK / Nama" required>
+                                        <input list="nik" class="form-control" name="nik" placeholder="Masukkan NIK / Nama" autocomplete="off">
+                                        <datalist id="nik">
+                                            @foreach($penduduk as $item)
+                                                <option value="{{ $item->nik.' | '.$item->nama }}">
+                                            @endforeach
+                                        </datalist>
 									</div>
 									<div class="row">
 										<div class="col-xs-12 col-md-6">
@@ -123,7 +128,7 @@
 											<div class="form-group">
 												<label for="">4. Kabupaten / Kota Tujuan</label>
 												<select name="id_kab_tujuan" class="form-control" id="cities">
-													<option value="" selected>Pilih Kabupaten/Kota Tujuan</option>
+													<option value="" selected>Pilih Kabupaten / Kota Tujuan</option>
 												</select>
 											</div>
 										</div>
@@ -163,7 +168,12 @@
 								<div class="col-xs-12 col-md-6">
 									<span class="text-size-20">Cari Warga</span>
 									<div class="input-group input-group-lg break-bottom-20">
-										<input type="text" class="form-control input-cari" placeholder="Masukkan NIK/Nama">
+                                        <input list="pengikut" class="form-control input-cari" placeholder="Masukkan NIK / Nama" autocomplete="off">
+                                        <datalist id="pengikut">
+                                            @foreach($penduduk as $item)
+                                                <option value="{{ $item->nik.' | '.$item->nama }}">
+                                            @endforeach
+                                        </datalist>
 										<span class="input-group-btn"><button class="btn btn-primary btn-tambah" type="button">Tambah</button></span>
 									</div>
 									<div class="container-fluid table-responsive table-full">
@@ -177,7 +187,7 @@
 									</div>
 									<div class="break-bottom-30"></div>
 									<a href="#step3" class="btn btn-default back" data-toggle="tab">Kembali</a>
-									<button href="#step4" class="btn btn-primary" data-toggle="tab" type="submit">Simpan</button>
+									<button class="btn btn-primary" type="submit">Simpan</button>
 								</div>
 							</div>
 						</div>
@@ -256,20 +266,20 @@
 		refresh();
 	});
 
-	function refresh(){
-		$(".table-pengikut > tbody").empty();
-		data.forEach(function(item, index){
-			var pecah = item.split('-');
-			var html = "<tr class='data"+(index+1)+"'><td>"+(index+1)+"</td>";
-			html+= "<td><input type='hidden' class='blank' name='pengikut[]' value='"+pecah[0]+"' readonly>"+pecah[1]+"</td>";
-			html+="<td><button class='btn btn-xs btn-default' data-index='"+(item)+"' type='button'><i class='fa fa-close text-red'></i></button></td></tr>";
-			$(".table-pengikut > tbody").append(html);
-		});
-	}
+    function refresh() {
+        $(".table-pengikut > tbody").empty();
+        data.forEach(function (item, index) {
+            var pecah = item.split(' | ');
+            var html = "<tr class='data" + (index + 1) + "'><td>" + (index + 1) + "</td>";
+            html += "<td><input type='hidden' class='blank' name='pengikut[]' value='" + pecah[0] + "' readonly>" + pecah[1] + "</td>";
+            html += "<td><button class='btn btn-xs btn-default' data-index='" + (item) + "' type='button'><i class='fa fa-close text-red'></i></button></td></tr>";
+            $(".table-pengikut > tbody").append(html);
+        });
+    }
 
     $("#provinces").on('change', function () {
-        $("#cities").html("<option>Pilih Kabupaten / Kota Tujuan</option>");
-        $("#cities").prop('disabled', true);
+        $("#cities").html("<option>Pilih Kabupaten / Kota Tujuan</option>")
+                    .prop('disabled', true);
         var id;
         var x = document.getElementById("provinces");
         for (var i = 0; i < x.options.length; i++) {
@@ -283,9 +293,52 @@
             dataType: "json",
             url: "getCitiesByProvince",
             success: function (data) {
-                console.log(data);
-                $("#cities").html(data);
-                $("#cities").prop('disabled', false);
+                $("#cities").html(data)
+                            .prop('disabled', false);
+            }
+        });
+    });
+
+    $("#cities").on('change', function () {
+        $("#districts").html("<option>Pilih Kecamatan Tujuan</option>")
+                    .prop('disabled', true);
+        var id;
+        var x = document.getElementById("cities");
+        for (var i = 0; i < x.options.length; i++) {
+            if (x.options[i].selected) {
+                id = x.options[i].value;
+            }
+        }
+        $.ajax({
+            type: 'POST',
+            data: { 'idCity' : id },
+            dataType: "json",
+            url: "getDistrictByCity",
+            success: function (data) {
+                $("#districts").html(data)
+                            .prop('disabled', false);
+            }
+        });
+    });
+
+    $("#districts").on('change', function () {
+        $("#villages").html("<option>Pilih Kelurahan/Desa Tujuan</option>")
+                    .prop('disabled', true);
+        var id;
+        var x = document.getElementById("districts");
+        for (var i = 0; i < x.options.length; i++) {
+            if (x.options[i].selected) {
+                id = x.options[i].value;
+            }
+        }
+        $.ajax({
+            type: 'POST',
+            data: { 'idDistrict' : id },
+            dataType: "json",
+            url: "getVillageByDistrict",
+            success: function (data) {
+                $("#villages").html(data)
+                            .prop('disabled', false);
             }
         });
     });
