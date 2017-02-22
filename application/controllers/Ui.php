@@ -77,4 +77,9 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/kelurahan/format_cetak');
 	}
+
+	public function profil()
+	{
+		$this->render('_UI/auth/profil');
+	}
 }
