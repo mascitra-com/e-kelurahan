@@ -44,42 +44,39 @@
 								<div class="col-xs-12 col-md-6">
 									<div class="form-group">
 										<label class="text-size-14">Masukkan NIK / nama warga</label>
-                                        <input list="nik" class="form-control" name="nik" placeholder="Masukkan NIK / Nama" autocomplete="off">
-                                        <datalist id="nik">
-                                            @foreach($penduduk as $item)
-                                                <option value="{{ $item->nik.' | '.$item->nama }}">
-                                            @endforeach
-                                        </datalist>
+										<input list="nik" oninput="onInput()" class="form-control" name="nik" placeholder="Masukkan NIK / Nama" autocomplete="off">
+										<datalist id="nik">
+										</datalist>
 									</div>
 									<div class="row">
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">Nama</label>
-												<input type="text" class="form-control" placeholder="Nama" disabled>
+												<input type="text" class="form-control" placeholder="Nama" disabled id="d_nama">
 											</div>
 										</div>
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">Jenis Kelamin</label>
-												<input type="text" class="form-control" placeholder="Jenis Kelamin" disabled>
+												<input type="text" id="d_jk" class="form-control" placeholder="Jenis Kelamin" disabled>
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="">Tempat &amp Tanggal Lahir</label>
-										<input type="text" class="form-control" placeholder="Tempat, Tanggal Lahir" disabled>
+										<input type="text" class="form-control" placeholder="Tempat, Tanggal Lahir" disabled id="d_ttl">
 									</div>
 									<div class="row">
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">Agama</label>
-												<input type="text" class="form-control" placeholder="Agama" disabled>
+												<input type="text" class="form-control" placeholder="Agama" disabled id="d_agama">
 											</div>
 										</div>
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">status</label>
-												<input type="text" class="form-control" placeholder="Status" disabled>
+												<input type="text" class="form-control" placeholder="Status" disabled id="d_status">
 											</div>
 										</div>
 									</div>
@@ -119,7 +116,7 @@
 												<select name="id_prov_tujuan" class="form-control" id="provinces">
 													<option value="" selected>Pilih Provinsi Tujuan</option>
 													@foreach($provinsi as $item)
-														<option value="{{ $item->id }}">{{ $item->nama }}</option>
+													<option value="{{ $item->id }}">{{ $item->nama }}</option>
 													@endforeach
 												</select>
 											</div>
@@ -168,12 +165,9 @@
 								<div class="col-xs-12 col-md-6">
 									<span class="text-size-20">Cari Warga</span>
 									<div class="input-group input-group-lg break-bottom-20">
-                                        <input list="pengikut" class="form-control input-cari" placeholder="Masukkan NIK / Nama" autocomplete="off">
-                                        <datalist id="pengikut">
-                                            @foreach($penduduk as $item)
-                                                <option value="{{ $item->nik.' | '.$item->nama }}">
-                                            @endforeach
-                                        </datalist>
+										<input list="pengikut" class="form-control input-cari" placeholder="Masukkan NIK / Nama" autocomplete="off">
+										<datalist id="pengikut">
+										</datalist>
 										<span class="input-group-btn"><button class="btn btn-primary btn-tambah" type="button">Tambah</button></span>
 									</div>
 									<div class="container-fluid table-responsive table-full">
@@ -246,6 +240,11 @@
 
 @section('javascript')
 <script>
+	var nik;
+	$(document).ready(function(){
+		getNikNama();
+	});
+
 	$("a[href*=step]").click(function(){
 		var href = $(this).attr('href');
 		$(".tab-nav."+href.substring(1)).addClass('active').nextAll().removeClass('active');
@@ -266,97 +265,135 @@
 		refresh();
 	});
 
-    function refresh() {
-        $(".table-pengikut > tbody").empty();
-        data.forEach(function (item, index) {
-            var pecah = item.split(' | ');
-            var html = "<tr class='data" + (index + 1) + "'><td>" + (index + 1) + "</td>";
-            html += "<td><input type='hidden' class='blank' name='pengikut[]' value='" + pecah[0] + "' readonly>" + pecah[1] + "</td>";
-            html += "<td><button class='btn btn-xs btn-default' data-index='" + (item) + "' type='button'><i class='fa fa-close text-red'></i></button></td></tr>";
-            $(".table-pengikut > tbody").append(html);
-        });
-    }
+	function refresh() {
+		$(".table-pengikut > tbody").empty();
+		data.forEach(function (item, index) {
+			var pecah = item.split(' | ');
+			var html = "<tr class='data" + (index + 1) + "'><td>" + (index + 1) + "</td>";
+			html += "<td><input type='hidden' class='blank' name='pengikut[]' value='" + pecah[0] + "' readonly>" + pecah[1] + "</td>";
+			html += "<td><button class='btn btn-xs btn-default' data-index='" + (item) + "' type='button'><i class='fa fa-close text-red'></i></button></td></tr>";
+			$(".table-pengikut > tbody").append(html);
+		});
+	}
 
-    $("#provinces").on('change', function () {
-        $("#cities").html("<option>Pilih Kabupaten / Kota Tujuan</option>")
-                    .prop('disabled', true);
-        var id;
-        var x = document.getElementById("provinces");
-        for (var i = 0; i < x.options.length; i++) {
-            if (x.options[i].selected) {
-                id = x.options[i].value;
-            }
-        }
-        $.ajax({
-            type: 'POST',
-            data: { 'idProvince' : id },
-            dataType: "json",
-            url: "getCitiesByProvince",
-            success: function (data) {
-                $("#cities").html(data)
-                            .prop('disabled', false);
-            }
-        });
-    });
+	$("#provinces").on('change', function () {
+		$("#cities").html("<option>Pilih Kabupaten / Kota Tujuan</option>")
+		.prop('disabled', true);
+		var id;
+		var x = document.getElementById("provinces");
+		for (var i = 0; i < x.options.length; i++) {
+			if (x.options[i].selected) {
+				id = x.options[i].value;
+			}
+		}
+		$.ajax({
+			type: 'POST',
+			data: { 'idProvince' : id },
+			dataType: "json",
+			url: "getCitiesByProvince",
+			success: function (data) {
+				$("#cities").html(data)
+				.prop('disabled', false);
+			}
+		});
+	});
 
-    $("#cities").on('change', function () {
-        $("#districts").html("<option>Pilih Kecamatan Tujuan</option>")
-                    .prop('disabled', true);
-        var id;
-        var x = document.getElementById("cities");
-        for (var i = 0; i < x.options.length; i++) {
-            if (x.options[i].selected) {
-                id = x.options[i].value;
-            }
-        }
-        $.ajax({
-            type: 'POST',
-            data: { 'idCity' : id },
-            dataType: "json",
-            url: "getDistrictByCity",
-            success: function (data) {
-                $("#districts").html(data)
-                            .prop('disabled', false);
-            }
-        });
-    });
+	$("#cities").on('change', function () {
+		$("#districts").html("<option>Pilih Kecamatan Tujuan</option>")
+		.prop('disabled', true);
+		var id;
+		var x = document.getElementById("cities");
+		for (var i = 0; i < x.options.length; i++) {
+			if (x.options[i].selected) {
+				id = x.options[i].value;
+			}
+		}
+		$.ajax({
+			type: 'POST',
+			data: { 'idCity' : id },
+			dataType: "json",
+			url: "getDistrictByCity",
+			success: function (data) {
+				$("#districts").html(data)
+				.prop('disabled', false);
+			}
+		});
+	});
 
-    $("#districts").on('change', function () {
-        $("#villages").html("<option>Pilih Kelurahan/Desa Tujuan</option>")
-                    .prop('disabled', true);
-        var id;
-        var x = document.getElementById("districts");
-        for (var i = 0; i < x.options.length; i++) {
-            if (x.options[i].selected) {
-                id = x.options[i].value;
-            }
-        }
-        $.ajax({
-            type: 'POST',
-            data: { 'idDistrict' : id },
-            dataType: "json",
-            url: "getVillageByDistrict",
-            success: function (data) {
-                $("#villages").html(data)
-                            .prop('disabled', false);
-            }
-        });
-    });
+	$("#districts").on('change', function () {
+		$("#villages").html("<option>Pilih Kelurahan/Desa Tujuan</option>")
+		.prop('disabled', true);
+		var id;
+		var x = document.getElementById("districts");
+		for (var i = 0; i < x.options.length; i++) {
+			if (x.options[i].selected) {
+				id = x.options[i].value;
+			}
+		}
+		$.ajax({
+			type: 'POST',
+			data: { 'idDistrict' : id },
+			dataType: "json",
+			url: "getVillageByDistrict",
+			success: function (data) {
+				$("#villages").html(data)
+				.prop('disabled', false);
+			}
+		});
+	});
 
-    function handleDatalist() {
-    	var nik = $("input[name='nik']").val();
-    	console.log(nik);
-    }
-
-    function getNikNama() {
+	function handleDatalist() {
+		nik = $("input[name='nik']").val();
+		console.log(nik);
 		$.getJSON('{{ site_url() }}'+'penduduk/ambil_nama_nik', function (result) {
 			if (result) {
 				for (var i = 0; i < result.length; i++) {
 					var penduduk= result[i];
-					$("#kepala_keluarga").append("<option value='"+penduduk.nik + " | " + penduduk.nama+"'");
+					var penduduk_sekarang = penduduk.nik + " | " + penduduk.nama;
+					console.log(penduduk_sekarang);
+					if (nik !== penduduk_sekarang) {
+						$("#pengikut").append("<option value='"+penduduk.nik + " | " + penduduk.nama+"'");
+					}
 				}
 			}
 		});
 	}
+
+	function onInput() {
+		var val = $("input[name='nik']").val();
+		var opts = document.getElementById('nik').childNodes;
+		for (var i = 0; i < opts.length; i++) {
+			if (opts[i].value === val) {
+	        // An item was selected from the list!
+	        getDataWarga(opts[i].value)
+	        break;
+	    }
+	}
+}
+
+function getDataWarga(nik) {
+	var nik_s = nik.split('|')[0];
+	$.getJSON("{{ site_url('penduduk/ambil_penduduk/') }}"+nik_s, function (result) {
+		if (result) {
+			for (var i = 0; i < result.length; i++) {
+				var penduduk= result[i];
+
+			}
+		}
+	});
+}
+
+function getNikNama() {
+	console.log(nik);
+	$.getJSON('{{ site_url() }}'+'penduduk/ambil_nama_nik', function (result) {
+		if (result) {
+			for (var i = 0; i < result.length; i++) {
+				var penduduk= result[i];
+				var penduduk_sekarang = penduduk.nik + " | " + penduduk.nama;
+				$("#nik").append("<option value='"+penduduk.nik + " | " + penduduk.nama+"'");
+			}
+		}
+	});
+}
 </script>
 @endsection
