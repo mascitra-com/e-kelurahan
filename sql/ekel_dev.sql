@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 22 Feb 2017 pada 07.13
+-- Generation Time: 22 Feb 2017 pada 07.39
 -- Versi Server: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -8177,12 +8177,13 @@ CREATE TABLE `mutasi_keluar` (
   `id_organisasi` int(11) NOT NULL,
   `no_surat` int(11) NOT NULL,
   `nik` varchar(40) NOT NULL,
-  `alamat_tujuan` varchar(100) NOT NULL,
-  `rt_tujuan` varchar(100) NOT NULL,
-  `rw_tujuan` varchar(100) NOT NULL,
-  `id_prov_tujuan` int(11) DEFAULT NULL,
-  `id_kab_tujuan` int(11) DEFAULT NULL,
-  `id_kec_tujuan` int(11) DEFAULT NULL,
+  `alamat_asal` text NOT NULL,
+  `alamat_tujuan` text NOT NULL,
+  `rt_tujuan` tinyint(3) UNSIGNED ZEROFILL NOT NULL,
+  `rw_tujuan` tinyint(3) UNSIGNED ZEROFILL NOT NULL,
+  `id_prov_tujuan` int(11) NOT NULL,
+  `id_kab_tujuan` int(11) NOT NULL,
+  `id_kec_tujuan` int(11) NOT NULL,
   `id_kel_tujuan` bigint(20) NOT NULL,
   `keterangan` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
