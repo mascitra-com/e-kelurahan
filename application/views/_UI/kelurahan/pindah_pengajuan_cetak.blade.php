@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row row-center">
-	<div class="col-xs-12 col-md-8">
+	<div class="col-xs-12">
 		<div class="panel">
 			<div class="panel-heading">
 				<h1 class="panel-title">Pengajuan Pindah</h1>
@@ -91,7 +91,8 @@
 						</td>
 					</tr>
 				</table>
-				<button class="btn btn-primary btn-block btn-lg btn-sharp"><i class="fa fa-file-o"></i> CETAK SURAT PENGAJUAN</button>
+				<button class="btn btn-primary btn-block btn-lg btn-sharp"><i class="fa fa-print"></i> CETAK SURAT PENGAJUAN</button>
+				<button class="btn btn-warning btn-block btn-lg btn-sharp"><i class="fa fa-pencil"></i> SUNTING</button>
 			</div>
 			<div class="panel-footer"></div>
 		</div>

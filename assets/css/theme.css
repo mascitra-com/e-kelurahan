@@ -39,7 +39,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 	left: 0;
 	bottom: 0;
 	/*SIDEBAR WIDTH*/
-	width: 240px;
+	width: 260px;
 	overflow-y: auto;
 	z-index: 1000;
 }
@@ -78,7 +78,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 .sidebar-nav > li > a,
 .sidebar-nav-child > li > a{
 	display: block;
-	padding: 15px 30px;
+	padding: 10px 30px;
 	font-family: 'Roboto', sans-serif;
 	font-size: 13px;
 	font-weight: 500;
@@ -153,9 +153,13 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 	transform: translate3d(0, 0, 0);
 }
 
+.nav-caret{
+	float: right;
+}
+
 #content{
 	position: relative;
-	width: calc(100% - 240px);
+	width: calc(100% - 260px);
 	float: right;
 	min-height: 100%;
 	background-color: #F0F5F8;
