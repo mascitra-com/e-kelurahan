@@ -17,6 +17,7 @@ class Mutasi_keluar extends MY_Controller
 
     public function tambah()
     {
+//        $this->data['provinsi'] =
         $this->render('kelurahan/pindah_pengajuan');
     }
     

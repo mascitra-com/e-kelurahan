@@ -27,7 +27,7 @@
 										<label class="text-size-14">Nomor surat</label>
 										<div class="input-group">
 											<span class="input-group-addon">475 / </span>
-											<input type="text" class="form-control input-lg" name="nomor_surat" placeholder="Nomor Surat">
+											<input type="text" class="form-control input-lg" name="no_surat" placeholder="Nomor Surat">
 											<span class="input-group-addon">/ 02.2003 /</span>
 											<span class="input-group-addon">/ {{date('Y')}}</span>
 										</div>
@@ -44,43 +44,43 @@
 								<div class="col-xs-12 col-md-6">
 									<div class="form-group">
 										<label class="text-size-14">Masukkan NIK / nama warga</label>
-										<input type="text" class="form-control" name="nomor_surat" placeholder="NIK / Nama" required>
+										<input type="text" class="form-control" name="nik" placeholder="NIK / Nama" required>
 									</div>
 									<div class="row">
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">Nama</label>
-												<input type="text" class="form-control" name="nama" placeholder="Nama" readonly required>
+												<input type="text" class="form-control" placeholder="Nama" disabled>
 											</div>
 										</div>
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">Jenis Kelamin</label>
-												<input type="text" class="form-control" name="jk" placeholder="Jenis Kelamin" readonly>
+												<input type="text" class="form-control" placeholder="Jenis Kelamin" disabled>
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="">Tempat &amp Tanggal Lahir</label>
-										<input type="text" class="form-control" name="ttl" placeholder="Tempat, Tanggal Lahir" readonly>
+										<input type="text" class="form-control" placeholder="Tempat, Tanggal Lahir" disabled>
 									</div>
 									<div class="row">
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">Agama</label>
-												<input type="text" class="form-control" name="agama" placeholder="Agama" readonly>
+												<input type="text" class="form-control" placeholder="Agama" disabled>
 											</div>
 										</div>
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">status</label>
-												<input type="text" class="form-control" name="status" placeholder="Status" readonly>
+												<input type="text" class="form-control" placeholder="Status" disabled>
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="">Tanggal KTP</label>
-										<input type="text" class="form-control" name="no_ktp" placeholder="Tanggal KTP" readonly>
+										<input type="text" class="form-control" name="no_ktp" disabled>
 									</div>
 									<div class="break-bottom-30"></div>
 									<a href="#step1" class="btn btn-default back" data-toggle="tab">Kembali</a>
@@ -102,8 +102,8 @@
 										</div>
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
-												<label class="text-size-14">2. Alamat Pindah</label>
-												<textarea name="alamat_pindah" class="form-control" placeholder="Alamat Pindah" required></textarea>
+												<label class="text-size-14">2. Alamat Tujuan</label>
+												<textarea name="alamat_tujuan" class="form-control" placeholder="Alamat Pindah" required></textarea>
 											</div>
 										</div>
 									</div>
@@ -111,7 +111,7 @@
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">3. Provinsi Tujuan</label>
-												<select name="provinsi" class="form-control">
+												<select name="id_prov_tujuan" class="form-control">
 													<option value="" selected>Pilih Provinsi Tujuan</option>
 												</select>
 											</div>
@@ -119,7 +119,7 @@
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">4. Kabupaten / Kota Tujuan</label>
-												<select name="kabupaten" class="form-control">
+												<select name="id_kab_tujuan" class="form-control">
 													<option value="" selected>Pilih Kabupaten/Kota Tujuan</option>
 												</select>
 											</div>
@@ -129,7 +129,7 @@
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">5. Kecamatan Tujuan</label>
-												<select name="kabupaten" class="form-control">
+												<select name="id_kec_tujuan" class="form-control">
 													<option value="" selected>Pilih Kecamatan Tujuan</option>
 												</select>
 											</div>
@@ -137,7 +137,7 @@
 										<div class="col-xs-12 col-md-6">
 											<div class="form-group">
 												<label for="">6. Kelurahan/Desa Tujuan</label>
-												<select name="kabupaten" class="form-control">
+												<select name="id_kel_tujuan" class="form-control">
 													<option value="" selected>Pilih Kelurahan/Desa Tujuan</option>
 												</select>
 											</div>
@@ -145,7 +145,7 @@
 									</div>
 									<div class="form-group">
 										<label class="text-size-14">7. Alasan Pindah</label>
-										<textarea name="alasan" class="form-control" placeholder="Alasan Pindah" required></textarea>
+										<textarea name="keterangan" class="form-control" placeholder="Alasan Pindah" required></textarea>
 									</div>
 									<div class="break-bottom-30"></div>
 									<a href="#step2" class="btn btn-default back" data-toggle="tab">Kembali</a>
