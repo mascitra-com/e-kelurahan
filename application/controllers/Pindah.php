@@ -31,14 +31,13 @@ class Pindah extends MY_Controller
         ->only_trashed()
         ->where('id_organisasi', $this->ion_auth->get_current_id_org())
         ->get_all();
-
         $this->render('kelurahan/pindah_arsip', $data);
     }
 
     public function tambah()
     {
         $data['provinsi'] = $this->provinsi_m->get_all();
-        $data['penduduk'] = $this->penduduk_m->get_all();
+        $data['penduduk'] = $this->penduduk_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->get_all();
         $this->render('kelurahan/pindah_pengajuan', $data);
     }
     
@@ -61,54 +60,83 @@ class Pindah extends MY_Controller
     
     public function detail($id = NULL)
     {
-        $data['mutasi'] = $this->mutasi_keluar_m
+        $mutasi = $this->mutasi_keluar_m
             ->with_penduduk()
             ->get($id);
+        $data['penduduk'] = $this->penduduk_m
+            ->where(array(
+                'id_organisasi' => $this->ion_auth->get_current_id_org(),
+                'nik <>' => $mutasi->nik
+            ))
+            ->get_all();
+        $data['pengikut'] = $this->mutasi_keluar_detail_m
+            ->fields('id')
+            ->with_penduduk('fields:nik,nama')
+            ->where('id_mutasi', $id)
+            ->get_all();
         $data['provinsi'] = $this->provinsi_m->get_all();
+        $data['kabupaten'] = $this->kabupaten_m->where('id_provinsi', $mutasi->id_prov_tujuan)->get_all();
+        $data['kecamatan'] = $this->kecamatan_m->where('id_kabupaten', $mutasi->id_kab_tujuan)->get_all();
+        $data['kelurahan'] = $this->kelurahan_m->where('id_kecamatan', $mutasi->id_kec_tujuan)->get_all();
+        $data['mutasi'] = $mutasi;
         $this->render('kelurahan/pindah_detail', $data);
     }
 
-    public function edit($id = NULL)
-    {
-
-    }
-    
     public function ubah($id = NULL)
     {
-
+        $data = $this->input->post();
+        $pengikut_lama = $this->mutasi_keluar_detail_m->where('id_mutasi', $id)->get_all();
+        foreach ($pengikut_lama as $item){
+            $this->mutasi_keluar_detail_m->delete($item->id);
+        }
+        $pengikut_baru = $data['pengikut'];
+        unset($data['no_surat'], $data['nik'], $data['pengikut']);
+        foreach ($pengikut_baru as $item){
+            $temp = array('id_mutasi' => $id, 'nik' => $item);
+            $this->mutasi_keluar_detail_m->insert($temp);
+        }
+        if($this->mutasi_keluar_m->update($data, $id)){
+            $this->message('Berhasil Mengubah Data Pengajuan Pindah', 'success');
+        } else {
+            $this->message('Terjadi Kesalahan Saat Mengubah Data Pengajuan Pindah', 'danger');
+        }
+        $this->go('pindah/detail/'.$id);
     }
     
     public function arsipkan($id = NULL)
     {
-        if ($id != NULL && !empty($id)) {
+        if ($id !== NULL && !empty($id)) {
             if ($this->mutasi_keluar_m->delete($id)) {
                 if ($this->mutasi_keluar_detail_m->where('id_mutasi', $id)->delete()) {
                     $this->go('pindah');
+                    $this->message('Berhasil Mengarsipkan Mutasi', 'success');
                 }else{
-                    die('terjadi kesalahan saat mengarsipkan mutasi_detail');
+                    $this->message('Terjadi Kesalahan Saat Mengarsipkan Mutasi Detail', 'danger');
                 }
             }else{
-                die('terjadi kesalahan saat mengarsipkan mutasi');
+                $this->message('Terjadi Kesalahan Saat Mengarsipkan Mutasi', 'danger');
             }
         }else{
-            die('Terjadi kesalahan saat membatalkan pengajuan | id tidak ditemukan');
+            $this->message('Terjadi Kesalahan Saat Membatalkan Pengajuan | ID Tidak Ditemukan', 'danger');
         }
+        $this->go('pindah/arsipkan');
     }
 
     public function kembalikan($id = NULL)
     {
-        if ($id != NULL && !empty($id)) {
+        if ($id !== NULL && !empty($id)) {
             if ($this->mutasi_keluar_m->restore($id)) {
                 if ($this->mutasi_keluar_detail_m->restore(array('id_mutasi', $id))) {
                     $this->go('pindah/arsip');
+                    $this->message('Berhasil Mengembalikan Mutasi', 'success');
                 }else{
-                    die('terjadi kesalahan saat mengembalikan mutasi_detail');
+                    $this->message('Terjadi Kesalahan Saat Mengembalikan Mutasi Detail', 'danger');
                 }
             }else{
-                die('terjadi kesalahan saat mengembalikan mutasi');
+                $this->message('Terjadi Kesalahan Saat Mengembalikan Mutasi', 'danger');
             }
         }else{
-            die('Terjadi kesalahan saat mengembalikan mutasi | id tidak ditemukan');
+            $this->message('Terjadi Kesalahan Saat Mengembalikan Mutasi | ID Tidak Ditemukan');
         }
     }
 
@@ -159,5 +187,4 @@ class Pindah extends MY_Controller
         }
         echo json_encode($data);
     }
-}
 }
