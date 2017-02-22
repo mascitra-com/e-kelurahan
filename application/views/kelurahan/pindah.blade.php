@@ -9,8 +9,8 @@
 			<div class="panel-heading">
 				<h3 class="panel-title pull-left">Data Pindahan</h3>
 				<div class="btn-group btn-group-sm pull-right">
-					<a href="{{site_url('ui/pindah_pengajuan')}}" class="btn btn-default"><i class="fa fa-plus"></i></a>
-					<a href="{{site_url('ui/pindah_arsip')}}" class="btn btn-default"><i class="fa fa-archive"></i></a>
+					<a href="{{site_url('pindah/tambah')}}" class="btn btn-default"><i class="fa fa-plus"></i></a>
+					<a href="{{site_url('pindah/arsip')}}" class="btn btn-default"><i class="fa fa-archive"></i></a>
 					<button class="btn btn-default reload" type="button"><i class="fa fa-refresh"></i></button>
 				</div>
 				<form action="#" class="pull-right space-right-10">
@@ -42,7 +42,7 @@
 								<td><a href="{{ site_url('penduduk/detail/'.$mutasi->nik) }}">{{ $mutasi->penduduk->nama }}</a></td>
 								<td class="text-center">{{date('d-m-Y', strtotime($mutasi->created_at))}}</td>
 								<td width="30%">
-									<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-info"></i> detail</a>
+									<a href="{{ site_url('pindah/detail/'.$mutasi->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-info"></i> detail</a>
 									<a href="{{ site_url('pindah/arsipkan/'. $mutasi->id) }}" class="btn btn-warning btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
 									<a href="#" class="btn btn-success btn-xs"><i class="fa fa-file-pdf-o"></i> cetak surat</a>
 								</td>

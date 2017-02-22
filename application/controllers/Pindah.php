@@ -20,7 +20,6 @@ class Pindah extends MY_Controller
         ->fields('id ,created_at, updated_at')
         ->with_penduduk('fields:nama')
         ->get_all();
-
         $this->render('kelurahan/pindah', $data);
     }
 
@@ -49,7 +48,11 @@ class Pindah extends MY_Controller
     
     public function detail($id = NULL)
     {
-
+        $data['mutasi'] = $this->mutasi_keluar_m
+            ->with_penduduk()
+            ->get($id);
+        $data['provinsi'] = $this->provinsi_m->get_all();
+        $this->render('kelurahan/pindah_detail', $data);
     }
 
     public function edit($id = NULL)
@@ -83,7 +86,7 @@ class Pindah extends MY_Controller
     {
         if ($id != NULL && !empty($id)) {
             if ($this->mutasi_keluar_m->restore($id)) {
-                if ($this->mutasi_keluar_detail_m->where('id_mutasi', $id)->restore()) {
+                if ($this->mutasi_keluar_detail_m->restore(array('id_mutasi', $id))) {
                     $this->go('pindah/arsip');
                 }else{
                     die('terjadi kesalahan saat mengembalikan mutasi_detail');

@@ -9,7 +9,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title pull-left">Data Pindahan</h3>
 				<div class="btn-group btn-group-sm pull-right">
-					<a href="{{site_url('ui/pindah')}}" class="btn btn-default"><i class="fa fa-arrow-left"></i></a>
+					<a href="{{site_url('pindah')}}" class="btn btn-default"><i class="fa fa-arrow-left"></i></a>
 					<button class="btn btn-default reload" type="button"><i class="fa fa-refresh"></i></button>
 				</div>
 				<form action="#" class="pull-right space-right-10">
