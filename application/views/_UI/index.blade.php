@@ -17,6 +17,7 @@
 							<td>Judul</td>
 							<td>Deskripsi</td>
 							<td>Folder</td>
+							<td>Back</td>
 							<td class="text-center">Status</td>
 							<td>Lokasi</td>
 						</tr>
@@ -29,6 +30,7 @@
 							<td>Index UI</td>
 							<td>Halaman daftar UI</td>
 							<td>/</td>
+							<td>Ainul</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -41,6 +43,7 @@
 							<td>Sign in</td>
 							<td>Halaman masuk user</td>
 							<td>auth</td>
+							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/signin')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -53,6 +56,7 @@
 							<td>Manajemen Kelurahan</td>
 							<td>Halaman untuk memanajemen data kelurahan</td>
 							<td>kelurahan</td>
+							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -65,6 +69,7 @@
 							<td>Manajemen Akun Kelurahan</td>
 							<td>Halaman untuk memanajemen akun kelurahan</td>
 							<td>kelurahan</td>
+							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -77,6 +82,7 @@
 							<td>Manajemen Kependudukan</td>
 							<td>Halaman untuk memanajemen data kependudukan</td>
 							<td>kependudukan</td>
+							<td>Herda</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/kependudukan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -89,6 +95,7 @@
 							<td>Manajemen Keluarga</td>
 							<td>Halaman untuk memanajemen data Keluarga</td>
 							<td>Keluarga</td>
+							<td>Herda</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/keluarga')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -101,6 +108,7 @@
 							<td>Manajemen Detail Keluarga</td>
 							<td>Halaman untuk memanajemen detail data Keluarga</td>
 							<td>Keluarga</td>
+							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/keluarga_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -114,6 +122,7 @@
 							<td>Manajemen Pengajuan Pindah</td>
 							<td>Halaman untuk memanajemen pindah kelurahan</td>
 							<td>kelurahan</td>
+							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/pindah')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -127,6 +136,7 @@
 							<td>Form Pengajuan Pindah</td>
 							<td>Halaman untuk mangajukan pindah kelurahan</td>
 							<td>kelurahan</td>
+							<td>Herda</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/pindah_pengajuan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -137,9 +147,23 @@
 						<!-- DIVIDER -->
 						<tr>
 							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Detail Pengajuan</td>
+							<td>Halaman untuk mengedit data pengajuan</td>
+							<td>kelurahan</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{base_url('ui/pindah_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
 							<td>Arsip Pengajuan Pindah</td>
 							<td>Halaman untuk memanajemen data pindahan yg diarsipkan</td>
 							<td>kelurahan</td>
+							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/pindah_arsip')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -152,6 +176,7 @@
 							<td>Cetak Surat Pengajuan Pindah</td>
 							<td>Halaman cetak pengajuan pindah</td>
 							<td>kelurahan</td>
+							<td>belum</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{base_url('ui/pindah_pengajuan_cetak')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -164,8 +189,22 @@
 							<td>Alert</td>
 							<td>Popup Alert</td>
 							<td>/</td>
+							<td>-</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">-</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Persetujuan Kelurahan</td>
+							<td>Halaman super admin untuk menyetujui kelurahan</td>
+							<td>Kelurahan</td>
+							<td>Andre</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{base_url('ui/konfirmasi_kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
 						</tr>
 						<!-- END DIVIDER -->
 					</tbody>
