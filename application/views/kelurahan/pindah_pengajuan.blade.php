@@ -89,7 +89,7 @@
 									</div>
 									<div class="break-bottom-30"></div>
 									<a href="#step1" class="btn btn-default back" data-toggle="tab">Kembali</a>
-									<a href="#step3" class="btn btn-primary" data-toggle="tab">Langkah berikutnya</a>
+									<a href="#step3" class="btn btn-primary" data-toggle="tab" onclick="handleDatalist()">Langkah berikutnya</a>
 								</div>
 							</div>
 						</div>
@@ -342,5 +342,21 @@
             }
         });
     });
+
+    function handleDatalist() {
+    	var nik = $("input[name='nik']").val();
+    	console.log(nik);
+    }
+
+    function getNikNama() {
+		$.getJSON('{{ site_url() }}'+'penduduk/ambil_nama_nik', function (result) {
+			if (result) {
+				for (var i = 0; i < result.length; i++) {
+					var penduduk= result[i];
+					$("#kepala_keluarga").append("<option value='"+penduduk.nik + " | " + penduduk.nama+"'");
+				}
+			}
+		});
+	}
 </script>
 @endsection

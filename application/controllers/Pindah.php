@@ -22,7 +22,7 @@ class Pindah extends MY_Controller
     public function tambah()
     {
         $data['provinsi'] = $this->provinsi_m->get_all();
-        $data['penduduk'] = $this->penduduk_m->get_all();
+        $data['penduduk'] = $this->penduduk_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->get_all();
         $this->render('kelurahan/pindah_pengajuan', $data);
     }
     

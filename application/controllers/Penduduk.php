@@ -160,4 +160,26 @@ class Penduduk extends MY_Controller {
         }
         $this->go('penduduk');
     }
+
+
+    /**
+     * Ambil penduduk yang masih hidup dalam organisasi yang bersangkutan
+     *
+     * @return $penduduk_hidup(JSON)
+     */
+    public function ambil_kep_nik()
+    {
+        $current_id_org = $this->ion_auth->get_current_id_org();
+        $penduduk_hidup =$this->penduduk_m->ambilPendudukHidup($current_id_org);
+
+        if ($penduduk_hidup) {
+            if ( $penduduk_hidup !== 'Penduduk tidak ditemukan') {
+                echo json_encode($penduduk_hidup);
+            }else{
+                echo(json_encode(FALSE));
+            }
+        }else{
+            die('Kesalahan query saat mengambil penduduk hidup');
+        }
+    }
 }
