@@ -54,6 +54,11 @@ class Ui extends MY_Controller {
 		$this->render('_UI/kelurahan/pindah');
 	}
 
+	public function pindah_detail()
+	{
+		$this->render('_UI/kelurahan/pindah_detail');
+	}
+
 	public function pindah_pengajuan()
 	{
 		$this->render('_UI/kelurahan/pindah_pengajuan');
@@ -67,5 +72,15 @@ class Ui extends MY_Controller {
 	public function pindah_pengajuan_cetak()
 	{
 		$this->render('_UI/kelurahan/pindah_pengajuan_cetak');
+	}
+
+	public function konfirmasi_kelurahan()
+	{
+		$this->render('_UI/kelurahan/konfirmasi');
+	}
+
+	public function cetak()
+	{
+		$this->render('_UI/kelurahan/format_cetak');
 	}
 }
