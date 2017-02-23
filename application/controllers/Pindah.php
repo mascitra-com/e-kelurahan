@@ -85,35 +85,14 @@ class Pindah extends MY_Controller
     public function pratinjau($id = NULL)
     {
         if ($id != NULL && !empty($id)) {
-            $query = $this->mutasi_keluar_m
-            ->fields('no_surat, nik, alamat_asal, alamat_tujuan, rt_tujuan, rw_tujuan, keterangan')
-            ->with_penduduk(array(
-                    'fields' => 'nama, jenis_kelamin, tempat_lahir, tanggal_lahir, agama, status_nikah, rt, rw',
-                    'with' => array(
-                            'relation' => 'pekerjaan',
-                            'fields' => 'pekerjaan'
-                        )
-                ))
-            ->with_mutasi_keluar_details(array(
-                    'fields' => 'nik',
-                    'with'=>array(
-                        'relation'=>'penduduk',
-                        'fields'=>'nama, jenis_kelamin, status_nikah, tanggal_lahir'
-                        )
-                ))
-            ->with_provinsi('fields:nama')
-            ->with_kabupaten('fields:nama')
-            ->with_kecamatan('fields:nama')
-            ->with_kelurahan('fields:nama')
-            ->get($id);
 
             $jumlah_pengikut = $this->mutasi_keluar_m
             ->fields('id')
             ->with_mutasi_keluar_details('fields:*count*')
             ->get($id);
 
-            if ($query && $jumlah_pengikut) {
-                $data['cetak'] = $query;
+            if ($jumlah_pengikut) {
+                $data['cetak'] = $this->ambilDataSuratPengajuan($id);
                 $data['j_pengikut'] = $jumlah_pengikut->mutasi_keluar_details[0]->counted_rows;
                 $data['current_kelurahan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get($this->ion_auth->get_current_id_org());
                 $data['current_kecamatan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get(1);
@@ -125,6 +104,11 @@ class Pindah extends MY_Controller
         }else{
             die('data cetak tidak ditemukan');
         }
+    }
+
+    public function cetak($id = NULL)
+    {
+        dump('cetak');
     }
 
     public function ubah($id = NULL)
@@ -231,5 +215,43 @@ class Pindah extends MY_Controller
             $data[] = "<option value='$list->id'>$list->nama</option>";
         }
         echo json_encode($data);
+    }
+
+    /**
+     * Mengambil data untuk keperluan cetak & pratinjau
+     */
+    public function ambilDataSuratPengajuan($id = NULL)
+    {
+        if ($id != NULL && !empty($id)) {
+            $query = $this->mutasi_keluar_m
+            ->fields('no_surat, nik, alamat_asal, alamat_tujuan, rt_tujuan, rw_tujuan, keterangan')
+            ->with_penduduk(array(
+                'fields' => 'nama, jenis_kelamin, tempat_lahir, tanggal_lahir, agama, status_nikah, rt, rw',
+                'with' => array(
+                    'relation' => 'pekerjaan',
+                    'fields' => 'pekerjaan'
+                    )
+                ))
+            ->with_mutasi_keluar_details(array(
+                'fields' => 'nik',
+                'with'=>array(
+                    'relation'=>'penduduk',
+                    'fields'=>'nama, jenis_kelamin, status_nikah, tanggal_lahir'
+                    )
+                ))
+            ->with_provinsi('fields:nama')
+            ->with_kabupaten('fields:nama')
+            ->with_kecamatan('fields:nama')
+            ->with_kelurahan('fields:nama')
+            ->get($id);
+
+            if ($query) {
+                return $query;
+            }else{
+                die('terjadi kesalahan saat mengambil data untuk mencetak');
+            }
+        }else{
+            die('data cetak tidak ditemukan');
+        }
     }
 }

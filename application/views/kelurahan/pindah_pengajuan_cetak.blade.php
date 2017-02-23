@@ -223,7 +223,7 @@
 					</div>
 				</div>
 				<div class="block">
-					<a class="btn btn-warning btn-block"><i class="fa fa-print"></i> cetak</a>
+					<a href="{{ site_url('pindah/cetak/'.$cetak->id) }}" class="btn btn-warning btn-block"><i class="fa fa-print"></i> cetak</a>
 				</div>
 			</div>
 		</div>
