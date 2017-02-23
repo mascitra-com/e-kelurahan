@@ -108,7 +108,29 @@ class Pindah extends MY_Controller
 
     public function cetak($id = NULL)
     {
-        dump('cetak');
+        if ($id != NULL && !empty($id)) {
+
+            $jumlah_pengikut = $this->mutasi_keluar_m
+            ->fields('id')
+            ->with_mutasi_keluar_details('fields:*count*')
+            ->get($id);
+
+            if ($jumlah_pengikut) {
+                $data['cetak'] = $this->ambilDataSuratPengajuan($id);
+                $data['j_pengikut'] = $jumlah_pengikut->mutasi_keluar_details[0]->counted_rows;
+                $data['current_kelurahan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get($this->ion_auth->get_current_id_org());
+                $data['current_kecamatan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get(1);
+                $this->load->helper(array('agama', 'terbilang', 'date'));
+                
+                $this->load->library('pdfgenerator');
+                $html = $this->load->view('kelurahan/format_cetak', $data, true);    
+                $this->pdfgenerator->generate($html,'contoh');            
+            }else{
+                die('terjadi kesalahan saat mengambil data untuk mencetak');
+            }
+        }else{
+            die('data cetak tidak ditemukan');
+        }
     }
 
     public function ubah($id = NULL)
@@ -255,3 +277,4 @@ class Pindah extends MY_Controller
         }
     }
 }
+

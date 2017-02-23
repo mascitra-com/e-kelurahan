@@ -10,6 +10,7 @@ class PdfGenerator
 		define('DOMPDF_ENABLE_AUTOLOAD', false);
 
 		$dompdf = new DOMPDF();
+		$dompdf->set_paper('A4', 'portrait');
 		$dompdf->load_html($html);
 		$dompdf->render();
 		$dompdf->stream($filename.'.pdf',array("Attachment"=>0));

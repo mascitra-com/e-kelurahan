@@ -134,9 +134,10 @@
 									</tr>
 									<tr><td>Laki</td><td>Perempuan</td></tr>
 									<!-- isi -->
+									<?php $j = 0; ?>
 									@foreach($cetak->mutasi_keluar_details as $pengikut)
 									<tr>
-										<td>1.</td>
+										<td>{{ ++$j }}</td>
 										<td>{{ $pengikut->penduduk->nama }}</td>
 										<td>
 											@if($pengikut->penduduk->jenis_kelamin === '0')
@@ -155,15 +156,15 @@
 										<td>{{ date('Y') - date('Y', strtotime($pengikut->penduduk->tanggal_lahir)) }}</td>
 										<td>
 											@if($pengikut->penduduk->status_nikah == '0') 
-												Belum Kawin
+											Belum Kawin
 											@elseif($pengikut->penduduk->status_nikah == '1')
-												Kawin
+											Kawin
 											@elseif($pengikut->penduduk->status_nikah == '2')
-												Cerai Hidup
+											Cerai Hidup
 											@elseif($pengikut->penduduk->status_nikah == '3')
-												Cerai Mati
+											Cerai Mati
 											@else
-												Tidak ada Data
+											Tidak ada Data
 											@endif
 										</td>
 										<td></td>
