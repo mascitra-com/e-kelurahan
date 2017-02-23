@@ -49,38 +49,47 @@
 							<td width="5%" class="text-left">{{$no++}}.</td>
 							<td width="30%" class="text-left">Agama</td>
 							<td width="3%" class="text-center">:</td>
-							<td class="text-left">
-								
-							</td>
+							<td class="text-left">{{ cetak_agama($cetak->penduduk->agama) }}</td>
 						</tr>
 						<tr>
 							<td width="5%" class="text-left">{{$no++}}.</td>
 							<td width="30%" class="text-left">Status Perkawinan</td>
 							<td width="3%" class="text-center">:</td>
-							<td class="text-left">Belum Menikah</td>
+							<td class="text-left">
+								@if($cetak->penduduk->status_nikah == '0') 
+									Belum Kawin
+								@elseif($cetak->penduduk->status_nikah == '1')
+									Kawin
+								@elseif($cetak->penduduk->status_nikah == '2')
+									Cerai Hidup
+								@elseif($cetak->penduduk->status_nikah == '3')
+									Cerai Mati
+								@else
+								 	Tidak ada Data
+								@endif</td>
 						</tr>
 						<tr>
 							<td width="5%" class="text-left">{{$no++}}.</td>
 							<td width="30%" class="text-left">Pekerjaan</td>
 							<td width="3%" class="text-center">:</td>
-							<td class="text-left">Mahasiswa</td>
+							<td class="text-left">{{ $cetak->penduduk->pekerjaan->pekerjaan }}</td>
 						</tr>
 						<tr>
 							<td width="5%" class="text-left">{{$no++}}.</td>
 							<td width="30%" class="text-left">Tanggal KTP</td>
 							<td width="3%" class="text-center">:</td>
-							<td class="text-left">354565684540001</td>
+							<td class="text-left">{{ $cetak->penduduk->nik }}</td>
 						</tr>
 						<tr>
 							<td width="5%" class="text-left">{{$no++}}.</td>
 							<td width="30%" class="text-left">Alamat Lengkap</td>
 							<td width="3%" class="text-center">:</td>
 							<td class="text-left">
-								<span>Jalan PB. Soedirman no.10 Pagah Jember</span>
+								<span>{{ $cetak->alamat_asal.' RT '.$cetak->penduduk->rt. ' RW '. $cetak->penduduk->rw }}</span>
 								<table>
 									<tr><td width="50%">Kelurahan</td><td>:&nbsp</td><td>Pagah</td></tr>
-									<tr><td width="50%">Kecamatan</td><td>:&nbsp</td><td>Patrang</td></tr>
-									<tr><td width="50%">Kabupaten</td><td>:&nbsp</td><td>Jember</td></tr>
+									<tr><td width="50%">Kecamatan</td><td>:&nbsp</td><td>Lumajang</td></tr>
+									<tr><td width="50%">Kabupaten</td><td>:&nbsp</td><td>Lumajang</td></tr>
 									<tr><td width="50%">Provinsi</td><td>:&nbsp</td><td>Jawa Timur</td></tr>
 								</table>
 							</td>
@@ -90,12 +99,12 @@
 							<td width="30%" class="text-left">Pindah Ke</td>
 							<td width="3%" class="text-center">:</td>
 							<td class="text-left">
-								<span>Jalan PB. Soedirman no.10 Pagah Jember</span>
+								<span>{{ $cetak->alamat_tujuan.' RT '.$cetak->rt_tujuan. ' RW '. $cetak->rw_tujuan }}</span>
 								<table>
-									<tr><td width="50%">Kelurahan / Desa</td><td>&nbsp:&nbsp</td><td>Pagah</td></tr>
-									<tr><td width="50%">Kecamatan</td><td>&nbsp:&nbsp</td><td>Patrang</td></tr>
-									<tr><td width="50%">Kabupaten / Kota</td><td>&nbsp:&nbsp</td><td>Jember</td></tr>
-									<tr><td width="50%">Provinsi</td><td>&nbsp:&nbsp</td><td>Jawa Timur</td></tr>
+									<tr><td width="50%">Kelurahan / Desa</td><td>&nbsp:&nbsp</td><td>{{ ucwords(strtolower($cetak->kelurahan->nama)) }}</td></tr>
+									<tr><td width="50%">Kecamatan</td><td>&nbsp:&nbsp</td><td>{{ ucwords(strtolower($cetak->kecamatan->nama)) }}</td></tr>
+									<tr><td width="50%">Kabupaten / Kota</td><td>&nbsp:&nbsp</td><td>{{ucwords(strtolower($cetak->kabupaten->nama))}}</td></tr>
+									<tr><td width="50%">Provinsi</td><td>&nbsp:&nbsp</td><td>{{ucwords(strtolower($cetak->provinsi->nama))}}</td></tr>
 								</table>
 							</td>
 						</tr>
@@ -103,13 +112,13 @@
 							<td width="5%" class="text-left">{{$no++}}.</td>
 							<td width="30%" class="text-left">Alasan Pindah</td>
 							<td width="3%" class="text-center">:</td>
-							<td class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing.</td>
+							<td class="text-left">{{ $cetak->keterangan }}</td>
 						</tr>
 						<tr>
 							<td width="5%" class="text-left">{{$no++}}.</td>
 							<td width="30%" class="text-left">Pengikut</td>
 							<td width="3%" class="text-center">:</td>
-							<td class="text-left">2(dua) orang</td>
+							<td class="text-left">{{ $j_pengikut }}(dua) orang</td>
 						</tr>
 						<tr>
 							<td colspan="4" class="table-responsive">

@@ -88,7 +88,7 @@ class Pindah extends MY_Controller
             $query = $this->mutasi_keluar_m
             ->fields('no_surat, nik, alamat_asal, alamat_tujuan, rt_tujuan, rw_tujuan, keterangan')
             ->with_penduduk(array(
-                    'fields' => 'nama, jenis_kelamin, tempat_lahir, tanggal_lahir',
+                    'fields' => 'nama, jenis_kelamin, tempat_lahir, tanggal_lahir, agama, status_nikah, rt, rw',
                     'with' => array(
                             'relation' => 'pekerjaan',
                             'fields' => 'pekerjaan'
@@ -106,8 +106,15 @@ class Pindah extends MY_Controller
             ->with_kecamatan('fields:nama')
             ->with_kelurahan('fields:nama')
             ->get($id);
-            if ($query) {
+
+            $jumlah_pengikut = $this->mutasi_keluar_m
+            ->fields('id')
+            ->with_mutasi_keluar_details('fields:*count*')
+            ->get($id);
+            
+            if ($query && $jumlah_pengikut) {
                 $data['cetak'] = $query;
+                $data['j_pengikut'] = $jumlah_pengikut->mutasi_keluar_details[0]->counted_rows;
                 $data['nama_kelurahan'] = $this->organisasi_m->fields('nama')->get($this->ion_auth->get_current_id_org())->nama;
                 $this->load->helper('agama');
                 $this->render('kelurahan/pindah_pengajuan_cetak', $data);
