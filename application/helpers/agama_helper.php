@@ -13,7 +13,7 @@ if (!function_exists('cetak_agama')) {
      *
      * @return boolean
      */
-	function show_sidebar_menu($status_agama){
+	function cetak_agama($status_agama){
 		switch ($status_agama) {
 			case '0':
 				$agama = 'Islam';
