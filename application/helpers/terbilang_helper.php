@@ -17,7 +17,7 @@ if (!function_exists('terbilang')) {
 	{
 		$abil = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
 		if ($x < 12)
-			return " " . $abil[$x];
+			return "" . $abil[$x];
 		elseif ($x < 20)
 			return Terbilang($x - 10) . "belas";
 		elseif ($x < 100)
