@@ -82,7 +82,7 @@
 									</div>
 									<div class="form-group">
 										<label for="">Tanggal KTP</label>
-										<input type="text" class="form-control" name="no_ktp" disabled>
+										<input type="text" class="form-control" name="no_ktp" disabled id="d_ktp">
 									</div>
 									<div class="break-bottom-30"></div>
 									<a href="#step1" class="btn btn-default back" data-toggle="tab">Kembali</a>
@@ -377,7 +377,34 @@ function getDataWarga(nik) {
 		if (result) {
 			for (var i = 0; i < result.length; i++) {
 				var penduduk= result[i];
+				var jk = penduduk.jenis_kelamin;
+				var ttl = penduduk.tempat_lahir + ", "+ penduduk.tanggal_lahir.split(" ")[0];
+				var agama = penduduk.agama;
+				$("#d_nama").val(penduduk.nama);
+				if (jk == '0') {
+					$("#d_jk").val('Laki-Laki');
+				}else{
+					$("#d_jk").val('Perempuan');
+				}
+				$("#d_ttl").val(ttl);
 
+				switch(agama){
+					case '0':
+					agama = 'Islam';
+					break;
+					case '1':
+					agama = 'kristen';
+					break;
+					default:
+					agama = 'atheis';
+				}
+				$("#d_agama").val(agama);
+				if (penduduk.status == '0') {
+					$("#d_status").val('Belum Menikah');
+				}else{
+					$("#d_status").val('Menikah');
+				}
+				$("#d_ktp").val(penduduk.nik);
 			}
 		}
 	});

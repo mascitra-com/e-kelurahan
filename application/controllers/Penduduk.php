@@ -175,7 +175,7 @@ class Penduduk extends MY_Controller {
         $penduduk_hidup =$this->penduduk_m->ambilSatuPendudukHidup($current_id_org, $nik);
 
         if ($penduduk_hidup) {
-            if ( $penduduk_hidup !== 'Penduduk tidak ditemukan') {
+            if ($penduduk_hidup !== 'Penduduk tidak ditemukan') {
                 echo json_encode($penduduk_hidup);
             }else{
                 echo(json_encode(FALSE));
