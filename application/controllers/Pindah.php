@@ -82,7 +82,7 @@ class Pindah extends MY_Controller
         $this->render('kelurahan/pindah_detail', $data);
     }
 
-    public function cetak($id = NULL)
+    public function pratinjau($id = NULL)
     {
         if ($id != NULL && !empty($id)) {
             $query = $this->mutasi_keluar_m
@@ -109,6 +109,7 @@ class Pindah extends MY_Controller
             if ($query) {
                 $data['cetak'] = $query;
                 $data['nama_kelurahan'] = $this->organisasi_m->fields('nama')->get($this->ion_auth->get_current_id_org())->nama;
+                $this->load->helper('agama');
                 $this->render('kelurahan/pindah_pengajuan_cetak', $data);
             }else{
                 die('terjadi kesalahan saat mengambil data untuk mencetak');
