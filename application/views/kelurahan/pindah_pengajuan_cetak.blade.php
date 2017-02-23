@@ -11,7 +11,7 @@
 			<div class="panel-body">
 				<h5>PEMERINTAH KABUPATEN LUMAJANG</h5>
 				<h5>KECAMATAN : LUMAJANG</h5>
-				<h5>KELURAHAN : {{ strtoupper($nama_kelurahan) }}</h5>
+				<h5>KELURAHAN : {{ strtoupper($current_kelurahan->nama) }}</h5>
 				<div class="break-10"></div>
 				<div class="center" style="border: none;">
 					<span class="text-size-16"><u><b>SURAT KETERANGAN PINDAH</b></u></span><br>
@@ -32,11 +32,11 @@
 							<td width="30%" class="text-left">Jenis Kelamin</td>
 							<td width="3%" class="text-center">:</td>
 							<td class="text-left">
-							@if($cetak->penduduk->jenis_kelamin === '0')
+								@if($cetak->penduduk->jenis_kelamin === '0')
 								Laki-Laki
-							@else
+								@else
 								Perempuan
-							@endif
+								@endif
 							</td>
 						</tr>
 						<tr>
@@ -57,16 +57,17 @@
 							<td width="3%" class="text-center">:</td>
 							<td class="text-left">
 								@if($cetak->penduduk->status_nikah == '0') 
-									Belum Kawin
+								Belum Kawin
 								@elseif($cetak->penduduk->status_nikah == '1')
-									Kawin
+								Kawin
 								@elseif($cetak->penduduk->status_nikah == '2')
-									Cerai Hidup
+								Cerai Hidup
 								@elseif($cetak->penduduk->status_nikah == '3')
-									Cerai Mati
+								Cerai Mati
 								@else
-								 	Tidak ada Data
-								@endif</td>
+								Tidak ada Data
+								@endif
+							</td>
 						</tr>
 						<tr>
 							<td width="5%" class="text-left">{{$no++}}.</td>
@@ -87,7 +88,7 @@
 							<td class="text-left">
 								<span>{{ $cetak->alamat_asal.' RT '.$cetak->penduduk->rt. ' RW '. $cetak->penduduk->rw }}</span>
 								<table>
-									<tr><td width="50%">Kelurahan</td><td>:&nbsp</td><td>Pagah</td></tr>
+									<tr><td width="50%">Kelurahan</td><td>:&nbsp</td><td>{{ $current_kelurahan->nama }}</td></tr>
 									<tr><td width="50%">Kecamatan</td><td>:&nbsp</td><td>Lumajang</td></tr>
 									<tr><td width="50%">Kabupaten</td><td>:&nbsp</td><td>Lumajang</td></tr>
 									<tr><td width="50%">Provinsi</td><td>:&nbsp</td><td>Jawa Timur</td></tr>
@@ -128,29 +129,46 @@
 										<td rowspan="2">Nama</td>
 										<td colspan="2">Kelamin</td>
 										<td rowspan="2">Umur</td>
-										<td rowspan="2">Status Perkawin</td>
+										<td rowspan="2">Status Perkawinan</td>
 										<td rowspan="2">Ket</td>
 									</tr>
 									<tr><td>Laki</td><td>Perempuan</td></tr>
 									<!-- isi -->
+									@foreach($cetak->mutasi_keluar_details as $pengikut)
 									<tr>
 										<td>1.</td>
-										<td>Andre Hardika</td>
-										<td>&#10004</td>
-										<td></td>
-										<td>20</td>
-										<td>Belum Menikah</td>
+										<td>{{ $pengikut->penduduk->nama }}</td>
+										<td>
+											@if($pengikut->penduduk->jenis_kelamin === '0')
+											&#10004
+											@else
+											-
+											@endif
+										</td>
+										<td>
+											@if($pengikut->penduduk->jenis_kelamin === '1')
+											&#10004
+											@else
+											-
+											@endif
+										</td>
+										<td>{{ date('Y') - date('Y', strtotime($pengikut->penduduk->tanggal_lahir)) }}</td>
+										<td>
+											@if($pengikut->penduduk->status_nikah == '0') 
+												Belum Kawin
+											@elseif($pengikut->penduduk->status_nikah == '1')
+												Kawin
+											@elseif($pengikut->penduduk->status_nikah == '2')
+												Cerai Hidup
+											@elseif($pengikut->penduduk->status_nikah == '3')
+												Cerai Mati
+											@else
+												Tidak ada Data
+											@endif
+										</td>
 										<td></td>
 									</tr>
-									<tr>
-										<td>2.</td>
-										<td>Rizki Herdatullah</td>
-										<td>&#10004</td>
-										<td></td>
-										<td>24</td>
-										<td>Menikah</td>
-										<td></td>
-									</tr>
+									@endforeach
 								</table>
 							</td>
 						</tr>
@@ -166,35 +184,35 @@
 									<table class="table borderless">
 										<tr>
 											<td colspan="2"></td>
-											<td>Pagah, 22 Februari 2017</td></tr>
+											<td>{{ $current_kelurahan->nama.', ' .mdate('%j %F %Y', time()) }}</td></tr>
 											<tr>
 												<td width="44%">PEMOHON</td>
 												<td width="10%"></td>
-												<td width="44%">LURAH PAGAH</td>
+												<td width="44%">LURAH {{ strtoupper($current_kelurahan->nama) }}</td>
 											</tr>
 											<tr>
 												<td colspan="3" height="50px"></td>
 											</tr>
 											<tr>
-												<td><u><b>MOHAMMAD AINUL YAQIN</b></u></td>
+												<td><u><b>{{ strtoupper($cetak->penduduk->nama) }}</b></u></td>
 												<td></td>
-												<td><u><b>NAMA LURAH, S.Sos, Msi</b></u></td>
+												<td><u><b>{{ $current_kelurahan->nama_pimpinan}}</b></u></td>
 											</tr>
 											<tr>
 												<td colspan="2"></td>
-												<td>JABATAN<br>NIP. 1978798 986986 16986</td>
+												<td>JABATAN<br>NIP. {{ substr($current_kelurahan->nip, 0, 8).' '.substr($current_kelurahan->nip, 8, 6). ' '. substr($current_kelurahan->nip, 14, 4) }}</td>
 											</tr>
 											<tr>
-												<td colspan="3">CAMAT PATRANG</td>
+												<td colspan="3">CAMAT {{ strtoupper($current_kecamatan->nama) }}</td>
 											</tr>
 											<tr>
 												<td colspan="3" height="50px"></td>
 											</tr>
 											<tr>
 												<td colspan="3">
-													<u><b>NAMA CAMAT, S.Sos, Msi</b></u><br>
+													<u><b>{{ $current_kecamatan->nama_pimpinan }}</b></u><br>
 													<span>PEMBINA</span><br>
-													<span>NIP. 1978798 986986 16986</span>
+													<span>NIP. {{ substr($current_kecamatan->nip, 0, 8).' '.substr($current_kecamatan->nip, 8, 6). ' '. substr($current_kecamatan->nip, 14, 4) }}</span>
 												</td>
 											</tr>
 										</table>

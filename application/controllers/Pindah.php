@@ -111,12 +111,13 @@ class Pindah extends MY_Controller
             ->fields('id')
             ->with_mutasi_keluar_details('fields:*count*')
             ->get($id);
-            
+
             if ($query && $jumlah_pengikut) {
                 $data['cetak'] = $query;
                 $data['j_pengikut'] = $jumlah_pengikut->mutasi_keluar_details[0]->counted_rows;
-                $data['nama_kelurahan'] = $this->organisasi_m->fields('nama')->get($this->ion_auth->get_current_id_org())->nama;
-                $this->load->helper(array('agama', 'terbilang'));
+                $data['current_kelurahan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get($this->ion_auth->get_current_id_org());
+                $data['current_kecamatan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get(1);
+                $this->load->helper(array('agama', 'terbilang', 'date'));
                 $this->render('kelurahan/pindah_pengajuan_cetak', $data);
             }else{
                 die('terjadi kesalahan saat mengambil data untuk mencetak');
