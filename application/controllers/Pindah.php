@@ -9,7 +9,7 @@ class Pindah extends MY_Controller
         parent::__construct();
         $this->load->library(array('form_validation'));
         $this->load->helper(array('dump_helper'));
-        $this->load->model(array('provinsi_m', 'kabupaten_m', 'kecamatan_m', 'kelurahan_m', 'mutasi_keluar_m', 'mutasi_keluar_detail_m', 'penduduk_m'));
+        $this->load->model(array('organisasi_m','provinsi_m', 'kabupaten_m', 'kecamatan_m', 'kelurahan_m', 'mutasi_keluar_m', 'mutasi_keluar_detail_m', 'penduduk_m'));
         $this->_accessable = TRUE;
     }
 
@@ -61,25 +61,61 @@ class Pindah extends MY_Controller
     public function detail($id = NULL)
     {
         $mutasi = $this->mutasi_keluar_m
-            ->with_penduduk()
-            ->get($id);
+        ->with_penduduk()
+        ->get($id);
         $data['penduduk'] = $this->penduduk_m
-            ->where(array(
-                'id_organisasi' => $this->ion_auth->get_current_id_org(),
-                'nik <>' => $mutasi->nik
+        ->where(array(
+            'id_organisasi' => $this->ion_auth->get_current_id_org(),
+            'nik <>' => $mutasi->nik
             ))
-            ->get_all();
+        ->get_all();
         $data['pengikut'] = $this->mutasi_keluar_detail_m
-            ->fields('id')
-            ->with_penduduk('fields:nik,nama')
-            ->where('id_mutasi', $id)
-            ->get_all();
+        ->fields('id')
+        ->with_penduduk('fields:nik,nama')
+        ->where('id_mutasi', $id)
+        ->get_all();
         $data['provinsi'] = $this->provinsi_m->get_all();
         $data['kabupaten'] = $this->kabupaten_m->where('id_provinsi', $mutasi->id_prov_tujuan)->get_all();
         $data['kecamatan'] = $this->kecamatan_m->where('id_kabupaten', $mutasi->id_kab_tujuan)->get_all();
         $data['kelurahan'] = $this->kelurahan_m->where('id_kecamatan', $mutasi->id_kec_tujuan)->get_all();
         $data['mutasi'] = $mutasi;
         $this->render('kelurahan/pindah_detail', $data);
+    }
+
+    public function cetak($id = NULL)
+    {
+        if ($id != NULL && !empty($id)) {
+            $query = $this->mutasi_keluar_m
+            ->fields('no_surat, nik, alamat_asal, alamat_tujuan, rt_tujuan, rw_tujuan, keterangan')
+            ->with_penduduk(array(
+                    'fields' => 'nama, jenis_kelamin, tempat_lahir, tanggal_lahir',
+                    'with' => array(
+                            'relation' => 'pekerjaan',
+                            'fields' => 'pekerjaan'
+                        )
+                ))
+            ->with_mutasi_keluar_details(array(
+                    'fields' => 'nik',
+                    'with'=>array(
+                        'relation'=>'penduduk',
+                        'fields'=>'nama, jenis_kelamin, status_nikah, tanggal_lahir'
+                        )
+                ))
+            ->with_provinsi('fields:nama')
+            ->with_kabupaten('fields:nama')
+            ->with_kecamatan('fields:nama')
+            ->with_kelurahan('fields:nama')
+            ->get($id);
+            if ($query) {
+                $data['cetak'] = $query;
+                $data['nama_kelurahan'] = $this->organisasi_m->fields('nama')->get($this->ion_auth->get_current_id_org())->nama;
+                $this->render('kelurahan/pindah_pengajuan_cetak', $data);
+            }else{
+                die('terjadi kesalahan saat mengambil data untuk mencetak');
+            }
+        }else{
+            die('data cetak tidak ditemukan');
+        }
     }
 
     public function ubah($id = NULL)

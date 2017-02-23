@@ -9,6 +9,7 @@ class Provinsi_m extends MY_Model
         $this->table = 'provinsi';
         $this->primary_key = 'id';
         $this->has_many['kabupaten'] = array('kabupaten_m', 'id_provinsi', 'id');
+        $this->has_many['mutasi_keluars'] = array('mutasi_keluar_m', 'id', 'id');
         parent::__construct();
     }
 
