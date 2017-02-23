@@ -78,4 +78,9 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/kelurahan/konfirmasi');
 	}
+
+	public function cetak()
+	{
+		$this->render('_UI/kelurahan/format_cetak');
+	}
 }
