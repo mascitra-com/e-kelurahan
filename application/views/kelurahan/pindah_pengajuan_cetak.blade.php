@@ -118,7 +118,7 @@
 							<td width="5%" class="text-left">{{$no++}}.</td>
 							<td width="30%" class="text-left">Pengikut</td>
 							<td width="3%" class="text-center">:</td>
-							<td class="text-left">{{ $j_pengikut }}(dua) orang</td>
+							<td class="text-left">{{ $j_pengikut }}({{ terbilang($j_pengikut) }}) orang</td>
 						</tr>
 						<tr>
 							<td colspan="4" class="table-responsive">

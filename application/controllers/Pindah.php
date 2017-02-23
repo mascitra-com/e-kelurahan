@@ -116,7 +116,7 @@ class Pindah extends MY_Controller
                 $data['cetak'] = $query;
                 $data['j_pengikut'] = $jumlah_pengikut->mutasi_keluar_details[0]->counted_rows;
                 $data['nama_kelurahan'] = $this->organisasi_m->fields('nama')->get($this->ion_auth->get_current_id_org())->nama;
-                $this->load->helper('agama');
+                $this->load->helper(array('agama', 'terbilang'));
                 $this->render('kelurahan/pindah_pengajuan_cetak', $data);
             }else{
                 die('terjadi kesalahan saat mengambil data untuk mencetak');
