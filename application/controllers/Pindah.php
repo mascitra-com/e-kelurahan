@@ -123,8 +123,41 @@ class Pindah extends MY_Controller
                 $this->load->helper(array('agama', 'terbilang', 'date'));
                 
                 $this->load->library('pdfgenerator');
+
+                //ambil data pengikut
+                $j=0;
+                $data['pengikuts'] ="";
+                foreach ($data['cetak']->mutasi_keluar_details as $pengikut) {
+                    if ($pengikut->penduduk->jenis_kelamin === '0') {
+                        $jk = "&#10004;";
+                    }elseif ($pengikut->penduduk->jenis_kelamin === '1') {
+                        $jk = "&#10004;";
+                    }
+                    else{
+                        $jk = "-";
+                    }
+
+                    if($pengikut->penduduk->status_nikah == '0'){
+                        $st_nk ="Belum Kawin";
+                    } 
+                    elseif($pengikut->penduduk->status_nikah == '1'){
+                        $st_nk ="Kawin";
+                    }
+                    elseif($pengikut->penduduk->status_nikah == '2'){
+                        $st_nk ="Cerai Hidup";
+                    }
+                    elseif($pengikut->penduduk->status_nikah == '3'){
+                        $st_nk ="Cerai Mati";
+                    }
+                    else{
+                        $st_nk ="Tidak ada Data";
+                    }
+                    $umur = date('Y') - date('Y',strtotime($pengikut->penduduk->tanggal_lahir));
+                    $data['pengikuts'] .="<tr><td>". ++$j ."</td>"."<td>". $pengikut->penduduk->nama ."</td><td>".$jk."</td><td><td>". $umur ."</td><td>".$st_nk."</td><td></td></tr>";
+                }
+
                 $html = $this->load->view('kelurahan/format_cetak', $data, true);    
-                $this->pdfgenerator->generate($html,'contoh');            
+                $this->pdfgenerator->generate($html,'Surat Pindah No '. $data['cetak']->no_surat .' ('.$data['cetak']->nik.')');            
             }else{
                 die('terjadi kesalahan saat mengambil data untuk mencetak');
             }
