@@ -129,9 +129,9 @@ class Pindah extends MY_Controller
                 $data['pengikuts'] ="";
                 foreach ($data['cetak']->mutasi_keluar_details as $pengikut) {
                     if ($pengikut->penduduk->jenis_kelamin === '0') {
-                        $jk = "&#10004;";
+                        $jk = "v";
                     }elseif ($pengikut->penduduk->jenis_kelamin === '1') {
-                        $jk = "&#10004;";
+                        $jk = "v";
                     }
                     else{
                         $jk = "-";
