@@ -45,15 +45,27 @@
 				</ul>
 			</li>
 			<li><a href="#"><i class="fa fa-fw fa-truck"></i><span class="nav-label">Pindah RT</span></a></li>
-			<li><a href="#"><i class="fa fa-fw fa-envelope"></i><span class="nav-label">Surat</span></a></li>
+			<li>
+				<a href="#nav-surat" data-toggle="collapse" aria-controls="nav-surat">
+					<i class="fa fa-fw fa-envelope"></i>
+					<span class="nav-label">Surat</span>
+					<span class="nav-caret"><i class="fa fa-caret-down"></i></span>
+				</a>
+				<ul class="sidebar-nav-child collapse collapseable" id="nav-surat">
+					<li><a href="{{site_url('ui/surat_blanko_ktp')}}"><i class="fa fa-file-o"></i><span class="nav-label">Blanko Isian KTP</span></a></li>
+					<li><a href="{{site_url('ui/surat_skck')}}"><i class="fa fa-file-o"></i><span class="nav-label">SKCK</span></a></li>
+					<li><a href="{{site_url('ui/surat_keterangan_miskin')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin</span></a></li>
+					<li><a href="{{site_url('ui/surat_keterangan_miskin_rt')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin (RT)</span></a></li>
+				</ul>
+			</li>
 			<li><a href="#"><i class="fa fa-fw fa-file"></i><span class="nav-label">Laporan</span></a></li>
 			<li>
-				<a href="#nav-4" data-toggle="collapse" aria-controls="nav-4">
+				<a href="#nav-berita" data-toggle="collapse" aria-controls="nav-berita">
 					<i class="fa fa-fw fa-newspaper-o"></i>
 					<span class="nav-label">Berita</span>
 					<span class="nav-caret"><i class="fa fa-caret-down"></i></span>
 				</a>
-				<ul class="sidebar-nav-child collapse collapseable" id="nav-4">
+				<ul class="sidebar-nav-child collapse collapseable" id="nav-berita">
 					<li><a href="#"><i class="fa fa-tasks"></i><span class="nav-label">Daftar Berita</span></a></li>
 					<li><a href="#"><i class="fa fa-pencil-square-o"></i><span class="nav-label">Draf</span></a></li>
 					<li><a href="#"><i class="fa fa-archive"></i><span class="nav-label">Arsip</span></a></li>
