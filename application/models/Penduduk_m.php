@@ -109,6 +109,7 @@ class Penduduk_m extends MY_Model
 
         $this->has_many['meninggals'] = array('meninggal_m', 'nik', 'nik');
         $this->has_many['keluargas'] = array('keluarga_m', 'nik', 'nik');
+        $this->has_many['mutasi_keluars'] = array('mutasi_keluar_m', 'nik', 'nik');
         
         $this->soft_deletes = TRUE;
         $this->fillable = array('nik', 'id_organisasi', 'nama', 'tempat_lahir', 'golongan_darah', 'status_nikah', 'pendidikan', 'jenis_kelamin', 'tanggal_lahir', 'agama', 'pekerjaan', 'rt', 'rw', 'kewarganegaraan');
@@ -125,6 +126,49 @@ class Penduduk_m extends MY_Model
             ->where('id_organisasi', $id_organisasi)
             ->where('p.nik NOT IN (select nik from meninggal)',NULL,FALSE)
             ->where('p.nik NOT IN (select nik from keluarga)',NULL,FALSE)
+            ->get();
+
+            if ($query->num_rows() > 0) {
+                foreach ($query->result() as $row) {
+                    $penduduk_hidup[]= $row;
+                }
+                return $penduduk_hidup;
+            }
+            return 'Penduduk tidak ditemukan';
+        }else{
+            return 'Penduduk tidak ditemukan';
+        }
+    }
+
+    public function ambilSemuaPendudukHidup($id_organisasi = NULL)
+    {
+        if ($id_organisasi != NULL && !empty($id_organisasi)) {
+            $query= $this->db->select('p.nik, p.nama')
+            ->from('penduduk as p')
+            ->where('id_organisasi', $id_organisasi)
+            ->where('p.nik NOT IN (select nik from meninggal)',NULL,FALSE)
+            ->get();
+
+            if ($query->num_rows() > 0) {
+                foreach ($query->result() as $row) {
+                    $penduduk_hidup[]= $row;
+                }
+                return $penduduk_hidup;
+            }
+            return 'Penduduk tidak ditemukan';
+        }else{
+            return 'Penduduk tidak ditemukan';
+        }
+    }
+
+    public function ambilSatuPendudukHidup($id_organisasi = NULL, $nik = NULL)
+    {
+        if ($id_organisasi != NULL && !empty($id_organisasi) && $nik != NULL && !empty($nik)) {
+            $query= $this->db->select('p.nik, p.nama, p.jenis_kelamin, p.tanggal_lahir, p.tempat_lahir, p.agama, p.status_nikah')
+            ->from('penduduk as p')
+            ->where('nik', $nik)
+            ->where('id_organisasi', $id_organisasi)
+            ->where('p.nik NOT IN (select nik from meninggal)',NULL,FALSE)
             ->get();
 
             if ($query->num_rows() > 0) {

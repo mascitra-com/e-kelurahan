@@ -18,8 +18,9 @@
 			<li>
 				<a href="#nav-1" data-toggle="collapse" aria-controls="nav-1"><i class="fa fa-fw fa-upload"></i><span class="nav-label">Pindah</span></a>
 				<ul class="sidebar-nav-child collapse collapseable" id="nav-1">
-					<li><a href="{{site_url('pindah_pengajuan')}}"><i class="fa fa-bookmark"></i><span class="nav-label">Pengajuan</span></a></li>
+					<li><a href="{{site_url('pindah/tambah')}}"><i class="fa fa-bookmark"></i><span class="nav-label">Pengajuan</span></a></li>
 					<li><a href="{{site_url('pindah')}}"><i class="fa fa-upload"></i><span class="nav-label">Data Pengajuan</span></a></li>
+					<li><a href="{{site_url('pindah_arsip')}}"><i class="fa fa-archive"></i><span class="nav-label">Arsip Pengajuan</span></a></li>
 				</ul>
 			</li>
 			<li class="active"><a href="{{base_url('ui')}}"><i class="fa fa-fw fa-cog"></i><span class="nav-label">UI</span></a></li>

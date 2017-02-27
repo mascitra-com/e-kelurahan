@@ -1,5 +1,5 @@
 @layout('_layout/dashboard/index')
-@section('title')Detail Keluarga@endsection
+@section('title')Pengajuan Pindah@endsection
 @section('nama-kelurahan')Lumajang@endsection
 
 @section('content')

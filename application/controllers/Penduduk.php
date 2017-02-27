@@ -5,11 +5,13 @@ class Penduduk extends MY_Controller {
 
     public function __construct()
     {
+        $this->_accessable = TRUE;
         parent::__construct();
         $this->load->model('penduduk_m', 'penduduk');
         $this->load->model('organisasi_m', 'organisasi');
         $this->load->model('pekerjaan_m', 'pekerjaan');
         $this->load->model('pendidikan_m', 'pendidikan');
+        $this->load->model('penduduk_m');
         $this->load->library('form_validation');
     }
 
@@ -159,5 +161,48 @@ class Penduduk extends MY_Controller {
             $this->message('Data Penduduk Gagal Diubah', 'danger');
         }
         $this->go('penduduk');
+    }
+
+    /**
+     * Ambil penduduk yang masih hidup
+     *
+     * @param $nik
+     * @return $penduduk_hidup(JSON)
+     */
+    public function ambil_penduduk($nik)
+    {
+        $current_id_org = $this->ion_auth->get_current_id_org();
+        $penduduk_hidup =$this->penduduk_m->ambilSatuPendudukHidup($current_id_org, $nik);
+
+        if ($penduduk_hidup) {
+            if ($penduduk_hidup !== 'Penduduk tidak ditemukan') {
+                echo json_encode($penduduk_hidup);
+            }else{
+                echo(json_encode(FALSE));
+            }
+        }else{
+            die('Kesalahan query saat mengambil penduduk hidup');
+        }
+    }
+
+    /**
+     * Ambil semua penduduk yang masih hidup dalam organisasi yang bersangkutan
+     *
+     * @return $penduduk_hidup(JSON)
+     */
+    public function ambil_nama_nik()
+    {
+        $current_id_org = $this->ion_auth->get_current_id_org();
+        $penduduk_hidup =$this->penduduk_m->ambilSemuaPendudukHidup($current_id_org);
+
+        if ($penduduk_hidup) {
+            if ( $penduduk_hidup !== 'Penduduk tidak ditemukan') {
+                echo json_encode($penduduk_hidup);
+            }else{
+                echo(json_encode(FALSE));
+            }
+        }else{
+            die('Kesalahan query saat mengambil penduduk hidup');
+        }
     }
 }

@@ -80,6 +80,12 @@
 	 * @property Organisasi_m        $organisasi
 	 * @property Pekerjaan_m         $pekerjaan
 	 * @property Pendidikan_m        $pendidikan
+	 * @property Provinsi_m          $provinsi_m
+	 * @property Kabupaten_m         $kabupaten_m
+	 * @property Kecamatan_m         $kecamatan_m
+	 * @property Kelurahan_m         $kelurahan_m
+	 * @property Mutasi_keluar_m     $mutasi_keluar_m
+	 * @property Mutasi_keluar_detail_m         $mutasi_keluar_detail_m
 	 */
 	class CI_Controller {
 		public function __construct() {
