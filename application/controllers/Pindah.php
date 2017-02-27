@@ -159,10 +159,10 @@ class Pindah extends MY_Controller
                 $html = $this->load->view('kelurahan/format_cetak', $data, true);    
                 $this->pdfgenerator->generate($html,'Surat Pindah No '. $data['cetak']->no_surat .' ('.$data['cetak']->nik.')');            
             }else{
-                die('terjadi kesalahan saat mengambil data untuk mencetak');
+                $this->message('Terjadi kesalahan saat mengambil data untuk mencetak', 'danger');
             }
         }else{
-            die('data cetak tidak ditemukan');
+            $this->message('Data cetak tidak ditemukan', 'danger');
         }
     }
 
