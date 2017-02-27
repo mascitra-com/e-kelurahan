@@ -33,7 +33,7 @@
 							<td>Ainul</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -46,7 +46,7 @@
 							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/signin')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/signin')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -59,7 +59,7 @@
 							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -72,7 +72,7 @@
 							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -85,7 +85,7 @@
 							<td>Herda</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/kependudukan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/kependudukan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -98,7 +98,7 @@
 							<td>Herda</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/keluarga')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/keluarga')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -111,7 +111,7 @@
 							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/keluarga_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/keluarga_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -125,7 +125,7 @@
 							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/pindah')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/pindah')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -139,7 +139,7 @@
 							<td>Herda</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/pindah_pengajuan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/pindah_pengajuan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -153,7 +153,7 @@
 							<td>Belum</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/pindah_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/pindah_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -166,7 +166,7 @@
 							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/pindah_arsip')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/pindah_arsip')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -179,7 +179,7 @@
 							<td>belum</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/pindah_pengajuan_cetak')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/pindah_pengajuan_cetak')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -203,7 +203,7 @@
 							<td>Andre</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/konfirmasi_kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/konfirmasi_kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
@@ -216,7 +216,59 @@
 							<td>Belum</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
-								<a href="{{base_url('ui/profil')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+								<a href="{{site_url('ui/profil')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Surat Blanko KTP</td>
+							<td>Halaman untuk memanajemen surat blanko isian ktp</td>
+							<td>surat</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/surat_blanko_ktp')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>SKCK</td>
+							<td>Halaman untuk memanajemen SKCK</td>
+							<td>surat</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/surat_skck')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Surat Keterangan Miskin</td>
+							<td>Halaman untuk memanajemen surat keterangan miskin</td>
+							<td>surat</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/surat_keterangan_miskin')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Homepage</td>
+							<td>Halaman depan website</td>
+							<td>homepage</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-red"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/homepage')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->

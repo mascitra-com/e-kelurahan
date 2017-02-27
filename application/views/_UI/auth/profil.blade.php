@@ -62,6 +62,14 @@
 											<input type="text" class="form-control" name="nip" placeholder="NIP lurah" />
 										</div>
 										<div class="form-group">
+											<label for="">Golongan Pegawai</label>
+											<input class="form-control" name="golongan" list="golongan_list" placeholder="Pilih Golongan" />
+											<datalist id="golongan_list">
+												<option value="Golongan 1">
+												<option value="Golongan 2">
+											</datalist>
+										</div>
+										<div class="form-group">
 											<button class="btn btn-primary"><i class="fa fa-save"></i> simpan</button>
 											<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> kembalikan</button>
 										</div>

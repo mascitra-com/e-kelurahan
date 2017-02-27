@@ -88,4 +88,24 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/auth/profil');
 	}
+
+	public function surat_blanko_ktp()
+	{
+		$this->render('_UI/surat/blanko_ktp');
+	}
+
+	public function surat_skck()
+	{
+		$this->render('_UI/surat/skck');
+	}
+
+	public function surat_keterangan_miskin()
+	{
+		$this->render('_UI/surat/keterangan_miskin');
+	}
+
+	public function homepage()
+	{
+		$this->render('_UI/homepage/index');
+	}
 }

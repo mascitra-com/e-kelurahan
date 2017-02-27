@@ -45,7 +45,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 	overflow-x: hidden;
 	z-index: 1000;
 	background-color: transparent;
-	direction: rtl;
+	/*direction: rtl;*/
 	padding-right: 15px;
 }
 
@@ -54,7 +54,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 }
 
 #sidebar-wrapper{
-	direction: ltr;
+	/*direction: ltr;*/
 	position: relative;
 	width: 245px;
 	max-height: none;
@@ -161,6 +161,10 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 
 .sidebar-show #sidebar{
 	transform: translate3d(0, 0, 0);
+}
+
+.nav-label{
+	text-transform: capitalize;
 }
 
 .nav-caret{
