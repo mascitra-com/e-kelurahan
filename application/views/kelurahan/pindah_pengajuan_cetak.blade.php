@@ -141,14 +141,14 @@
 										<td>{{ $pengikut->penduduk->nama }}</td>
 										<td>
 											@if($pengikut->penduduk->jenis_kelamin === '0')
-											&#10004
+											v
 											@else
 											-
 											@endif
 										</td>
 										<td>
 											@if($pengikut->penduduk->jenis_kelamin === '1')
-											&#10004
+											v
 											@else
 											-
 											@endif
