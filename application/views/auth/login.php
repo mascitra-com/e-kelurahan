@@ -79,7 +79,7 @@
       <span class="text-size-28 bold">E-KELURAHAN TOMPOKERSO</span><br>
       <span class="text-size-18" style="color:rgba(255,255,255,.5)">Kelurahan masa depan</span>
       <div id="infoMessage"><?php echo $message;?></div>
-      <form action="<?= site_url('auth/login') ?>" method="POST" class="break-top-30">
+      <form action="<?= site_url($action.'/login') ?>" method="POST" class="break-top-30">
         <div class="form-group">
           <?php echo lang('login_identity_label', 'identity');?>
           <input type="text" class="form-control input-lg" name="identity" placeholder="masukan username  --  contoh andre@tompokerso">

@@ -28,6 +28,7 @@
 					<tbody>
 						<?php $i=0; ?>
 						<?php $arr=0; ?>
+						@if($kelurahans)
 						@foreach($kelurahans as $kelurahan)
 						<tr>
 							<td width="10%">{{str_pad(++$i,2,'0',STR_PAD_LEFT)}}</td>
@@ -35,7 +36,7 @@
 							<td>{{$kelurahan->akuns[$arr]->username}}</td>
 							<td class="text-center" width="15%"><span class="label label-<?php if($kelurahan->akuns[$arr]->active === '1'){echo 'primary';}else{echo 'danger';}?>">@if($kelurahan->akuns[$arr]->active === '1')aktif @else non-aktif @endif</span></td>
 							<td width="15%">
-								@if($kelurahan->akuns[$arr]->active === '1')  
+								@if($kelurahan->akuns[$arr]->active === '1')
 								<a href="{{ site_url('kelurahan/nonaktifkan/'.$kelurahan->akuns[$arr]->id_organisasi) }}" class="btn btn-xs btn-default" onclick="return confirm('non-aktifkan kelurahan ini?')">
 									<i class="fa fa-power-off text-red"></i>
 								</a>
@@ -46,8 +47,8 @@
 								@endif
 							</td>
 						</tr>
-						<?php $arr++;?>
 						@endforeach
+						@endif
 					</tbody>
 				</table>
 			</div>
@@ -79,6 +80,7 @@
 						</tr>
 					</thead>
 					<tbody>
+                        @if($kelurahan_verifs)
 						<?php $i=0; ?>
 						@foreach($kelurahan_verifs as $kelurahan)
 						<tr>
@@ -86,12 +88,13 @@
 							<td>Kelurahan {{ $kelurahan->nama }}</td>
 							<td class="text-center" width="15%"><span class="label label-<?php if($kelurahan->status === '0'){ echo'warning';}else{echo 'danger';}
 								?>">@if($kelurahan->status === '0')menunggu @else ditolak @endif</span></td>
-								<td width="15%">
-									<button href="#" class="btn btn-xs btn-default btn-edit" data-id="{{ $kelurahan->id }}" data-nama="{{ $kelurahan->nama }}"><i class="fa fa-pencil"></i></button>
-									<a href="{{ site_url('kelurahan/batal/'.$kelurahan->slug) }}" class="btn btn-xs btn-default" onclick="return confirm('Batalkan pengajuan ini?')"><i class="fa fa-close text-red"></i></a>
-								</td>
-							</tr>
-							@endforeach
+                            <td width="15%">
+                                <button href="#" class="btn btn-xs btn-default btn-edit" data-id="{{ $kelurahan->id }}" data-nama="{{ $kelurahan->nama }}"><i class="fa fa-pencil"></i></button>
+                                <a href="{{ site_url('kelurahan/batal/'.$kelurahan->slug) }}" class="btn btn-xs btn-default" onclick="return confirm('Batalkan pengajuan ini?')"><i class="fa fa-close text-red"></i></a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
 						</tbody>
 					</table>
 				</div>
