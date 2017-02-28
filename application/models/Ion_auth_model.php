@@ -171,8 +171,16 @@ class Ion_auth_model extends CI_Model
 		$this->lang->load('ion_auth');
 
 		// initialize db tables data
-		$this->tables  = $this->config->item('tables', 'ion_auth');
-
+        $index = 'super' === $this->uri->segment(1, 0) ? NULL : 'ion_auth';
+        if($index){
+            $this->tables  = $this->config->item('tables', $index);
+        } else {
+            $this->config->set_item('tables', array('users' => 'admin',
+                'groups' => 'tingkatan',
+                'users_groups' => 'detail_tingkatan',
+                'login_attempts' => 'percobaan_login'));
+            $this->tables  = $this->config->item('tables');
+        }
 		//initialize data
 		$this->identity_column = $this->config->item('identity', 'ion_auth');
 		$this->store_salt      = $this->config->item('store_salt', 'ion_auth');
@@ -868,7 +876,7 @@ class Ion_auth_model extends CI_Model
 	 * @return bool
 	 * @author Mathew
 	 **/
-	public function register($identity, $password, $email, $additional_data = array(), $groups = array())
+	public function register($identity, $password, $additional_data = array(), $groups = array())
 	{
 		$this->trigger_events('pre_register');
 
@@ -897,16 +905,13 @@ class Ion_auth_model extends CI_Model
 		$default_group = $query;
 
 		// IP Address
-		$ip_address = $this->_prepare_ip($this->input->ip_address());
 		$salt       = $this->store_salt ? $this->salt() : FALSE;
 		$password   = $this->hash_password($password, $salt);
 
 		// Users table.
 		$data = array(
-		    $this->identity_column   => $identity,
 		    'username'   => $identity,
 		    'password'   => $password,
-		    'ip_address' => $ip_address,
 		    'created_on' => date('Y-m-d H:i:s'),
 		    'active'     => ($manual_activation === false ? 1 : 0)
 		);
@@ -921,7 +926,6 @@ class Ion_auth_model extends CI_Model
 		$user_data = array_merge($this->_filter_data($this->tables['users'], $additional_data), $data);
 
 		$this->trigger_events('extra_set');
-
 		$this->db->insert($this->tables['users'], $user_data);
 
 		$id = $this->db->insert_id();
@@ -1442,7 +1446,6 @@ class Ion_auth_model extends CI_Model
 	/**
 	 * get_users_groups
 	 *
-	 * @return array
 	 * @author Ben Edmunds
 	 **/
 	public function get_users_groups($id=FALSE)

@@ -28,8 +28,8 @@ class Organisasi_m extends MY_Model
 
 	public function __construct()
 	{
-        $this->has_many['akuns'] = array('akun_m', 'id', 'id'); //foreign, local
-		$this->has_many['keluargas'] = array('keluarga_m', 'no', 'id');
+        $this->has_many['akuns'] = array('akun_m', 'id_organisasi', 'id'); //foreign, local
+		$this->has_many['keluargas'] = array('keluarga_m', 'id_organisasi', 'id');
 		$this->soft_deletes = TRUE;
 		parent::__construct();
 	}

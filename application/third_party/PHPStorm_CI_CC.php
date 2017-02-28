@@ -75,11 +75,12 @@
 	 * @property CI_Encrypt          $encrypt              Provides two-way keyed encoding using Mcrypt
 	 * @property CI_Javascript       $javascript           Javascript Class
 	 ***************** YOUR LIBRARIES *****************
-	 ***************** YOUR MODELS *****************
-	 * @property Penduduk_m          $penduduk
-	 * @property Organisasi_m        $organisasi
-	 * @property Pekerjaan_m         $pekerjaan
-	 * @property Pendidikan_m        $pendidikan
+     * 	 * @property Ion_auth_model          $ion_auth
+     ***************** YOUR MODELS *****************
+	 * @property Penduduk_m          $penduduk_m
+	 * @property Organisasi_m        $organisasi_m
+	 * @property Pekerjaan_m         $pekerjaan_m
+	 * @property Pendidikan_m        $pendidikan_m
 	 * @property Provinsi_m          $provinsi_m
 	 * @property Kabupaten_m         $kabupaten_m
 	 * @property Kecamatan_m         $kecamatan_m
