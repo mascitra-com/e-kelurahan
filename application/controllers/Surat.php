@@ -19,6 +19,7 @@ class Surat extends MY_Controller
 		$data['blankos'] = $this->surat_m
 		->with_penduduk('fields:nama')
 		->where('jenis', '0')
+		->where('status', '1')
 		->where('id_organisasi', $this->ion_auth->get_current_id_org())
 		->fields('no_surat, jenis, tanggal_verif, created_at, updated_at, updated_by')
 		->get_all();
@@ -30,6 +31,23 @@ class Surat extends MY_Controller
 		$this->render('surat/blanko_ktp', $data);
 	}
 
+	public function skck($optionalData = NULL, $optStatus = FALSE)
+	{
+		$data['skcks'] = $this->surat_m
+		->with_penduduk('fields:nama')
+		->where('jenis', '1')
+		->where('status', '1')
+		->where('id_organisasi', $this->ion_auth->get_current_id_org())
+		->fields('no_surat, jenis, tanggal_verif, created_at, updated_at, updated_by')
+		->get_all();
+
+		if ($optStatus) {
+			$data['prev_input'] = $optionalData['prev_input'];
+			$this->message($optionalData['msg'], $optionalData['msg_type']);	
+		}
+		$this->render('surat/skck', $data);
+	}
+
 	public function simpan($jenis = NULL)
 	{
 		if ($jenis !== NULL) {
@@ -37,27 +55,49 @@ class Surat extends MY_Controller
 			//cek input kosong
 			if (empty($input['no_surat']) || empty($input['nik'])) {
 				$this->message('Terjadi kesalahan saat memasukkan data surat | Data ada yang kosong', 'warning');
-				$this->go('surat/blankoktp');
+				$this->redirectJenis($jenis);
 			}
-			$input['no_surat'] = '23/'. $input['no_surat'] .'/02.002/'.date('Y');
+			if ($jenis === '0') {
+				$input['no_surat'] = '23/'. $input['no_surat'] .'/02.002/'.date('Y');
+			}elseif ($jenis === '1') {
+				$input['no_surat'] = '24/'. $input['no_surat'] .'/02.002/'.date('Y');
+			}elseif ($jenis === '2') {
+				$input['no_surat'] = '25/'. $input['no_surat'] .'/02.002/'.date('Y');
+			}elseif ($jenis === '3') {
+				$input['no_surat'] = '26/'. $input['no_surat'] .'/02.002/'.date('Y');
+			}else{
+				$this->message('Terjadi kesalahan sistem saat memasukkan no surat', 'danger');
+				$this->redirectJenis($jenis);
+			}
 			$input['nik'] = str_replace(' ', '', substr($input['nik'], 0, strpos($input['nik'], "|")));
 			$add_input = array(
 				'id_organisasi' => $this->ion_auth->get_current_id_org(),
 				'jenis' => $jenis,
 				'status' => '1',
 				'tanggal_verif' => date('Y-m-d h:i:s'),
-			);
+				);
 			$insert = array_merge($input, $add_input);
-			if ($jenis === '0') {
+			if ($jenis === '0' || $jenis === '1' || $jenis === '2' || $jenis === '3') {
 				$query = $this->surat_m->insert($insert); 
 				if ($query === FALSE) {
 					$data['msg'] = 'Terjadi kesalahan saat membuat data surat';
 					$data['msg_type'] = 'warning';
 					$data['prev_input'] = $input;
-					$this->blankoktp($data, TRUE);
+					if ($jenis === '0') {
+						$this->blankoktp($data, TRUE);
+					}elseif ($jenis === '1') {
+						$this->skck($data, TRUE);
+					}elseif ($jenis === '2') {
+						//TODO 2
+					}elseif ($jenis === '3') {
+						//TODO 3
+					}else{
+						$this->message('Terjadi kesalahan sistem saat kondisi memasukkan data FALSE', 'danger');
+						$this->redirectJenis($jenis);
+					}
 				}else{
 					$this->message('Data Surat berhasil masuk', 'success');
-					$this->go('surat/blankoktp');
+					$this->redirectJenis($jenis);
 				}
 			}else{
 				$this->message('Terjadi kesalahan saat mengunjungi halaman', 'danger');
@@ -71,7 +111,10 @@ class Surat extends MY_Controller
 	private function redirectJenis($jenis){
 		if ($jenis === '0') {
 			$this->go('surat/blankoktp');
-		}else{
+		}elseif ($jenis === '1') {
+			$this->go('surat/skck');
+		}
+		else{
 			show_404();
 		}
 	}

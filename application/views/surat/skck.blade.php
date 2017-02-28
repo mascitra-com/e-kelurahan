@@ -15,6 +15,7 @@
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body table-responsive table-full">
+		@if(!empty($skcks))
 		<table class="table table-stripped table-hover table-bordered">
 			<thead>
 				<tr>
@@ -27,19 +28,26 @@
 				</tr>
 			</thead>
 			<tbody>
+				<?php $no = 0; ?>
+				@foreach($skcks as $skck)
 				<tr>
-					<td class="text-center">01</td>
-					<td>23/18/02.002/2017</td>
-					<td><a href="#">Mohammad Ainul Yakin</a></td>
-					<td class="text-center">{{date('d-m-Y')}}</td>
-					<td class="text-center">{{date('d-m-Y')}}</td>
+					<td class="text-center">{{ ++$no }}</td>
+					<td>{{ $skck->no_surat }}</td>
+					<td><a href="{{ site_url('penduduk/detail/'. $skck->nik) }}">{{ $skck->penduduk->nama }}</a></td>
+					<td class="text-center">{{date('d-m-Y', strtotime($skck->created_at))}}</td>
+					<td class="text-center">{{date('d-m-Y', strtotime($skck->tanggal_verif))}}</td>
 					<td>
 						<a href="#" class="btn btn-default btn-xs"><i class="fa fa-info"></i> detail</a>
 						<a href="#" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
 					</td>
 				</tr>
+				@endforeach
 			</tbody>
 		</table>
+		@else
+		<br>
+		<p class="text-center">Tidak ada data surat</p>
+		@endif
 	</div>
 	<div class="panel-footer"><span class="text-grey">last edited by admin 12/02/2017 08:50</span></div>
 </div>
@@ -54,17 +62,21 @@
 				<h4 class="modal-title">Tambah Data</h4>
 			</div>
 			<div class="modal-body">
-				<form action="#">
+				<form action="{{ site_url('surat/simpan/1') }}" method="POST">
 					<div class="form-group">
-						<label for="">Nomor Surat</label>
-						<input type="text" class="form-control" name="no_surat" placeholder="nomor surat" />
+						<label for="no_surat">Nomor Surat</label>
+						<?php echo form_error('no_surat'); ?>
+						<input type="number" class="form-control" name="no_surat" placeholder="nomor surat" required />
 					</div>
 					<div class="form-group">
-						<label for="">NIK / NAMA</label>
-						<input type="text" class="form-control" name="nik" placeholder="NIK/NAMA" />
+						<label for="nik">NIK / NAMA</label>
+						<?php echo form_error('nik'); ?>
+						<input list="nik" class="form-control" placeholder="NIK/NAMA" / autocomplete="off" name="nik" required>
+						<datalist id="nik">
+						</datalist>
 					</div>
 					<div class="form-group">
-						<button class="btn btn-primary"><i class="fa fa-save"></i> tambah</button>
+						<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> tambah</button>
 						<button class="btn btn-default" type="refresh"><i class="fa fa-refresh"></i> bersihkan</button>
 					</div>
 				</form>
@@ -137,4 +149,24 @@
 <style>
 	.label{display:block; width: 100%; padding: 5px 0;}
 </style>
+@endsection
+
+@section('javascript')
+<script type="text/javascript">
+	$(document).ready(function(){
+		getKepNik();
+	});
+
+	function getKepNik() {
+		$.getJSON('{{ site_url() }}'+'penduduk/ambil_nama_nik', function (result) {
+			$("#nik").empty();
+			if (result) {
+				for (var i = 0; i < result.length; i++) {
+					var penduduk= result[i];
+					$("#nik").append("<option value='"+penduduk.nik + " | " + penduduk.nama+"'");
+				}
+			}
+		});
+	}
+</script>
 @endsection
