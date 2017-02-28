@@ -4,6 +4,7 @@ class MY_Controller extends CI_Controller {
 
     protected $_accessable;
     protected $_privileges;
+    protected $_super;
 
     public function __construct()
     {
@@ -12,6 +13,7 @@ class MY_Controller extends CI_Controller {
         $this->load->helper('privileges_sidebar');
         $this->load->library('ion_auth');
 
+        $this->_super = $this->session->userdata('super');
         $this->_privileges = $this->ion_auth->get_allowed_links();
         if (empty($this->_privileges)) {
           $this->_privileges = array();
@@ -22,7 +24,7 @@ class MY_Controller extends CI_Controller {
     public function _remap($method, $param=array())
     {
         if (method_exists($this, $method)) {
-            if ($this->ion_auth->logged_in() || $this->_accessable) {
+            if ($this->ion_auth->logged_in() || $this->_accessable || $this->_super) {
                 if ($this->check_privileges(get_class($this), $method) || $this->_accessable || $this->ion_auth->is_admin()) {
                     return call_user_func_array(array($this, $method), $param);
                 }else{
@@ -60,7 +62,11 @@ class MY_Controller extends CI_Controller {
      */
     protected function render($view, $data = array())
     {
-        $data['link_privileges'] = $this->_privileges;
+        if(!$data['super'] = $this->_super){
+            $data['link_privileges'] = $this->_privileges;
+        } else {
+            $data['link_privileges'] = NULL;
+        }
         $this->blade->render($view, $data);
     }
 

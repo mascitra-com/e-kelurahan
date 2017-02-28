@@ -69,6 +69,9 @@ class Auth extends MY_Controller {
 			{
 				//if the login is successful
 				//redirect them back to the home page
+                if($this->uri->segment(1, 0) === 'super'){
+                    $this->session->set_userdata('super', TRUE);
+                }
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				redirect('dashboard', 'refresh');
 			}

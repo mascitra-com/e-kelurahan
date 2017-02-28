@@ -15,6 +15,9 @@
 			@if(show_sidebar_menu('keluarga/index', $link_privileges))
 			<li><a href="{{site_url('keluarga')}}"><i class="fa fa-fw fa-users"></i><span class="nav-label">Keluarga</span></a></li>
 			@endif
+			@if($super)
+			<li><a href="{{site_url('kelurahan/konfirmasi')}}"><i class="fa fa-fw fa-check"></i><span class="nav-label">Konfirmasi</span></a></li>
+			@endif
 			<li>
 				<a href="#nav-1" data-toggle="collapse" aria-controls="nav-1"><i class="fa fa-fw fa-upload"></i><span class="nav-label">Pindah</span></a>
 				<ul class="sidebar-nav-child collapse collapseable" id="nav-1">

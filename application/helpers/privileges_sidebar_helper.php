@@ -13,8 +13,8 @@ if (!function_exists('show_sidebar_menu')) {
      *
      * @return boolean
      */
-	function show_sidebar_menu($link, $allowed_menus){
-		if (in_array($link, $allowed_menus)) {
+	function show_sidebar_menu($link, $allowed_menus = NULL){
+		if ($allowed_menus !== NULL && in_array($link, $allowed_menus)) {
 			return TRUE;
 		}
 		return FALSE;
