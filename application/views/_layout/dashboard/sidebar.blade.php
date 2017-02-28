@@ -52,7 +52,7 @@
 					<span class="nav-caret"><i class="fa fa-caret-down"></i></span>
 				</a>
 				<ul class="sidebar-nav-child collapse collapseable" id="nav-surat">
-					<li><a href="{{site_url('ui/surat_blanko_ktp')}}"><i class="fa fa-file-o"></i><span class="nav-label">Blanko Isian KTP</span></a></li>
+					<li><a href="{{site_url('surat/blankoktp')}}"><i class="fa fa-file-o"></i><span class="nav-label">Blanko Isian KTP</span></a></li>
 					<li><a href="{{site_url('ui/surat_skck')}}"><i class="fa fa-file-o"></i><span class="nav-label">SKCK</span></a></li>
 					<li><a href="{{site_url('ui/surat_keterangan_miskin')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin</span></a></li>
 					<li><a href="{{site_url('ui/surat_keterangan_miskin_rt')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin (RT)</span></a></li>
