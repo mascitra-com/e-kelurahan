@@ -22,6 +22,7 @@
                     </div>
                 @endif
 				<form action="{{ site_url('penduduk/simpan') }}" method="POST">
+				{{ $csrf }}
 					<div class="row">
 						<div class="col-xs-12 col-md-4">
 							<div class="form-group">

@@ -19,6 +19,7 @@ class Keluarga extends MY_Controller
 	{
 		$data['keluargas'] = $this->keluarga_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->fields('no, alamat, rt, rw, updated_at')->with_penduduk('fields:nama')->get_all();
 		
+		$this->generateCsrf();
 		$this->render('keluarga/index', $data);
 	}
 
@@ -26,6 +27,7 @@ class Keluarga extends MY_Controller
 	{
 		$data['keluarga'] = $this->keluarga_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->fields('no, alamat, rt, rw, kode_pos')->with_penduduk('fields:nik,nama')->get($no);
 
+		$this->generateCsrf();
 		$this->render('keluarga/detail', $data);
 	}
 
@@ -81,8 +83,6 @@ class Keluarga extends MY_Controller
 		}else{
 			die('terjadi kesalahan saat update | nik kosong');
 		}
-
-		dump($update);
 	}
 
 	public function ambil_kep_nik()

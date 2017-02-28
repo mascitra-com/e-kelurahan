@@ -5,6 +5,7 @@ class MY_Controller extends CI_Controller {
     protected $_accessable;
     protected $_privileges;
     protected $_super;
+    protected $_csrf;
 
     public function __construct()
     {
@@ -67,7 +68,20 @@ class MY_Controller extends CI_Controller {
         } else {
             $data['link_privileges'] = NULL;
         }
+
+        $data['csrf'] = $this->_csrf;
+
         $this->blade->render($view, $data);
+    }
+
+    /**
+     * Berfungsi untuk menampilkan membuat input csrf tipe hidden
+     *
+     * @return string
+     */
+    protected function generateCsrf()
+    {
+        return $this->_csrf = "<input type='hidden' name='". $this->security->get_csrf_token_name() ."' value='". $this->security->get_csrf_hash() ."'>";
     }
 
     /**

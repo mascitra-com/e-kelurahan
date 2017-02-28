@@ -39,6 +39,8 @@ class Penduduk extends MY_Controller {
         $data['pekerjaan'] = $this->pekerjaan->get_all();
         $data['order_by'] = $order_by;
         $data['order_type'] = $order_type === 'asc' ? 'desc' : 'asc';
+
+        $this->generateCsrf();
         $this->render('kependudukan/kependudukan', $data);
     }
 
@@ -125,6 +127,8 @@ class Penduduk extends MY_Controller {
         $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
         $data['pekerjaan'] = $this->pekerjaan->get_all();
         $data['penduduk'] = $this->penduduk->get(array('nik' => $nik));
+
+        $this->generateCsrf();
         $this->render('kependudukan/detail', $data);
     }
 
