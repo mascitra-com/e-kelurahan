@@ -79,7 +79,9 @@
      ***************** YOUR MODELS *****************
 	 * @property Penduduk_m          $penduduk_m
 	 * @property Organisasi_m        $organisasi_m
+	 * @property Profil_m            $profil_m
 	 * @property Pekerjaan_m         $pekerjaan_m
+	 * @property Akun_m              $akun_m
 	 * @property Pendidikan_m        $pendidikan_m
 	 * @property Provinsi_m          $provinsi_m
 	 * @property Kabupaten_m         $kabupaten_m
