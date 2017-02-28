@@ -670,7 +670,7 @@ class Ion_auth_model extends CI_Model
 			$hashed_new_password  = $this->hash_password($new, $user->salt);
 			$data = array(
 			    'password' => $hashed_new_password,
-			    'remember_code' => NULL,
+			    'kode_pengingat' => NULL,
 			);
 
 			$this->trigger_events('extra_where');
