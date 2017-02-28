@@ -70,11 +70,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Golongan Pegawai</label>
-                                            <input class="form-control" name="golongan" list="golongan_list"
-                                                   placeholder="Pilih Golongan"/>
+                                            <input class="form-control" name="id_golongan" list="golongan_list"
+                                                   placeholder="Pilih Golongan" value="{{ empty($profil) ?: $profil->id_golongan . '. '.$profil->golongan->nama }}"/>
                                             <datalist id="golongan_list">
-                                                <option value="1">Golongan 1</option>
-                                                <option value="2">Golongan 2</option>
+                                                @foreach($golongan as $item)
+                                                    <option value="{{ $item->id . '. ' . $item->nama }}">
+                                                @endforeach
                                             </datalist>
                                         </div>
                                         <div class="form-group">
@@ -136,8 +137,8 @@
                             </form>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="tab4">
-                            <form action="{{ empty($profil) ?: site_url('profil/ubah/'.$kelurahan->id) }}" method="POST">
-                            <div class="row">
+                            <form action="{{ empty($profil) ?: site_url('profil/ganti_password/') }}" method="POST">
+                                <div class="row">
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Username</label>

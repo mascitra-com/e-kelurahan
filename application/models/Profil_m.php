@@ -14,6 +14,7 @@ class Profil_m extends MY_Model
 	public function __construct()
 	{
 		$this->soft_deletes = TRUE;
+		$this->has_one['golongan'] = array('golongan_m', 'id', 'id_golongan');
 		parent::__construct();
 	}
 }
