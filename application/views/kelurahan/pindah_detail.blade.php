@@ -11,6 +11,7 @@
 			</div>
 			<div class="panel-body">
 				<form action="{{ site_url('pindah/ubah/'.$mutasi->id) }}" method="POST">
+				{{ $csrf }}
 					<div class="row">
 						<div class="col-xs-12 col-md-6">
 							<div class="form-group">

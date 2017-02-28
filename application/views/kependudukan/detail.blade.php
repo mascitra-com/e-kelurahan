@@ -11,6 +11,7 @@
 			</div>
 			<div class="panel-body">
                 <form action="{{ site_url('penduduk/ubah/'.$penduduk->nik) }}" method="POST">
+                {{ $csrf }}
                 <div class="row">
 						<div class="col-xs-12 col-md-4">
 							<div class="form-group">

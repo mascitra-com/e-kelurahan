@@ -115,6 +115,7 @@
 					<h4 class="modal-title">Tambah Kelurahan</h4>
 				</div>
 				<form action="{{ site_url('kelurahan/simpan') }}" method="POST" class="form">
+				{{ $csrf }}
 					<div class="modal-body">
 						<div class="form-group">
 						<label for="id">id</label>

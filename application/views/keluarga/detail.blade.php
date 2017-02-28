@@ -11,6 +11,7 @@
 			</div>
 			<div class="panel-body">
 				<form action="{{ site_url('keluarga/sunting/'.$keluarga->no) }}" method="POST">
+				{{ $csrf }}
 					<div class="row">
 						<div class="col-xs-12 col-md-3">
 							<div class="form-group">

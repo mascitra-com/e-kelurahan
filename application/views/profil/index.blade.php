@@ -20,6 +20,7 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="tab1">
                             <form action="{{ site_url('profil/'.(empty($profil) ? 'simpan' : 'ubah/'.$kelurahan->id)) }}" method="POST">
+                            {{ $csrf }}
                                 <input type="hidden" name="id_organisasi" value="{{ $kelurahan->id }}">
                                 <div class="form-group">
                                     <label for="">Nama Kelurahan</label>
@@ -57,6 +58,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="tab2">
                             <form action="{{ empty($profil) ?: site_url('profil/ubah/'.$kelurahan->id) }}" method="POST">
+                            {{ $csrf }}
                                 <div class="row">
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">

@@ -17,6 +17,8 @@ class Profil extends MY_Controller
         $data['profil'] = $this->profil_m->with_golongan()->get(array('id_organisasi' => $this->ion_auth->get_current_id_org()));
         $data['akun'] = $this->akun_m->get(array('id_organisasi' => $this->ion_auth->get_current_id_org()));
         $data['golongan'] = $this->golongan_m->get_all();
+
+        $this->generateCsrf();
         $this->render('profil/index', $data);
     }
 

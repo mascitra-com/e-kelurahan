@@ -28,6 +28,7 @@ class Surat extends MY_Controller
 			$data['prev_input'] = $optionalData['prev_input'];
 			$this->message($optionalData['msg'], $optionalData['msg_type']);	
 		}
+		$this->generateCsrf();
 		$this->render('surat/blanko_ktp', $data);
 	}
 
@@ -45,6 +46,8 @@ class Surat extends MY_Controller
 			$data['prev_input'] = $optionalData['prev_input'];
 			$this->message($optionalData['msg'], $optionalData['msg_type']);	
 		}
+
+		$this->generateCsrf();
 		$this->render('surat/skck', $data);
 	}
 
@@ -62,6 +65,8 @@ class Surat extends MY_Controller
 			$data['prev_input'] = $optionalData['prev_input'];
 			$this->message($optionalData['msg'], $optionalData['msg_type']);	
 		}
+
+		$this->generateCsrf();
 		$this->render('surat/keterangan_miskin', $data);
 	}
 
@@ -79,6 +84,8 @@ class Surat extends MY_Controller
 			$data['prev_input'] = $optionalData['prev_input'];
 			$this->message($optionalData['msg'], $optionalData['msg_type']);	
 		}
+
+		$this->generateCsrf();
 		$this->render('surat/keterangan_miskin_rt', $data);
 	}
 

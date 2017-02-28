@@ -17,6 +17,7 @@
 			</div>
 			<div class="panel-body">
 				<form action="{{ site_url('pindah/simpan') }}" method="POST">
+				{{ $csrf }}
 					<div class="tab-content break-20">
 						<!-- TAB 1 -->
 						<div role="tabpanel" class="tab-pane active" id="step1">

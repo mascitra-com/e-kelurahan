@@ -20,6 +20,8 @@ class Pindah extends MY_Controller
         ->fields('id ,created_at, updated_at')
         ->with_penduduk('fields:nama')
         ->get_all();
+
+        $this->generateCsrf();
         $this->render('kelurahan/pindah', $data);
     }
 
@@ -38,6 +40,8 @@ class Pindah extends MY_Controller
     {
         $data['provinsi'] = $this->provinsi_m->get_all();
         $data['penduduk'] = $this->penduduk_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->get_all();
+
+        $this->generateCsrf();
         $this->render('kelurahan/pindah_pengajuan', $data);
     }
     
@@ -79,6 +83,8 @@ class Pindah extends MY_Controller
         $data['kecamatan'] = $this->kecamatan_m->where('id_kabupaten', $mutasi->id_kab_tujuan)->get_all();
         $data['kelurahan'] = $this->kelurahan_m->where('id_kecamatan', $mutasi->id_kec_tujuan)->get_all();
         $data['mutasi'] = $mutasi;
+
+        $this->generateCsrf();
         $this->render('kelurahan/pindah_detail', $data);
     }
 

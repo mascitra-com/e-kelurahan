@@ -26,6 +26,8 @@ class Kelurahan extends MY_Controller
             ->where('id >', '1')
             ->where('status', array('0','2'))
             ->get_all();
+
+        $this->generateCsrf();
 		$this->render('kelurahan/index', $data);
 	}
 

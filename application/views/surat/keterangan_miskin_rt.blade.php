@@ -63,6 +63,7 @@
 			</div>
 			<div class="modal-body">
 				<form action="{{ site_url('surat/simpan/3') }}" method="POST">
+				{{ $csrf }}
 					<div class="form-group">
 						<label for="no_surat">Nomor Surat</label>
 						<?php echo form_error('no_surat'); ?>
