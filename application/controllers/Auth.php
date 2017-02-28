@@ -52,8 +52,8 @@ class Auth extends MY_Controller {
 		if ($this->ion_auth->logged_in()) {
 			redirect('dashboard', 'refresh');
 		}
-
-		$this->data['title'] = $this->lang->line('login_heading');
+        $this->data['action'] = $action = 'auth' === $this->uri->segment(1, 0) ? 'auth' : 'super';
+        $this->data['title'] = $this->lang->line('login_heading');
 
 		//validate form input
 		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
@@ -69,6 +69,9 @@ class Auth extends MY_Controller {
 			{
 				//if the login is successful
 				//redirect them back to the home page
+                if($this->uri->segment(1, 0) === 'super'){
+                    $this->session->set_userdata('super', TRUE);
+                }
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				redirect('dashboard', 'refresh');
 			}
@@ -77,7 +80,7 @@ class Auth extends MY_Controller {
 				// if the login was un-successful
 				// redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+				redirect($action.'/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
 		}
 		else

@@ -6,7 +6,9 @@
 			<li><a href="{{ site_url('dashboard') }}"><i class="fa fa-fw fa-home"></i><span class="nav-label">Dashboard</span></a></li>
 			<li><a href="#"><i class="fa fa-fw fa-info-circle"></i><span class="nav-label">Profil</span></a></li>
 			<li><a href="{{site_url('kelurahan')}}"><i class="fa fa-fw fa-bank"></i><span class="nav-label">Kelurahan</span></a></li>
-			<li><a href="{{site_url('ui/konfirmasi_kelurahan')}}"><i class="fa fa-fw fa-check"></i><span class="nav-label">Konfirmasi</span></a></li>
+			@if($super)
+			<li><a href="{{site_url('kelurahan/konfirmasi')}}"><i class="fa fa-fw fa-check"></i><span class="nav-label">Konfirmasi</span></a></li>
+			@endif
 			<li>
 				<a href="#nav-1" data-toggle="collapse" aria-controls="nav-1">
 					<i class="fa fa-fw fa-user"></i>
