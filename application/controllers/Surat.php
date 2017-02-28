@@ -48,6 +48,40 @@ class Surat extends MY_Controller
 		$this->render('surat/skck', $data);
 	}
 
+	public function keterangan_miskin($optionalData = NULL, $optStatus = FALSE)
+	{
+		$data['miskins'] = $this->surat_m
+		->with_penduduk('fields:nama')
+		->where('jenis', '2')
+		->where('status', '1')
+		->where('id_organisasi', $this->ion_auth->get_current_id_org())
+		->fields('no_surat, jenis, tanggal_verif, created_at, updated_at, updated_by')
+		->get_all();
+
+		if ($optStatus) {
+			$data['prev_input'] = $optionalData['prev_input'];
+			$this->message($optionalData['msg'], $optionalData['msg_type']);	
+		}
+		$this->render('surat/keterangan_miskin', $data);
+	}
+
+	public function keterangan_miskin_rt($optionalData = NULL, $optStatus = FALSE)
+	{
+		$data['miskins'] = $this->surat_m
+		->with_penduduk('fields:nama')
+		->where('jenis', '3')
+		->where('status', '1')
+		->where('id_organisasi', $this->ion_auth->get_current_id_org())
+		->fields('no_surat, jenis, tanggal_verif, created_at, updated_at, updated_by')
+		->get_all();
+
+		if ($optStatus) {
+			$data['prev_input'] = $optionalData['prev_input'];
+			$this->message($optionalData['msg'], $optionalData['msg_type']);	
+		}
+		$this->render('surat/keterangan_miskin_rt', $data);
+	}
+
 	public function simpan($jenis = NULL)
 	{
 		if ($jenis !== NULL) {
@@ -113,6 +147,10 @@ class Surat extends MY_Controller
 			$this->go('surat/blankoktp');
 		}elseif ($jenis === '1') {
 			$this->go('surat/skck');
+		}elseif ($jenis === '2') {
+			$this->go('surat/keterangan_miskin');
+		}elseif ($jenis === '3') {
+			$this->go('surat/keterangan_miskin_rt');
 		}
 		else{
 			show_404();
