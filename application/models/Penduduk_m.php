@@ -112,7 +112,7 @@ class Penduduk_m extends MY_Model
         $this->has_many['mutasi_keluars'] = array('mutasi_keluar_m', 'nik', 'nik');
         $this->has_many['mutasi_keluar_details'] = array('mutasi_keluar_detail_m', 'nik', 'nik');
         $this->has_one['pekerjaan'] = array('pekerjaan_m', 'id_jenispekerjaan', 'pekerjaan');
-        $this->has_one['surat'] = array('surat_m', 'nik', 'nik');
+        $this->has_many['surats'] = array('surat_m', 'nik', 'nik');
         $this->soft_deletes = TRUE;
         $this->fillable = array('nik', 'id_organisasi', 'nama', 'tempat_lahir', 'golongan_darah', 'status_nikah', 'pendidikan', 'jenis_kelamin', 'tanggal_lahir', 'agama', 'pekerjaan', 'rt', 'rw', 'kewarganegaraan');
         $this->pagination_delimiters = array('<li>','</li>');
