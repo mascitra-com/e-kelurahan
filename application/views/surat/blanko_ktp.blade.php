@@ -66,7 +66,7 @@
 					<div class="form-group">
 						<label for="no_surat">Nomor Surat</label>
 						<?php echo form_error('no_surat'); ?>
-						<input type="number" class="form-control" name="no_surat" placeholder="nomor surat" required />
+						<input type="number" class="form-control" name="no_surat" placeholder="nomor surat" min="1" required autocomplete="off" />
 					</div>
 					<div class="form-group">
 						<label for="nik">NIK / NAMA</label>

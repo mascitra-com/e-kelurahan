@@ -1,11 +1,11 @@
 @layout('_layout/dashboard/index')
-@section('title')Surat Keterangan Catatan Kepolisian@endsection
+@section('title')Surat Keterangan Miskin@endsection
 @section('nama-kelurahan')Lumajang@endsection
 
 @section('content')
 <div class="panel panel-theme">
 	<div class="panel-heading">
-		<h3 class="panel-title pull-left">Surat Keterangan Catatan Kepolisian (SKCK)</h3>
+		<h3 class="panel-title pull-left">Surat Keterangan Miskin (SKM)</h3>
 		<div class="btn-group pull-right">
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i></button>
 			<button class="btn btn-default btn-sm reload"><i class="fa fa-refresh"></i></button>
@@ -15,7 +15,7 @@
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body table-responsive table-full">
-		@if(!empty($skcks))
+		@if(!empty($miskins))
 		<table class="table table-stripped table-hover table-bordered">
 			<thead>
 				<tr>
@@ -29,13 +29,13 @@
 			</thead>
 			<tbody>
 				<?php $no = 0; ?>
-				@foreach($skcks as $skck)
+				@foreach($miskins as $miskin)
 				<tr>
 					<td class="text-center">{{ ++$no }}</td>
-					<td>{{ $skck->no_surat }}</td>
-					<td><a href="{{ site_url('penduduk/detail/'. $skck->nik) }}">{{ $skck->penduduk->nama }}</a></td>
-					<td class="text-center">{{date('d-m-Y', strtotime($skck->created_at))}}</td>
-					<td class="text-center">{{date('d-m-Y', strtotime($skck->tanggal_verif))}}</td>
+					<td>{{ $miskin->no_surat }}</td>
+					<td><a href="{{ site_url('penduduk/detail/'. $miskin->nik) }}">{{ $miskin->penduduk->nama }}</a></td>
+					<td class="text-center">{{date('d-m-Y', strtotime($miskin->created_at))}}</td>
+					<td class="text-center">{{date('d-m-Y', strtotime($miskin->tanggal_verif))}}</td>
 					<td>
 						<a href="#" class="btn btn-default btn-xs"><i class="fa fa-info"></i> detail</a>
 						<a href="#" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
@@ -62,7 +62,7 @@
 				<h4 class="modal-title">Tambah Data</h4>
 			</div>
 			<div class="modal-body">
-				<form action="{{ site_url('surat/simpan/1') }}" method="POST">
+				<form action="{{ site_url('surat/simpan/3') }}" method="POST">
 					<div class="form-group">
 						<label for="no_surat">Nomor Surat</label>
 						<?php echo form_error('no_surat'); ?>

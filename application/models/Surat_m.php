@@ -9,7 +9,7 @@ class Surat_m extends MY_Model
 {
 	public $table = 'surat';
 	public $primary_key = 'no_surat';
-	public $fillable = array('no_surat', 'id_organisasi', 'nik', 'tanggal_verif', 'status', 'created_by', 'created_at');
+	public $fillable = array('no_surat', 'id_organisasi', 'nik', 'jenis', 'tanggal_verif', 'status', 'created_by', 'created_at');
 
     public $rules = array(
         'insert' => array(
