@@ -14,6 +14,7 @@ class Akun_m extends MY_Model
 	public function __construct()
 	{
 		$this->has_one['organisasi'] = array('Organisasi_m', 'id', 'id_organisasi');
+		$this->has_many['surats'] = array('surat_m', 'created_by', 'id');
 		parent::__construct();
 	}
 }

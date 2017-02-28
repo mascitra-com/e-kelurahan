@@ -6,6 +6,7 @@ class Keluarga extends MY_Controller
 	
 	function __construct()
 	{
+		$this->_accessable = TRUE;
 		parent::__construct();
 
 		$this->load->library(array('form_validation'));
