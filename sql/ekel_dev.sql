@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 28, 2017 at 04:03 AM
+-- Generation Time: Feb 28, 2017 at 04:55 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -86,7 +86,7 @@ CREATE TABLE `akun` (
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487680998, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 2, '127.0.0.1', 'Kelurahan-tompokerso@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1488173073, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
+(2, 2, '127.0.0.1', 'Kelurahan-tompokerso@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1488254910, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -821,15 +821,12 @@ INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUE
 --
 
 CREATE TABLE `surat` (
-  `id` int(11) NOT NULL,
+  `no_surat` varchar(50) NOT NULL,
   `nik` varchar(40) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
-  `jenis` int(11) NOT NULL,
-  `nomor` varchar(100) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `tanggal2` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `keperluan` text NOT NULL,
-  `keterangan` text NOT NULL,
+  `jenis` enum('0','1','2','3') NOT NULL COMMENT '0=Blanko KTP, 1=SKCK, 2=Ket Miskon, 3=Ket.Miskin(RT)',
+  `tanggal_verif` timestamp NULL DEFAULT NULL,
+  `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
   `created_at` int(11) NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` int(11) DEFAULT NULL,
@@ -1075,6 +1072,14 @@ ALTER TABLE `status_keluarga`
   ADD PRIMARY KEY (`id_statuskeluarga`);
 
 --
+-- Indexes for table `surat`
+--
+ALTER TABLE `surat`
+  ADD PRIMARY KEY (`no_surat`),
+  ADD KEY `id_organisasi` (`id_organisasi`),
+  ADD KEY `nik` (`nik`);
+
+--
 -- Indexes for table `tingkatan`
 --
 ALTER TABLE `tingkatan`
@@ -1202,6 +1207,13 @@ ALTER TABLE `kecamatan`
 --
 ALTER TABLE `kelurahan`
   ADD CONSTRAINT `kelurahan_ibfk_1` FOREIGN KEY (`id_kecamatan`) REFERENCES `kecamatan` (`id`);
+
+--
+-- Constraints for table `surat`
+--
+ALTER TABLE `surat`
+  ADD CONSTRAINT `surat_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `penduduk` (`nik`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `surat_ibfk_2` FOREIGN KEY (`id_organisasi`) REFERENCES `organisasi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
