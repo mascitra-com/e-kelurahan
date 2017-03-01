@@ -108,4 +108,20 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/homepage/index');
 	}
+
+	public function dashboard_user()
+	{
+		$this->render('_UI/homepage/dashboard');
+	}
+
+	public function pengajuan_blanko()
+	{
+		$this->render('_UI/homepage/dashboard-user/pengajuan_ktp');
+	}
+
+	public function status_pengajuan()
+	{
+		$this->render('_UI/homepage/dashboard-user/status_pengajuan');
+	}
+
 }
