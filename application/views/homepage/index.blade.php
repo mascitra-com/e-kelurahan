@@ -68,7 +68,7 @@
 
 					@else
 						<h3 class="widget-title">HEADLINE</h3>
-						<img src="{{base_url('assets/images/blank-avatar.png')}}" class="news-img-big" alt="thumbnail">
+						<img src="{{ base_url('assets/images/berita/'.cek_file($headline->gambar,'./assets/images/berita/','default.png')) }}" class="news-img-big" alt="thumbnail">
 						<span class="news-date-big"><?= strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $headline->tanggal_publish)))) ?></span>
 						<h2 class="news-title-big">{{ $headline->judul }}</h2>
 						<p class="news-headline-big">{{ potong_teks(strip_tags($headline->isi), 220) }}</p>
@@ -90,7 +90,7 @@
 							@else
 							@foreach($berita_terbarus as $berita)
 							<div class="col-xs-12 col-sm-6">
-								<img src="{{base_url('assets/images/blank-avatar.png')}}" class="news-img" alt="thumbnail">
+								<img src="{{ base_url('assets/images/berita/'.cek_file($berita->gambar,'./assets/images/berita/','default.png')) }}" class="news-img" alt="thumbnail">
 								<span class="news-date"><?= strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $berita->tanggal_publish)))) ?></span>
 								<h2 class="news-title">{{ $berita->judul }}</h2>
 								<p class="news-headline">{{ potong_teks(strip_tags($berita->isi), 118) }} <a href="#">selengkapnya</a></p>
@@ -114,7 +114,7 @@
 							@else
 							@foreach($berita_populers as $berita)
 							<div class="col-xs-12 col-sm-6">
-								<img src="{{base_url('assets/images/blank-avatar.png')}}" class="news-img" alt="thumbnail">
+								<img src="{{ base_url('assets/images/berita/'.cek_file($berita->gambar,'./assets/images/berita/','default.png')) }}" class="news-img" alt="thumbnail">
 								<span class="news-date"><?= strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $berita->tanggal_publish)))) ?></span>
 								<h2 class="news-title">{{ $berita->judul }}</h2>
 								<p class="news-headline">{{ potong_teks(strip_tags($berita->isi), 118) }} <a href="#">selengkapnya</a></p>

@@ -27,7 +27,7 @@ class Homepage extends MY_Controller {
 			dump('homepage kecamatan');
 		}else{
 			$this->load->model(array('berita_m'));
-			$this->load->helper(array('potong_teks'));
+			$this->load->helper(array('potong_teks', 'cek_file'));
 
 			$data['berita_terbarus'] = $this->berita_m
 			->where('status','0')
