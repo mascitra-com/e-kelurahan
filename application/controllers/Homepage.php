@@ -26,9 +26,10 @@ class Homepage extends MY_Controller {
 		if (is_null($a)) {
 			dump('homepage kecamatan');
 		}else{
-			$this->load->model(array('berita_m'));
+			$this->load->model(array('berita_m', 'agenda_m'));
 			$this->load->helper(array('potong_teks', 'cek_file'));
 
+			//BERITA
 			$data['berita_terbarus'] = $this->berita_m
 			->where('status','0')
 			->where('id_organisasi', $this->getCurrentOrg())
@@ -56,7 +57,15 @@ class Homepage extends MY_Controller {
 			))
 			->fields('judul, isi, slug, gambar, tanggal_publish')
 			->get();
-			
+
+			//AGENDA
+			$data['agendas'] = $this->agenda_m
+			->where('id_organisasi', $this->getCurrentOrg())
+			->order_by('tanggal_agenda', 'desc')
+			->limit(4)
+			->fields('nama, tanggal_agenda, slug')
+			->get_all();
+
 			$this->render('homepage/index', $data);
 		}
 	}

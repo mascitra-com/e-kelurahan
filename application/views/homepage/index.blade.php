@@ -64,10 +64,10 @@
 				<div class="col-xs-12 col-sm-7 col-md-9">
 					<!-- HEADLINE / PALING BARU -->
 					<div class="box">
+					<h3 class="widget-title">SEDANG HANGAT</h3>
 					@if(empty($headline))
-
+						<!-- TODO -->
 					@else
-						<h3 class="widget-title">HEADLINE</h3>
 						<img src="{{ base_url('assets/images/berita/'.cek_file($headline->gambar,'./assets/images/berita/','default.png')) }}" class="news-img-big" alt="thumbnail">
 						<span class="news-date-big"><?= strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $headline->tanggal_publish)))) ?></span>
 						<h2 class="news-title-big">{{ $headline->judul }}</h2>
@@ -187,12 +187,18 @@
 					<div class="box">
 						<h3 class="widget-title">Agenda</h3>
 						<ul class="agenda-list">
-							@for($i=0;$i < 4; $i++)
+						@if(empty($agendas))
 							<li>
-								<span class="agenda-date">kamis, 10 februari 2017</span>
-								<span class="agenda-desc">Lorem ipsum dolor sit amet, consectetur adipisicing.</span>
+								<span class="agenda-desc">Belum ada agenda.</span>
 							</li>
-							@endfor
+						@else
+							@foreach($agendas as $agenda)
+							<li>
+								<span class="agenda-date"><?= mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $agenda->tanggal_agenda))) ?></span>
+								<span class="agenda-desc">{{ potong_teks(strip_tags($agenda->nama), 52) }}</span>
+							</li>
+							@endforeach
+						@endif
 						</ul>
 					</div>
 				</div>

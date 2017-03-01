@@ -31,6 +31,7 @@ class Organisasi_m extends MY_Model
         $this->has_many['akuns'] = array('akun_m', 'id', 'id'); //foreign, local
         $this->has_many['keluargas'] = array('keluarga_m', 'no', 'id');
         $this->has_many['beritas'] = array('berita_m', 'id', 'id');
+        $this->has_many['agendas'] = array('agenda_m', 'id', 'id');
 		$this->has_many['surats'] = array('surat_m', 'no_surat', 'id');
 		$this->soft_deletes = TRUE;
 		parent::__construct();
