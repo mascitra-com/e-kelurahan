@@ -27,15 +27,36 @@ class Homepage extends MY_Controller {
 			dump('homepage kecamatan');
 		}else{
 			$this->load->model(array('berita_m'));
+			$this->load->helper(array('potong_teks'));
 
 			$data['berita_terbarus'] = $this->berita_m
-			->where('tipe','0')
+			->where('status','0')
 			->where('id_organisasi', $this->getCurrentOrg())
 			->order_by('tanggal_publish','desc')
 			->limit(4)
 			->fields('judul, isi, slug, gambar, tanggal_publish')
 			->get_all();
 
+			$data['berita_populers'] = $this->berita_m
+			->where('status','0')
+			->where('id_organisasi', $this->getCurrentOrg())
+			->order_by(array(
+				'count' => 'desc',
+				'tanggal_publish' => 'desc'
+			))
+			->limit(4)
+			->fields('judul, isi, slug, gambar, tanggal_publish')
+			->get_all();
+
+			$data['headline'] = $this->berita_m
+			->where('tipe','1')
+			->where('id_organisasi', $this->getCurrentOrg())
+			->order_by(array(
+				'tanggal_publish' => 'desc'
+			))
+			->fields('judul, isi, slug, gambar, tanggal_publish')
+			->get();
+			
 			$this->render('homepage/index', $data);
 		}
 	}
