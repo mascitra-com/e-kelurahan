@@ -104,16 +104,6 @@ class Ui extends MY_Controller {
 		$this->render('_UI/surat/keterangan_miskin');
 	}
 
-	public function homepage()
-	{
-		$this->render('_UI/homepage/index');
-	}
-
-	public function dashboard_user()
-	{
-		$this->render('_UI/homepage/dashboard');
-	}
-
 	public function pengajuan_blanko()
 	{
 		$this->render('_UI/homepage/dashboard-user/pengajuan_ktp');
