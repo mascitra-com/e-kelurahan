@@ -13,7 +13,8 @@ class Detail_kk_m extends MY_Model
 
 	public function __construct()
 	{
-		$this->has_one['keluarga'] = array('Keluarga_m', 'no', 'no');
+		$this->has_one['keluarga'] = array('Keluarga_m', 'id', 'no_kk');
+		$this->has_one['penduduk'] = array('Penduduk_m', 'nik', 'nik');
 		parent::__construct();
 	}
 }
