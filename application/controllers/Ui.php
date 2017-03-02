@@ -106,12 +106,12 @@ class Ui extends MY_Controller {
 
 	public function pengajuan_blanko()
 	{
-		$this->render('_UI/dashboard-user/pengajuan_ktp');
+		$this->render('_UI/homepage/dashboard-user/pengajuan_ktp');
 	}
 
 	public function status_pengajuan()
 	{
-		$this->render('_UI/dashboard-user/status_pengajuan');
+		$this->render('_UI/homepage/dashboard-user/status_pengajuan');
 	}
 
 }
