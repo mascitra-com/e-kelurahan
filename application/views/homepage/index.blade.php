@@ -64,27 +64,39 @@
 				<div class="col-xs-12 col-sm-7 col-md-9">
 					<!-- HEADLINE / PALING BARU -->
 					<div class="box">
-						<h3 class="widget-title">HEADLINE</h3>
-						<img src="{{base_url('assets/images/blank-avatar.png')}}" class="news-img-big" alt="thumbnail">
-						<span class="news-date-big">SELASA, 02 FEBRUARI 2017</span>
-						<h2 class="news-title-big">Lorem ipsum dolor sit amet, consectetur adipisicing.</h2>
-						<p class="news-headline-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis numquam magnam repudiandae nesciunt officiis et veniam distinctio. Ratione, molestiae, aliquid! Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+					<h3 class="widget-title">SEDANG HANGAT</h3>
+					@if(empty($headline))
+						<!-- TODO -->
+					@else
+						<img src="{{ base_url('assets/images/berita/'.cek_file($headline->gambar,'./assets/images/berita/','default.png')) }}" class="news-img-big" alt="thumbnail">
+						<span class="news-date-big"><?= strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $headline->tanggal_publish)))) ?></span>
+						<h2 class="news-title-big">{{ $headline->judul }}</h2>
+						<p class="news-headline-big">{{ potong_teks(strip_tags($headline->isi), 220) }}</p>
 						<a href="#" class="btn btn-default btn-xs btn-line">selengkapnya</a>
+					@endif
 					</div>
 					<hr>
 					<!-- BERITA TERBARU -->
 					<div class="box">
 						<h3 class="widget-title">BERITA TERBARU</h3>
 						<div class="row news-list">
-						@for($i=0;$i < 4;$i++)
-							<div class="col-xs-12 col-sm-6">
-								<img src="{{base_url('assets/images/blank-avatar.png')}}" class="news-img" alt="thumbnail">
-								<span class="news-date">SELASA, 02 FEBRUARI 2017</span>
-								<h2 class="news-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
-								<p class="news-headline">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea ipsum 
-								consequuntur voluptatibus similique! <a href="#">selengkapnya</a></p>
+							@if(empty($berita_terbarus))
+							<div class="col-xs-12">
+								<br>
+								<p class="text-center">
+									Tidak ada berita
+								</p>
 							</div>
-							@endfor
+							@else
+							@foreach($berita_terbarus as $berita)
+							<div class="col-xs-12 col-sm-6">
+								<img src="{{ base_url('assets/images/berita/'.cek_file($berita->gambar,'./assets/images/berita/','default.png')) }}" class="news-img" alt="thumbnail">
+								<span class="news-date"><?= strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $berita->tanggal_publish)))) ?></span>
+								<h2 class="news-title">{{ $berita->judul }}</h2>
+								<p class="news-headline">{{ potong_teks(strip_tags($berita->isi), 118) }} <a href="#">selengkapnya</a></p>
+							</div>
+							@endforeach
+							@endif
 						</div>
 					</div>
 					<hr>
@@ -92,15 +104,23 @@
 					<div class="box">
 						<h3 class="widget-title">BERITA POPULER</h3>
 						<div class="row news-list">
-						@for($i=0;$i < 4;$i++)
-							<div class="col-xs-12 col-sm-6">
-								<img src="{{base_url('assets/images/blank-avatar.png')}}" class="news-img" alt="thumbnail">
-								<span class="news-date">SELASA, 02 FEBRUARI 2017</span>
-								<h2 class="news-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
-								<p class="news-headline">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea ipsum 
-								consequuntur voluptatibus similique! <a href="#">selengkapnya</a></p>
+						@if(empty($berita_populers))
+							<div class="col-xs-12">
+								<br>
+								<p class="text-center">
+									Tidak ada berita
+								</p>
 							</div>
-							@endfor
+							@else
+							@foreach($berita_populers as $berita)
+							<div class="col-xs-12 col-sm-6">
+								<img src="{{ base_url('assets/images/berita/'.cek_file($berita->gambar,'./assets/images/berita/','default.png')) }}" class="news-img" alt="thumbnail">
+								<span class="news-date"><?= strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $berita->tanggal_publish)))) ?></span>
+								<h2 class="news-title">{{ $berita->judul }}</h2>
+								<p class="news-headline">{{ potong_teks(strip_tags($berita->isi), 118) }} <a href="#">selengkapnya</a></p>
+							</div>
+							@endforeach
+							@endif
 						</div>
 					</div>
 				</div>
@@ -167,19 +187,25 @@
 					<div class="box">
 						<h3 class="widget-title">Agenda</h3>
 						<ul class="agenda-list">
-							@for($i=0;$i < 4; $i++)
+						@if(empty($agendas))
 							<li>
-								<span class="agenda-date">kamis, 10 februari 2017</span>
-								<span class="agenda-desc">Lorem ipsum dolor sit amet, consectetur adipisicing.</span>
+								<span class="agenda-desc">Belum ada agenda.</span>
 							</li>
-							@endfor
+						@else
+							@foreach($agendas as $agenda)
+							<li>
+								<span class="agenda-date"><?= mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $agenda->tanggal_agenda))) ?></span>
+								<span class="agenda-desc">{{ potong_teks(strip_tags($agenda->nama), 52) }}</span>
+							</li>
+							@endforeach
+						@endif
 						</ul>
 					</div>
 				</div>
 				<div class="col-xs-12 col-md-3">
 					<div class="box">
 						<h3 class="widget-title">Download</h3>
-							<ul class="agenda-list">
+						<ul class="agenda-list">
 							@for($i=0;$i < 4; $i++)
 							<li>
 								<span class="agenda-date">kamis, 10 februari 2017</span>

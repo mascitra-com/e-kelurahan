@@ -10,7 +10,7 @@ class Keluarga extends MY_Controller
 		parent::__construct();
 
 		$this->load->library(array('form_validation'));
-		$this->load->helper(array('dump_helper', 'string'));
+		$this->load->helper(array('dump', 'string'));
 		$this->load->model(array('organisasi_m'));
 		$this->load->model(array('keluarga_m', 'penduduk_m', 'detail_kk_m'));
 	}

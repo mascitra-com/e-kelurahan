@@ -8,7 +8,7 @@ class Pindah extends MY_Controller
     {
         parent::__construct();
         $this->load->library(array('form_validation'));
-        $this->load->helper(array('dump_helper'));
+        $this->load->helper(array('dump'));
         $this->load->model(array('organisasi_m','provinsi_m', 'kabupaten_m', 'kecamatan_m', 'kelurahan_m', 'mutasi_keluar_m', 'mutasi_keluar_detail_m', 'penduduk_m'));
         $this->_accessable = TRUE;
     }
