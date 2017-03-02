@@ -44,29 +44,30 @@ class Pengajuan extends MY_Controller
 		$no_surat = $this->surat_m
 		->where(array(
 			'id_organisasi' => $this->_id_org,
-			'jenis' => '0'
-		))
+			'jenis' => '0',
+			))
 		->order_by('no_surat', 'desc')
-		->get_all();
-		dump($no_surat);
+		->fields('no_surat')
+		->get()->no_surat;
+
+		$no_surat = explode('/', $no_surat);
+		$no_surat = (int)$no_surat[1]+1;
 
 		$data = $this->input->post();
 		$data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
 		$data_insert = array(
-			'id_organisasi' => $this->_id_org,
-			'jenis' => '0',
-		);
+			"no_surat" => "23/". (string)$no_surat .  "/" ."02.002/".date("Y"),
+			"id_organisasi" => $this->_id_org,
+			"jenis" => "0",
+			);
 
-		$insert = $this->surat_m->insert($data);
+		$insert = $this->surat_m->insert(array_merge($data, $data_insert));
 
-		if($insert === FALSE){
-            $this->message('Berhasil menyimpan data Pindah');
-            foreach ($pengikut as $item){
-                $temp = array('id_mutasi' => $id_mutasi, 'nik' => $item);
-                $this->mutasi_keluar_detail_m->insert($temp);
-            }
-        }
-
-		dump($data);
+		if($insert === FALSE){   
+			$this->message('Berhasil mengajukan surat blanko ktp', 'success');
+		}else{
+			$this->message('Gagal mengajukan surat blanko ktp', 'danger');
+		}
+		$this->go('warga/pengajuan/blankoktp');
 	}
 }
