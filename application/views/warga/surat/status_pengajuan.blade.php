@@ -32,13 +32,31 @@
 										</tr>
 									</thead>
 									<tbody>
+										@foreach($blankos as $blanko)
 										<tr>
-											<td>122410101086</td>
-											<td>Ainul Yakin</td>
-											<td>kamis, 12 februari 2017</td>
-											<td class="text-center"><div class="label label-success">disetujui</div></td>
-											<td>-</td>
+											<td>{{ $blanko->nik }}</td>
+											<td>{{ $blanko->penduduk->nama }}</td>
+											<td>{{ mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $blanko->created_at))) }}</td>
+											<td class="text-center"><div class="label label-{{ ($blanko->status == '0') ? 'warning' : (($blanko->status == '1') ? 'success' : 'danger' ) }}">
+												@if($blanko->status === '0')
+												menunggu
+												@elseif($blanko->status === '1' )
+												disetujui
+												@else
+												ditolak
+												@endif
+											</div></td>
+											<td>
+												@if($blanko->status == '2')
+												-
+												@elseif($blanko->status == '1')
+												<a href="#" class="btn btn-xs btn-block btn-info">Info</a>
+												@else
+												<a href="#" class="btn btn-xs btn-block btn-warning">Batalkan</a>
+												@endif
+											</td>
 										</tr>
+										@endforeach
 									</tbody>
 								</table>
 							</div>
@@ -55,6 +73,11 @@
 <style>
 	th, .label{
 		font-weight: 500;
+	}
+
+	.label{
+		display: block;
+		width: 100%;
 	}
 
 	td{
