@@ -110,6 +110,14 @@ class Surat extends MY_Controller
 				$this->message('Terjadi kesalahan sistem saat memasukkan no surat', 'danger');
 				$this->redirectJenis($jenis);
 			}
+
+			//CEK DUPLIKASI NO SURAT
+			$exist_surat = $this->surat_m->where('no_surat', $input['no_surat'])->get();
+			if ($exist_surat) {
+				$this->message('Surat dengan nomor: <strong>'. $input['no_surat'] .'</strong> sudah ada', 'warning');
+				$this->redirectJenis($jenis);	
+			}
+
 			$input['nik'] = str_replace(' ', '', substr($input['nik'], 0, strpos($input['nik'], "|")));
 			$add_input = array(
 				'id_organisasi' => $this->ion_auth->get_current_id_org(),
