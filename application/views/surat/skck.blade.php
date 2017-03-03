@@ -7,6 +7,20 @@
 	<div class="panel-heading">
 		<h3 class="panel-title pull-left">Surat Keterangan Catatan Kepolisian (SKCK)</h3>
 		<div class="btn-group pull-right">
+		<!-- BARU DARISINI -->
+			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-konfirmasi">
+				@if($unconfirmeds !== 0)
+				<span class="badge space-right-10">
+					@if($unconfirmeds < 10)
+					{{ '0'.$unconfirmeds }}
+					@else
+					{{ $unconfirmeds }}
+					@endif
+				</span>
+				@endif
+				<i class="fa fa-bell"></i>
+			</button>
+			<!-- SAMPAI SINI -->
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i></button>
 			<button class="btn btn-default btn-sm reload"><i class="fa fa-refresh"></i></button>
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-cari"><i class="fa fa-search"></i></button>
@@ -144,11 +158,60 @@
 		</div>
 	</div>
 </div>
+
+<!-- BARU DISINI -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-konfirmasi">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Konfirmasi Pengajuan</h4>
+			</div>
+			<div class="modal-body table-responsive table-full">
+				@if(empty($skcks))
+				<br>
+				<p class="text-center">Tidak ada pengajuan</p>
+				@else
+				<table class="table table-bordered table-striped table-hover">
+					<thead>
+						<tr>
+							<td class="text-center">No. Pengajuan</td>
+							<td class="text-center">NIK Pengaju</td>
+							<td>Nama Pengaju</td>
+							<td class="text-center">Tanggal Pengajuan</td>
+							<td class="text-center">Konfirmasi</td>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($skcks as $skck)
+						@if($skck->status == '0')
+						<tr>
+							<td class="text-center">{{ $skck->id }}</td>
+							<td class="text-center">{{ $skck->nik }}</td>
+							<td>{{ $skck->penduduk->nama }}</td>
+							<td class="text-center">{{date('d-m-Y', strtotime($skck->created_at))}}</td>
+							<td class="text-center">
+								<a href="{{ site_url('surat/setuju/1/'.$skck->id) }}" class="btn btn-sm btn-success"><i class="fa fa-check space-right-5"></i>setuju</a>
+								<a class="btn btn-sm btn-danger" href="{{ site_url('surat/tolak/1/'.$skck->id) }}"><i class="fa fa-times space-right-5"></i>tolak</a>
+							</td>
+						</tr>
+						@endif
+						@endforeach
+					</tbody>
+				</table>
+				@endif
+			</div>
+			<div class="modal-footer"></div>
+		</div>
+	</div>
+</div>
+<!-- SAMPAI SINI -->
 @endsection
 
 @section('style')
 <style>
 	.label{display:block; width: 100%; padding: 5px 0;}
+	.badge{font-weight: 300; border-radius: 3px; font-size: 7pt; padding: 3px; background-color: #D9534F!important}
 </style>
 @endsection
 
