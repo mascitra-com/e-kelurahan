@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 02, 2017 at 06:34 AM
+-- Generation Time: Mar 03, 2017 at 08:45 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -115,7 +115,7 @@ CREATE TABLE `akun` (
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487680998, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 2, '127.0.0.1', 'Kelurahan-tompokerso@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1488351681, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
+(2, 2, '127.0.0.1', 'Kelurahan-tompokersan@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1488529795, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -208,7 +208,8 @@ CREATE TABLE `detail_kartu_keluarga` (
 
 INSERT INTO `detail_kartu_keluarga` (`id`, `no_kk`, `nik`, `id_pendidikan`, `status_keluarga`, `no_urut_kk`, `no_paspor`, `no_kitap`, `ayah`, `ibu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (2, '123', '389475932753034750954', 8, 1, 1, 'edit', '', '', '', '2017-02-20 05:29:09', 2, '2017-02-21 05:25:49', 2, NULL, NULL),
-(3, '678', '83740927349074', 7, 1, 1, '', '', '', '', '2017-02-20 23:01:08', 2, '2017-02-21 05:23:14', 2, NULL, NULL);
+(3, '678', '83740927349074', 7, 1, 1, '', '', '', '', '2017-02-20 23:01:08', 2, '2017-02-21 05:23:14', 2, NULL, NULL),
+(4, '123', '3764289649123', 2, 1, 1, NULL, NULL, NULL, NULL, '2017-03-01 17:00:00', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13491,7 +13492,7 @@ CREATE TABLE `organisasi` (
 
 INSERT INTO `organisasi` (`id`, `nama`, `nip`, `nama_pimpinan`, `slug`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (1, 'Lumajang', '123402302003121002', 'Paimin, AP', 'kecamatan-lumajang', '1', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 'Tompokerso', '198503302003121002', 'Samsul, SH', 'tompokerso', '1', '2017-02-17 17:00:00', 1, NULL, NULL, NULL, NULL),
+(2, 'Tompokersan', '198503302003121002', 'Samsul, SH', 'tompokersan', '1', '2017-02-17 17:00:00', 1, NULL, NULL, NULL, NULL),
 (3, 'Patrang edit', 'belum diisi', 'belum diisi', 'patrang-edit', '0', '2017-02-17 17:00:00', 1, '2017-02-19 01:26:50', 1, NULL, NULL),
 (4, 'Deket lapangan', 'belum diisi', 'belum diisi', 'deket-lapangan', '0', '2017-02-19 00:50:15', 1, '2017-02-19 01:03:34', 1, '2017-02-19 01:44:45', 1),
 (5, 'Deket lapangan', 'belum diisi', 'belum diisi', 'deket-lapangan-1', '0', '2017-02-20 04:48:43', 2, NULL, NULL, NULL, NULL);
@@ -13709,6 +13710,7 @@ INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUE
 --
 
 CREATE TABLE `surat` (
+  `id` int(10) UNSIGNED NOT NULL,
   `no_surat` varchar(50) NOT NULL,
   `nik` varchar(40) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
@@ -13727,13 +13729,15 @@ CREATE TABLE `surat` (
 -- Dumping data for table `surat`
 --
 
-INSERT INTO `surat` (`no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal_verif`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-('23/1/02.002/2017', '389475932753034750954', 2, '0', '2017-02-28 00:51:49', '1', '2017-02-28 00:51:49', 2, NULL, NULL, NULL, NULL),
-('23/2/02.002/2017', '7289379132', 2, '0', '2017-02-28 03:33:07', '1', '2017-02-28 03:33:08', 2, NULL, NULL, NULL, NULL),
-('24/1/02.002/2017', '389475932753034750954', 2, '1', '2017-02-28 01:45:40', '1', '2017-02-28 01:45:40', 2, NULL, NULL, NULL, NULL),
-('24/2/02.002/2017', '3764289649123', 2, '1', '2017-02-28 01:49:22', '1', '2017-02-28 01:49:22', 2, NULL, NULL, NULL, NULL),
-('25/1/02.002/2017', '83740927349074', 2, '2', '2017-02-28 01:56:21', '1', '2017-02-28 01:56:21', 2, NULL, NULL, NULL, NULL),
-('26/1/02.002/2017', '7289379132', 2, '3', '2017-02-28 02:10:12', '1', '2017-02-28 02:10:12', 2, NULL, NULL, NULL, NULL);
+INSERT INTO `surat` (`id`, `no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal_verif`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, '23/1/02.002/2017', '389475932753034750954', 2, '0', '2017-02-28 00:51:49', '1', '2018-02-28 00:51:49', 2, NULL, NULL, NULL, NULL),
+(2, '23/2/02.002/2017', '3764289649123', 2, '0', '2017-02-28 03:33:07', '2', '2017-02-28 03:33:08', 2, NULL, NULL, NULL, NULL),
+(3, '23/3/02.002/2017', '389475932753034750954', 2, '0', NULL, '0', '2017-03-02 03:40:28', 2, NULL, NULL, NULL, NULL),
+(4, '24/1/02.002/2017', '389475932753034750954', 2, '1', '2017-02-28 01:45:40', '1', '2017-02-28 01:45:40', 2, NULL, NULL, NULL, NULL),
+(5, '24/2/02.002/2017', '3764289649123', 2, '1', '2017-02-28 01:49:22', '1', '2017-02-28 01:49:22', 2, NULL, NULL, NULL, NULL),
+(6, '25/1/02.002/2017', '83740927349074', 2, '2', '2017-02-28 01:56:21', '1', '2017-02-28 01:56:21', 2, NULL, NULL, NULL, NULL),
+(7, '26/1/02.002/2017', '7289379132', 2, '3', '2017-02-28 02:10:12', '1', '2017-02-28 02:10:12', 2, NULL, NULL, NULL, NULL),
+(9, '23/4/02.002/2017', '123809123810938', 2, '0', '2017-03-03 01:36:13', '1', '2017-03-03 01:36:13', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13996,7 +14000,8 @@ ALTER TABLE `status_keluarga`
 -- Indexes for table `surat`
 --
 ALTER TABLE `surat`
-  ADD PRIMARY KEY (`no_surat`),
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `no_surat` (`no_surat`),
   ADD KEY `id_organisasi` (`id_organisasi`),
   ADD KEY `nik` (`nik`);
 
@@ -14034,7 +14039,7 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT for table `detail_kartu_keluarga`
 --
 ALTER TABLE `detail_kartu_keluarga`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `detail_tingkatan`
 --
@@ -14095,6 +14100,11 @@ ALTER TABLE `pengumuman`
 --
 ALTER TABLE `percobaan_login`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `surat`
+--
+ALTER TABLE `surat`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tingkatan`
 --
