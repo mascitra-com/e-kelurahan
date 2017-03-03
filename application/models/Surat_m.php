@@ -30,6 +30,7 @@ class Surat_m extends MY_Model
 		$this->has_one['organisasi'] = array('Organisasi_m', 'id', 'id_organisasi');
 		$this->has_one['akun'] = array('akun_m', 'id', 'created_by');
 		$this->has_one['penduduk'] = array('Penduduk_m', 'nik', 'nik');
+        $this->soft_deletes = TRUE;
 		parent::__construct();
 	}
 
