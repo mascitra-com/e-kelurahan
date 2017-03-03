@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>KELURAHAN XYZ</title>
+	<title>{{ $judul }}</title>
 	<link rel="stylesheet" href="{{base_url('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/plugins/fontawesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/css/theme-homepage.css')}}">
@@ -21,7 +21,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">KEL.TOMPOKERSAN</a>
+						<a class="navbar-brand" href="#">{{ strtoupper($judul) }}</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
