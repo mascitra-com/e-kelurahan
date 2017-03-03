@@ -109,6 +109,7 @@ class Penduduk_m extends MY_Model
 
         $this->has_many['meninggals'] = array('meninggal_m', 'nik', 'nik');
         $this->has_many['keluargas'] = array('keluarga_m', 'nik', 'nik');
+        $this->has_many['detail_keluargas'] = array('detail_kk_m', 'nik', 'nik');
         $this->has_many['mutasi_keluars'] = array('mutasi_keluar_m', 'nik', 'nik');
         $this->has_many['mutasi_keluar_details'] = array('mutasi_keluar_detail_m', 'nik', 'nik');
         $this->has_one['pekerjaan'] = array('pekerjaan_m', 'id_jenispekerjaan', 'pekerjaan');
