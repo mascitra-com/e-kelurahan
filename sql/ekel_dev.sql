@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 03, 2017 at 08:45 AM
+-- Generation Time: Mar 03, 2017 at 09:48 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -13710,8 +13710,8 @@ INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUE
 --
 
 CREATE TABLE `surat` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `no_surat` varchar(50) NOT NULL,
+  `id` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
   `nik` varchar(40) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
   `jenis` enum('0','1','2','3') NOT NULL COMMENT '0=Blanko KTP, 1=SKCK, 2=Ket Miskon, 3=Ket.Miskin(RT)',
@@ -13730,14 +13730,14 @@ CREATE TABLE `surat` (
 --
 
 INSERT INTO `surat` (`id`, `no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal_verif`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, '23/1/02.002/2017', '389475932753034750954', 2, '0', '2017-02-28 00:51:49', '1', '2018-02-28 00:51:49', 2, NULL, NULL, NULL, NULL),
-(2, '23/2/02.002/2017', '3764289649123', 2, '0', '2017-02-28 03:33:07', '2', '2017-02-28 03:33:08', 2, NULL, NULL, NULL, NULL),
-(3, '23/3/02.002/2017', '389475932753034750954', 2, '0', NULL, '0', '2017-03-02 03:40:28', 2, NULL, NULL, NULL, NULL),
-(4, '24/1/02.002/2017', '389475932753034750954', 2, '1', '2017-02-28 01:45:40', '1', '2017-02-28 01:45:40', 2, NULL, NULL, NULL, NULL),
-(5, '24/2/02.002/2017', '3764289649123', 2, '1', '2017-02-28 01:49:22', '1', '2017-02-28 01:49:22', 2, NULL, NULL, NULL, NULL),
-(6, '25/1/02.002/2017', '83740927349074', 2, '2', '2017-02-28 01:56:21', '1', '2017-02-28 01:56:21', 2, NULL, NULL, NULL, NULL),
-(7, '26/1/02.002/2017', '7289379132', 2, '3', '2017-02-28 02:10:12', '1', '2017-02-28 02:10:12', 2, NULL, NULL, NULL, NULL),
-(9, '23/4/02.002/2017', '123809123810938', 2, '0', '2017-03-03 01:36:13', '1', '2017-03-03 01:36:13', 2, NULL, NULL, NULL, NULL);
+(001, '23/1/02.002/2017', '389475932753034750954', 2, '0', '2017-02-28 00:51:49', '1', '2018-02-28 00:51:49', 2, NULL, NULL, NULL, NULL),
+(002, '23/2/02.002/2017', '3764289649123', 2, '0', '2017-02-28 03:33:07', '2', '2017-02-28 03:33:08', 2, NULL, NULL, NULL, NULL),
+(003, NULL, '389475932753034750954', 2, '0', '2017-03-03 02:32:18', '0', '2017-03-02 03:40:28', 2, '2017-03-03 02:32:18', 2, NULL, NULL),
+(004, '24/1/02.002/2017', '389475932753034750954', 2, '1', '2017-02-28 01:45:40', '1', '2017-02-28 01:45:40', 2, NULL, NULL, NULL, NULL),
+(005, '24/2/02.002/2017', '3764289649123', 2, '1', '2017-02-28 01:49:22', '1', '2017-02-28 01:49:22', 2, NULL, NULL, NULL, NULL),
+(006, '25/1/02.002/2017', '83740927349074', 2, '2', '2017-02-28 01:56:21', '1', '2017-02-28 01:56:21', 2, NULL, NULL, NULL, NULL),
+(007, '26/1/02.002/2017', '7289379132', 2, '3', '2017-02-28 02:10:12', '1', '2017-02-28 02:10:12', 2, NULL, NULL, NULL, NULL),
+(009, '23/4/02.002/2017', '123809123810938', 2, '0', '2017-03-03 01:36:13', '1', '2017-03-03 01:36:13', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -14104,7 +14104,7 @@ ALTER TABLE `percobaan_login`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tingkatan`
 --
