@@ -40,23 +40,9 @@ class Pengajuan extends MY_Controller
 
 	public function blankoktp_simpan()
 	{
-		//AMBIL NO SURAT DENGAN JENIS YANG BERSANGKUTAN PALING TERAKHIR
-		$no_surat = $this->surat_m
-		->where(array(
-			'id_organisasi' => $this->_id_org,
-			'jenis' => '0',
-			))
-		->order_by('no_surat', 'desc')
-		->fields('no_surat')
-		->get()->no_surat;
-
-		$no_surat = explode('/', $no_surat);
-		$no_surat = (int)$no_surat[1]+1;
-
 		$data = $this->input->post();
 		$data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
 		$data_insert = array(
-			"no_surat" => "23/". (string)$no_surat .  "/" ."02.002/".date("Y"),
 			"id_organisasi" => $this->_id_org,
 			"jenis" => "0",
 			);
