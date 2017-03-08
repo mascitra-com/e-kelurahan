@@ -9,7 +9,22 @@ class Berita_m extends MY_Model
 {
 	public $table = 'berita';
 	public $primary_key = 'id';
-    public $protected = array('id');
+	public $protected = array('id');
+
+	public $rules = array(
+		'insert' => array(
+			'name' => array(
+				'field' => 'judul',
+				'label' => 'Judul',
+				'rules' => 'trim|required|min_length[3]|max_length[50]'),
+			),
+		'update' => array(
+			'name' => array(
+				'field' => 'judul',
+				'label' => 'Judul',
+				'rules' => 'trim|required|min_length[3]|max_length[50]'),
+			)
+		);
 
 	public function __construct()
 	{

@@ -9,7 +9,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title pull-left">Daftar Berita</h3>
 				<div class="btn-group pull-right">
-					<a href="#" class="btn btn-default btn-sm" title="Tulis berita"><i class="fa fa-plus"></i></a>
+					<a href="{{ site_url('berita/tulis') }}" class="btn btn-default btn-sm" title="Tulis berita"><i class="fa fa-plus"></i></a>
 					<button class="btn btn-default btn-sm" title="Filter berita"  data-toggle="modal" data-target="#modal-filter"><i class="fa fa-filter"></i></button>
 					<button class="btn btn-default btn-sm" title="Arsip berita"><i class="fa fa-archive"></i></button>
 					<button class="btn btn-default btn-sm reload" title="segarkan"><i class="fa fa-refresh"></i></button>
