@@ -305,9 +305,87 @@
 							<td>Halaman Konfirmasi pengajuan Blanko KTP</td>
 							<td>surat</td>
 							<td>Belum</td>
-							<td class="text-center"><i class="fa fa-circle text-red"></i></td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/surat_blanko_ktp')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>SKTM</td>
+							<td>Halaman Manajemen SKTM/td>
+							<td>surat</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-red"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/surat_sktm')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Daftar Berita</td>
+							<td>Tulis berita</td>
+							<td>berita</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/berita')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Arsip Berita</td>
+							<td>Halaman daftar arsip berita</td>
+							<td>berita</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/berita_arsip')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Draf Berita</td>
+							<td>Halaman daftar draf berita</td>
+							<td>berita</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/berita_draf')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Tulis Berita</td>
+							<td>Halaman membuat berita baru</td>
+							<td>berita</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/berita_tulis')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Detail Berita</td>
+							<td>Halaman detail berita</td>
+							<td>berita</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/berita_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
