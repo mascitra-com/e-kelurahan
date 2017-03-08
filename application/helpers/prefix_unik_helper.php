@@ -16,6 +16,9 @@ if (!function_exists('prefix_unik')) {
      * @internal param string $prefix
      */
 	function prefix_unik($prefix){
+        $ci =& get_instance();
+        $ci->load->helper('string');
+
 		switch ($prefix) {
             case 1: //GAMBAR BERITA
             $pre = 'NWS';
@@ -24,7 +27,7 @@ if (!function_exists('prefix_unik')) {
             $pre = 'OTH';
             break;
         }
-        return $pre.strtoupper(str_random(3)).date('Ymdhis');
+        return $pre.strtoupper(random_string('alnum', 3)).date('Ymdhis');
     }
 }
 ?>
