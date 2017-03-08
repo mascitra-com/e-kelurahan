@@ -68,7 +68,7 @@
 					<span class="nav-caret"><i class="fa fa-caret-down"></i></span>
 				</a>
 				<ul class="sidebar-nav-child collapse collapseable" id="nav-berita">
-					<li><a href="#"><i class="fa fa-tasks"></i><span class="nav-label">Daftar Berita</span></a></li>
+					<li><a href="{{ site_url('berita') }}"><i class="fa fa-tasks"></i><span class="nav-label">Daftar Berita</span></a></li>
 					<li><a href="#"><i class="fa fa-pencil-square-o"></i><span class="nav-label">Draf</span></a></li>
 					<li><a href="#"><i class="fa fa-archive"></i><span class="nav-label">Arsip</span></a></li>
 				</ul>
