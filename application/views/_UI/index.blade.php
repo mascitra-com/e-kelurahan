@@ -389,6 +389,45 @@
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>info</td>
+							<td>Halaman daftar info</td>
+							<td>info</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/info')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>tambah info</td>
+							<td>Halaman tambah info</td>
+							<td>info</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/info_tambah')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>detail info</td>
+							<td>Halaman detail info</td>
+							<td>info</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/info_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
 					</tbody>
 				</table>
 			</div>
