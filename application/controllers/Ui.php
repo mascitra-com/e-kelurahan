@@ -143,4 +143,19 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/berita/detail');
 	}
+
+	public function info()
+	{
+		$this->render('_UI/info/info');
+	}
+
+	public function info_tambah()
+	{
+		$this->render('_UI/info/create');
+	}
+
+	public function info_detail()
+	{
+		$this->render('_UI/info/detail');
+	}
 }
