@@ -35,6 +35,30 @@ class Berita extends MY_Controller
 		$this->render('berita/berita', $data);
 	}
 
+	public function selengkapnya($slug = NULL)
+	{
+		if (!is_null($slug) && !empty($slug)) {
+			$query = $this->berita_m
+			->fields('judul, isi, slug, gambar, tanggal_publish, status, deleted_at')
+			->with_akun('fields:username')
+			->get(array(
+				'slug' => $slug,
+				'id_organisasi' => $this->ion_auth->get_current_id_org()
+				));
+
+			if ($query === FALSE) {
+				$this->message('Berita tidak ditemukan', 'warning');
+				$this->go('berita');
+			}else{
+				$data['berita'] = $query;
+				$this->render('berita/detail', $data);
+			}
+		}else{
+			$this->message('Berita tidak ditemukan', 'warning');
+			$this->go('berita');
+		}
+	}
+
 	public function tulis($optionalData = NULL, $optStatus = FALSE)
 	{
 		$this->generateCsrf();
@@ -45,6 +69,38 @@ class Berita extends MY_Controller
 			$this->render('berita/tulis', $data);
 		}else{
 			$this->render('berita/tulis');
+		}
+	}
+
+	public function sunting($slug = NULL, $optionalData = NULL, $optStatus = FALSE)
+	{
+		if (!is_null($slug) && !empty($slug)) {
+			$this->generateCsrf();
+
+			if ($optStatus) {
+				$data['berita'] = $optionalData['prev_input'];
+				$this->message($optionalData['msg'], $optionalData['msg_type']);
+				$this->render('berita/sunting', $data);
+			}else{
+				$query = $this->berita_m
+				->fields('judul, isi, slug, gambar, tanggal_publish, status, deleted_at')
+				->as_array()
+				->get(array(
+					'slug' => $slug,
+					'id_organisasi' => $this->ion_auth->get_current_id_org()
+					));
+
+				if ($query === FALSE) {
+					$this->message('Berita tidak ditemukan', 'warning');
+					$this->go('berita');
+				}else{
+					$data['berita'] = $query;
+					$this->render('berita/sunting', $data);
+				}
+			}
+		}else{
+			$this->message('Berita tidak ditemukan', 'warning');
+			$this->go('berita');
 		}
 	}
 
@@ -104,6 +160,82 @@ class Berita extends MY_Controller
 		}
 	}
 
+	public function ubah($slug = NULL)
+	{
+		//AMBIL DATA YG DIPERLUKAN
+		$query = $this->berita_m
+		->fields('gambar, status, deleted_at')
+		->get(array(
+			'slug' => $slug,
+			'id_organisasi' => $this->ion_auth->get_current_id_org()
+			));
+
+		if ($query === FALSE) {
+			$this->message('Terjadi kesalahan pada sistem', 'danger');
+			$this->go('berita/sunting/'.$slug);
+		}else{
+			$data = $this->input->post();
+			$data['status'] = $query->status;
+			$data['deleted_at'] = $query->deleted_at;
+			
+			$today = date('Y-m-d');
+
+			if($data['status'] != '2' || is_null($data['deleted_at'])){
+				if (!(empty($data['tanggal_publish'])) && $data['tanggal_publish'] > $today) {
+					$data['status'] = '1';
+				}elseif (!(empty($data['tanggal_publish'])) && $data['tanggal_publish'] == $today) {
+					$data['status'] = '0';
+				}
+				else{
+					$data['msg'] = 'Pilih tanggal sama atau lebih dari tanggal sekarang';
+					$data['msg_type'] = 'warning';
+					$data['prev_input'] = $data;
+					$this->sunting($slug, $data, TRUE);
+				}
+			}
+
+			$data['slug'] = $this->slug->create_uri($data);
+
+			if (!empty($_FILES['gambar']['name'])) {
+				if ($this->delete_files($query->gambar)) {
+					$data['gambar']= $this->do_upload('gambar');
+				}else{
+					$data['msg'] = 'Coba lagi nanti. Terjadi kesalahan pada saat mengunggah gambar.';
+					$data['msg_type'] = 'warning';
+					$data['prev_input'] = $data;
+					$this->sunting($slug, $data, TRUE);
+				}
+			} else {
+				$data['gambar'] = 'default.png';
+			}
+
+			$query = $this->berita_m->from_form(NULL, array(
+				'isi' => $data['isi'],
+				'slug' => $data['slug'],
+				'gambar' => $data['gambar'],
+				'status' => $data['status'],
+				'tanggal_publish' => $data['tanggal_publish']
+				), array('slug' => $slug))->update();
+
+			if ($query === FALSE) {
+				$data['msg'] = 'Terjadi kesalahan saat mengubah berita';
+				$data['msg_type'] = 'warning';
+				$data['prev_input'] = $data;
+				$this->sunting($slug, $data, TRUE);
+			}else{
+				if ($data['status'] == '2') {
+				//TODO
+				// $this->message('<strong>Berhasil</strong> Berita Disimpan di Draft', 'success');
+				// $this->go('');
+					dump('Sukses ke draft');
+				}else{
+					$this->message('<strong>Berhasil</strong> mengubah Berita', 'success');
+					$this->go('berita');
+				}
+			}
+		}
+	}
+
 	private function redirectBerita($data)
 	{
 		if ($data['status'] == '2') {
@@ -137,5 +269,15 @@ class Berita extends MY_Controller
 			$link = $file_date['file_name'];
 			return $link;
 		}
+	}
+
+	private function delete_files($filename){
+		$path = $_SERVER['DOCUMENT_ROOT'].'assets/images/berita/';
+		$get_file = $path.$filename;
+		if(file_exists($get_file)){
+			unlink($get_file);
+			return TRUE;
+		}
+		return FALSE;
 	}
 }

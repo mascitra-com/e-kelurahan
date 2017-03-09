@@ -7,19 +7,27 @@
 	<div class="col-xs-12">
 		<div class="panel">
 			<div class="panel-body">
-				<img src="{{base_url('assets/images/blank-avatar.png')}}" class="headline" alt="thumbnail">
-				<h1 class="title">Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
-				<span class="label label-info"><i class="fa fa-clock-o"></i> selasa, 02 februari 2017</span>
-				<span class="label label-info"><i class="fa fa-user"></i> oleh admin</span>
+				<img src="{{ base_url('assets/images/berita/'.cek_file($berita->gambar,'./assets/images/berita/','default.png')) }}" class="headline" alt="thumbnail">
+				<h1 class="title">{{ $berita->judul }}</h1>
+				<span class="label label-info"><i class="fa fa-clock-o"></i> {{ strtolower(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $berita->tanggal_publish)))) }}</span>
+				<span class="label label-info"><i class="fa fa-user"></i> oleh {{ $berita->akun->username }}</span>
 				<div class="content">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit pariatur eos dignissimos eaque molestiae provident, ducimus sapiente optio tempora quibusdam esse mollitia illum libero, hic a consectetur amet assumenda repudiandae.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit pariatur eos dignissimos eaque molestiae provident, ducimus sapiente optio tempora quibusdam esse mollitia illum libero, hic a consectetur amet assumenda repudiandae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam mollitia ducimus consequuntur quam natus assumenda. Praesentium aliquid natus, explicabo necessitatibus ratione, perspiciatis adipisci enim tempore quia! Itaque vitae ipsam provident.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit pariatur eos dignissimos eaque molestiae provident, ducimus sapiente optio tempora quibusdam esse mollitia illum libero, hic a consectetur amet assumenda repudiandae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam mollitia ducimus consequuntur quam natus assumenda. Praesentium aliquid natus, explicabo necessitatibus ratione, perspiciatis adipisci enim tempore quia! Itaque vitae ipsam provident.</p>
+					{{ $berita->isi }}
 				</div>
 			</div>
 			<div class="panel-footer">
-				<a href="#" class="btn btn-warning"><i class="fa fa-archive"></i> arsipkan</a>
-				<a href="#" class="btn btn-default"><i class="fa fa-arrow-left"></i> kembali</a>
+				<a href="{{ (is_null($berita->deleted_at)) ? site_url('berita/arsipkan/'.$berita->slug) : site_url('berita/hapus/'.$berita->slug) }}" class="btn btn-{{ (is_null($berita->deleted_at)) ? 'warning' : 'danger' }}"><i class="fa fa-{{ (is_null($berita->deleted_at)) ? 'archive' : 'trash' }}"></i> {{ (is_null($berita->deleted_at)) ? 'arsipkan' : 'hapus' }}</a>
+				<a href="
+				@if(is_null($berita->deleted_at)) 
+					@if($berita->status == '2')
+						{{ site_url('berita/draf') }}
+					@else
+						{{ site_url('berita') }}
+					@endif
+				@else 
+					{{ site_url('berita/arsip') }}
+				@endif"
+				 class="btn btn-default"><i class="fa fa-arrow-left"></i> kembali</a>
 			</div>
 		</div>
 	</div>
