@@ -425,6 +425,32 @@
 							</td>
 						</tr>
 						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Agenda</td>
+							<td>Halaman agenda</td>
+							<td>agenda</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/agenda')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
+						<!-- DIVIDER -->
+						<tr>
+							<td>{{str_pad($no++,2,'0',STR_PAD_LEFT)}}</td>
+							<td>Regulasi</td>
+							<td>Halaman regulasi</td>
+							<td>regulasi</td>
+							<td>Belum</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
+							<td width="10%">
+								<a href="{{site_url('ui/regulasi')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
+							</td>
+						</tr>
+						<!-- END DIVIDER -->
 					</tbody>
 				</table>
 			</div>
