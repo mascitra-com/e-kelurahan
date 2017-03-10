@@ -10,6 +10,7 @@
 				<h3 class="panel-title pull-left">Agenda</h3>
 				<div class="btn-group pull-right">
 					<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i></button>
+					<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-filter"><i class="fa fa-filter"></i></button>
 					<button class="btn btn-default btn-xs reload"><i class="fa fa-refresh"></i></button>
 				</div>
 				<div class="clearfix"></div>
@@ -73,6 +74,39 @@
 					</div>
 					<div class="form-group">
 						<button class="btn btn-primary"><i class="fa fa-save"></i> simpan</button>
+						<button class="btn btn-warning" type="reset"><i class="fa fa-refresh"></i> bersihkan</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-filter">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Filter agenda</h4>
+			</div>
+			<div class="modal-body">
+				<form action="#">
+					<div class="form-group">
+						<label for="">Tanggal agenda</label>
+						<div class="input-group">
+							<input type="date" class="form-control" name="tanggal[min]" placeholder="dari">
+							<div class="input-group-addon"> - </div>
+							<input type="date" class="form-control" name="tanggal[max]" placeholder="sampai">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="">Urutkan berdasar</label>
+						<select class="form-control">
+							<option value="0" selected>terbaru</option>
+							<option value="0">terlama</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary"><i class="fa fa-filter"></i> filter</button>
 						<button class="btn btn-warning" type="reset"><i class="fa fa-refresh"></i> bersihkan</button>
 					</div>
 				</form>
