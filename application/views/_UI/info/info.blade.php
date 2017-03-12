@@ -50,6 +50,14 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="panel-footer">
+				<nav aria-label="...">
+					<ul class="pager">
+					<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Baru</a></li>
+						<li class="next"><a href="#">Lama <span aria-hidden="true">&rarr;</span></a></li>
+					</ul>
+				</nav>
+			</div>
 		</div>
 	</div>
 </div>
@@ -65,6 +73,10 @@
 
 	.btn-xxs{
 		padding: 0 5px;
+	}
+	.pager{
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 </style>
 @endsection
