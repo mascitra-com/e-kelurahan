@@ -162,4 +162,9 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/regulasi/regulasi');
 	}
+
+	public function pengumuman()
+	{
+		$this->render('_UI/pengumuman/pengumuman');
+	}
 }
