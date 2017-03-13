@@ -104,6 +104,11 @@ class Ui extends MY_Controller {
 		$this->render('_UI/surat/keterangan_miskin');
 	}
 
+	public function surat_sktm()
+	{
+		$this->render('_UI/surat/sktm');
+	}
+
 	public function pengajuan_blanko()
 	{
 		$this->render('_UI/homepage/dashboard-user/pengajuan_ktp');
@@ -114,4 +119,53 @@ class Ui extends MY_Controller {
 		$this->render('_UI/homepage/dashboard-user/status_pengajuan');
 	}
 
+	public function berita()
+	{
+		$this->render('_UI/berita/berita');
+	}
+
+	public function berita_arsip()
+	{
+		$this->render('_UI/berita/arsip');
+	}
+
+	public function berita_draf()
+	{
+		$this->render('_UI/berita/draf');
+	}
+
+	public function berita_tulis()
+	{
+		$this->render('_UI/berita/tulis');
+	}
+
+	public function berita_detail()
+	{
+		$this->render('_UI/berita/detail');
+	}
+
+	public function info()
+	{
+		$this->render('_UI/info/info');
+	}
+
+	public function info_tambah()
+	{
+		$this->render('_UI/info/create');
+	}
+
+	public function info_detail()
+	{
+		$this->render('_UI/info/detail');
+	}
+
+	public function agenda()
+	{
+		$this->render('_UI/agenda/agenda');
+	}
+
+	public function regulasi()
+	{
+		$this->render('_UI/regulasi/regulasi');
+	}
 }
