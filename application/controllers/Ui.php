@@ -158,4 +158,14 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/info/detail');
 	}
+
+	public function agenda()
+	{
+		$this->render('_UI/agenda/agenda');
+	}
+
+	public function regulasi()
+	{
+		$this->render('_UI/regulasi/regulasi');
+	}
 }
