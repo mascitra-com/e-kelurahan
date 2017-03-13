@@ -22,7 +22,6 @@ class Berita extends MY_Controller
 
 	public function index()
 	{
-		//BERITA
 		$data['beritas'] = $this->berita_m
 		->where('status',array('0', '1'))
 		->where('id_organisasi', $this->ion_auth->get_current_id_org())
