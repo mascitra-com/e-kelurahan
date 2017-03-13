@@ -6,6 +6,7 @@
 	<title>E-KELURAHAN | @yield('title')</title>
 	<link rel="stylesheet" href="{{base_url('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/plugins/fontawesome/css/font-awesome.min.css')}}">
+	<link rel="stylesheet" href="{{base_url('assets/plugins/jquery-ui/jquery-ui.min.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/css/theme.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/css/theme-helper.css')}}">
 	@yield('style')
@@ -82,11 +83,18 @@
 </body>
 <script src="{{base_url('assets/plugins/jquery/jquery-3.1.1.min.js')}}"></script>
 <script src="{{base_url('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{base_url('assets/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <script src="{{base_url('assets/js/theme.js')}}"></script>
 <script>
 	$(document).ready(function(){
 		$("button.reload").click(function(){location.reload();});
 		$("#alerts").modal('show');
+		$("[type='date']").prop('type', 'text').datepicker({dateFormat: "yy-mm-dd"});
+
+		// modal reset
+		$(".modal").on('hide.bs.modal', function(e){
+			$(".modal form").trigger('reset');
+		});
 	});
 </script>
 @yield('javascript')
