@@ -177,4 +177,34 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/galeri/galeri-list');
 	}
+
+	public function homepage()
+	{
+		$this->render('_UI/homepage/homepage');
+	}
+
+	public function homepage_profil()
+	{
+		$this->render('_UI/homepage/profil');
+	}
+
+	public function homepage_agenda()
+	{
+		$this->render('_UI/homepage/agenda');
+	}
+
+	public function homepage_regulasi()
+	{
+		$this->render('_UI/homepage/regulasi');
+	}
+
+	public function homepage_berita()
+	{
+		$this->render('_UI/homepage/berita');
+	}
+
+	public function homepage_berita_detail()
+	{
+		$this->render('_UI/homepage/berita_detail');
+	}
 }
