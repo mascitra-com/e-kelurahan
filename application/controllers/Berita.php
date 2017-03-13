@@ -17,7 +17,7 @@ class Berita extends MY_Controller
 
 		$this->slug_config($this->berita_m->table, 'judul');
 
-		$this->berita_m->where('status','1')->where('tanggal_publish', '=', date('Y-m-d'))->update(array('status' => '0'));
+		$q = $this->berita_m->where('status','1')->where('tanggal_publish <=', date('Y-m-d'))->update(array('status' => '0'));
 	}
 
 	public function index()
@@ -33,6 +33,34 @@ class Berita extends MY_Controller
 		->get_all();
 
 		$this->render('berita/berita', $data);
+	}
+
+	public function draf()
+	{
+		$data['beritas'] = $this->berita_m
+		->where('status', '2')
+		->where('id_organisasi', $this->ion_auth->get_current_id_org())
+		->order_by('tanggal_publish','asc')
+		->limit(5)
+		->fields('judul, isi, slug, gambar, tanggal_publish, status')
+		->with_akun('fields:username')
+		->get_all();
+
+		$this->render('berita/draf', $data);
+	}
+
+	public function arsip()
+	{
+		$data['beritas'] = $this->berita_m
+		->where('id_organisasi', $this->ion_auth->get_current_id_org())
+		->order_by('tanggal_publish','asc')
+		->limit(5)
+		->fields('judul, isi, slug, gambar, tanggal_publish, status')
+		->with_akun('fields:username')
+		->only_trashed()
+		->get_all();
+
+		$this->render('berita/arsip', $data);
 	}
 
 	public function selengkapnya($slug = NULL)
@@ -149,10 +177,8 @@ class Berita extends MY_Controller
 			$this->tulis($data, TRUE);
 		}else{
 			if ($data['status'] == '2') {
-				//TODO
-				// $this->message('<strong>Berhasil</strong> Berita Disimpan di Draft', 'success');
-				// $this->go('');
-				dump('Sukses ke draft');
+				$this->message('<strong>Berhasil</strong> Berita Disimpan di Draft', 'success');
+				$this->go('berita/draf');
 			}else{
 				$this->message('<strong>Berhasil</strong> membuat Berita Baru', 'success');
 				$this->go('berita');
@@ -224,10 +250,8 @@ class Berita extends MY_Controller
 				$this->sunting($slug, $data, TRUE);
 			}else{
 				if ($data['status'] == '2') {
-				//TODO
-				// $this->message('<strong>Berhasil</strong> Berita Disimpan di Draft', 'success');
-				// $this->go('');
-					dump('Sukses ke draft');
+					$this->message('<strong>Berhasil</strong> Berita Disimpan di Draft', 'success');
+					$this->go('berita/draf');
 				}else{
 					$this->message('<strong>Berhasil</strong> mengubah Berita', 'success');
 					$this->go('berita');
@@ -236,18 +260,101 @@ class Berita extends MY_Controller
 		}
 	}
 
+	public function arsipkan($slug = NULL)
+	{
+		if (is_null($slug) || empty($slug)) {
+			$this->message('Berita tidak ditemukan', 'danger');
+			$this->go('berita');
+		}else{
+			//ambil status berita sesuai slug
+			$q_status = $this->berita_m->fields('status')->as_array()->get(array('slug' => $slug));
+			if ($q_status === FALSE) {
+				$this->message('Berita tidak ditemukan', 'danger');
+				$this->go('berita');
+			}else{
+				//arsipkan
+				$query = $this->berita_m->delete(array('slug' => $slug));
+				if ($query === FALSE) {
+					$this->message('Terjadi kesalahan sistem saat mengarsipkan berita! Coba lagi nanti.', 'danger');
+				}else{
+					$this->message('Berita berhasil diarsipkan', 'success');
+				}
+				$this->redirectBerita($q_status);
+			}
+		}
+	}
+
+	public function publikasikan($slug = NULL)
+	{
+		if (is_null($slug) || empty($slug)) {
+			$this->message('Draf tidak ditemukan', 'danger');
+		}else{
+			//publikasikan
+			$query = $this->berita_m
+			->where('slug', $slug)
+			->update(array(
+				'tanggal_publish' => date('Y-m-d'),
+				'status' => '0'
+				));
+			if ($query === FALSE) {
+				$this->message('Terjadi kesalahan pada sistem saat mempublikasikan draf! Coba lagi nanti.', 'danger');
+			}else{
+				$this->message('Draf berhasil dipublikasikan', 'success');
+			}
+		}
+		$this->go('berita/draf');
+	}
+
+	public function kembalikan($slug = NULL)
+	{
+		if (is_null($slug) || empty($slug)) {
+			$this->message('Arsip tidak ditemukan', 'danger');
+		}else{
+			//kembalikan
+			$query = $this->berita_m->restore(array('slug' => $slug));
+			if ($query === FALSE) {
+				$this->message('Terjadi kesalahan pada sistem saat mengembalikan arsip! Coba lagi nanti.', 'danger');
+			}else{
+				$this->message('Arsip berhasil dikembalikan', 'success');
+			}
+		}
+		$this->go('berita/arsip');
+	}
+
+	public function hapus($slug = NULL)
+	{
+		if (is_null($slug) || empty($slug)) {
+			$this->message('Berita tidak ditemukan', 'danger');
+			$this->go('berita');
+		}else{
+			//ambil atribut berita yg diperlukan sesuai slug
+			$q = $this->berita_m->fields('status, deleted_at')->as_array()->get(array('slug' => $slug));
+			if ($q === FALSE) {
+				$this->message('Berita tidak ditemukan', 'danger');
+				$this->go('berita');
+			}else{
+				//hapus
+				$query = $this->berita_m->force_delete(array('slug' => $slug));
+				if ($query === FALSE) {
+					$this->message('Terjadi kesalahan sistem saat menghapus berita! Coba lagi nanti.', 'danger');
+				}else{
+					$this->message('Berita berhasil dihapus', 'success');
+				}
+				$this->redirectBerita($q);
+			}
+		}
+	}
+
 	private function redirectBerita($data)
 	{
-		if ($data['status'] == '2') {
-			//TODO
-			// $this->go("berita/draft");
-			dump('redir draft');
-		}elseif($data['status'] == 'archive'){
-			//TODO
-			// $this->go('berita/archive');
-			dump('redir draft');
+		if (!is_null($data['deleted_at'])) {
+			$this->go('berita/arsip');
 		}else{
-			$this->go('berita');
+			if ($data['status'] == '2') {
+				$this->go("berita/draf");
+			}else{
+				$this->go('berita');
+			}
 		}
 	}
 

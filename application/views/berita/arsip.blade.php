@@ -24,28 +24,27 @@
 						</tr>
 					</thead>
 					<tbody>
-						@for($i=0; $i < 4; $i++)
+					<?php $i=0; ?>
+						@foreach($beritas as $berita)
 						<tr>
-							<td class="text-center">{{$i+1}}</td>
+							<td class="text-center">{{++$i}}</td>
 							<td>
-								<img src="{{base_url('assets/images/blank-avatar.png')}}" alt="thumbnail">
+								<img src="{{ base_url('assets/images/berita/'.cek_file($berita->gambar,'./assets/images/berita/','default.png')) }}" alt="thumbnail">
 							</td>
 							<td>
-								<h4>Title</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid voluptate 
-								temporibus obcaecati, voluptates blanditiis! Eius. Lorem ipsum dolor sit amet, 
-								consectetur adipisicing elit. Distinctio ipsam cum nihil voluptatum in, alias.</p>
-								<span class="label label-primary">selasa, 08 feb 2017</span>
-								<span class="label label-primary">oleh admin</span>
+								<h4>{{ $berita->judul }}</h4>
+								<p>{{ potong_teks(strip_tags($berita->isi), 320) }}</p>
+								<span class="label label-primary">{{ strtolower(mdate('%l, %d %M %Y', strtotime(str_replace('-', '/', $berita->tanggal_publish)))) }}</span>
+								<span class="label label-primary">oleh {{ $berita->akun->username }}</span>
 							</td>
 							<td class="text-center text-nowrap">
-								<a href="#" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-ellipsis-h"></i></a>
-								<a href="#" class="btn btn-primary btn-xs" title="sunting"><i class="fa fa-pencil"></i></a>
-								<a href="#" class="btn btn-warning btn-xs" title="kembalikan"><i class="fa fa-share-square-o"></i></a>
-								<a href="#" class="btn btn-danger btn-xs" title="hapus" onclick="return confirm('Aksi ini tidak dapat diurungkan.\nAnda yakin?')"><i class="fa fa-trash"></i></a>
+								<a href="{{ site_url('berita/selengkapnya/'.$berita->slug) }}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-ellipsis-h"></i></a>
+								<a href="{{ site_url('berita/sunting/'.$berita->slug) }}" class="btn btn-primary btn-xs" title="sunting"><i class="fa fa-pencil"></i></a>
+								<a href="{{ site_url('berita/kembalikan/'.$berita->slug) }}" class="btn btn-warning btn-xs" title="kembalikan"><i class="fa fa-share-square-o"></i></a>
+								<a href="{{ site_url('berita/hapus/'.$berita->slug) }}" class="btn btn-danger btn-xs" title="hapus" onclick="return confirm('Aksi ini tidak dapat diurungkan.\nAnda yakin?')"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
-						@endfor
+						@endforeach
 					</tbody>
 				</table>
 			</div>

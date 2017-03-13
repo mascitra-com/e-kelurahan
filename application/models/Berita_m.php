@@ -28,9 +28,9 @@ class Berita_m extends MY_Model
 
 	public function __construct()
 	{
+		$this->soft_deletes = TRUE;
 		$this->has_one['organisasi'] = array('Organisasi_m', 'id', 'id_organisasi');
 		$this->has_one['akun'] = array('Akun_m', 'id', 'created_by');
-		$this->soft_deletes = TRUE;
 		parent::__construct();
 	}
 }
