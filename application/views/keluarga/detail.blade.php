@@ -50,8 +50,8 @@
 						<textarea name="alamat" class="form-control" placeholder="masukkan alamat keluarga">{{ $keluarga->alamat }}</textarea>
 					</div>
 					<div class="form-group break-top-20">
-						<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> simpan</button>
-						<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> kembalikan</button>
+						<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Simpan</button>
+						<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> Kembalikan</button>
 					</div>
 				</form>
 			</div>
@@ -85,27 +85,31 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>01</td>
-							<td><a href="#">Ainul Yaqin</a></td>
-							<td>Kepala Keluarga</td>
-							<td>S1/Strata 1</td>
-							<td>-</td>
-							<td>-</td>
-							<td>Mulyadi</td>
-							<td>Maimunah</td>
-							<td>
-								<!-- data dari foreach contoh-->
-								<?php $a = array('nik'=>'123456', 'nama'=>'Ainul Yaqin'); ?>
+                    @if($detail)
+                        @foreach($detail as $item)
+                            <tr>
+                                <td>{{ $item->no_urut_kk }}</td>
+                                <td><a href="{{ site_url('penduduk/detail/'.$item->nik) }}">{{ $item->penduduk->nama }}</a></td>
+                                <td>{{ $item->status->nama_statuskeluarga }}</td>
+                                <td>{{ $item->pendidikan->pendidikan }}</td>
+                                <td>{{ $item->no_paspor }}</td>
+                                <td>{{ $item->no_kitap }}</td>
+                                <td>{{ $item->ayah }}</td>
+                                <td>{{ $item->ibu }}</td>
+                                <td>
+                                    <!-- data dari foreach contoh-->
+                                    <?php $a = array('nik'=> $item->nik, 'nama'=>$item->penduduk->nama); ?>
 
-								<button class="btn btn-default btn-xs btn-edit" data-detail='{{json_encode($a)}}'>
-									<i class="fa fa-pencil"></i>
-								</button>
-								<a href="#" class="btn btn-default btn-xs" onclick="return confirm('anda yakin?')">
-									<i class="fa fa-close text-red"></i>
-								</a>
-							</td>
-						</tr>
+                                    <button class="btn btn-default btn-xs btn-edit" data-detail='{{json_encode($a)}}'>
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <a href="{{ site_url('keluarga/hapus_anggota/'.$item->id) }}" class="btn btn-default btn-xs" onclick="return confirm('anda yakin?')">
+                                        <i class="fa fa-close text-red"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
 					</tbody>
 				</table>
 			</div>
@@ -123,26 +127,39 @@
 				<h4 class="modal-title">Tambah Anggota Keluarga</h4>
 			</div>
 			<div class="modal-body">
-				<form action="#">
+				<form action="{{ site_url('keluarga/simpan_anggota') }}" method="POST">
+                    {{ $csrf }}
+                    <input type="hidden" name="no_kk" value="{{ $keluarga->no }}">
 					<div class="form-group">
 						<label for="">NIK</label>
-						<input type="text" class="form-control" name="nik_detail" placeholder="NIK">
+						<input list="nik" class="form-control" name="nik" placeholder="Masukkan NIK / Nama" autocomplete="off">
+						<datalist id="nik">
+                            @foreach($penduduk as $item)
+                                <option value='{{ $item->nik }} | {{ $item->nama }}'>
+                            @endforeach
+						</datalist>
 					</div>
 					<div class="row">
 						<div class="col-xs-12 col-md-6">
 							<div class="form-group">
 								<label for="">Status Hubungan Dalam Keluarga</label>
-								<select class="form-control" name="status keluarga">
-									<option value="0" selected>Kepala Keluarga</option>
-								</select>
+								<select class="form-control" name="status_keluarga">
+                                    <option value="">Pilih Status Keluarga</option>
+                                @foreach($status as $item)
+                                        <option value="{{ $item->id_statuskeluarga }}">{{ $item->nama_statuskeluarga }}</option>
+                                    @endforeach
+                                </select>
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-6">
 							<div class="form-group">
 								<label for="">Pendidikan</label>
-								<select name="id_jenis_pendidkan" class="form-control">
-									<option value="0" selected>pendidikan A</option>
-								</select>
+								<select name="id_pendidikan" class="form-control">
+                                    <option value="">Pilih Pendidikan</option>
+                                    @foreach($pendidikan as $item)
+                                        <option value="{{ $item->id_jenispendidikan }}">{{ $item->pendidikan }}</option>
+                                    @endforeach
+                                </select>
 							</div>
 						</div>
 					</div>
@@ -150,13 +167,13 @@
 						<div class="col-xs-12 col-md-6">
 							<div class="form-group">
 								<label for="">No. Pasport</label>
-								<input type="text" class="form-control" name="no_passport" placeholder="nomor passport">
+								<input type="text" class="form-control" name="no_passport" placeholder="Nomor Passport">
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-6">
 							<div class="form-group">
 								<label for="">No. KITAP</label>
-								<input type="text" class="form-control" name="no_kitap" placeholder="nomor KITAP">
+								<input type="text" class="form-control" name="no_kitap" placeholder="Nomor KITAP">
 							</div>
 						</div>
 					</div>
@@ -164,23 +181,23 @@
 						<div class="col-xs-12 col-md-6">
 							<div class="form-group">
 								<label for="">Ayah</label>
-								<input type="text" class="form-control" name="ayah" placeholder="nama ayah">
+								<input type="text" class="form-control" name="ayah" placeholder="Nama Ayah">
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-6">
 							<div class="form-group">
 								<label for="">Ibu</label>
-								<input type="text" class="form-control" name="ibu" placeholder="nama ibu">
+								<input type="text" class="form-control" name="ibu" placeholder="Nama Ibu">
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="">No Urut KK</label>
-						<input type="text" class="form-control" name="no_urut" placeholder="urut">
+						<input type="text" class="form-control" name="no_urut_kk" placeholder="No Urut">
 					</div>
 					<div class="form-group">
-						<button class="btn btn-primary">tambah</button>
-						<button class="btn btn-default">bersihkan</button>
+						<button class="btn btn-primary" type="submit">Tambah</button>
+						<button class="btn btn-default" type="reset">Bersihkan</button>
 					</div>
 				</form>
 			</div>
@@ -200,7 +217,7 @@
 
 @section('javascript')
 <script>
-	$(document).ready(function(){
+    $(document).ready(function(){
 		getKepNik();
 	});
 
