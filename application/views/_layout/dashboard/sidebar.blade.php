@@ -73,7 +73,7 @@
 					<li><a href="{{ site_url('berita/arsip') }}"><i class="fa fa-archive"></i><span class="nav-label">Arsip</span></a></li>
 				</ul>
 			</li>
-			<li><a href="#"><i class="fa fa-fw fa-sitemap"></i><span class="nav-label">Profil</span></a></li>
+			<li><a href="{{ site_url('info') }}"><i class="fa fa-fw fa-sitemap"></i><span class="nav-label">Profil</span></a></li>
 			<li><a href="#"><i class="fa fa-fw fa-calendar"></i><span class="nav-label">Agenda</span></a></li>
 			<li>
 				<a href="#nav-5" data-toggle="collapse" aria-controls="nav-5">
