@@ -33,26 +33,29 @@
 							<td class="text-center" colspan="7">Tidak ada data info</td>
 						</tr>
 						@else
-						<?php $i=0; ?>
-						@foreach($infos as $info)
-						<tr>
-							<td class="text-center">
-								<a href="" class="btn btn-xs btn-xxs btn-default"><i class="fa fa-caret-up"></i></a>
-								<a href="" class="btn btn-xs btn-xxs btn-default"><i class="fa fa-caret-down"></i></a>
-							</td>
-							<td class="text-center">{{++$i}}</td>
-							<td>{{ potong_teks($info->judul, 47) }}</td>
-							<td class="text-center">{{ $info->akun->username }}</td>
-							<td class="text-center">{{ date('Y/m/d', strtotime($info->created_at)) }}</td>
-							<td class="text-center"><span class="label label-{{ (is_null($info->deleted_at)) ? 'success' : 'danger' }}">{{ (is_null($info->deleted_at)) ? 'aktif' : 'non-aktif' }}</span></td>
-							<td class="text-center">
-								<a href="{{ site_url('info/selengkapnya/'.$info->slug) }}" class="btn btn-xs btn-default" title="selengkapnya"><i class="fa fa-ellipsis-h"></i></a>
-								<a href="{{site_url('info/sunting/'.$info->slug) }}" class="btn btn-xs btn-default" title="sunting"><i class="fa fa-pencil"></i></a>
-								<a href="#" class="btn btn-xs btn-default" title="hapus" onclick="return confirm('Anda yakin?')"><i class="fa fa-trash"></i></a>
-								<a href="{{ (is_null($info->deleted_at)) ? site_url('info/nonaktifkan/'.$info->slug) : site_url('info/aktifkan/'.$info->slug) }}" class="btn btn-xs btn-{{ (is_null($info->deleted_at)) ? 'danger' : 'success' }}" title="{{ (is_null($info->deleted_at)) ? 'non-aktifkan' : 'aktifkan' }}"><i class="fa fa-power-off"></i></a>
-							</td>
-						</tr>
-						@endforeach
+						<form action="{{ site_url('info/update_pos') }}" method="POST">
+						{{ $csrf }}
+							<?php $i=0; ?>
+							@foreach($infos as $info)
+							<tr>
+								<td class="text-center">
+									<button value="{{$info->id.':'.'0'.':'.$info->pos }}" {{ ($info->pos == 0) ? '' : '' }} name="pos" class="btn btn-xs btn-xxs btn-default"><i class="fa fa-caret-up"></i></button>
+									<button value="{{$info->id.':'.'1'.':'.$info->pos }}" name="pos" class="btn btn-xs btn-xxs btn-default"><i class="fa fa-caret-down"></i></button>
+								</td>
+								<td class="text-center">{{++$i}}</td>
+								<td>{{ potong_teks($info->judul, 47) }}</td>
+								<td class="text-center">{{ $info->akun->username }}</td>
+								<td class="text-center">{{ date('Y/m/d', strtotime($info->created_at)) }}</td>
+								<td class="text-center"><span class="label label-{{ (is_null($info->deleted_at)) ? 'success' : 'danger' }}">{{ (is_null($info->deleted_at)) ? 'aktif' : 'non-aktif' }}</span></td>
+								<td class="text-center">
+									<a href="{{ site_url('info/selengkapnya/'.$info->slug) }}" class="btn btn-xs btn-default" title="selengkapnya"><i class="fa fa-ellipsis-h"></i></a>
+									<a href="{{site_url('info/sunting/'.$info->slug) }}" class="btn btn-xs btn-default" title="sunting"><i class="fa fa-pencil"></i></a>
+									<a href="{{ site_url('info/hapus/'.$info->slug) }}" class="btn btn-xs btn-default" title="hapus" onclick="return confirm('Anda yakin?')"><i class="fa fa-trash"></i></a>
+									<a href="{{ (is_null($info->deleted_at)) ? site_url('info/nonaktifkan/'.$info->slug) : site_url('info/aktifkan/'.$info->slug) }}" class="btn btn-xs btn-{{ (is_null($info->deleted_at)) ? 'danger' : 'success' }}" title="{{ (is_null($info->deleted_at)) ? 'non-aktifkan' : 'aktifkan' }}"><i class="fa fa-power-off"></i></a>
+								</td>
+							</tr>
+							@endforeach
+						</form>
 						@endif
 					</tbody>
 				</table>

@@ -41,4 +41,13 @@ class Info_m extends MY_Model
 		$this->has_one['akun'] = array('Akun_m', 'id', 'created_by');
 		parent::__construct();
 	}
+
+    public function change_menu_pos($id, $arrow)
+    {
+        if ($arrow === "0") {
+            return $this->db->query("UPDATE info_organisasi SET pos = pos -1 WHERE id != '$id'");
+        }else{
+            return $this->db->query("UPDATE info_organisasi SET pos = pos +1 WHERE id != '$id'");
+        }
+    }
 }

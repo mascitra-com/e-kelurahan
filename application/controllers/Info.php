@@ -21,14 +21,15 @@ class Info extends MY_Controller
 	public function index()
 	{
 		$data['infos'] = $this->info_m
+		->with_trashed()
 		->where('id_organisasi', $this->ion_auth->get_current_id_org())
 		->order_by('pos', 'ASC')
-		->fields('judul, isi, pos, slug, created_at, deleted_at')
+		->fields('id ,judul, isi, pos, slug, created_at, deleted_at')
 		->limit(4)
 		->with_akun('fields:username')
-		->with_trashed()
 		->get_all();
 
+		$this->generateCsrf();
 		$this->render('info/info', $data);
 	}
 
@@ -140,8 +141,8 @@ class Info extends MY_Controller
 			$query = $this->info_m->from_form(NULL, array(
 				'slug' => $data['slug'],
 				), array(
-					'slug' => $slug,
-					'id_organisasi' => $this->ion_auth->get_current_id_org()
+				'slug' => $slug,
+				'id_organisasi' => $this->ion_auth->get_current_id_org()
 				))->update();
 
 			if ($query === FALSE) {
@@ -154,5 +155,115 @@ class Info extends MY_Controller
 				$this->go('info');
 			}
 		}
+	}
+
+	public function aktifkan($slug = NULL)
+	{
+		if (is_null($slug) || empty($slug)) {
+			$this->message('Info tidak ditemukan', 'danger');
+		}else{
+			//cek keberadaan Info
+			$q = $this->info_m->with_trashed()->get(array(
+				'id_organisasi' => $this->ion_auth->get_current_id_org(),
+				'slug' => $slug
+				));
+			if ($q === FALSE) {
+				$this->message('Info tidak ditemukan', 'danger');
+			}else{
+				//hapus
+				$query = $this->info_m->restore(array(
+					'id_organisasi' => $this->ion_auth->get_current_id_org(),
+					'slug' => $slug
+					));
+				if ($query === FALSE) {
+					$this->message('Terjadi kesalahan sistem saat menonaktifkan info! Coba lagi nanti.', 'danger');
+				}else{
+					$this->message('Info berhasil dinonaktifkan', 'success');
+				}
+			}
+		}
+		$this->go('info');
+	}
+
+	public function nonaktifkan($slug = NULL)
+	{
+		if (is_null($slug) || empty($slug)) {
+			$this->message('Info tidak ditemukan', 'danger');
+		}else{
+			//cek keberadaan Info
+			$q = $this->info_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->get(array('slug' => $slug));
+			if ($q === FALSE) {
+				$this->message('Info tidak ditemukan', 'danger');
+			}else{
+				//hapus
+				$query = $this->info_m->delete(array(
+					'id_organisasi' => $this->ion_auth->get_current_id_org(),
+					'slug' => $slug
+					));
+				if ($query === FALSE) {
+					$this->message('Terjadi kesalahan sistem saat menonaktifkan info! Coba lagi nanti.', 'danger');
+				}else{
+					$this->message('Info berhasil dinonaktifkan', 'success');
+				}
+			}
+		}
+		$this->go('info');
+	}
+
+	public function hapus($slug = NULL)
+	{
+		if (is_null($slug) || empty($slug)) {
+			$this->message('Info tidak ditemukan', 'danger');
+		}else{
+			//cek keberadaan Info
+			$q = $this->info_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->get(array('slug' => $slug));
+			if ($q === FALSE) {
+				$this->message('Info tidak ditemukan', 'danger');
+			}else{
+				//hapus
+				$query = $this->info_m->force_delete(array(
+					'id_organisasi' => $this->ion_auth->get_current_id_org(),
+					'slug' => $slug
+					));
+				if ($query === FALSE) {
+					$this->message('Terjadi kesalahan sistem saat menghapus info! Coba lagi nanti.', 'danger');
+				}else{
+					$this->message('Info berhasil dihapus', 'success');
+				}
+			}
+		}
+		$this->go('info');
+	}
+
+	public function update_pos()
+	{
+		//id par pertama, arrow par 2, pos par 3
+		$datas = $this->input->post();
+		$data = explode(":", $datas['pos']);
+		dump($data);
+		$last_number = $this->info_m->count_rows();
+		$id_org = $this->ion_auth->get_current_id_org();
+
+		if ($data[1] === '0') {
+			if ($data[2] != 0) {
+				$already_exist_pos =  $this->info_m->fields('id')->where(array('pos' => $data[2]-1, 'id_organisasi' => $id_org ))->as_object()->get();
+				$this->info_m->where(array('id' => $already_exist_pos->id, 'id_organisasi' => $id_org))->update(array('pos'=>$data[2]));
+				$this->info_m->where(array('id' => $data[0], 'id_organisasi' => $id_org))->update(array('pos'=>$data[2]-1));
+			}else{
+				$this->info_m->where(array('id' => $data[0], 'id_organisasi' => $id_org))->update(array('pos'=>$last_number-1));
+				@$this->info_m->change_menu_pos($data[0], $data[1]);
+			}
+		}else{
+			if ($data[2] != $last_number-1) {
+				$already_exist_pos =  $this->info_m->fields('id')->where(array('pos' => $data[2]+1, 'id_organisasi' => $id_org))->as_object()->get();
+				$this->info_m->where(array('id' => $already_exist_pos->id, 'id_organisasi', $id_org))->update(array('pos'=>$data[2]));
+				$this->info_m->where(array('id' => $data[0], 'id_organisasi' => $id_org))->update(array('pos'=>$data[2]+1));
+			}else{
+				$this->info_m->where(array('id' => $data[0], 'id_organisasi' => $id_org))->update(array('pos'=>0));
+				@$this->info_m->change_menu_pos($data[0], $data[1]);
+			}
+		}
+		$this->message('Sukses! Berhasil merubah posisi menu info', 'success');
+		$this->go('info');
 	}
 }
