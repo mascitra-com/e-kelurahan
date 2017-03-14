@@ -27,6 +27,7 @@ class Regulasi extends MY_Controller
         } else {
             $data['link'] = prefix_unik(2);
         }
+        $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
         if($this->regulasi_m->insert($data)){
             $this->message('Berhasil Menyimpan Data Regulasi');
         } else {

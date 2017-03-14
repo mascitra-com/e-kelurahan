@@ -31,7 +31,7 @@
                         <?php $no = 1; ?>
 						@foreach($regulasi as $list)
 						<tr>
-							<td class="text-center">{{$no}}</td>
+							<td class="text-center">{{$no++}}</td>
 							<td>
 								<h4>{{ $list->judul }}</h4>
 								<p>{{ $list->deskripsi }}</p>
