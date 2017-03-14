@@ -29,3 +29,4 @@ assets/images/berita/*
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+/assets/regulasi/
