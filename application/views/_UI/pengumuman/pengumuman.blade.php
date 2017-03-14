@@ -1,5 +1,5 @@
 @layout('_layout/dashboard/index')
-@section('title')Regulasi@endsection
+@section('title')Pengumuman@endsection
 @section('nama-kelurahan')Lumajang@endsection
 
 @section('content')

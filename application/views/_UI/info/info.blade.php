@@ -18,6 +18,7 @@
 				<table class="table table-hover table-striped table-bordered">
 					<thead>
 						<tr>
+							<th class="text-center text-nowrap" width="3%">Urutkan</th>
 							<th class="text-center">No</th>
 							<th>Judul Halaman</th>
 							<th class="text-center">Penulis</th>
@@ -29,6 +30,10 @@
 					<tbody>
 						@for($i=1; $i <= 4; $i++)
 						<tr>
+							<td class="text-center">
+								<a href="" class="btn btn-xs btn-xxs btn-default"><i class="fa fa-caret-up"></i></a>
+								<a href="" class="btn btn-xs btn-xxs btn-default"><i class="fa fa-caret-down"></i></a>
+							</td>
 							<td class="text-center">{{$i}}</td>
 							<td>Lorem ipsum dolor sit amet.</td>
 							<td class="text-center">Admin</td>
@@ -45,6 +50,14 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="panel-footer">
+				<nav aria-label="...">
+					<ul class="pager">
+					<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Baru</a></li>
+						<li class="next"><a href="#">Lama <span aria-hidden="true">&rarr;</span></a></li>
+					</ul>
+				</nav>
+			</div>
 		</div>
 	</div>
 </div>
@@ -56,6 +69,14 @@
 		display: block;
 		width: 100%;
 		padding: 8px;
+	}
+
+	.btn-xxs{
+		padding: 0 5px;
+	}
+	.pager{
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 </style>
 @endsection
