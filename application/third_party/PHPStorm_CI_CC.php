@@ -79,6 +79,7 @@
      ***************** YOUR MODELS *****************
 	 * @property Penduduk_m          $penduduk_m
 	 * @property Organisasi_m        $organisasi_m
+	 * @property Regulasi_m          $regulasi_m
 	 * @property Profil_m            $profil_m
 	 * @property Pekerjaan_m         $pekerjaan_m
 	 * @property Golongan_m          $golongan_m
