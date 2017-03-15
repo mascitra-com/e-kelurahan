@@ -11,7 +11,7 @@
 				<div class="btn-group pull-right">
 					<button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i></button>
 					<button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal-filter"><i class="fa fa-search"></i></button>
-					<button class="btn btn-xs btn-default reload"><i class="fa fa-refresh"></i></button>
+					<a href="{{ site_url('keluarga/refresh') }}" class="btn btn-xs btn-default reload"><i class="fa fa-refresh"></i></a>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -20,21 +20,21 @@
 					<thead>
 						<tr>
 							<th>
-								<a href="#" class="btn btn-default btn-xs">NOMOR KK</a>
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-sort"></i></a>
+								<a href="{{ site_url('keluarga/urut/no') }}" class="btn btn-{{ $order_by === 'no' ? 'primary' : 'default' }} btn-xs">NOMOR KK</a>
+								<a href="{{ $order_by === 'no' ? site_url('keluarga/urut/' . $order_by . '/' . $order_type) : '#' }}" class="btn btn-{{ $order_by === 'no' ? 'primary' : 'default' }} btn-xs"><i class="fa fa-sort"></i></a>
 							</th>
 							<th>
-								<a href="#" class="btn btn-default btn-xs">KEPALA KELUARGA</a>
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-sort"></i></a>
+								<a href="{{ site_url('keluarga/urut/nik') }}" class="btn btn-{{ $order_by === 'nik' ? 'primary' : 'default' }} btn-xs">KEPALA KELUARGA</a>
+								<a href="{{ $order_by === 'nik' ? site_url('keluarga/urut/' . $order_by . '/' . $order_type) : '#' }}" class="btn btn-{{ $order_by === 'nik' ? 'primary' : 'default' }} btn-xs"><i class="fa fa-sort"></i></a>
 							</th>
 							<th>ALAMAT</th>
 							<th class="text-center">
-								<a href="#" class="btn btn-default btn-xs">RT</a>
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-sort"></i></a>
+								<a href="{{ site_url('keluarga/urut/rt') }}" class="btn btn-{{ $order_by === 'rt' ? 'primary' : 'default' }} btn-xs">RT</a>
+								<a href="{{ $order_by === 'rt' ? site_url('keluarga/urut/' . $order_by . '/' . $order_type) : '#' }}" class="btn btn-{{ $order_by === 'rt' ? 'primary' : 'default' }} btn-xs"><i class="fa fa-sort"></i></a>
 							</th>
 							<th class="text-center">
-								<a href="#" class="btn btn-default btn-xs">RW</a>
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-sort"></i></a>
+								<a href="{{ site_url('keluarga/urut/rw') }}" class="btn btn-{{ $order_by === 'rw' ? 'primary' : 'default' }} btn-xs">RW</a>
+								<a href="{{ $order_by === 'rw' ? site_url('keluarga/urut/' . $order_by . '/' . $order_type) : '#' }}" class="btn btn-{{ $order_by === 'rw' ? 'primary' : 'default' }} btn-xs"><i class="fa fa-sort"></i></a>
 							</th>
 							<th class="text-center">
 								aksi
@@ -62,21 +62,9 @@
 				<span class="text-grey">last edited by admin 12-12-2017 08:30</span>
 				<nav aria-label="Page navigation" class="pull-right">
 					<ul class="pagination pagination-sm" style="margin:0">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li>
-							<a href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
+						@if(isset($pagination))
+							{{ $pagination }}
+						@endif
 					</ul>
 				</nav>
 				<div class="clearfix"></div>
@@ -96,14 +84,15 @@
 				<h4 class="modal-title">Filter Pencarian</h4>
 			</div>
 			<div class="modal-body">
-				<form action="#">
+				<form action="{{ site_url('keluarga/search') }}" method="POST">
+					{{ $csrf }}
 					<div class="form-group">
 						<label for="">Nomor KK</label>
-						<input type="text" class="form-control" name="no_kk" placeholder="masukkan nomor KK">
+						<input type="text" class="form-control" name="no" placeholder="Masukkan Nomor KK">
 					</div>
 					<div class="form-group">
 						<label for="">Kepala Keluarga</label>
-						<input type="text" class="form-control"name="kepala_keluarga" placeholder="masukkan kepala keluarga">
+						<input type="text" class="form-control"name="nik" placeholder="Masukkan Kepala Keluarga">
 					</div>
 					<div class="form-group">
 						<label for="">RT / RW</label>

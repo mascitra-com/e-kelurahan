@@ -13,17 +13,62 @@ class Pindah extends MY_Controller
         $this->_accessable = TRUE;
     }
 
-    public function index()
+    public function index($page = NULL)
     {
-        $data['mutasi_keluars'] = $this->mutasi_keluar_m
-        ->where('id_organisasi', $this->ion_auth->get_current_id_org())
-        ->fields('id ,created_at, updated_at')
-        ->with_penduduk('fields:nama')
-        ->get_all();
-
+        if(!$page){
+            $this->go('pindah/page/1');
+        }
+        // Get Filter and Order By from Session
+        $filter = $this->session->userdata('fpi');
+        // Setting up Pagination
+        $this->load->library('pagination');
+        $total_data = $this->mutasi_keluar_m->where($filter, 'like', '%')->count_rows();
+        $data['mutasi_keluars'] = $this->mutasi_keluar_m->where($filter, 'like', '%')
+            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+            ->fields('id ,created_at, updated_at')
+            ->with_penduduk('fields:nama')
+            ->paginate(10, $total_data, $page);
+        $data['mutasi_keluar_search'] = $this->mutasi_keluar_m
+            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+            ->with_penduduk('fields:nama')
+            ->get_all();
+        $data['pagination'] = $this->mutasi_keluar_m->all_pages;
         $this->generateCsrf();
         $this->render('kelurahan/pindah', $data);
     }
+
+    /**
+     * Use to make URI looks good
+     *
+     * @param int $page
+     */
+    public function page($page = 1)
+    {
+        $this->index($page);
+    }
+
+    /**
+     * Call when user want to search specific data
+     * Store filter in Session
+     */
+    public function search()
+    {
+        $data = $this->input->post();
+        $data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], "|")));
+        $this->session->unset_userdata('fpi');
+        $this->session->set_userdata('fpi', $data);
+        $this->go('pindah');
+    }
+
+    /**
+     * Reset any filter made while user search specific data
+     */
+    public function refresh()
+    {
+        $this->session->unset_userdata('fpi');
+        $this->go('pindah');
+    }
+
 
     public function arsip()
     {

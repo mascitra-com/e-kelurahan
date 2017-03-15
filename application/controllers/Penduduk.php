@@ -32,9 +32,9 @@ class Penduduk extends MY_Controller {
         // Setting up Pagination
         $this->load->library('pagination');
         $total_data = $this->penduduk->where($filter, 'like', '%')->count_rows();
-        $data['pagination'] = $this->penduduk->all_pages;
         // Get Data Penduduk by filter if it's exist
-        $data['penduduk'] = $this->penduduk->order_by($order_by, $order_type)->where($filter, 'like', '%')->paginate(10, $total_data, $page);
+        $data['penduduk'] = $this->penduduk->order_by($order_by, $order_type)->where($filter, 'like', '%')->where('id_organisasi', $this->ion_auth->get_current_id_org())->paginate(10, $total_data, $page);
+        $data['pagination'] = $this->penduduk->all_pages;
 
         $data['pekerjaan'] = $this->pekerjaan->get_all();
         $data['order_by'] = $order_by;

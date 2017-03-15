@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 03, 2017 at 09:48 AM
--- Server version: 10.2.3-MariaDB-log
+-- Generation Time: 14 Mar 2017 pada 11.12
+-- Versi Server: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -48,7 +48,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -57,7 +57,7 @@ INSERT INTO `admin` (`id`, `id_organisasi`, `ip_address`, `username`, `password`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agenda`
+-- Struktur dari tabel `agenda`
 --
 
 CREATE TABLE `agenda` (
@@ -76,7 +76,7 @@ CREATE TABLE `agenda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `agenda`
+-- Dumping data untuk tabel `agenda`
 --
 
 INSERT INTO `agenda` (`id`, `id_organisasi`, `nama`, `isi`, `slug`, `tanggal_agenda`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -85,7 +85,7 @@ INSERT INTO `agenda` (`id`, `id_organisasi`, `nama`, `isi`, `slug`, `tanggal_age
 -- --------------------------------------------------------
 
 --
--- Table structure for table `akun`
+-- Struktur dari tabel `akun`
 --
 
 CREATE TABLE `akun` (
@@ -110,17 +110,17 @@ CREATE TABLE `akun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `akun`
+-- Dumping data untuk tabel `akun`
 --
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487680998, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 2, '127.0.0.1', 'Kelurahan-tompokersan@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1488529795, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
+(2, 2, '127.0.0.1', 'Kelurahan-tompokersan@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1489486211, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `akun_warga`
+-- Struktur dari tabel `akun_warga`
 --
 
 CREATE TABLE `akun_warga` (
@@ -146,7 +146,7 @@ CREATE TABLE `akun_warga` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `berita`
+-- Struktur dari tabel `berita`
 --
 
 CREATE TABLE `berita` (
@@ -156,10 +156,10 @@ CREATE TABLE `berita` (
   `isi` text NOT NULL,
   `slug` varchar(255) NOT NULL,
   `gambar` varchar(25) NOT NULL DEFAULT 'default.png' COMMENT 'nama gambar, disimpan dengan prefix',
-  `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=aktif, 1=tidak aktif, 2=draft',
+  `status` enum('0','1','2') CHARACTER SET latin1 COLLATE latin1_swedish_nopad_ci NOT NULL DEFAULT '0' COMMENT '0=terpublikasi, 1=terjadwal, 2=draft',
   `tipe` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0=umum, 1=headline',
-  `count` int(11) NOT NULL,
-  `tanggal_publish` date NOT NULL,
+  `count` int(11) NOT NULL DEFAULT 0,
+  `tanggal_publish` date DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -169,18 +169,21 @@ CREATE TABLE `berita` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `berita`
+-- Dumping data untuk tabel `berita`
 --
 
 INSERT INTO `berita` (`id`, `id_organisasi`, `judul`, `isi`, `slug`, `gambar`, `status`, `tipe`, `count`, `tanggal_publish`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 'The news is epic!', '<p><strong>Jember -</strong>&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'the-news-is-epic', 'IMGAAA20170213103432.jpg', '0', '0', 0, '2017-03-01', '2017-02-28 17:00:00', 2, NULL, NULL, NULL, NULL),
-(2, 2, 'Hola this is an awesome article!', '<p><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\n<p>&nbsp;</p>\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'hola-this-is-an-awesome-article', 'default.png', '2', '0', 0, '2017-03-04', '2017-02-28 17:00:00', 2, NULL, NULL, NULL, NULL),
-(3, 2, 'The new article is awesome', '<p><strong>Lumajang</strong></p><br><p>On a slow boat in the middle of the Mekong, I am as far away from comfort as I have ever been. Physically, this ride is uncomfortable, the way the hard right angles of the wooden bench have done unspeakably awkward things to my butt in the last two days. But it is a mental discomfort too. You may be shocked to learn that there is no Wi-Fi signal in the middle of a mile-wide river in remote Northern Laos, and without the typical distractions you are left only with books, conversation, and your own thoughts. Ah, here was the real issue: under no circumstances was I to be left alone with my own thoughts. I gaze straight ahead and my eyes land on a family. A little girl is busy coloring and her father is handing her new markers as he is cued. She leans against him with the incontrovertible air of someone who knows they are safe. Her brown curls fall into her eyes as she focuses with the precision of a heart surgeon. She looks only at the coloring book, and he looks only at her. Before these long and solitary hours on the river I would have smiled warmly at them and moved on. But so many things have changed. I feel a bubble of panic rise in my chest. In my mind, the words appear like the chosen numbers in a lottery: one day she will lose him. I need to warn her that a loving father’s presence is impermanent and equivocal, just like everything beautiful in this world. That some day he will leave her and it will not be his choice.</p>', 'the-new-article-is-awesome', 'IMGKLD20170213103432.jpg', '0', '1', 1, '2017-03-01', '2017-02-28 17:00:00', 2, NULL, NULL, NULL, NULL);
+(1, 2, 'The news is epic!', '<p><strong>Jemberedit -</strong>&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'the-news-is-epic', 'NWSUWL20170309100512.jpg', '0', '0', 0, '2017-03-09', '2017-02-28 17:00:00', 2, '2017-03-09 03:05:12', 2, NULL, 2),
+(2, 2, 'Hola this is an awesome article!', '<p><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\n<p>&nbsp;</p>\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'hola-this-is-an-awesome-article', 'default.png', '0', '0', 0, '2017-03-13', '2017-02-28 17:00:00', 2, '2017-03-13 01:10:38', 2, NULL, 2),
+(3, 2, 'The new article is awesome', '<p><strong>Lumajang</strong></p><br><p>On a slow boat in the middle of the Mekong, I am as far away from comfort as I have ever been. Physically, this ride is uncomfortable, the way the hard right angles of the wooden bench have done unspeakably awkward things to my butt in the last two days. But it is a mental discomfort too. You may be shocked to learn that there is no Wi-Fi signal in the middle of a mile-wide river in remote Northern Laos, and without the typical distractions you are left only with books, conversation, and your own thoughts. Ah, here was the real issue: under no circumstances was I to be left alone with my own thoughts. I gaze straight ahead and my eyes land on a family. A little girl is busy coloring and her father is handing her new markers as he is cued. She leans against him with the incontrovertible air of someone who knows they are safe. Her brown curls fall into her eyes as she focuses with the precision of a heart surgeon. She looks only at the coloring book, and he looks only at her. Before these long and solitary hours on the river I would have smiled warmly at them and moved on. But so many things have changed. I feel a bubble of panic rise in my chest. In my mind, the words appear like the chosen numbers in a lottery: one day she will lose him. I need to warn her that a loving father’s presence is impermanent and equivocal, just like everything beautiful in this world. That some day he will leave her and it will not be his choice.</p>', 'the-new-article-is-awesome', 'IMGKLD20170213103432.jpg', '0', '1', 1, '2017-03-01', '2017-02-28 17:00:00', 2, NULL, NULL, NULL, 2),
+(4, 2, 'Festival Layang-Layang', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid voluptate temporibus obcaecati, voluptates blanditiis! Eius. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ipsam cum nihil voluptatum in, alias.</p>', 'festival-layang-layang', 'NWSMBN20170308105409.jpg', '0', '0', 0, '2017-03-10', '2017-03-08 03:54:09', 2, '2017-03-13 01:13:42', 2, NULL, 2),
+(5, 2, 'Berita untuk draft', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid voluptate temporibus obcaecati, voluptates blanditiis! Eius. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ipsam cum nihil voluptatum in, alias.</p>', 'berita-untuk-draft', 'default.png', '2', '0', 0, '0000-00-00', '2017-03-08 03:57:06', 2, NULL, NULL, NULL, 2),
+(6, 2, 'This is a news without pictures', '<p><strong>Jember -</strong>&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'this-is-a-news-without-pictures-1', 'default.png', '0', '0', 0, '2017-03-09', '2017-03-09 02:22:17', 2, '2017-03-09 03:07:27', 2, '2017-03-13 01:35:10', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_kartu_keluarga`
+-- Struktur dari tabel `detail_kartu_keluarga`
 --
 
 CREATE TABLE `detail_kartu_keluarga` (
@@ -203,7 +206,7 @@ CREATE TABLE `detail_kartu_keluarga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_kartu_keluarga`
+-- Dumping data untuk tabel `detail_kartu_keluarga`
 --
 
 INSERT INTO `detail_kartu_keluarga` (`id`, `no_kk`, `nik`, `id_pendidikan`, `status_keluarga`, `no_urut_kk`, `no_paspor`, `no_kitap`, `ayah`, `ibu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -214,7 +217,7 @@ INSERT INTO `detail_kartu_keluarga` (`id`, `no_kk`, `nik`, `id_pendidikan`, `sta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_tingkatan`
+-- Struktur dari tabel `detail_tingkatan`
 --
 
 CREATE TABLE `detail_tingkatan` (
@@ -230,7 +233,7 @@ CREATE TABLE `detail_tingkatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_tingkatan`
+-- Dumping data untuk tabel `detail_tingkatan`
 --
 
 INSERT INTO `detail_tingkatan` (`id`, `id_akun`, `id_tingkatan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -240,7 +243,7 @@ INSERT INTO `detail_tingkatan` (`id`, `id_akun`, `id_tingkatan`, `created_at`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `galeri`
+-- Struktur dari tabel `galeri`
 --
 
 CREATE TABLE `galeri` (
@@ -262,7 +265,7 @@ CREATE TABLE `galeri` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `galeri_kategori`
+-- Struktur dari tabel `galeri_kategori`
 --
 
 CREATE TABLE `galeri_kategori` (
@@ -281,7 +284,7 @@ CREATE TABLE `galeri_kategori` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `golongan_pegawai`
+-- Struktur dari tabel `golongan_pegawai`
 --
 
 CREATE TABLE `golongan_pegawai` (
@@ -292,7 +295,7 @@ CREATE TABLE `golongan_pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `golongan_pegawai`
+-- Dumping data untuk tabel `golongan_pegawai`
 --
 
 INSERT INTO `golongan_pegawai` (`id`, `nama`, `golongan`, `ruang`) VALUES
@@ -317,14 +320,13 @@ INSERT INTO `golongan_pegawai` (`id`, `nama`, `golongan`, `ruang`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `info_organisasi`
+-- Struktur dari tabel `info_organisasi`
 --
 
 CREATE TABLE `info_organisasi` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_organisasi` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `judul` varchar(255) NOT NULL,
+  `judul` varchar(30) NOT NULL,
   `isi` text NOT NULL,
   `slug` varchar(255) NOT NULL,
   `pos` int(11) NOT NULL COMMENT 'urutan menu',
@@ -336,10 +338,19 @@ CREATE TABLE `info_organisasi` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `info_organisasi`
+--
+
+INSERT INTO `info_organisasi` (`id`, `id_organisasi`, `judul`, `isi`, `slug`, `pos`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 2, 'Sejarah', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam voluptatibus sed qui commodi dolores culpa perferendis iure est sapiente sint atque, necessitatibus adipisci fugiat, nisi veritatis quos amet rem, quasi nesciunt quae provident et! Ducimus consequuntur maxime aspernatur quam sed. Reiciendis labore sapiente totam asperiores molestias illo illum veniam voluptatibus accusantium nobis nisi iure qui nulla temporibus ipsum quas ad, odio veritatis aspernatur quam error eligendi necessitatibus fugit assumenda. Doloribus et dicta, reiciendis accusantium esse asperiores officiis quibusdam non nulla praesentium dolores, quas rem illo placeat numquam a quaerat. Eos voluptatibus in quas magnam eligendi atque dolorum velit asperiores, provident!\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo pariatur fugit nam, nobis illum animi? Inventore quaerat corrupti cum, consectetur, corporis fugit repudiandae tenetur. Provident error dicta est, perspiciatis aut?', 'sejarah', 0, '2017-03-13 17:00:00', 2, NULL, NULL, NULL, NULL),
+(2, 2, 'Visi & Misi', '<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">For more than 130 years, Intertek&rsquo;s story has always been about innovation. In 1885 we began testing and certifying grain cargoes before they were put to sea, and in 1888 we pioneered the idea of independent testing laboratories. Then in 1896, the greatest inventor of them all became part of our story. When Thomas Edison released the wonders of electricity and the light bulb he wanted to ensure that his products were checked, tested and safe. He established the Lamp Testing Bureau, later to become the Electrical Testing Laboratories.</p>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">Over a century later, we maintain his ETL mark of quality, and continue to establish new standards in quality to protect consumers and our clients&rsquo; reputations across the world. Today we are a global force, operating in over 100 countries, offering Total Quality Assurance expertise, delivered consistently with precision, pace and passion, enabling our customers to power ahead safely.</p>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">The foundations and aspirations of our business remain true to those established by our visionary founders, and their innovation and energy continue to be our inspiration. Our passion and entrepreneurial culture will ensure that we deliver for our customers in safety, quality and assurance &ndash; today and in the future.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Purpose</h3>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">Bringing quality and safety to life.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Mission</h3>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">To exceed our customers&rsquo; expectations with innovative and bespoke Assurance, Testing, Inspection and Certification services for their operations and supply chain. Globally. 24/7.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Vision</h3>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">To be the world&rsquo;s most trusted partner for Quality Assurance.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Values</h3>\r\n<ul style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin-top: 0px; margin-bottom: 10px; color: #595654; font-size: 16px;\">\r\n<li style=\"box-sizing: border-box;\">We are a global family that values diversity.</li>\r\n<li style=\"box-sizing: border-box;\">We always do the right thing. With precision, pace and passion.</li>\r\n<li style=\"box-sizing: border-box;\">We trust each other and have fun winning together.</li>\r\n<li style=\"box-sizing: border-box;\">We own and shape our future.</li>\r\n<li style=\"box-sizing: border-box;\">We create sustainable growth. For All.</li>\r\n</ul>', 'visi-misi', 1, '2017-03-14 02:19:59', 2, NULL, NULL, NULL, NULL),
+(3, 2, 'Dummy edit', '<p>dummy content edit</p>', 'dummy-edit-1', 2, '2017-03-14 02:40:09', 2, '2017-03-14 02:49:45', 2, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenis_pekerjaan`
+-- Struktur dari tabel `jenis_pekerjaan`
 --
 
 CREATE TABLE `jenis_pekerjaan` (
@@ -348,7 +359,7 @@ CREATE TABLE `jenis_pekerjaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenis_pekerjaan`
+-- Dumping data untuk tabel `jenis_pekerjaan`
 --
 
 INSERT INTO `jenis_pekerjaan` (`id_jenispekerjaan`, `pekerjaan`) VALUES
@@ -444,7 +455,7 @@ INSERT INTO `jenis_pekerjaan` (`id_jenispekerjaan`, `pekerjaan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenis_pendidikan`
+-- Struktur dari tabel `jenis_pendidikan`
 --
 
 CREATE TABLE `jenis_pendidikan` (
@@ -459,7 +470,7 @@ CREATE TABLE `jenis_pendidikan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenis_pendidikan`
+-- Dumping data untuk tabel `jenis_pendidikan`
 --
 
 INSERT INTO `jenis_pendidikan` (`id_jenispendidikan`, `pendidikan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -477,7 +488,7 @@ INSERT INTO `jenis_pendidikan` (`id_jenispendidikan`, `pendidikan`, `created_at`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kabupaten`
+-- Struktur dari tabel `kabupaten`
 --
 
 CREATE TABLE `kabupaten` (
@@ -487,7 +498,7 @@ CREATE TABLE `kabupaten` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kabupaten`
+-- Dumping data untuk tabel `kabupaten`
 --
 
 INSERT INTO `kabupaten` (`id`, `id_provinsi`, `nama`) VALUES
@@ -1009,7 +1020,7 @@ INSERT INTO `kabupaten` (`id`, `id_provinsi`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kartu_keluarga`
+-- Struktur dari tabel `kartu_keluarga`
 --
 
 CREATE TABLE `kartu_keluarga` (
@@ -1030,7 +1041,7 @@ CREATE TABLE `kartu_keluarga` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kecamatan`
+-- Struktur dari tabel `kecamatan`
 --
 
 CREATE TABLE `kecamatan` (
@@ -1040,7 +1051,7 @@ CREATE TABLE `kecamatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kecamatan`
+-- Dumping data untuk tabel `kecamatan`
 --
 
 INSERT INTO `kecamatan` (`id`, `id_kabupaten`, `nama`) VALUES
@@ -8145,7 +8156,7 @@ INSERT INTO `kecamatan` (`id`, `id_kabupaten`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kelahiran`
+-- Struktur dari tabel `kelahiran`
 --
 
 CREATE TABLE `kelahiran` (
@@ -8172,7 +8183,7 @@ CREATE TABLE `kelahiran` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keluarga`
+-- Struktur dari tabel `keluarga`
 --
 
 CREATE TABLE `keluarga` (
@@ -8192,7 +8203,7 @@ CREATE TABLE `keluarga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `keluarga`
+-- Dumping data untuk tabel `keluarga`
 --
 
 INSERT INTO `keluarga` (`no`, `id_organisasi`, `nik`, `alamat`, `rt`, `rw`, `kode_pos`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -8202,7 +8213,7 @@ INSERT INTO `keluarga` (`no`, `id_organisasi`, `nik`, `alamat`, `rt`, `rw`, `kod
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kelurahan`
+-- Struktur dari tabel `kelurahan`
 --
 
 CREATE TABLE `kelurahan` (
@@ -8212,7 +8223,7 @@ CREATE TABLE `kelurahan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kelurahan`
+-- Dumping data untuk tabel `kelurahan`
 --
 
 INSERT INTO `kelurahan` (`id`, `id_kecamatan`, `nama`) VALUES
@@ -13329,7 +13340,7 @@ INSERT INTO `kelurahan` (`id`, `id_kecamatan`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meninggal`
+-- Struktur dari tabel `meninggal`
 --
 
 CREATE TABLE `meninggal` (
@@ -13350,7 +13361,7 @@ CREATE TABLE `meninggal` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu`
+-- Struktur dari tabel `menu`
 --
 
 CREATE TABLE `menu` (
@@ -13359,7 +13370,7 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `menu`
+-- Dumping data untuk tabel `menu`
 --
 
 INSERT INTO `menu` (`id`, `link`) VALUES
@@ -13385,7 +13396,7 @@ INSERT INTO `menu` (`id`, `link`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mutasi_keluar`
+-- Struktur dari tabel `mutasi_keluar`
 --
 
 CREATE TABLE `mutasi_keluar` (
@@ -13411,7 +13422,7 @@ CREATE TABLE `mutasi_keluar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mutasi_keluar`
+-- Dumping data untuk tabel `mutasi_keluar`
 --
 
 INSERT INTO `mutasi_keluar` (`id`, `id_organisasi`, `no_surat`, `nik`, `alamat_asal`, `alamat_tujuan`, `rt_tujuan`, `rw_tujuan`, `id_prov_tujuan`, `id_kab_tujuan`, `id_kec_tujuan`, `id_kel_tujuan`, `keterangan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -13421,7 +13432,7 @@ INSERT INTO `mutasi_keluar` (`id`, `id_organisasi`, `no_surat`, `nik`, `alamat_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mutasi_keluar_detail`
+-- Struktur dari tabel `mutasi_keluar_detail`
 --
 
 CREATE TABLE `mutasi_keluar_detail` (
@@ -13437,7 +13448,7 @@ CREATE TABLE `mutasi_keluar_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mutasi_keluar_detail`
+-- Dumping data untuk tabel `mutasi_keluar_detail`
 --
 
 INSERT INTO `mutasi_keluar_detail` (`id`, `id_mutasi`, `nik`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -13448,7 +13459,7 @@ INSERT INTO `mutasi_keluar_detail` (`id`, `id_mutasi`, `nik`, `created_at`, `cre
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mutasi_masuk`
+-- Struktur dari tabel `mutasi_masuk`
 --
 
 CREATE TABLE `mutasi_masuk` (
@@ -13468,7 +13479,7 @@ CREATE TABLE `mutasi_masuk` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `organisasi`
+-- Struktur dari tabel `organisasi`
 --
 
 CREATE TABLE `organisasi` (
@@ -13487,7 +13498,7 @@ CREATE TABLE `organisasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `organisasi`
+-- Dumping data untuk tabel `organisasi`
 --
 
 INSERT INTO `organisasi` (`id`, `nama`, `nip`, `nama_pimpinan`, `slug`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -13500,7 +13511,7 @@ INSERT INTO `organisasi` (`id`, `nama`, `nip`, `nama_pimpinan`, `slug`, `status`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penduduk`
+-- Struktur dari tabel `penduduk`
 --
 
 CREATE TABLE `penduduk` (
@@ -13526,7 +13537,7 @@ CREATE TABLE `penduduk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `penduduk`
+-- Dumping data untuk tabel `penduduk`
 --
 
 INSERT INTO `penduduk` (`nik`, `id_organisasi`, `nama`, `tempat_lahir`, `golongan_darah`, `status_nikah`, `jenis_kelamin`, `tanggal_lahir`, `agama`, `pekerjaan`, `rt`, `rw`, `kewarganegaraan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -13539,7 +13550,7 @@ INSERT INTO `penduduk` (`nik`, `id_organisasi`, `nama`, `tempat_lahir`, `golonga
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengumuman`
+-- Struktur dari tabel `pengumuman`
 --
 
 CREATE TABLE `pengumuman` (
@@ -13547,9 +13558,9 @@ CREATE TABLE `pengumuman` (
   `id_organisasi` int(11) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `nama` varchar(100) NOT NULL,
-  `isi` text NOT NULL,
+  `isi` varchar(160) NOT NULL,
   `tanggal_kadaluarsa` date DEFAULT NULL,
-  `prioritas` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0 = Penting, 1= Umum',
+  `status` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0 = Aktif, 1= Tidak Aktif',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -13558,10 +13569,19 @@ CREATE TABLE `pengumuman` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `pengumuman`
+--
+
+INSERT INTO `pengumuman` (`id`, `id_organisasi`, `slug`, `nama`, `isi`, `tanggal_kadaluarsa`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 2, 'cek-berkas-terlebih-dahulu', 'Cek Berkas Terlebih Dahulu', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At debitis, eos facere magni labore delectus.', '2017-03-15', '0', '2017-03-12 17:00:00', 2, '2017-03-13 03:47:57', 2, NULL, NULL),
+(2, 2, 'spread-the-word', 'Spread the word!', 'Spread the word! Save 50% on custom announcements at Shutterfly. We\'re happy to make it easy and affordable to share life\'s joy.', '2017-03-31', '0', '2017-03-13 03:28:16', 2, '2017-03-14 00:40:01', 2, NULL, NULL),
+(4, 2, 'pengumuman-ini-aktif-selamanya', 'Pengumuman ini aktif selamanya', 'Latest News from the Company announcements, reports, corporate announcements & notices.', NULL, '0', '2017-03-13 03:54:48', 2, '2017-03-13 03:59:15', 2, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `percobaan_login`
+-- Struktur dari tabel `percobaan_login`
 --
 
 CREATE TABLE `percobaan_login` (
@@ -13574,7 +13594,7 @@ CREATE TABLE `percobaan_login` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pindahrt`
+-- Struktur dari tabel `pindahrt`
 --
 
 CREATE TABLE `pindahrt` (
@@ -13596,7 +13616,7 @@ CREATE TABLE `pindahrt` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profil_organisasi`
+-- Struktur dari tabel `profil_organisasi`
 --
 
 CREATE TABLE `profil_organisasi` (
@@ -13621,7 +13641,7 @@ CREATE TABLE `profil_organisasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `profil_organisasi`
+-- Dumping data untuk tabel `profil_organisasi`
 --
 
 INSERT INTO `profil_organisasi` (`no`, `id_organisasi`, `nip`, `nama_lurah`, `deskripsi`, `alamat`, `telepon`, `email`, `kode_pos`, `facebook`, `twitter`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`, `id_golongan`) VALUES
@@ -13630,7 +13650,7 @@ INSERT INTO `profil_organisasi` (`no`, `id_organisasi`, `nip`, `nama_lurah`, `de
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provinsi`
+-- Struktur dari tabel `provinsi`
 --
 
 CREATE TABLE `provinsi` (
@@ -13639,7 +13659,7 @@ CREATE TABLE `provinsi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `provinsi`
+-- Dumping data untuk tabel `provinsi`
 --
 
 INSERT INTO `provinsi` (`id`, `nama`) VALUES
@@ -13681,7 +13701,37 @@ INSERT INTO `provinsi` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status_keluarga`
+-- Struktur dari tabel `regulasi`
+--
+
+CREATE TABLE `regulasi` (
+  `id` int(11) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `judul` varchar(255) DEFAULT NULL,
+  `deskripsi` text NOT NULL,
+  `tgl_dikeluarkan` timestamp NOT NULL DEFAULT current_timestamp(),
+  `dikeluarkan_oleh` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `regulasi`
+--
+
+INSERT INTO `regulasi` (`id`, `id_organisasi`, `judul`, `deskripsi`, `tgl_dikeluarkan`, `dikeluarkan_oleh`, `link`, `deleted_by`, `deleted_at`, `updated_by`, `updated_at`, `created_by`, `created_at`) VALUES
+(1, 0, 'Judul', 'Deskripsi', '2017-03-14 10:55:24', 'Bupati', 'REGLZC20170314105628.docx', NULL, NULL, NULL, NULL, 2, '2017-03-14 03:55:24'),
+(2, 0, 'Judul', 'Deskripsi', '2017-03-14 10:56:29', 'Gubernur', 'REGLZC20170314105628.docx', NULL, NULL, NULL, NULL, 2, '2017-03-14 03:56:29');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `status_keluarga`
 --
 
 CREATE TABLE `status_keluarga` (
@@ -13690,7 +13740,7 @@ CREATE TABLE `status_keluarga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `status_keluarga`
+-- Dumping data untuk tabel `status_keluarga`
 --
 
 INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUES
@@ -13706,7 +13756,7 @@ INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `surat`
+-- Struktur dari tabel `surat`
 --
 
 CREATE TABLE `surat` (
@@ -13726,7 +13776,7 @@ CREATE TABLE `surat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `surat`
+-- Dumping data untuk tabel `surat`
 --
 
 INSERT INTO `surat` (`id`, `no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal_verif`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -13737,12 +13787,13 @@ INSERT INTO `surat` (`id`, `no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal
 (005, '24/2/02.002/2017', '3764289649123', 2, '1', '2017-02-28 01:49:22', '1', '2017-02-28 01:49:22', 2, NULL, NULL, NULL, NULL),
 (006, '25/1/02.002/2017', '83740927349074', 2, '2', '2017-02-28 01:56:21', '1', '2017-02-28 01:56:21', 2, NULL, NULL, NULL, NULL),
 (007, '26/1/02.002/2017', '7289379132', 2, '3', '2017-02-28 02:10:12', '1', '2017-02-28 02:10:12', 2, NULL, NULL, NULL, NULL),
-(009, '23/4/02.002/2017', '123809123810938', 2, '0', '2017-03-03 01:36:13', '1', '2017-03-03 01:36:13', 2, NULL, NULL, NULL, NULL);
+(009, '23/4/02.002/2017', '123809123810938', 2, '0', '2017-03-03 01:36:13', '1', '2017-03-03 01:36:13', 2, NULL, NULL, NULL, NULL),
+(010, NULL, '3764289649123', 2, '0', NULL, '0', '2017-03-03 02:56:49', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tingkatan`
+-- Struktur dari tabel `tingkatan`
 --
 
 CREATE TABLE `tingkatan` (
@@ -13759,7 +13810,7 @@ CREATE TABLE `tingkatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tingkatan`
+-- Dumping data untuk tabel `tingkatan`
 --
 
 INSERT INTO `tingkatan` (`id`, `name`, `description`, `menu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -13991,6 +14042,12 @@ ALTER TABLE `provinsi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `regulasi`
+--
+ALTER TABLE `regulasi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `status_keluarga`
 --
 ALTER TABLE `status_keluarga`
@@ -14034,7 +14091,7 @@ ALTER TABLE `akun_warga`
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `detail_kartu_keluarga`
 --
@@ -14059,7 +14116,7 @@ ALTER TABLE `galeri_kategori`
 -- AUTO_INCREMENT for table `info_organisasi`
 --
 ALTER TABLE `info_organisasi`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `jenis_pekerjaan`
 --
@@ -14094,77 +14151,82 @@ ALTER TABLE `organisasi`
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `percobaan_login`
 --
 ALTER TABLE `percobaan_login`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `regulasi`
+--
+ALTER TABLE `regulasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tingkatan`
 --
 ALTER TABLE `tingkatan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `agenda`
+-- Ketidakleluasaan untuk tabel `agenda`
 --
 ALTER TABLE `agenda`
   ADD CONSTRAINT `agenda_ibfk_1` FOREIGN KEY (`id_organisasi`) REFERENCES `organisasi` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `akun_warga`
+-- Ketidakleluasaan untuk tabel `akun_warga`
 --
 ALTER TABLE `akun_warga`
   ADD CONSTRAINT `akun_warga_ibfk_1` FOREIGN KEY (`id_keluarga`) REFERENCES `keluarga` (`no`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `berita`
+-- Ketidakleluasaan untuk tabel `berita`
 --
 ALTER TABLE `berita`
   ADD CONSTRAINT `berita_ibfk_1` FOREIGN KEY (`id_organisasi`) REFERENCES `organisasi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `detail_tingkatan`
+-- Ketidakleluasaan untuk tabel `detail_tingkatan`
 --
 ALTER TABLE `detail_tingkatan`
   ADD CONSTRAINT `detail_tingkatan_ibfk_1` FOREIGN KEY (`id_tingkatan`) REFERENCES `tingkatan` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `detail_tingkatan_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `info_organisasi`
+-- Ketidakleluasaan untuk tabel `info_organisasi`
 --
 ALTER TABLE `info_organisasi`
   ADD CONSTRAINT `info_organisasi_ibfk_1` FOREIGN KEY (`id_organisasi`) REFERENCES `organisasi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `kabupaten`
+-- Ketidakleluasaan untuk tabel `kabupaten`
 --
 ALTER TABLE `kabupaten`
   ADD CONSTRAINT `kabupaten_ibfk_1` FOREIGN KEY (`id_provinsi`) REFERENCES `provinsi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `kecamatan`
+-- Ketidakleluasaan untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD CONSTRAINT `kecamatan_ibfk_1` FOREIGN KEY (`id_kabupaten`) REFERENCES `kabupaten` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `kelurahan`
+-- Ketidakleluasaan untuk tabel `kelurahan`
 --
 ALTER TABLE `kelurahan`
   ADD CONSTRAINT `kelurahan_ibfk_1` FOREIGN KEY (`id_kecamatan`) REFERENCES `kecamatan` (`id`);
 
 --
--- Constraints for table `surat`
+-- Ketidakleluasaan untuk tabel `surat`
 --
 ALTER TABLE `surat`
   ADD CONSTRAINT `surat_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `penduduk` (`nik`) ON DELETE NO ACTION ON UPDATE CASCADE,

@@ -23,6 +23,9 @@ if (!function_exists('prefix_unik')) {
             case 1: //GAMBAR BERITA
             $pre = 'NWS';
             break;
+            case 2: //DOKUMEN REGULASI
+            $pre = 'REG';
+            break;
             default: //FILE FORMAT LAINNYA
             $pre = 'OTH';
             break;
