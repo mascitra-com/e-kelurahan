@@ -23,15 +23,17 @@
 			<div class="panel-body">
 				<div class="row">
                     @if($foto)
+                        <?php $i = count($foto); ?>
                         @foreach($foto as $list)
-                        <div class="col-xs-4 col-sm-4 col-md-2">
-                            <a href="#">
-                                <figure href="#" class="thumbnail" data-toggle="modal" data-target="#modal-preview">
-                                    <img src="{{base_url('assets/galeri/' . $list->link)}}" alt="{{ !empty($list->nama) ? $list->nama : 'Foto' }}">
-                                    <figcaption style="text-align: center">{{ !empty($list->nama) ? $list->nama : 'Foto' }}</figcaption>
-                                </figure>
-                            </a>
-                        </div>
+                            <div class="col-xs-4 col-sm-4 col-md-2">
+                                <a href="#">
+                                    <figure href="#" class="thumbnail" data-toggle="modal" data-target="#modal-preview">
+                                        <img src="{{base_url('assets/galeri/' . $list->link)}}" alt="{{ !empty($list->nama) ? $list->nama : 'Foto ' . $i }}">
+                                        <figcaption style="text-align: center">{{ !empty($list->nama) ? $list->nama : 'Foto ' . $i }}</figcaption>
+                                    </figure>
+                                </a>
+                            </div>
+                            <?php $i--; ?>
                         @endforeach
                     @endif
 				</div>
