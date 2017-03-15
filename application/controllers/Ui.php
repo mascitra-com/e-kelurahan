@@ -173,4 +173,14 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/pengumuman/pengumuman');
 	}
+
+	public function galeri()
+	{
+		$this->render('_UI/galeri/galeri');
+	}
+
+	public function galeri_list()
+	{
+		$this->render('_UI/galeri/galeri-list');
+	}
 }
