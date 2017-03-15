@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	scrollNavbar();
 	$("#alerts").modal('show');
+	$(".pengumuman").marquee({direction:'left',duration:17000,duplicated:true});
 });
 
 function scrollNavbar()

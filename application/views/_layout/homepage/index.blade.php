@@ -143,6 +143,13 @@
 			</div>
 		</div>
 	</div>
+	<!-- PENGUMUAMN -->
+	<div class="pengumuman">
+		<ul class="pengumuman-list">
+			<li>[02/02/17] Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, inventore!</li>
+			<li>[02/02/17] Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, inventore!</li>
+		</ul>
+	</div>
 	<!-- ALERT -->
 	<?php $message = $this->session->flashdata('message'); ?>
 	@if($message)
@@ -164,6 +171,7 @@
 </body>
 <script src="{{base_url('assets/plugins/jquery/jquery-3.1.1.min.js')}}"></script>
 <script src="{{base_url('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{base_url('assets/plugins/jquery-marquee/jquery.marquee.min.js')}}"></script>
 <script src="{{base_url('assets/js/theme-homepage.js')}}"></script>
 @yield('javascript')
 </html>
