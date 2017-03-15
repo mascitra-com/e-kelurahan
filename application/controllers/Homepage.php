@@ -72,10 +72,9 @@ class Homepage extends MY_Controller {
 
 			//AGENDA
 		$data['agendas'] = $this->agenda_m
-		->where('id_organisasi', $id_organisasi)
 		->order_by('tanggal_agenda', 'desc')
 		->limit(4)
-		->fields('nama, tanggal_agenda, slug')
+		->fields('perihal, tanggal_agenda')
 		->get_all();
 
 		$this->render('homepage/index', $data);
