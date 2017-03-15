@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 14 Mar 2017 pada 11.12
+-- Generation Time: 15 Mar 2017 pada 07.19
 -- Versi Server: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -63,9 +63,7 @@ INSERT INTO `admin` (`id`, `id_organisasi`, `ip_address`, `username`, `password`
 CREATE TABLE `agenda` (
   `id` int(11) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `isi` text NOT NULL,
-  `slug` varchar(255) NOT NULL,
+  `perihal` text NOT NULL,
   `tanggal_agenda` date DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(16) NOT NULL,
@@ -79,8 +77,9 @@ CREATE TABLE `agenda` (
 -- Dumping data untuk tabel `agenda`
 --
 
-INSERT INTO `agenda` (`id`, `id_organisasi`, `nama`, `isi`, `slug`, `tanggal_agenda`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 'Apel Besar Tahunan', '<p><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'apel-besar-tahunan', '2017-03-06', '2017-02-28 17:00:00', 2, NULL, NULL, NULL, NULL);
+INSERT INTO `agenda` (`id`, `id_organisasi`, `perihal`, `tanggal_agenda`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 2, '<p><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', '2017-03-06', '2017-02-28 17:00:00', 2, NULL, NULL, NULL, NULL),
+(3, 2, 'Pernikahan Anak Pak Camat', '2017-03-13', '2017-03-14 04:24:28', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -115,7 +114,7 @@ CREATE TABLE `akun` (
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487680998, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 2, '127.0.0.1', 'Kelurahan-tompokersan@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1489486211, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
+(2, 2, '127.0.0.1', 'Kelurahan-tompokersan@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1489560158, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -280,6 +279,14 @@ CREATE TABLE `galeri_kategori` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `galeri_kategori`
+--
+
+INSERT INTO `galeri_kategori` (`id`, `id_organisasi`, `nama`, `deskripsi`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 2, 'Rapat RT & RW', 'Deskripsi Galeri', '2017-03-15 00:09:30', 2, NULL, NULL, NULL, NULL),
+(2, 2, 'Pernikahan', '', '2017-03-15 00:10:27', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13835,7 +13842,6 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `agenda`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug` (`slug`),
   ADD KEY `id_organisasi` (`id_organisasi`),
   ADD KEY `agenda_ibfk_3` (`updated_by`),
   ADD KEY `agenda_ibfk_4` (`deleted_by`);
@@ -14076,7 +14082,7 @@ ALTER TABLE `tingkatan`
 -- AUTO_INCREMENT for table `agenda`
 --
 ALTER TABLE `agenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `akun`
 --
@@ -14111,7 +14117,7 @@ ALTER TABLE `galeri`
 -- AUTO_INCREMENT for table `galeri_kategori`
 --
 ALTER TABLE `galeri_kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `info_organisasi`
 --
