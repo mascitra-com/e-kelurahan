@@ -146,12 +146,12 @@ class Info extends MY_Controller
 				))->update();
 
 			if ($query === FALSE) {
-				$data['msg'] = 'Terjadi kesalahan saat mengubah info baru.';
+				$data['msg'] = 'Terjadi kesalahan saat mengubah info';
 				$data['msg_type'] = 'warning';
 				$data['prev_input'] = $data;
 				$this->sunting($slug, $data, TRUE);
 			}else{
-				$this->message('<strong>Berhasil!</strong> Mengubah info baru.', 'success');
+				$this->message('<strong>Berhasil!</strong> Mengubah info', 'success');
 				$this->go('info');
 			}
 		}

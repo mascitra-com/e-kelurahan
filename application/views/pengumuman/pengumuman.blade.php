@@ -43,7 +43,7 @@
 							<td class="text-center"><span class="label label-{{ ($pengumuman->status == '0') ? 'success' : 'danger' }}">{{ ($pengumuman->status == '0') ? 'aktif' : 'non-aktif' }}</span></td>
 							<td class="text-center text-nowrap">
 								<a href="{{ ($pengumuman->status == '0') ? site_url('pengumuman/nonaktifkan/'.$pengumuman->slug) : site_url('pengumuman/aktifkan/'.$pengumuman->slug) }}" class="btn btn-xs btn-default" title="{{ ($pengumuman->status == '0') ? 'non-aktifkan' : 'aktifkan' }}"><i class="fa fa-power-off text-{{ ($pengumuman->status == '0') ? 'red' : 'green' }}"></i></a>
-								<a href="#" class="btn btn-xs btn-default" title="sunting"><i class="fa fa-pencil"></i></a>
+								<button class="btn btn-xs btn-default btn-edit" title="sunting" data-nama= "{{ $pengumuman->nama }}" data-isi="{{ $pengumuman->isi }}" data-batas = "{{ $pengumuman->tanggal_kadaluarsa }}" data-slug= {{ $pengumuman->slug }}><i class="fa fa-pencil"></i></button>
 								<a href="{{ site_url('pengumuman/hapus/'.$pengumuman->slug) }}" class="btn btn-xs btn-default" title="hapus" onclick="return confirm('Anda yakin?')"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
@@ -74,17 +74,17 @@
 				<h4 class="modal-title">Pengumuman</h4>
 			</div>
 			<div class="modal-body">
-				<form action="{{ site_url('pengumuman/simpan') }}" method="POST">
-				{{ $csrf }}
+				<form action="{{ site_url('pengumuman/simpan') }}" method="POST" class="form">
+					{{ $csrf }}
 					<div class="form-group">
 						<label for="nama">Judul Pengumuman</label>
 						{{ form_error('nama') }}
-						<input type="text" class="form-control" name="nama" placeholder="judul pengumuman" value="{{ (isset($peng['nama'])) ? $peng['nama'] : '' }}" required />
+						<input type="text" class="form-control" name="nama" placeholder="judul pengumuman" value="{{ (isset($peng['nama'])) ? $peng['nama'] : '' }}" minlength="3" maxlength="100" required />
 					</div>
 					<div class="form-group">
 						<label for="isi">Isi Pengumuman</label>
 						{{ form_error('isi') }}
-						<textarea class="form-control" name="isi" placeholder="isi pengumuman" required>{{ (isset($peng['isi'])) ? $peng['isi'] : '' }}</textarea>
+						<textarea class="form-control" name="isi" placeholder="isi pengumuman"  minlength="3" maxlength="160" required>{{ (isset($peng['isi'])) ? $peng['isi'] : '' }}</textarea>
 					</div>
 					<div class="form-group">
 						<label for="tanggal_kadaluarsa">Batas tampil*</label>
@@ -116,4 +116,20 @@
 		margin-bottom: 0;
 	}
 </style>
+@endsection
+
+@section('javascript')
+<script>
+	$(".btn-edit").click(function(){
+		$("#modal-tambah .form input[name='nama']").val($(this).data('nama'));
+		$("#modal-tambah .form textarea[name='isi']").val($(this).data('isi'));
+		$("#modal-tambah .form input[name='tanggal_kadaluarsa']").val($(this).data('batas'));
+		$("#modal-tambah .form").attr("action", "{{site_url('pengumuman/ubah/')}}"+$(this).data('slug'));
+		$("#modal-tambah").modal('show');
+	});
+
+	$('#modal-tambah').on('hidden.bs.modal', function (e) {
+		$("#modal-tambah .form").attr("action", "{{site_url('pengumuman/simpan')}}").trigger("reset");
+	});
+</script>
 @endsection

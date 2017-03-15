@@ -20,7 +20,7 @@ class Pengumuman extends MY_Controller
 		$query = $this->pengumuman_m
 		->where(array(
 			'tanggal_kadaluarsa <' => date('Y-m-d')
-		))
+			))
 		->update(array('status' => '1'));
 		if ($query === FALSE) {
 			$this->message('Terjadi kesalahan sistem saat memeriksa batas tanggal pengumuman! Hubungi bagian teknis!', 'danger');
@@ -81,6 +81,43 @@ class Pengumuman extends MY_Controller
 				$this->go('pengumuman');
 			}
 		}		
+	}
+
+	public function ubah($slug = NULL)
+	{
+		if (is_null($slug) || empty($slug)) {
+			$this->message('Pengumuman tidak ditemukan', 'warning');
+			$this->go('pengumuman');
+		}else{
+			$data = $this->input->post();
+			if (!empty($data['tanggal_kadaluarsa']) && $data['tanggal_kadaluarsa'] < date('Y-m-d')) {
+				$this->message('Pilih tanggal sama atau lebih dari tanggal hari ini', 'warning');
+				$this->go('pengumuman');
+			}else{
+				$data['slug'] = $this->slug->create_uri($data);
+
+				if (empty($data['tanggal_kadaluarsa'])) {
+					$data['tanggal_kadaluarsa'] = NULL;
+				}
+
+				$query = $this->pengumuman_m->from_form(NULL, array(
+					'slug' => $data['slug'],
+					'tanggal_kadaluarsa' => $data['tanggal_kadaluarsa']
+					), array(
+					'slug' => $slug,
+					'id_organisasi' => $this->ion_auth->get_current_id_org()
+					))->update();
+
+				if ($query === FALSE) {
+					$this->message('Terjadi kesalahan saat mengubah pengumuman', 'warning');
+					$this->go('pengumuman');
+				}else{
+					$this->message('Berhasil mengubah pengumuman', 'success');
+					$this->go('pengumuman');
+				}
+			}		
+		}
+
 	}
 
 	public function nonaktifkan($slug = NULL)
