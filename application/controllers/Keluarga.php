@@ -113,6 +113,7 @@ class Keluarga extends MY_Controller
 				'nik' => $data['nik'],
 				);
 			if ($this->detail_kk_m->insert($insert_detail)) {
+			    $this->ion_auth->register($data['nik'], '123456', array('id_organisasi' => $this->ion_auth->get_current_id_org()), '3');
 				$this->go('keluarga/detail/'.$data['no']);
 			}else{
 				die('terjadi kesalahan saat insert tabel detail keluarga');
@@ -181,7 +182,6 @@ class Keluarga extends MY_Controller
     public function hapus_anggota($id = NULL)
     {
         $no_kk = $this->detail_kk_m->fields('no_kk')->get($id)->no_kk;
-        dump($no_kk);
         if($this->detail_kk_m->delete($id)){
             $this->message('Berhasil Menghapus Anggota Keluarga Baru', 'success');
         } else {

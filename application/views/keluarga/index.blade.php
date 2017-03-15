@@ -42,6 +42,7 @@
 						</tr>
 					</thead>
 					<tbody>
+					@if($keluargas)
 						<?php $i=0; ?>
 						@foreach($keluargas as $keluarga)
 						<tr>
@@ -55,6 +56,7 @@
 							</td>
 						</tr>
 						@endforeach
+                    @endif
 					</tbody>
 				</table>
 			</div>
@@ -121,6 +123,7 @@
 			</div>
 			<div class="modal-body">
 				<form action="{{ site_url('keluarga/simpan') }}" method="POST">
+                    {{ $csrf }}
 					<div class="form-group">
 						<label for="no">Nomor KK</label>
 						<input type="text" class="form-control" name="no" placeholder="masukkan nomor KK">
