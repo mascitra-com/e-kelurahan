@@ -38,8 +38,16 @@ class Regulasi extends MY_Controller
 
     public function ubah($id = NULL)
     {
-        //TODO
-        dump('do update here');
+        $data = $this->input->post();
+        if (!empty($_FILES['dokumen']['name'])) {
+            $data['link']= $this->do_upload('dokumen');
+        }
+        if($this->regulasi_m->update($data, $id)){
+            $this->message('Berhasil Mengubah Data Regulasi', 'success');
+        } else {
+            $this->message('Gagal Mengubah Data Regulasi', 'danger');
+        }
+        $this->go('regulasi');
     }
 
     private function do_upload($input_name)
