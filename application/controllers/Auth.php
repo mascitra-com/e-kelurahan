@@ -50,9 +50,14 @@ class Auth extends MY_Controller {
 	public function login()
 	{
 		if ($this->ion_auth->logged_in()) {
+            if($this->uri->segment(1, 0) === 'warga'){
+                $this->session->set_userdata('warga', TRUE);
+                redirect('warga/pengajuan/blankoktp');
+            }
 			redirect('dashboard', 'refresh');
 		}
-        $this->data['action'] = $action = 'auth' === $this->uri->segment(1, 0) ? 'auth' : 'super';
+
+        $this->data['action'] = $action = $this->uri->segment(1, 0);
         $this->data['title'] = $this->lang->line('login_heading');
 
 		//validate form input
@@ -71,6 +76,10 @@ class Auth extends MY_Controller {
 				//redirect them back to the home page
                 if($this->uri->segment(1, 0) === 'super'){
                     $this->session->set_userdata('super', TRUE);
+                }
+                if($this->uri->segment(1, 0) === 'warga'){
+                    $this->session->set_userdata('warga', TRUE);
+                    redirect('warga/pengajuan/blankoktp');
                 }
 				$this->message($this->ion_auth->messages());
 				redirect('dashboard', 'refresh');

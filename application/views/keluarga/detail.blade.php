@@ -91,7 +91,7 @@
                                 <td>{{ $item->no_urut_kk }}</td>
                                 <td><a href="{{ site_url('penduduk/detail/'.$item->nik) }}">{{ $item->penduduk->nama }}</a></td>
                                 <td>{{ $item->status->nama_statuskeluarga }}</td>
-                                <td>{{ $item->pendidikan->pendidikan }}</td>
+                                <td>{{ $item->pendidikan ? $item->pendidikan->pendidikan : '-' }}</td>
                                 <td>{{ $item->no_paspor }}</td>
                                 <td>{{ $item->no_kitap }}</td>
                                 <td>{{ $item->ayah }}</td>

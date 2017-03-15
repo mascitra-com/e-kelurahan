@@ -1013,7 +1013,14 @@ class Ion_auth_model extends CI_Model
 				}
 
 				$this->trigger_events(array('post_login', 'post_login_successful'));
-				$this->set_message('login_successful');
+                if($this->uri->segment(1, 0) === 'warga'){
+                    $this->db->select('nik');
+                    $this->db->from('penduduk');
+                    $this->db->where('nik', $identity);
+                    $penduduk = $this->db->get()->row();
+                    $this->session->set_userdata('nik', $penduduk->nik);
+                }
+                $this->set_message('login_successful');
 
 				return TRUE;
 			}
@@ -1096,6 +1103,11 @@ class Ion_auth_model extends CI_Model
 	public function get_current_id_org()
 	{
 		return $this->session->userdata('id_organisasi');
+	}
+
+	public function get_current_nik()
+	{
+		return $this->session->userdata('nik');
 	}
 
 	public function get_allowed_links()
