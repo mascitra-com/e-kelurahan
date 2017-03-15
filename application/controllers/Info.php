@@ -240,7 +240,6 @@ class Info extends MY_Controller
 		//id par pertama, arrow par 2, pos par 3
 		$datas = $this->input->post();
 		$data = explode(":", $datas['pos']);
-		dump($data);
 		$last_number = $this->info_m->count_rows();
 		$id_org = $this->ion_auth->get_current_id_org();
 
@@ -256,7 +255,7 @@ class Info extends MY_Controller
 		}else{
 			if ($data[2] != $last_number-1) {
 				$already_exist_pos =  $this->info_m->fields('id')->where(array('pos' => $data[2]+1, 'id_organisasi' => $id_org))->as_object()->get();
-				$this->info_m->where(array('id' => $already_exist_pos->id, 'id_organisasi', $id_org))->update(array('pos'=>$data[2]));
+				$this->info_m->where(array('id' => $already_exist_pos->id, 'id_organisasi'=> $id_org))->update(array('pos'=>$data[2]));
 				$this->info_m->where(array('id' => $data[0], 'id_organisasi' => $id_org))->update(array('pos'=>$data[2]+1));
 			}else{
 				$this->info_m->where(array('id' => $data[0], 'id_organisasi' => $id_org))->update(array('pos'=>0));

@@ -39,7 +39,7 @@
 							@foreach($infos as $info)
 							<tr>
 								<td class="text-center">
-									<button value="{{$info->id.':'.'0'.':'.$info->pos }}" {{ ($info->pos == 0) ? '' : '' }} name="pos" class="btn btn-xs btn-xxs btn-default"><i class="fa fa-caret-up"></i></button>
+									<button value="{{$info->id.':'.'0'.':'.$info->pos }}" name="pos" class="btn btn-xs btn-xxs btn-default"><i class="fa fa-caret-up"></i></button>
 									<button value="{{$info->id.':'.'1'.':'.$info->pos }}" name="pos" class="btn btn-xs btn-xxs btn-default"><i class="fa fa-caret-down"></i></button>
 								</td>
 								<td class="text-center">{{++$i}}</td>
