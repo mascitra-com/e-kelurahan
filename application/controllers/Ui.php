@@ -207,4 +207,14 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/homepage/berita_detail');
 	}
+
+	public function surat_keterangan_miskin_detail()
+	{
+		$this->render('_UI/surat/keterangan_miskin_detail');
+	}
+
+	public function surat_keterangan_miskin_cetak()
+	{
+		$this->render('_UI/surat/keterangan_miskin_cetak');
+	}
 }
