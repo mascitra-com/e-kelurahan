@@ -15,12 +15,69 @@ class Keluarga extends MY_Controller
 		$this->load->model(array('keluarga_m', 'penduduk_m', 'pendidikan_m', 'detail_kk_m', 'status_keluarga_m'));
 	}
 
-	public function index()
+	public function index($page = NULL)
 	{
-		$data['keluargas'] = $this->keluarga_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->fields('no, alamat, rt, rw, updated_at')->with_penduduk('fields:nama')->get_all();
-		$this->generateCsrf();
+        if(!$page){
+            $this->go('keluarga/page/1');
+        }
+        // Get Filter and Order By from Session
+        $filter = $this->session->userdata('fk');
+        $order_by = $this->session->userdata('obk');
+        $order_type = $this->session->userdata('otk');
+        // Setting up Pagination
+        $this->load->library('pagination');
+        $total_data = $this->keluarga_m->where($filter, 'like', '%')->count_rows();
+		$data['keluargas'] = $this->keluarga_m->order_by($order_by, $order_type)->where($filter, 'like', '%')->where('id_organisasi', $this->ion_auth->get_current_id_org())->fields('no, alamat, rt, rw, updated_at')->with_penduduk('fields:nama')->paginate(10, $total_data, $page);
+        $data['pagination'] = $this->keluarga_m->all_pages;
+        $data['order_by'] = $order_by;
+        $data['order_type'] = $order_type === 'asc' ? 'desc' : 'asc';
+        $this->generateCsrf();
 		$this->render('keluarga/index', $data);
 	}
+
+    /**
+     * Use to make URI looks good
+     *
+     * @param int $page
+     */
+    public function page($page = 1)
+    {
+        $this->index($page);
+    }
+
+    /**
+     * Order the data
+     *
+     * @param $order_by
+     * @param string $order_type
+     */
+    public function urut($order_by, $order_type = 'asc')
+    {
+        $this->session->unset_userdata(array('obk', 'otk'));
+        $this->session->set_userdata('obk', $order_by);
+        $this->session->set_userdata('otk', $order_type);
+        $this->go('keluarga');
+    }
+
+    /**
+     * Call when user want to search specific data
+     * Store filter in Session
+     */
+    public function search()
+    {
+        $this->session->unset_userdata('fk');
+        $this->session->set_userdata('fk', $this->input->post());
+        $this->go('keluarga');
+    }
+
+    /**
+     * Reset any filter made while user search specific data
+     */
+    public function refresh()
+    {
+        $this->session->unset_userdata(array('fk', 'obk', 'otk'));
+        $this->go('keluarga');
+    }
 
 	public function detail($no = NULL)
 	{

@@ -52,6 +52,8 @@ class Keluarga_m extends MY_Model
         $this->has_one['penduduk'] = array('Penduduk_m', 'nik', 'nik');
 		$this->has_many['detailKK'] = array('Detail_kk_m', 'no_kk', 'no');
 		$this->soft_deletes = TRUE;
+        $this->pagination_delimiters = array('<li>','</li>');
+        $this->pagination_arrows = array('&lt;','&gt;');
 		parent::__construct();
 	}
 }
