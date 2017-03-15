@@ -195,7 +195,7 @@
 							@foreach($agendas as $agenda)
 							<li>
 								<span class="agenda-date"><?= mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $agenda->tanggal_agenda))) ?></span>
-								<span class="agenda-desc">{{ potong_teks(strip_tags($agenda->nama), 52) }}</span>
+								<span class="agenda-desc">{{ potong_teks(strip_tags($agenda->perihal), 52) }}</span>
 							</li>
 							@endforeach
 						@endif
