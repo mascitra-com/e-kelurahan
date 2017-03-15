@@ -42,7 +42,7 @@
 								<a href="{{ base_url('assets/regulasi/'.$list->link) }}" class="btn btn-primary btn-xs btn-block"><i class="fa fa-download"></i> Unduh</a>
 							</td>
 							<td class="text-center text-nowrap">
-								<button class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></button>
+								<button class="btn btn-xs btn-default btn-edit" data-id="{{ $list->id }}" data-judul = "{{ $list->judul }}" data-deskripsi = "{{ $list->deskripsi }}" data-tgl_dikeluarkan="{{ date('Y-m-d', strtotime($list->tgl_dikeluarkan)) }}" data-dikeluarkan_oleh = "{{ $list->dikeluarkan_oleh }}"><i class="fa fa-pencil"></i></button>
 								<a href="{{ site_url('regulasi/hapus/'.$list->id) }}" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
@@ -119,4 +119,22 @@
 		vertical-align: middle!important;
 	}
 </style>
+@endsection
+
+
+@section('javascript')
+<script>
+	$(".btn-edit").click(function(){
+		$("#modal-tambah #form input[name='judul']").val($(this).data('judul'));
+		$("#modal-tambah #form textarea[name='deskripsi']").val($(this).data('deskripsi'));
+		$("#modal-tambah #form input[name='tgl_dikeluarkan']").val($(this).data('tgl_dikeluarkan'));
+		$("#modal-tambah #form input[name='dikeluarkan_oleh']").val($(this).data('dikeluarkan_oleh'));
+		$("#modal-tambah #form").attr("action", "{{site_url('regulasi/ubah/')}}"+$(this).data('id'));
+		$("#modal-tambah").modal('show');
+	});
+
+	$('#modal-tambah').on('hidden.bs.modal', function (e) {
+		$("#modal-tambah #form").attr("action", "{{site_url('regulasi/simpan')}}").trigger("reset");
+	});
+</script>
 @endsection

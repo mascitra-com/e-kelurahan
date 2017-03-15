@@ -15,7 +15,7 @@ class Regulasi extends MY_Controller
     public function index()
     {
         $this->generateCsrf();
-        $data['regulasi'] = $this->regulasi_m->get_all();
+        $data['regulasi'] = $this->regulasi_m->get_all(array('id_organisasi'=> $this->ion_auth->get_current_id_org()));
         $this->render('regulasi/index', $data);
     }
 
@@ -34,6 +34,12 @@ class Regulasi extends MY_Controller
             $this->message('Gagal Menyimpan Data Regulasi');
         }
         $this->go('regulasi');
+    }
+
+    public function ubah($id = NULL)
+    {
+        //TODO
+        dump('do update here');
     }
 
     private function do_upload($input_name)
