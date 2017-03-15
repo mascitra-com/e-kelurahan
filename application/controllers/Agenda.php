@@ -31,6 +31,17 @@ class Agenda extends MY_Controller
         $this->go('agenda');
     }
 
+    public function ubah($id = NULL)
+    {
+        $data = $this->input->post();
+        if($this->agenda_m->update($data, $id)){
+            $this->message('Berhasil Mengubah Data Agenda', 'success');
+        } else {
+            $this->message('Gagal Mengubah Data Agenda', 'danger');
+        }
+        $this->go('agenda');
+    }
+
     public function hapus($id)
     {
         if($this->agenda_m->delete($id)){

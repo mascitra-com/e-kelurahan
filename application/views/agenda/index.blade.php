@@ -34,7 +34,7 @@
 							</td>
 							<td>{{ $list->perihal }}</td>
 							<td class="text-center text-nowrap">
-								<a href="#" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+								<button class="btn btn-default btn-xs btn-edit" data-id="{{ $list->id }}" data-tanggal_agenda="{{ $list->tanggal_agenda }}" data-perihal="{{ $list->perihal }}"><i class="fa fa-pencil"></i></button>
 								<a href="{{ site_url('agenda/hapus/'.$list->id) }}" class="btn btn-default btn-xs"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
@@ -65,19 +65,19 @@
 				<h4 class="modal-title">Tambah Agenda</h4>
 			</div>
 			<div class="modal-body">
-				<form action="{{ site_url('agenda/simpan') }}" method="POST">
+				<form action="{{ site_url('agenda/simpan') }}" method="POST" id="form">
 					{{ $csrf }}
 					<div class="form-group">
 						<label for="">Tanggal Agenda</label>
-						<input type="date" class="form-control" name="tanggal_agenda" placeholder="tanggal agenda" />
+						<input type="date" class="form-control" name="tanggal_agenda" placeholder="Tanggal Agenda" />
 					</div>
 					<div class="form-group">
 						<label for="">Perihal</label>
-						<textarea class="form-control" name="perihal" placeholder="perihal agenda"></textarea>
+						<textarea class="form-control" name="perihal" placeholder="Perihal Agenda"></textarea>
 					</div>
 					<div class="form-group">
-						<button class="btn btn-primary"><i class="fa fa-save"></i> simpan</button>
-						<button class="btn btn-warning" type="reset"><i class="fa fa-refresh"></i> bersihkan</button>
+						<button class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+						<button class="btn btn-warning" type="reset"><i class="fa fa-refresh"></i> Bersihkan</button>
 					</div>
 				</form>
 			</div>
@@ -125,4 +125,19 @@
 		vertical-align: middle!important;
 	}
 </style>
+@endsection
+
+@section('javascript')
+	<script>
+        $(".btn-edit").click(function(){
+            $("#modal-tambah #form input[name='tanggal_agenda']").val($(this).data('tanggal_agenda'));
+            $("#modal-tambah #form textarea[name='perihal']").val($(this).data('perihal'));
+            $("#modal-tambah #form").attr("action", "{{site_url('agenda/ubah/')}}"+$(this).data('id'));
+            $("#modal-tambah").modal('show');
+        });
+
+        $('#modal-tambah').on('hidden.bs.modal', function (e) {
+            $("#modal-tambah #form").attr("action", "{{site_url('agenda/simpan')}}").trigger("reset");
+        });
+	</script>
 @endsection
