@@ -43,7 +43,7 @@
 							<td>Sign in</td>
 							<td>Halaman masuk user</td>
 							<td>auth</td>
-							<td>Andre</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/signin')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -56,7 +56,7 @@
 							<td>Manajemen Kelurahan</td>
 							<td>Halaman untuk memanajemen data kelurahan</td>
 							<td>kelurahan</td>
-							<td>Andre</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -69,7 +69,7 @@
 							<td>Manajemen Akun Kelurahan</td>
 							<td>Halaman untuk memanajemen akun kelurahan</td>
 							<td>kelurahan</td>
-							<td>Andre</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -82,7 +82,7 @@
 							<td>Manajemen Kependudukan</td>
 							<td>Halaman untuk memanajemen data kependudukan</td>
 							<td>kependudukan</td>
-							<td>Herda</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/kependudukan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -95,7 +95,7 @@
 							<td>Manajemen Keluarga</td>
 							<td>Halaman untuk memanajemen data Keluarga</td>
 							<td>Keluarga</td>
-							<td>Herda</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/keluarga')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -108,7 +108,7 @@
 							<td>Manajemen Detail Keluarga</td>
 							<td>Halaman untuk memanajemen detail data Keluarga</td>
 							<td>Keluarga</td>
-							<td>Andre</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/keluarga_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -122,7 +122,7 @@
 							<td>Manajemen Pengajuan Pindah</td>
 							<td>Halaman untuk memanajemen pindah kelurahan</td>
 							<td>kelurahan</td>
-							<td>Andre</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/pindah')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -136,7 +136,7 @@
 							<td>Form Pengajuan Pindah</td>
 							<td>Halaman untuk mangajukan pindah kelurahan</td>
 							<td>kelurahan</td>
-							<td>Herda</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/pindah_pengajuan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -150,7 +150,7 @@
 							<td>Detail Pengajuan</td>
 							<td>Halaman untuk mengedit data pengajuan</td>
 							<td>kelurahan</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/pindah_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -163,7 +163,7 @@
 							<td>Arsip Pengajuan Pindah</td>
 							<td>Halaman untuk memanajemen data pindahan yg diarsipkan</td>
 							<td>kelurahan</td>
-							<td>Andre</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/pindah_arsip')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -200,7 +200,7 @@
 							<td>Persetujuan Kelurahan</td>
 							<td>Halaman super admin untuk menyetujui kelurahan</td>
 							<td>Kelurahan</td>
-							<td>Andre</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/konfirmasi_kelurahan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -213,7 +213,7 @@
 							<td>Profil Kelurahan</td>
 							<td>Halaman untuk mengatur informasi profil kelurahan</td>
 							<td>auth</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/profil')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -226,7 +226,7 @@
 							<td>Surat Blanko KTP</td>
 							<td>Halaman untuk memanajemen surat blanko isian ktp</td>
 							<td>surat</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/surat_blanko_ktp')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -239,7 +239,7 @@
 							<td>SKCK</td>
 							<td>Halaman untuk memanajemen SKCK</td>
 							<td>surat</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/surat_skck')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -252,7 +252,7 @@
 							<td>Surat Keterangan Miskin</td>
 							<td>Halaman untuk memanajemen surat keterangan miskin</td>
 							<td>surat</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/surat_keterangan_miskin')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -265,7 +265,7 @@
 							<td>Homepage</td>
 							<td>Halaman depan website</td>
 							<td>homepage</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/homepage')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -278,7 +278,7 @@
 							<td>Status Pengajuan</td>
 							<td>Halaman untuk warga melihat status pengajuan layanan</td>
 							<td>homepage/dashboard</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/status_pengajuan')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -291,7 +291,7 @@
 							<td>Pengajuan Blanko</td>
 							<td>Halaman Pengajuan Blanko KTP</td>
 							<td>homepage/dashboard</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/pengajuan_blanko')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -304,7 +304,7 @@
 							<td>Konfirmasi Pengajuan Blanko</td>
 							<td>Halaman Konfirmasi pengajuan Blanko KTP</td>
 							<td>surat</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/surat_blanko_ktp')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -317,8 +317,8 @@
 							<td>SKTM</td>
 							<td>Halaman Manajemen SKTM/td>
 							<td>surat</td>
-							<td>Belum</td>
-							<td class="text-center"><i class="fa fa-circle text-red"></i></td>
+							<td>Sudah</td>
+							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/surat_sktm')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
 							</td>
@@ -330,7 +330,7 @@
 							<td>Daftar Berita</td>
 							<td>Tulis berita</td>
 							<td>berita</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/berita')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -343,7 +343,7 @@
 							<td>Arsip Berita</td>
 							<td>Halaman daftar arsip berita</td>
 							<td>berita</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/berita_arsip')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -356,7 +356,7 @@
 							<td>Draf Berita</td>
 							<td>Halaman daftar draf berita</td>
 							<td>berita</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/berita_draf')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -369,7 +369,7 @@
 							<td>Tulis Berita</td>
 							<td>Halaman membuat berita baru</td>
 							<td>berita</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/berita_tulis')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -382,7 +382,7 @@
 							<td>Detail Berita</td>
 							<td>Halaman detail berita</td>
 							<td>berita</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/berita_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -395,7 +395,7 @@
 							<td>info</td>
 							<td>Halaman daftar info</td>
 							<td>info</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/info')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -408,7 +408,7 @@
 							<td>tambah info</td>
 							<td>Halaman tambah info</td>
 							<td>info</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/info_tambah')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -421,7 +421,7 @@
 							<td>detail info</td>
 							<td>Halaman detail info</td>
 							<td>info</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/info_detail')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -434,7 +434,7 @@
 							<td>Agenda</td>
 							<td>Halaman agenda</td>
 							<td>agenda</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/agenda')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -447,7 +447,7 @@
 							<td>Regulasi</td>
 							<td>Halaman regulasi</td>
 							<td>regulasi</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/regulasi')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
@@ -460,7 +460,7 @@
 							<td>pengumuman</td>
 							<td>Halaman pengumuman</td>
 							<td>pengumuman</td>
-							<td>Belum</td>
+							<td>Sudah</td>
 							<td class="text-center"><i class="fa fa-circle text-green"></i></td>
 							<td width="10%">
 								<a href="{{site_url('ui/pengumuman')}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-link"></i></a>
