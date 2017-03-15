@@ -26,6 +26,9 @@ if (!function_exists('prefix_unik')) {
             case 2: //DOKUMEN REGULASI
             $pre = 'REG';
             break;
+            case 3: //FOTO GALERI
+            $pre = 'IMG';
+            break;
             default: //FILE FORMAT LAINNYA
             $pre = 'OTH';
             break;

@@ -22,20 +22,25 @@
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					@for($i=0; $i < 12; $i++)
-					<div class="col-xs-4 col-sm-4 col-md-2">
-						<a href="#" class="thumbnail" data-toggle="modal" data-target="#modal-preview">
-							<img src="{{base_url('assets/images/blank-avatar.png')}}" alt="...">
-						</a>
-					</div>
-					@endfor
+                    @if($foto)
+                        @foreach($foto as $list)
+                        <div class="col-xs-4 col-sm-4 col-md-2">
+                            <a href="#">
+                                <figure href="#" class="thumbnail" data-toggle="modal" data-target="#modal-preview">
+                                    <img src="{{base_url('assets/galeri/' . $list->link)}}" alt="{{ !empty($list->nama) ? $list->nama : 'Foto' }}">
+                                    <figcaption style="text-align: center">{{ !empty($list->nama) ? $list->nama : 'Foto' }}</figcaption>
+                                </figure>
+                            </a>
+                        </div>
+                        @endforeach
+                    @endif
 				</div>
 			</div>
 			<div class="panel-footer">
 				<nav aria-label="...">
 					<ul class="pager">
-						<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Baru</a></li>
-						<li class="next"><a href="#">Lama <span aria-hidden="true">&rarr;</span></a></li>
+						<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Lama</a></li>
+						<li class="next"><a href="#">Baru <span aria-hidden="true">&rarr;</span></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -62,7 +67,9 @@
 				<h4 class="modal-title">Foto Album</h4>
 			</div>
 			<div class="modal-body">
-				<form action="#">
+				<form action="{{ site_url('galeri/simpanFoto') }}" enctype="multipart/form-data" method="POST">
+                    {{ $csrf }}
+                    <input type="hidden" name="id_kategori" value="{{ $album->id }}">
 					<div class="form-group">
 						<label for="">Judul Foto</label>
 						<input type="text" class="form-control" name="nama" placeholder="Judul Foto" />
