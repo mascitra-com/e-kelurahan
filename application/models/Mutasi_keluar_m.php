@@ -21,6 +21,8 @@ class Mutasi_keluar_m extends MY_Model
 		$this->has_one['kecamatan'] = array('kecamatan_m', 'id', 'id_kec_tujuan');
 		$this->has_one['kelurahan'] = array('kelurahan_m', 'id', 'id_kel_tujuan');
 		$this->soft_deletes = TRUE;
+        $this->pagination_delimiters = array('<li>','</li>');
+        $this->pagination_arrows = array('&lt;','&gt;');
 		parent::__construct();
 	}
 }

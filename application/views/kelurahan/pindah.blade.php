@@ -9,15 +9,23 @@
 			<div class="panel-heading">
 				<h3 class="panel-title pull-left">Data Pindahan</h3>
 				<div class="btn-group btn-group-sm pull-right">
-					<a href="{{site_url('pindah/tambah')}}" class="btn btn-default"><i class="fa fa-plus"></i></a>
-					<a href="{{site_url('pindah/arsip')}}" class="btn btn-default"><i class="fa fa-archive"></i></a>
-					<button class="btn btn-default reload" type="button"><i class="fa fa-refresh"></i></button>
+					<a href="{{ site_url('pindah/tambah') }}" class="btn btn-default"><i class="fa fa-plus"></i></a>
+					<a href="{{ site_url('pindah/arsip') }}" class="btn btn-default"><i class="fa fa-archive"></i></a>
+					<a href="{{ site_url('pindah/refresh') }}" class="btn btn-default reload" type="button"><i class="fa fa-refresh"></i></a>
 				</div>
-				<form action="#" class="pull-right space-right-10">
+				<form action="{{ site_url('pindah/search') }}" class="pull-right space-right-10" method="POST">
 					<div class="input-group input-group-sm">
-						<input type="text" class="form-control" name="cari" placeholder="masukkan kata kunci">
+                        {{ $csrf }}
+                        <input list="nik" type="text" class="form-control" name="nik" placeholder="Masukkan NIK / Nama Pengaju">
+						<datalist id="nik">
+                            @if($mutasi_keluar_search)
+                                @foreach($mutasi_keluar_search as $mutasi)
+                                    <option value="{{ $mutasi->nik }} | {{ $mutasi->penduduk->nama }}">
+                                @endforeach
+                            @endif
+						</datalist>
 						<span class="input-group-btn">
-							<button class="btn btn-default"><i class="fa fa-search"></i></button>
+							<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 						</span>
 					</div>
 				</form>
@@ -59,21 +67,9 @@
 					<span class="text-grey">last edited by admin 12-12-2017 08:30</span>
 					<nav aria-label="Page navigation" class="pull-right">
 						<ul class="pagination pagination-sm" style="margin:0">
-							<li>
-								<a href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li>
-								<a href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
+							@if(isset($pagination))
+								{{ $pagination }}
+							@endif
 						</ul>
 					</nav>
 					<div class="clearfix"></div>
