@@ -82,7 +82,7 @@
 					<span class="nav-caret"><i class="fa fa-caret-down"></i></span>
 				</a>
 				<ul class="sidebar-nav-child collapse collapseable" id="nav-5">
-					<li><a href="#"><i class="fa fa-image"></i><span class="nav-label">Foto</span></a></li>
+					<li><a href="{{ site_url('galeri') }}"><i class="fa fa-image"></i><span class="nav-label">Foto</span></a></li>
 					<li><a href="#"><i class="fa fa-video-camera"></i><span class="nav-label">Video</span></a></li>
 				</ul>
 			</li>

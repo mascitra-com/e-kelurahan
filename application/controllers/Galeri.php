@@ -14,7 +14,7 @@ class Galeri extends MY_Controller
 
     public function index()
     {
-        $data['album'] = $this->galeri_kategori_m->get_all(array('id_organisasi' => $this->ion_auth->get_current_id_org()));
+        $data['album'] = $this->galeri_kategori_m->with_galeri()->get_all(array('id_organisasi' => $this->ion_auth->get_current_id_org()));
         $this->generateCsrf();
         $this->render('galeri/index', $data);
     }

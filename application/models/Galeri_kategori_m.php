@@ -13,7 +13,7 @@ class Galeri_kategori_m extends MY_Model
 
 	public function __construct()
 	{
-		$this->has_many['galeri'] = array('galeri_m', 'id_kategori', 'id');
+		$this->has_one['galeri'] = array('galeri_m', 'id_kategori', 'id');
 		$this->soft_deletes = TRUE;
         $this->pagination_delimiters = array('<li>','</li>');
         $this->pagination_arrows = array('&lt;','&gt;');
