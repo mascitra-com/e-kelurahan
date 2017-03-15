@@ -85,6 +85,8 @@
 	 * @property Pekerjaan_m         $pekerjaan_m
 	 * @property Golongan_m          $golongan_m
 	 * @property Akun_m              $akun_m
+	 * @property Galeri_m            $galeri_m
+	 * @property Galeri_kategori_m $galeri_kategori_m
 	 * @property Pendidikan_m        $pendidikan_m
 	 * @property Provinsi_m          $provinsi_m
 	 * @property Kabupaten_m         $kabupaten_m
