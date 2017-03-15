@@ -65,8 +65,10 @@ class Keluarga extends MY_Controller
      */
     public function search()
     {
+        $data = $this->input->post();
+        $data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], "|")));
         $this->session->unset_userdata('fk');
-        $this->session->set_userdata('fk', $this->input->post());
+        $this->session->set_userdata('fk', $data);
         $this->go('keluarga');
     }
 

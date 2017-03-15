@@ -98,13 +98,13 @@
 						<div class="col-xs-12 col-md-4">
 							<div class="form-group">
 								<label for="">NIK</label>
-								<input type="text" class="form-control" name="nik" placeholder="masukkan nik">
+								<input type="text" class="form-control" name="nik" placeholder="Masukkan NIK">
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-8">
 							<div class="form-group">
 								<label for="">Nama</label>
-								<input type="text" class="form-control" name="nama" placeholder="masukkan nama">
+								<input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
 							</div>
 						</div>
 					</div>
@@ -112,13 +112,13 @@
 						<div class="col-xs-12 col-md-4">
 							<div class="form-group">
 								<label for="">Tempat Lahir</label>
-								<input type="text" class="form-control" name="tempat_lahir" placeholder="tempat lahir">
+								<input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir">
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-4">
 							<div class="form-group">
 								<label for="">Tanggal Lahir</label>
-								<input type="date" class="form-control" name="tanggal_lahir" placeholder="tanggal lahir">
+								<input type="date" class="form-control" name="tanggal_lahir" placeholder="Tanggal Lahir">
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-4">
@@ -126,7 +126,7 @@
 								<label for="">Jenis Kelamin</label>
 								<select name="jenis_kelamin" class="form-control">
 									<option value="" selected>Semua</option>
-									<option value="0" selected>Laki-laki</option>
+									<option value="0">Laki-laki</option>
 									<option value="1">Perempuan</option>
 								</select>
 							</div>
@@ -146,7 +146,7 @@
 						<div class="col-xs-12 col-md-4">
 							<div class="form-group">
 								<label for="">Kewarganegaraan</label>
-								<input type="text" class="form-control" name="kewarganegaraan" placeholder="masukkan kewarganegaraan">
+								<input type="text" class="form-control" name="kewarganegaraan" placeholder="Masukkan Kewarganegaraan">
 							</div>
 						</div>
 					</div>
