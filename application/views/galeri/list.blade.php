@@ -26,8 +26,8 @@
                         <?php $i = count($foto); ?>
                         @foreach($foto as $list)
                             <div class="col-xs-4 col-sm-4 col-md-2">
-                                <a href="#">
-                                    <figure href="#" class="thumbnail" data-toggle="modal" data-target="#modal-preview">
+                                <a href="#" onclick="show('{{ $list->link }}')">
+                                    <figure class="thumbnail">
                                         <img src="{{base_url('assets/galeri/' . $list->link)}}" alt="{{ !empty($list->nama) ? $list->nama : 'Foto ' . $i }}">
                                         <figcaption style="text-align: center">{{ !empty($list->nama) ? $list->nama : 'Foto ' . $i }}</figcaption>
                                     </figure>
@@ -56,7 +56,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
-				<img src="{{base_url('assets/images/blank-avatar.png')}}" alt="image" width="100%">
+				<img src="" alt="image" width="100%" id="img-show">
 			</div>
 		</div>
 	</div>
@@ -90,6 +90,15 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('javascript')
+    <script>
+        function show(img){
+            $('#img-show').attr('src', '{{ base_url('assets/galeri/') }}' + img);
+            $('#modal-preview').modal('show');
+        }
+    </script>
 @endsection
 
 @section('style')
