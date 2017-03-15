@@ -24,9 +24,10 @@
 				<div class="row">
                     @if($album)
                         @foreach($album as $list)
+                            <?php $link = !empty($list->galeri->link) ? 'galeri/'. $list->galeri->link : 'images/default-folder.png'?>
                         <div class="col-xs-4 col-sm-4 col-md-3">
                             <a href="{{site_url('galeri/detail/'.$list->id)}}" class="thumbnail">
-                                <img src="{{base_url('assets/images/default-folder.png')}}" alt="...">
+                                <img src="{{base_url('assets/' . $link)}}" alt="...">
                                 <div class="caption text-size-14 text-bold">{{ ucfirst($list->nama) }}</div>
                             </a>
                         </div>
