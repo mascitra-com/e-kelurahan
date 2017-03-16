@@ -143,6 +143,18 @@
 			</div>
 		</div>
 	</div>
+	<!-- PENGUMUAMN -->
+	<div class="pengumuman">
+		<ul class="pengumuman-list">
+            @if($pengumuman)
+                @foreach($pengumuman as $list)
+                    <li>
+                        [{{ date('d/m/Y', strtotime($list->created_at)) }}] {{ $list->nama }} - {{ $list->isi }}
+                    </li>
+                @endforeach
+            @endif
+		</ul>
+	</div>
 	<!-- ALERT -->
 	<?php $message = $this->session->flashdata('message'); ?>
 	@if($message)
@@ -164,6 +176,7 @@
 </body>
 <script src="{{base_url('assets/plugins/jquery/jquery-3.1.1.min.js')}}"></script>
 <script src="{{base_url('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{base_url('assets/plugins/jquery-marquee/jquery.marquee.min.js')}}"></script>
 <script src="{{base_url('assets/js/theme-homepage.js')}}"></script>
 @yield('javascript')
 </html>

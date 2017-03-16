@@ -35,14 +35,6 @@
 							<a class="navbar-brand text-size-24" href="#">@yield('title')</a>
 						</div>
 						<div class="collapse navbar-collapse" id="menu">
-							<form class="navbar-form navbar-right">
-								<div class="input-group">
-									<input type="text" class="form-control round" placeholder="Search">
-									<span class="input-group-btn">
-										<button type="submit" class="btn btn-default round"><i class="fa fa-search"></i></button>
-									</span>
-								</div>
-							</form>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ainul Yaqin <span class="caret"></span></a>

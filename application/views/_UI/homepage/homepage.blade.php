@@ -157,7 +157,7 @@
 		padding: 65px;
 		padding-top: 100px;
 		background-color: rgba(255,255,255,.5);
-		background-image: url('http://2.bp.blogspot.com/-9ioW0RhqnYU/VfNdcb8XOpI/AAAAAAAA8Lc/T3EwNREtlVA/s1600/Antonio%2BRanieri.jpg');
+		background-image: url('https://www.suarapetani.com/wp-content/uploads/2016/05/mentari-pagi-sawah.jpg');
 		background-size: cover;
 		background-position: bottom;
 		background-attachment: fixed;
