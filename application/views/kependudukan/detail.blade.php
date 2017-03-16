@@ -129,7 +129,7 @@
 						<button class="btn btn-default btn-edit" type="button"><i class="fa fa-pencil"></i> Ubah Data</button>
 						<button class="btn btn-primary btn-save" type="submit"><i class="fa fa-save"></i> Simpan</button>
 						<button class="btn btn-warning" type="reset"><i class="fa fa-refresh"></i> Kembalikan</button>
-						<a href="{{ site_url('penduduk/hapus/'.$penduduk->nik) }}" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash"></i> hapus data</a>
+						<a href="{{ site_url('penduduk/hapus/'.$penduduk->nik) }}" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash"></i> Hapus Data</a>
 					</div>
 				</form>
 			</div>
