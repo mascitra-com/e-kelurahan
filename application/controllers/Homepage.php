@@ -138,15 +138,29 @@ class Homepage extends MY_Controller {
 				->with_akun('fields:username')
 				->get(array(
 					'id_organisasi' => $id_organisasi,
-					'status' => '0'
+					'status' => '0',
+					'slug' => $slug
 					));
 
+					//BERITA POPULER
+				$populer = $this->berita_m
+				->where('status','0')
+				->where('id_organisasi', $id_organisasi)
+				->order_by(array(
+					'count' => 'desc',
+					'tanggal_publish' => 'desc'
+					))
+				->limit(4)
+				->fields('judul, isi, slug, gambar, tanggal_publish')
+				->get_all();
+
 				if ($query === FALSE) {
-					$this->message('terjadi kesalahan sistem saat mengambil data berita. Coba lagi nanti.', 'danger');
+					$this->message('Berita tidak ditemukan', 'danger');
 					$this->go('homepage');
 				}else{
 					$data['berita'] = $query;
-					$this->render('homepage/berita', $data);
+					$data['populers'] = $populer;
+					$this->render('homepage/berita_detail', $data);
 				}
 			}
 		}else{
@@ -155,26 +169,26 @@ class Homepage extends MY_Controller {
 		}
 	}
 
-    public function agenda()
-    {
-        if ($id_organisasi = $this->checkSlug($this->_slug)) {
-            $data['agenda'] = $this->agenda_m->get_all(array('id_organisasi' => $id_organisasi));
-            $this->render('homepage/agenda', $data);
-        }else{
-            $this->message('Kelurahan tidak ditemukan', 'danger');
-            $this->go('homepage');
-        }
+	public function agenda()
+	{
+		if ($id_organisasi = $this->checkSlug($this->_slug)) {
+			$data['agenda'] = $this->agenda_m->get_all(array('id_organisasi' => $id_organisasi));
+			$this->render('homepage/agenda', $data);
+		}else{
+			$this->message('Kelurahan tidak ditemukan', 'danger');
+			$this->go('homepage');
+		}
 	}
 
-    public function regulasi()
-    {
-        if ($id_organisasi = $this->checkSlug($this->_slug)) {
-            $data['regulasi'] = $this->regulasi_m->get_all(array('id_organisasi' => $id_organisasi));
-            $this->render('homepage/regulasi', $data);
-        }else{
-            $this->message('Kelurahan tidak ditemukan', 'danger');
-            $this->go('homepage');
-        }
+	public function regulasi()
+	{
+		if ($id_organisasi = $this->checkSlug($this->_slug)) {
+			$data['regulasi'] = $this->regulasi_m->get_all(array('id_organisasi' => $id_organisasi));
+			$this->render('homepage/regulasi', $data);
+		}else{
+			$this->message('Kelurahan tidak ditemukan', 'danger');
+			$this->go('homepage');
+		}
 	}
 
 	private function checkSlug($slug = NULL)
