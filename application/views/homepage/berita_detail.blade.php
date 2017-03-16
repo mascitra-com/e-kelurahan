@@ -10,27 +10,25 @@ Judul Berita
 		<div class="col-xs-12">
 			<div class="panel">
 				<div class="panel-body">
-					<img src="http://kingofwallpapers.com/crowd/crowd-004.jpg" class="headline" alt="thumbnail">
-					<h1 class="title">Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
-					<span class="date"><i class="fa fa-clock-o"></i> SELASA, 02 FEB 2017</span>
-					<span class="author"><i class="fa fa-user"></i> OLEH ADMIN</span>
+					<img src="{{ base_url('assets/images/berita/'.cek_file($berita->gambar,'./assets/images/berita/','default.png')) }}" class="headline" alt="thumbnail">
+					<h1 class="title">{{ $berita->judul }}</h1>
+					<span class="date"><i class="fa fa-clock-o"></i> {{ strtoupper(date('l, d M Y')) }}</span>
+					<span class="author"><i class="fa fa-user"></i> OLEH {{ strtoupper($berita->akun->username) }}</span>
 					<div class="content">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit pariatur eos dignissimos eaque molestiae provident, ducimus sapiente optio tempora quibusdam esse mollitia illum libero, hic a consectetur amet assumenda repudiandae.</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit pariatur eos dignissimos eaque molestiae provident, ducimus sapiente optio tempora quibusdam esse mollitia illum libero, hic a consectetur amet assumenda repudiandae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam mollitia ducimus consequuntur quam natus assumenda. Praesentium aliquid natus, explicabo necessitatibus ratione, perspiciatis adipisci enim tempore quia! Itaque vitae ipsam provident.</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit pariatur eos dignissimos eaque molestiae provident, ducimus sapiente optio tempora quibusdam esse mollitia illum libero, hic a consectetur amet assumenda repudiandae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam mollitia ducimus consequuntur quam natus assumenda. Praesentium aliquid natus, explicabo necessitatibus ratione, perspiciatis adipisci enim tempore quia! Itaque vitae ipsam provident.</p>
+						{{ $berita->isi }}
 					</div>
 					<h3 class="break-top-100 break-bottom-20 text-grey">Berita Terpopuler</h3>
 					<div class="row">
-						@for($i=0; $i < 4; $i++)
+						@foreach($populers as $berita)
 						<div class="col-sm-6 col-md-3">
 							<div class="thumbnail">
-								<img src="http://kingofwallpapers.com/crowd/crowd-004.jpg" alt="..." class="news-list-thumb">
+								<img src="{{ base_url('assets/images/berita/'.cek_file($berita->gambar,'./assets/images/berita/','default.png')) }}" alt="..." class="news-list-thumb">
 								<div class="caption">
-									<a href="#"><h4>Judul Berita</h4></a>
+									<a href="{{ site_url('homepage/'.$slug. '/' .'berita_selengkapnya/'.$berita->slug) }}"><h4>{{ $berita->judul }}</h4></a>
 								</div>
 							</div>
 						</div>
-						@endfor
+						@endforeach
 					</div>
 				</div>
 			</div>
@@ -77,7 +75,7 @@ Judul Berita
 	}
 	.news-list-thumb{
 		width: 100%;
-		height: 100px;
+		height: 175px!important;
 		object-fit: cover;
 		object-position: center;
 	}
