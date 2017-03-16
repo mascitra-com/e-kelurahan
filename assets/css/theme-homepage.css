@@ -147,3 +147,26 @@ h1,h2,h3,h4,h5,h6{
 .copyright, .copyright *{
 	color: #FFF;
 }
+
+.pengumuman{
+	position: fixed;
+	width: 100%;
+	padding: 2px 10px;
+	padding-top: 5px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,.8);
+}
+
+.pengumuman-list{
+	padding: 0;
+}
+
+.pengumuman-list > li{
+	display: inline;
+	list-style: none;
+	color: #FFF;
+	vertical-align: middle;
+	margin-right: 5px;
+}

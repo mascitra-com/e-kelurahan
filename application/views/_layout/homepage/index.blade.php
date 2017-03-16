@@ -36,12 +36,22 @@
 								</ul>
 							</li>
 							<li><a href="#">Berita</a></li>
-							<li><a href="#">Geleri</a></li>
+							<li><a href="#">Galeri</a></li>
 							<li><a href="#">Agenda</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pelayanan <span class="caret text-white"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Surat Blanko KTP</a></li>
+									<li><a href="#">Blanko Isian KTP</a></li>
+									<li><a href="#">Blanko Isian KK</a></li>
+									<li><a href="#">SKCK</a></li>
+									<li><a href="#">Surat Pengantar Ijin Keramaian</a></li>
+									<li><a href="#">Surat Keterangan Pindah</a></li>
+									<li><a href="#">Surat Keterangan Ijin Berusaha</a></li>
+									<li><a href="#">SKTM (Sekolah)</a></li>
+									<li><a href="#">Surat Keterangan Miskin</a></li>
+									<li><a href="#">Surat Keterangan Pindah Hak Milik</a></li>
+									<li><a href="#">Surat Keterangan Untuk Nikah</a></li>
+									<li><a href="#">SKTM (Rumah Tangga)</a></li>
 								</ul>
 							</li>
 							<li><a href="#">Regulasi</a></li>
@@ -143,6 +153,13 @@
 			</div>
 		</div>
 	</div>
+	<!-- PENGUMUAMN -->
+	<div class="pengumuman">
+		<ul class="pengumuman-list">
+			<li>[02/02/17] Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, inventore!</li>
+			<li>[02/02/17] Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, inventore!</li>
+		</ul>
+	</div>
 	<!-- ALERT -->
 	<?php $message = $this->session->flashdata('message'); ?>
 	@if($message)
@@ -164,6 +181,7 @@
 </body>
 <script src="{{base_url('assets/plugins/jquery/jquery-3.1.1.min.js')}}"></script>
 <script src="{{base_url('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{base_url('assets/plugins/jquery-marquee/jquery.marquee.min.js')}}"></script>
 <script src="{{base_url('assets/js/theme-homepage.js')}}"></script>
 @yield('javascript')
 </html>
