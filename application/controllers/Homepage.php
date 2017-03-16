@@ -122,7 +122,7 @@ class Homepage extends MY_Controller {
 	private function checkSlug($slug = NULL)
 	{
 		if (is_null($slug) || empty($slug)) {
-			return FALSE;
+			return 1;
 		}else{
 			//cek slug apakah ada di tabel organisasi
 			$query = $this->organisasi_m

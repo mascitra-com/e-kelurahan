@@ -25,9 +25,15 @@ class MY_Controller extends CI_Controller {
 
   public function _remap($method, $param=array())
   {
-    if (get_class($this) === 'Homepage' && $method !== 'index') {
-        $this->_slug = $method;
-        $method = array_pop($param);
+      if (get_class($this) === 'Homepage' && $method !== 'index') {
+          $this->_slug = $method;
+          $method = array_shift($param);
+      }
+    if($method === 'index'){
+        $method = array_shift($param);
+        if (!method_exists($this, $method)){
+            $method = 'index';
+        }
     }
     if (method_exists($this, $method)) {
         if ($this->ion_auth->logged_in() || $this->_accessable || $this->_super) {
