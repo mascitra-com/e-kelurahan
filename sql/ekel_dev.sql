@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 15 Mar 2017 pada 07.19
--- Versi Server: 10.2.3-MariaDB-log
+-- Generation Time: Mar 16, 2017 at 08:25 AM
+-- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -48,7 +48,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -57,7 +57,7 @@ INSERT INTO `admin` (`id`, `id_organisasi`, `ip_address`, `username`, `password`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `agenda`
+-- Table structure for table `agenda`
 --
 
 CREATE TABLE `agenda` (
@@ -74,7 +74,7 @@ CREATE TABLE `agenda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `agenda`
+-- Dumping data for table `agenda`
 --
 
 INSERT INTO `agenda` (`id`, `id_organisasi`, `perihal`, `tanggal_agenda`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -84,7 +84,7 @@ INSERT INTO `agenda` (`id`, `id_organisasi`, `perihal`, `tanggal_agenda`, `creat
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `akun`
+-- Table structure for table `akun`
 --
 
 CREATE TABLE `akun` (
@@ -109,17 +109,18 @@ CREATE TABLE `akun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `akun`
+-- Dumping data for table `akun`
 --
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487680998, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 2, '127.0.0.1', 'Kelurahan-tompokersan@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1489560158, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL);
+(2, 2, '127.0.0.1', 'Kelurahan-tompokersan@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1489652119, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL),
+(3, 2, '', '13241010101044', '$2y$08$n4C8B4S6oGmNJ2hxKXEKne.vTqaRk0btEOAQH3GbELEUDqAok0ZUq', NULL, NULL, NULL, NULL, NULL, 1489652288, 1, '2017-03-16 01:03:36', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `akun_warga`
+-- Table structure for table `akun_warga`
 --
 
 CREATE TABLE `akun_warga` (
@@ -145,7 +146,7 @@ CREATE TABLE `akun_warga` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `berita`
+-- Table structure for table `berita`
 --
 
 CREATE TABLE `berita` (
@@ -168,7 +169,7 @@ CREATE TABLE `berita` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `berita`
+-- Dumping data for table `berita`
 --
 
 INSERT INTO `berita` (`id`, `id_organisasi`, `judul`, `isi`, `slug`, `gambar`, `status`, `tipe`, `count`, `tanggal_publish`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -182,7 +183,7 @@ INSERT INTO `berita` (`id`, `id_organisasi`, `judul`, `isi`, `slug`, `gambar`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_kartu_keluarga`
+-- Table structure for table `detail_kartu_keluarga`
 --
 
 CREATE TABLE `detail_kartu_keluarga` (
@@ -205,18 +206,19 @@ CREATE TABLE `detail_kartu_keluarga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_kartu_keluarga`
+-- Dumping data for table `detail_kartu_keluarga`
 --
 
 INSERT INTO `detail_kartu_keluarga` (`id`, `no_kk`, `nik`, `id_pendidikan`, `status_keluarga`, `no_urut_kk`, `no_paspor`, `no_kitap`, `ayah`, `ibu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (2, '123', '389475932753034750954', 8, 1, 1, 'edit', '', '', '', '2017-02-20 05:29:09', 2, '2017-02-21 05:25:49', 2, NULL, NULL),
 (3, '678', '83740927349074', 7, 1, 1, '', '', '', '', '2017-02-20 23:01:08', 2, '2017-02-21 05:23:14', 2, NULL, NULL),
-(4, '123', '3764289649123', 2, 1, 1, NULL, NULL, NULL, NULL, '2017-03-01 17:00:00', 2, NULL, NULL, NULL, NULL);
+(4, '123', '3764289649123', 2, 1, 1, NULL, NULL, NULL, NULL, '2017-03-01 17:00:00', 2, NULL, NULL, NULL, NULL),
+(5, '888', '13241010101044', NULL, 1, 1, NULL, NULL, NULL, NULL, '2017-03-16 01:03:36', 2, '2017-03-16 01:04:21', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_tingkatan`
+-- Table structure for table `detail_tingkatan`
 --
 
 CREATE TABLE `detail_tingkatan` (
@@ -232,17 +234,18 @@ CREATE TABLE `detail_tingkatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_tingkatan`
+-- Dumping data for table `detail_tingkatan`
 --
 
 INSERT INTO `detail_tingkatan` (`id`, `id_akun`, `id_tingkatan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (2, 2, 2, '2017-02-18 06:03:29', 0, NULL, NULL, NULL, NULL),
-(4, 1, 1, '2017-02-18 06:12:02', 0, NULL, NULL, NULL, NULL);
+(4, 1, 1, '2017-02-18 06:12:02', 0, NULL, NULL, NULL, NULL),
+(5, 3, 3, '2017-03-15 17:00:00', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `galeri`
+-- Table structure for table `galeri`
 --
 
 CREATE TABLE `galeri` (
@@ -261,10 +264,19 @@ CREATE TABLE `galeri` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `galeri`
+--
+
+INSERT INTO `galeri` (`id`, `id_organisasi`, `id_kategori`, `nama`, `deskripsi`, `tipe`, `link`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 2, 1, '', '', '0', 'IMGI1720170315094644.png', '2017-03-15 02:46:44', 2, NULL, NULL, NULL, NULL),
+(2, 2, 1, '', '', '0', 'IMGWUI20170315094659.jpg', '2017-03-15 02:46:59', 2, NULL, NULL, NULL, NULL),
+(3, 2, 1, '', '', '0', 'IMG3IR20170315094737.jpg', '2017-03-15 02:47:37', 2, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `galeri_kategori`
+-- Table structure for table `galeri_kategori`
 --
 
 CREATE TABLE `galeri_kategori` (
@@ -281,7 +293,7 @@ CREATE TABLE `galeri_kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `galeri_kategori`
+-- Dumping data for table `galeri_kategori`
 --
 
 INSERT INTO `galeri_kategori` (`id`, `id_organisasi`, `nama`, `deskripsi`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -291,7 +303,7 @@ INSERT INTO `galeri_kategori` (`id`, `id_organisasi`, `nama`, `deskripsi`, `crea
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `golongan_pegawai`
+-- Table structure for table `golongan_pegawai`
 --
 
 CREATE TABLE `golongan_pegawai` (
@@ -302,7 +314,7 @@ CREATE TABLE `golongan_pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `golongan_pegawai`
+-- Dumping data for table `golongan_pegawai`
 --
 
 INSERT INTO `golongan_pegawai` (`id`, `nama`, `golongan`, `ruang`) VALUES
@@ -327,7 +339,7 @@ INSERT INTO `golongan_pegawai` (`id`, `nama`, `golongan`, `ruang`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `info_organisasi`
+-- Table structure for table `info_organisasi`
 --
 
 CREATE TABLE `info_organisasi` (
@@ -346,7 +358,7 @@ CREATE TABLE `info_organisasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `info_organisasi`
+-- Dumping data for table `info_organisasi`
 --
 
 INSERT INTO `info_organisasi` (`id`, `id_organisasi`, `judul`, `isi`, `slug`, `pos`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -357,7 +369,7 @@ INSERT INTO `info_organisasi` (`id`, `id_organisasi`, `judul`, `isi`, `slug`, `p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_pekerjaan`
+-- Table structure for table `jenis_pekerjaan`
 --
 
 CREATE TABLE `jenis_pekerjaan` (
@@ -366,7 +378,7 @@ CREATE TABLE `jenis_pekerjaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `jenis_pekerjaan`
+-- Dumping data for table `jenis_pekerjaan`
 --
 
 INSERT INTO `jenis_pekerjaan` (`id_jenispekerjaan`, `pekerjaan`) VALUES
@@ -462,7 +474,7 @@ INSERT INTO `jenis_pekerjaan` (`id_jenispekerjaan`, `pekerjaan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_pendidikan`
+-- Table structure for table `jenis_pendidikan`
 --
 
 CREATE TABLE `jenis_pendidikan` (
@@ -477,7 +489,7 @@ CREATE TABLE `jenis_pendidikan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `jenis_pendidikan`
+-- Dumping data for table `jenis_pendidikan`
 --
 
 INSERT INTO `jenis_pendidikan` (`id_jenispendidikan`, `pendidikan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -495,7 +507,7 @@ INSERT INTO `jenis_pendidikan` (`id_jenispendidikan`, `pendidikan`, `created_at`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kabupaten`
+-- Table structure for table `kabupaten`
 --
 
 CREATE TABLE `kabupaten` (
@@ -505,7 +517,7 @@ CREATE TABLE `kabupaten` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kabupaten`
+-- Dumping data for table `kabupaten`
 --
 
 INSERT INTO `kabupaten` (`id`, `id_provinsi`, `nama`) VALUES
@@ -1027,7 +1039,7 @@ INSERT INTO `kabupaten` (`id`, `id_provinsi`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kartu_keluarga`
+-- Table structure for table `kartu_keluarga`
 --
 
 CREATE TABLE `kartu_keluarga` (
@@ -1048,7 +1060,7 @@ CREATE TABLE `kartu_keluarga` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kecamatan`
+-- Table structure for table `kecamatan`
 --
 
 CREATE TABLE `kecamatan` (
@@ -1058,7 +1070,7 @@ CREATE TABLE `kecamatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kecamatan`
+-- Dumping data for table `kecamatan`
 --
 
 INSERT INTO `kecamatan` (`id`, `id_kabupaten`, `nama`) VALUES
@@ -8163,7 +8175,7 @@ INSERT INTO `kecamatan` (`id`, `id_kabupaten`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelahiran`
+-- Table structure for table `kelahiran`
 --
 
 CREATE TABLE `kelahiran` (
@@ -8190,7 +8202,7 @@ CREATE TABLE `kelahiran` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `keluarga`
+-- Table structure for table `keluarga`
 --
 
 CREATE TABLE `keluarga` (
@@ -8210,17 +8222,18 @@ CREATE TABLE `keluarga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `keluarga`
+-- Dumping data for table `keluarga`
 --
 
 INSERT INTO `keluarga` (`no`, `id_organisasi`, `nik`, `alamat`, `rt`, `rw`, `kode_pos`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 ('123', 2, '389475932753034750954', 'Lorem ipsum dolor sit amet, consectetur.', 002, 011, '68118', '2017-02-20 05:29:09', 2, '2017-02-20 23:15:28', 2, NULL, NULL),
-('678', 2, '83740927349074', 'Lorem ipsum dolor sit amet, consectetur.', 001, 009, '68118', '2017-02-20 23:01:07', 2, NULL, NULL, NULL, NULL);
+('678', 2, '83740927349074', 'Lorem ipsum dolor sit amet, consectetur.', 001, 009, '68118', '2017-02-20 23:01:07', 2, NULL, NULL, NULL, NULL),
+('888', 2, '13241010101044', 'Example street', 002, 011, '68118', '2017-03-16 01:03:36', 2, '2017-03-16 01:04:20', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelurahan`
+-- Table structure for table `kelurahan`
 --
 
 CREATE TABLE `kelurahan` (
@@ -8230,7 +8243,7 @@ CREATE TABLE `kelurahan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kelurahan`
+-- Dumping data for table `kelurahan`
 --
 
 INSERT INTO `kelurahan` (`id`, `id_kecamatan`, `nama`) VALUES
@@ -13347,7 +13360,7 @@ INSERT INTO `kelurahan` (`id`, `id_kecamatan`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `meninggal`
+-- Table structure for table `meninggal`
 --
 
 CREATE TABLE `meninggal` (
@@ -13368,7 +13381,7 @@ CREATE TABLE `meninggal` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
@@ -13377,7 +13390,7 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `menu`
+-- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id`, `link`) VALUES
@@ -13403,7 +13416,7 @@ INSERT INTO `menu` (`id`, `link`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mutasi_keluar`
+-- Table structure for table `mutasi_keluar`
 --
 
 CREATE TABLE `mutasi_keluar` (
@@ -13429,7 +13442,7 @@ CREATE TABLE `mutasi_keluar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `mutasi_keluar`
+-- Dumping data for table `mutasi_keluar`
 --
 
 INSERT INTO `mutasi_keluar` (`id`, `id_organisasi`, `no_surat`, `nik`, `alamat_asal`, `alamat_tujuan`, `rt_tujuan`, `rw_tujuan`, `id_prov_tujuan`, `id_kab_tujuan`, `id_kec_tujuan`, `id_kel_tujuan`, `keterangan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -13439,7 +13452,7 @@ INSERT INTO `mutasi_keluar` (`id`, `id_organisasi`, `no_surat`, `nik`, `alamat_a
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mutasi_keluar_detail`
+-- Table structure for table `mutasi_keluar_detail`
 --
 
 CREATE TABLE `mutasi_keluar_detail` (
@@ -13455,7 +13468,7 @@ CREATE TABLE `mutasi_keluar_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `mutasi_keluar_detail`
+-- Dumping data for table `mutasi_keluar_detail`
 --
 
 INSERT INTO `mutasi_keluar_detail` (`id`, `id_mutasi`, `nik`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -13466,7 +13479,7 @@ INSERT INTO `mutasi_keluar_detail` (`id`, `id_mutasi`, `nik`, `created_at`, `cre
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mutasi_masuk`
+-- Table structure for table `mutasi_masuk`
 --
 
 CREATE TABLE `mutasi_masuk` (
@@ -13486,7 +13499,7 @@ CREATE TABLE `mutasi_masuk` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `organisasi`
+-- Table structure for table `organisasi`
 --
 
 CREATE TABLE `organisasi` (
@@ -13505,7 +13518,7 @@ CREATE TABLE `organisasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `organisasi`
+-- Dumping data for table `organisasi`
 --
 
 INSERT INTO `organisasi` (`id`, `nama`, `nip`, `nama_pimpinan`, `slug`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -13518,7 +13531,7 @@ INSERT INTO `organisasi` (`id`, `nama`, `nip`, `nama_pimpinan`, `slug`, `status`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penduduk`
+-- Table structure for table `penduduk`
 --
 
 CREATE TABLE `penduduk` (
@@ -13544,11 +13557,12 @@ CREATE TABLE `penduduk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `penduduk`
+-- Dumping data for table `penduduk`
 --
 
 INSERT INTO `penduduk` (`nik`, `id_organisasi`, `nama`, `tempat_lahir`, `golongan_darah`, `status_nikah`, `jenis_kelamin`, `tanggal_lahir`, `agama`, `pekerjaan`, `rt`, `rw`, `kewarganegaraan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 ('123809123810938', 2, 'Kepala Keluarga A', 'Jember', 'O', 1, '0', '1980-02-26 17:00:00', 1, 1, 011, 001, '0', '2017-02-26 17:00:00', 1, NULL, NULL, NULL, NULL),
+('13241010101044', 2, 'John Doe', 'Jember', 'A', 1, '0', '1995-03-14 17:00:00', 2, 15, 002, 011, '0', '2017-03-16 01:02:56', 2, NULL, NULL, NULL, NULL),
 ('3764289649123', 2, 'Rizki', 'Sumenep', 'AB', 0, '0', '1993-01-06 17:00:00', 0, 1, 002, 001, '0', '2017-02-19 02:43:22', 2, '2017-02-19 03:06:21', 2, NULL, NULL),
 ('389475932753034750954', 2, 'Farida', 'Sumenep', 'O', 2, '1', '1970-02-23 07:38:04', 1, 4, 002, 001, '0', '2017-02-19 23:08:40', 2, NULL, NULL, NULL, NULL),
 ('7289379132', 2, 'Anggota Keluarga A1', 'Jember', 'O', 1, '0', '1980-02-26 17:00:00', 1, 1, 011, 001, '0', '2017-02-26 17:00:00', 1, NULL, NULL, NULL, NULL),
@@ -13557,7 +13571,7 @@ INSERT INTO `penduduk` (`nik`, `id_organisasi`, `nama`, `tempat_lahir`, `golonga
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengumuman`
+-- Table structure for table `pengumuman`
 --
 
 CREATE TABLE `pengumuman` (
@@ -13577,7 +13591,7 @@ CREATE TABLE `pengumuman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pengumuman`
+-- Dumping data for table `pengumuman`
 --
 
 INSERT INTO `pengumuman` (`id`, `id_organisasi`, `slug`, `nama`, `isi`, `tanggal_kadaluarsa`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -13588,7 +13602,7 @@ INSERT INTO `pengumuman` (`id`, `id_organisasi`, `slug`, `nama`, `isi`, `tanggal
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `percobaan_login`
+-- Table structure for table `percobaan_login`
 --
 
 CREATE TABLE `percobaan_login` (
@@ -13601,7 +13615,7 @@ CREATE TABLE `percobaan_login` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pindahrt`
+-- Table structure for table `pindahrt`
 --
 
 CREATE TABLE `pindahrt` (
@@ -13623,7 +13637,7 @@ CREATE TABLE `pindahrt` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `profil_organisasi`
+-- Table structure for table `profil_organisasi`
 --
 
 CREATE TABLE `profil_organisasi` (
@@ -13648,7 +13662,7 @@ CREATE TABLE `profil_organisasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `profil_organisasi`
+-- Dumping data for table `profil_organisasi`
 --
 
 INSERT INTO `profil_organisasi` (`no`, `id_organisasi`, `nip`, `nama_lurah`, `deskripsi`, `alamat`, `telepon`, `email`, `kode_pos`, `facebook`, `twitter`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`, `id_golongan`) VALUES
@@ -13657,7 +13671,7 @@ INSERT INTO `profil_organisasi` (`no`, `id_organisasi`, `nip`, `nama_lurah`, `de
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `provinsi`
+-- Table structure for table `provinsi`
 --
 
 CREATE TABLE `provinsi` (
@@ -13666,7 +13680,7 @@ CREATE TABLE `provinsi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `provinsi`
+-- Dumping data for table `provinsi`
 --
 
 INSERT INTO `provinsi` (`id`, `nama`) VALUES
@@ -13708,7 +13722,7 @@ INSERT INTO `provinsi` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `regulasi`
+-- Table structure for table `regulasi`
 --
 
 CREATE TABLE `regulasi` (
@@ -13728,17 +13742,17 @@ CREATE TABLE `regulasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `regulasi`
+-- Dumping data for table `regulasi`
 --
 
 INSERT INTO `regulasi` (`id`, `id_organisasi`, `judul`, `deskripsi`, `tgl_dikeluarkan`, `dikeluarkan_oleh`, `link`, `deleted_by`, `deleted_at`, `updated_by`, `updated_at`, `created_by`, `created_at`) VALUES
-(1, 0, 'Judul', 'Deskripsi', '2017-03-14 10:55:24', 'Bupati', 'REGLZC20170314105628.docx', NULL, NULL, NULL, NULL, 2, '2017-03-14 03:55:24'),
-(2, 0, 'Judul', 'Deskripsi', '2017-03-14 10:56:29', 'Gubernur', 'REGLZC20170314105628.docx', NULL, NULL, NULL, NULL, 2, '2017-03-14 03:56:29');
+(1, 2, 'Judul', 'Deskripsi', '2017-03-14 10:55:24', 'Bupati', 'REGLZC20170314105628.docx', NULL, NULL, NULL, NULL, 2, '2017-03-14 03:55:24'),
+(2, 2, 'Judul', 'Deskripsi', '2017-03-14 10:56:29', 'Gubernur', 'REGLZC20170314105628.docx', NULL, NULL, NULL, NULL, 2, '2017-03-14 03:56:29');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `status_keluarga`
+-- Table structure for table `status_keluarga`
 --
 
 CREATE TABLE `status_keluarga` (
@@ -13747,7 +13761,7 @@ CREATE TABLE `status_keluarga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `status_keluarga`
+-- Dumping data for table `status_keluarga`
 --
 
 INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUES
@@ -13763,7 +13777,7 @@ INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `surat`
+-- Table structure for table `surat`
 --
 
 CREATE TABLE `surat` (
@@ -13778,29 +13792,32 @@ CREATE TABLE `surat` (
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `deleted_at` int(11) DEFAULT NULL,
-  `deleted_by` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `surat`
+-- Dumping data for table `surat`
 --
 
 INSERT INTO `surat` (`id`, `no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal_verif`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(001, '23/1/02.002/2017', '389475932753034750954', 2, '0', '2017-02-28 00:51:49', '1', '2018-02-28 00:51:49', 2, NULL, NULL, NULL, NULL),
 (002, '23/2/02.002/2017', '3764289649123', 2, '0', '2017-02-28 03:33:07', '2', '2017-02-28 03:33:08', 2, NULL, NULL, NULL, NULL),
-(003, NULL, '389475932753034750954', 2, '0', '2017-03-03 02:32:18', '0', '2017-03-02 03:40:28', 2, '2017-03-03 02:32:18', 2, NULL, NULL),
+(003, '23/7/02.002/2017', '389475932753034750954', 2, '0', '2017-03-15 02:50:51', '1', '2017-03-02 03:40:28', 2, '2017-03-15 02:50:51', 2, NULL, 2),
 (004, '24/1/02.002/2017', '389475932753034750954', 2, '1', '2017-02-28 01:45:40', '1', '2017-02-28 01:45:40', 2, NULL, NULL, NULL, NULL),
 (005, '24/2/02.002/2017', '3764289649123', 2, '1', '2017-02-28 01:49:22', '1', '2017-02-28 01:49:22', 2, NULL, NULL, NULL, NULL),
 (006, '25/1/02.002/2017', '83740927349074', 2, '2', '2017-02-28 01:56:21', '1', '2017-02-28 01:56:21', 2, NULL, NULL, NULL, NULL),
 (007, '26/1/02.002/2017', '7289379132', 2, '3', '2017-02-28 02:10:12', '1', '2017-02-28 02:10:12', 2, NULL, NULL, NULL, NULL),
 (009, '23/4/02.002/2017', '123809123810938', 2, '0', '2017-03-03 01:36:13', '1', '2017-03-03 01:36:13', 2, NULL, NULL, NULL, NULL),
-(010, NULL, '3764289649123', 2, '0', NULL, '0', '2017-03-03 02:56:49', 2, NULL, NULL, NULL, NULL);
+(010, NULL, '3764289649123', 2, '0', NULL, '0', '2017-03-03 02:56:49', 2, NULL, NULL, NULL, NULL),
+(011, '23/5/02.002/2017', '83740927349074', 2, '0', '2017-03-15 02:48:59', '1', '2017-03-15 02:48:59', 2, NULL, NULL, NULL, NULL),
+(012, '23/6/02.002/2017', '7289379132', 2, '0', '2017-03-15 02:49:21', '1', '2017-03-15 02:49:21', 2, NULL, NULL, NULL, NULL),
+(013, NULL, '389475932753034750954', 2, '0', NULL, '0', '2017-03-15 02:54:03', 2, NULL, NULL, NULL, NULL),
+(014, NULL, '13241010101044', 2, '0', NULL, '0', '2017-03-16 01:18:17', 3, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tingkatan`
+-- Table structure for table `tingkatan`
 --
 
 CREATE TABLE `tingkatan` (
@@ -13817,7 +13834,7 @@ CREATE TABLE `tingkatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tingkatan`
+-- Dumping data for table `tingkatan`
 --
 
 INSERT INTO `tingkatan` (`id`, `name`, `description`, `menu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -14087,7 +14104,7 @@ ALTER TABLE `agenda`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `akun_warga`
 --
@@ -14102,17 +14119,17 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT for table `detail_kartu_keluarga`
 --
 ALTER TABLE `detail_kartu_keluarga`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `detail_tingkatan`
 --
 ALTER TABLE `detail_tingkatan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `galeri`
 --
 ALTER TABLE `galeri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `galeri_kategori`
 --
@@ -14172,67 +14189,67 @@ ALTER TABLE `regulasi`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `tingkatan`
 --
 ALTER TABLE `tingkatan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `agenda`
+-- Constraints for table `agenda`
 --
 ALTER TABLE `agenda`
   ADD CONSTRAINT `agenda_ibfk_1` FOREIGN KEY (`id_organisasi`) REFERENCES `organisasi` (`id`) ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `akun_warga`
+-- Constraints for table `akun_warga`
 --
 ALTER TABLE `akun_warga`
   ADD CONSTRAINT `akun_warga_ibfk_1` FOREIGN KEY (`id_keluarga`) REFERENCES `keluarga` (`no`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `berita`
+-- Constraints for table `berita`
 --
 ALTER TABLE `berita`
   ADD CONSTRAINT `berita_ibfk_1` FOREIGN KEY (`id_organisasi`) REFERENCES `organisasi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_tingkatan`
+-- Constraints for table `detail_tingkatan`
 --
 ALTER TABLE `detail_tingkatan`
   ADD CONSTRAINT `detail_tingkatan_ibfk_1` FOREIGN KEY (`id_tingkatan`) REFERENCES `tingkatan` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `detail_tingkatan_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `info_organisasi`
+-- Constraints for table `info_organisasi`
 --
 ALTER TABLE `info_organisasi`
   ADD CONSTRAINT `info_organisasi_ibfk_1` FOREIGN KEY (`id_organisasi`) REFERENCES `organisasi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kabupaten`
+-- Constraints for table `kabupaten`
 --
 ALTER TABLE `kabupaten`
   ADD CONSTRAINT `kabupaten_ibfk_1` FOREIGN KEY (`id_provinsi`) REFERENCES `provinsi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kecamatan`
+-- Constraints for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD CONSTRAINT `kecamatan_ibfk_1` FOREIGN KEY (`id_kabupaten`) REFERENCES `kabupaten` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kelurahan`
+-- Constraints for table `kelurahan`
 --
 ALTER TABLE `kelurahan`
   ADD CONSTRAINT `kelurahan_ibfk_1` FOREIGN KEY (`id_kecamatan`) REFERENCES `kecamatan` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `surat`
+-- Constraints for table `surat`
 --
 ALTER TABLE `surat`
   ADD CONSTRAINT `surat_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `penduduk` (`nik`) ON DELETE NO ACTION ON UPDATE CASCADE,
