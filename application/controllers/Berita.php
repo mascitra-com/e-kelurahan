@@ -20,19 +20,86 @@ class Berita extends MY_Controller
 		$q = $this->berita_m->where('status','1')->where('tanggal_publish <=', date('Y-m-d'))->update(array('status' => '0'));
 	}
 
-	public function index()
-	{
-		$data['beritas'] = $this->berita_m
-		->where('status',array('0', '1'))
-		->where('id_organisasi', $this->ion_auth->get_current_id_org())
-		->order_by('tanggal_publish','asc')
-		->limit(5)
-		->fields('judul, isi, slug, gambar, tanggal_publish, status')
-		->with_akun('fields:username')
-		->get_all();
+    public function index($page = NULL)
+    {
+        if(!$page){
+            $this->go('berita/page/1');
+        }
+        // Get Filter and Order By from Session
+        $filter = $this->session->userdata('fp');
+        $order_by = $this->session->userdata('obp');
+        $order_type = $this->session->userdata('otp');
+        // Setting up Pagination
+        $this->load->library('pagination');
+        $total_data = $this->berita_m->where($filter, 'like', '%')->count_rows();
 
-		$this->render('berita/berita', $data);
+        $data['beritas'] = $this->berita_m
+            ->where('status',array('0', '1'))
+            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+            ->order_by($order_by, $order_type)
+            ->order_by('tanggal_publish','asc')
+            ->limit(5)
+            ->fields('judul, isi, slug, gambar, tanggal_publish, status')
+            ->with_akun('fields:username')
+            ->paginate(10, $total_data, $page);
+        $data['pagination'] = $this->berita_m->all_pages;
+        $this->render('berita/berita', $data);
 	}
+
+    /**
+     * Use to make URI looks good
+     *
+     * @param int $page
+     */
+    public function page($page = 1)
+    {
+        $this->index($page);
+    }
+
+    /**
+     * Order the data
+     *
+     * @param $order_by
+     * @param string $order_type
+     */
+    public function urut($order_by, $order_type = 'asc')
+    {
+        $this->session->unset_userdata(array('obpbe', 'otpbe'));
+        $this->session->set_userdata('obpbe', $order_by);
+        $this->session->set_userdata('otpbe', $order_type);
+        $this->go('berita');
+    }
+
+    /**
+     * Call when user want to search specific data
+     * Store filter in Session
+     */
+    public function search()
+    {
+        $this->session->unset_userdata('fpbe');
+        $this->session->set_userdata('fpbe', $this->input->post());
+        $this->go('berita');
+    }
+
+    /**
+     * Reset any filter made while user search specific data
+     */
+    public function refresh()
+    {
+        $this->session->unset_userdata(array('fpbe', 'obpbe', 'otpbe'));
+        $this->go('berita');
+    }
+
+    /**
+     * View for Add New Penduduk
+     */
+    public function tambah()
+    {
+        $current_id_org = $this->ion_auth->get_current_id_org();
+        $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
+        $data['pekerjaan'] = $this->pekerjaan->get_all();
+        $this->render('kependudukan/create', $data);
+    }
 
 	public function draf()
 	{

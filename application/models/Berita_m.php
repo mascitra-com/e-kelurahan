@@ -31,6 +31,8 @@ class Berita_m extends MY_Model
 		$this->soft_deletes = TRUE;
 		$this->has_one['organisasi'] = array('Organisasi_m', 'id', 'id_organisasi');
 		$this->has_one['akun'] = array('Akun_m', 'id', 'created_by');
+        $this->pagination_delimiters = array('<li>','</li>');
+        $this->pagination_arrows = array('&lt;','&gt;');
 		parent::__construct();
 	}
 }
