@@ -9,7 +9,7 @@ class Homepage extends MY_Controller {
 		$this->_accessable = TRUE;
 		// $this->load->library(array('form_validation'));
 		$this->load->helper(array('dump', 'potong_teks', 'cek_file'));
-		$this->load->model(array('organisasi_m', 'agenda_m', 'regulasi_m', 'info_m'));
+		$this->load->model(array('organisasi_m', 'agenda_m', 'regulasi_m', 'info_m', 'galeri_m'));
 
         if (is_null($this->session->userdata('visitor'))) {
 			$this->session->set_userdata('visitor', array('ip' => $this->input->ip_address(), 'visited_articles' => array()));
@@ -31,8 +31,7 @@ class Homepage extends MY_Controller {
 		}
 
 		//AMBIL ID ORG BERDASARKAN SLUG
-		$id_organisasi = $this->organisasi_m->where('slug', $slug)->get()->id;
-		// dump($id_organisasi);
+		$id_organisasi = $this->checkSlug($this->_slug);
 
 		//JUDUL HALAMAN
 		$data['judul'] = $judul.$this->organisasi_m->get($id_organisasi)->nama;
@@ -84,6 +83,17 @@ class Homepage extends MY_Controller {
 		->limit(4)
 		->get_all('id_organisasi', $id_organisasi);
 
+		// Galeri Foto
+        $data['foto'] = $this->galeri_m
+            ->where('tipe', '0')
+            ->limit(4)
+            ->get_all('id_organisasi', $id_organisasi);
+
+        // Galeri Video
+        $data['video'] = $this->galeri_m
+            ->where('tipe', '1')
+            ->limit(4)
+            ->get_all('id_organisasi', $id_organisasi);
 		$this->render('homepage/homepage', $data);
 	}
 
