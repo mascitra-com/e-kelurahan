@@ -67,7 +67,11 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kelurahan <span class="caret text-white"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Tompokersan</a></li>
+                                    @if($list_kelurahan)
+                                        @foreach($list_kelurahan as $list)
+									        <li><a href="{{ site_url('homepage/' . $list->slug) }}">{{ $list->nama }}</a></li>
+                                        @endforeach
+                                    @endif
 								</ul>
 							</li>
 							<li><a href="{{ site_url('warga') }}">Masuk</a></li>

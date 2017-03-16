@@ -99,6 +99,11 @@ class Homepage extends MY_Controller {
             ->where('tipe', '1')
             ->limit(4)
             ->get_all('id_organisasi', $id_organisasi);
+
+        // Daftar Kelurahan
+        $data['list_kelurahan'] = $this->organisasi_m
+            ->where(array('status' => '1', 'id >' => '1'))
+            ->get_all();
         $this->render('homepage/homepage', $data);
     }
 
