@@ -13,14 +13,15 @@ Agenda
 					<nav class="navbar navbar-default">
 						<div class="container-fluid">
 							<div class="navbar-header">
-								<a class="navbar-brand" href="#">Agenda</a>
+								<div class="navbar-brand">Agenda</div>
 							</div>
-							<form action="#" method="post" class="navbar-form navbar-right" role="search">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Cari">
-								</div>
-								<button type="submit" class="btn btn-default">Cari</button>
-							</form>
+                            {{-- TODO Fix This --}}
+							{{--<form action="#" method="post" class="navbar-form navbar-right" role="search">--}}
+								{{--<div class="form-group">--}}
+									{{--<input type="text" class="form-control" placeholder="Cari">--}}
+								{{--</div>--}}
+								{{--<button type="submit" class="btn btn-default">Cari</button>--}}
+							{{--</form>--}}
 						</div>
 					</nav>
 					<table class="table table-striped table-hover table-bordered">

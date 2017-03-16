@@ -127,8 +127,8 @@
 					</ul>
 					<ul class="sitemap">
 						<li class="sitemap-title"><h4>Galeri</h4></li>
-						<li><a href="#">Galeri Foto</a></li>
-						<li><a href="#">Galeri Video</a></li>
+						<li><a href="{{ site_url('homepage/'.$slug.'/album') }}">Galeri Foto</a></li>
+						<li><a href="{{ site_url('homepage/'.$slug.'/video') }}">Galeri Video</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-6 col-sm-4 col-md-2">
