@@ -39,7 +39,13 @@
                                 </ul>
 							</li>
 							<li><a href="{{ site_url('homepage/'.$slug.'/berita') }}">Berita</a></li>
-							<li><a href="#">Galeri</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Galeri <span class="caret text-white"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ site_url('homepage/'.$slug.'/album') }}">Galeri Foto</a></li>
+                                    <li><a href="{{ site_url('homepage/'.$slug.'/video') }}">Galeri Video</a></li>
+                                </ul>
+                            </li>
 							<li><a href="{{ site_url('homepage/'.$slug.'/agenda') }}">Agenda</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pelayanan <span class="caret text-white"></span></a>
