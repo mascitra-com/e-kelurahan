@@ -179,6 +179,19 @@ class Keluarga extends MY_Controller
         $this->go('keluarga/detail/'.$data['no_kk']);
 	}
 
+    public function ubah_anggota($id)
+    {
+        $data = $this->input->post();
+        $data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
+        $data = array_filter($data, function($value) { return $value !== ''; });
+        if($this->detail_kk_m->update($data, $id)){
+            $this->message('Berhasil Menyimpan Anggota Keluarga Baru', 'success');
+        } else {
+            $this->message('Gagal Menyimpan Anggota Keluarga Baru', 'danger');
+        }
+        $this->go('keluarga/detail/'.$data['no_kk']);
+	}
+
     public function hapus_anggota($id = NULL)
     {
         $no_kk = $this->detail_kk_m->fields('no_kk')->get($id)->no_kk;
