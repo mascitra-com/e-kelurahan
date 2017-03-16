@@ -37,7 +37,7 @@
 						<div class="collapse navbar-collapse" id="menu">
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ainul Yaqin <span class="caret"></span></a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ str_replace('@lumajang', '', $this->session->userdata('identity')) }} <span class="caret"></span></a>
 									<ul class="dropdown-menu">
 										<li><a href="{{ site_url('auth/logout') }}">Log Out</a></li>
 									</ul>
