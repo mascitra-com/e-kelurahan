@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>KELURAHAN XYZ | @yield('page_title')</title>
+	<title>@yield('page_title')</title>
 	<link rel="stylesheet" href="{{base_url('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/plugins/fontawesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/css/theme-homepage.css')}}">
@@ -22,7 +22,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="{{ site_url('homepage/'.$slug) }}">KEL.TOMPOKERSAN</a>
+						<a class="navbar-brand" href="{{ site_url('homepage/'.$slug) }}">@yield('organisasi_name')</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->

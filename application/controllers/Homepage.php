@@ -30,9 +30,9 @@ class Homepage extends MY_Controller {
             ->get_all();
     }
 
-    public function index($slug = NULL)
+    public function index()
     {
-        if (is_null($slug))
+        if (is_null($this->_slug))
         {
             $slug = 'kecamatan-lumajang';
             $judul = 'Kecamatan ';
@@ -47,14 +47,20 @@ class Homepage extends MY_Controller {
         //JUDUL HALAMAN
         $data['judul'] = $judul . $this->organisasi_m->get($id_organisasi)->nama;
 
-        $this->load->model(array('berita_m', 'agenda_m', 'regulasi_m'));
+        $this->load->model(array('berita_m', 'agenda_m', 'regulasi_m', 'profil_m'));
+
+        //PROFIL ORGANISASI
+        $data['profile'] = $this->profil_m
+        ->where('id_organisasi', $id_organisasi)
+        ->fields('deskripsi')
+        ->get();
 
         //BERITA
         $data['berita_terbarus'] = $this->berita_m
             ->where('status', '0')
             ->where('id_organisasi', $id_organisasi)
             ->order_by('tanggal_publish', 'desc')
-            ->limit(4)
+            ->limit(8)
             ->fields('judul, isi, slug, gambar, tanggal_publish')
             ->get_all();
 

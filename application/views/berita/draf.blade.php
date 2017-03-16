@@ -25,8 +25,7 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php $i=0; ?>
-					@if($beritas)
+					<?php $i=0; ?>@if($beritas)
 						@foreach($beritas as $berita)
 						<tr>
 							<td class="text-center">{{++$i}}</td>
@@ -48,6 +47,11 @@
 						</tr>
 						@endforeach
                     @endif
+						@else
+							<tr>
+								<td colspan="4" class="text-center"><h4 class="text-grey">Tidak ada berita</h4></td>
+							</tr>
+						@endif
 					</tbody>
 				</table>
 			</div>

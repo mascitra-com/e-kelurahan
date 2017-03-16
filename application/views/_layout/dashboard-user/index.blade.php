@@ -35,7 +35,7 @@
 								<li><a href="{{ site_url('warga/pengajuan/keterangan_miskin') }}">Surat Keterangan Miskin</a></li>
 							</ul>
 						</li>
-						<li><a href="{{ site_url('warga/surat/blankoktp') }}">Status Pengajuan</a></li>
+						<li><a href="{{ site_url('warga/surat') }}">Status Pengajuan</a></li>
 						<li><a href="{{ site_url('warga/logout') }}">Keluar</a></li>
 					</ul>
 				</div>
