@@ -19,11 +19,18 @@ class Galeri extends MY_Controller
         $this->render('galeri/index', $data);
     }
 
+    public function video()
+    {
+        $data['videos'] = $this->galeri_m->get_all(array('id_organisasi' => $this->ion_auth->get_current_id_org(), 'tipe' => '1'));
+        $this->generateCsrf();
+        $this->render('galeri/video', $data);
+    }
+
     public function detail($id)
     {
         $this->generateCsrf();
         $data['album'] = $this->galeri_kategori_m->get($id);
-        $data['foto'] = $this->galeri_m->order_by('id', 'desc')->get_all(array('id_kategori' => $id));
+        $data['foto'] = $this->galeri_m->get_all(array('id_kategori' => $id));
         $this->render('galeri/list', $data);
     }
 
@@ -56,12 +63,30 @@ class Galeri extends MY_Controller
         $this->go('galeri/detail/' . $data['id_kategori']);
     }
 
+    public function simpanVideo()
+    {
+        $data = $this->input->post();
+        if (!empty($_FILES['link']['name'])) {
+            $data['link'] = $this->do_upload('link', 0);
+        } else {
+            $data['link'] = prefix_unik(3);
+        }
+        $data['tipe'] = '1';
+        $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
+        if($this->galeri_m->insert($data)){
+            $this->message('Berhasil Menyimpan Video Baru');
+        } else {
+            $this->message('Gagal Menyimpan Video Baru');
+        }
+        $this->go('galeri/video');
+    }
+
     private function do_upload($input_name, $id_kategori)
     {
         $config['file_name'] = prefix_unik(3). '.' .pathinfo($_FILES[$input_name]['name'], PATHINFO_EXTENSION);
         $config['upload_path'] = './assets/galeri/';
-        $config['allowed_types'] = 'jpg|jpeg|bmp|png';
-        $config['max_size'] = 10000;
+        $config['allowed_types'] = 'jpg|jpeg|bmp|png|mpg|mp4|3gp';
+        $config['max_size'] = 100000;
 
         $this->load->library('upload', $config);
 
