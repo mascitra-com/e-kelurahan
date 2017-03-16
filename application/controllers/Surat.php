@@ -30,7 +30,6 @@ class Surat extends MY_Controller
 		->where('id_organisasi', $this->ion_auth->get_current_id_org())
 		->as_array()
 		->count_rows();
-        dump($data);
 
 		if ($optStatus) {
 			$data['prev_input'] = $optionalData['prev_input'];
