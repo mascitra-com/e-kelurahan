@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div class="panel-footer">
-				<a href="{{ (is_null($berita->deleted_at)) ? site_url('berita/arsipkan/'.$berita->slug) : site_url('berita/hapus/'.$berita->slug) }}" class="btn btn-{{ (is_null($berita->deleted_at)) ? 'warning' : 'danger' }}"><i class="fa fa-{{ (is_null($berita->deleted_at)) ? 'archive' : 'trash' }}"></i> {{ (is_null($berita->deleted_at)) ? 'arsipkan' : 'hapus' }}</a>
+				<a href="{{ (is_null($berita->deleted_at)) ? site_url('berita/arsipkan/'.$berita->slug) : site_url('berita/hapus/'.$berita->slug) }}" class="btn btn-{{ (is_null($berita->deleted_at)) ? 'warning' : 'danger' }}"><i class="fa fa-{{ (is_null($berita->deleted_at)) ? 'archive' : 'trash' }}"></i> {{ (is_null($berita->deleted_at)) ? 'arsipkan' : 'Hapus' }}</a>
 				<a href="
 				@if(is_null($berita->deleted_at)) 
 					@if($berita->status == '2')
@@ -27,7 +27,7 @@
 				@else 
 					{{ site_url('berita/arsip') }}
 				@endif"
-				 class="btn btn-default"><i class="fa fa-arrow-left"></i> kembali</a>
+				 class="btn btn-default"><i class="fa fa-arrow-left"></i> Kembali</a>
 			</div>
 		</div>
 	</div>
