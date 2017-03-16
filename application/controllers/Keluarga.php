@@ -116,10 +116,10 @@ class Keluarga extends MY_Controller
 			    $this->ion_auth->register($data['nik'], '123456', array('id_organisasi' => $this->ion_auth->get_current_id_org()), array(3));
 				$this->go('keluarga/detail/'.$data['no']);
 			}else{
-				die('terjadi kesalahan saat insert tabel detail keluarga');
-			}
-		}else{
-			die('terjadi kesalahan saat insert | nik kosong');
+				$this->message('Terjadi Kesalahan Saat Menambahkan Anggota Keluarga', 'danger');
+            }
+        }else{
+            $this->message('Terjadi Kesalahan Saat Menambahkan Data Keluarga', 'danger');
 		}
 	}
 
