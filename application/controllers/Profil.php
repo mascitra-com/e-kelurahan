@@ -37,7 +37,9 @@ class Profil extends MY_Controller
     public function ubah($id)
     {
         $data = $this->input->post();
-        $data['id_golongan'] = str_replace(' ', '', substr($data['id_golongan'], 0, strpos($data['id_golongan'], '.')));
+        if($data['id_golongan']){
+            $data['id_golongan'] = str_replace(' ', '', substr($data['id_golongan'], 0, strpos($data['id_golongan'], '.')));
+        }
         if($this->profil_m->update($data, array('id_organisasi' => $id))){
             $this->message('Berhasil Menyimpan Profil Kelurahan', 'success');
         } else {

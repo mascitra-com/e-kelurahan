@@ -4,7 +4,7 @@
 		<ul class="sidebar-nav">
 			<li class="sidebar-close"><a href="#"><i class="fa fa-fw fa-close"></i></a></li>
 			<li><a href="{{ site_url('dashboard') }}"><i class="fa fa-fw fa-home"></i><span class="nav-label">Dashboard</span></a></li>
-			<li><a href="#"><i class="fa fa-fw fa-info-circle"></i><span class="nav-label">Profil</span></a></li>
+			<li><a href="{{ site_url('profil') }}"><i class="fa fa-fw fa-info-circle"></i><span class="nav-label">Profil</span></a></li>
 			<li><a href="{{site_url('kelurahan')}}"><i class="fa fa-fw fa-bank"></i><span class="nav-label">Kelurahan</span></a></li>
 			@if($super)
 			<li><a href="{{site_url('kelurahan/konfirmasi')}}"><i class="fa fa-fw fa-check"></i><span class="nav-label">Konfirmasi</span></a></li>
