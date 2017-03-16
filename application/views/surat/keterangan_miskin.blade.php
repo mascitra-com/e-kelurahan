@@ -51,8 +51,8 @@
 					<td class="text-center">{{date('d-m-Y', strtotime($miskin->created_at))}}</td>
 					<td class="text-center">{{date('d-m-Y', strtotime($miskin->tanggal_verif))}}</td>
 					<td>
-						<a href="#" class="btn btn-default btn-xs"><i class="fa fa-info"></i> detail</a>
-						<a href="#" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
+						<a href="{{site_url('surat/detail/keterangan_miskin/'.$miskin->id)}}" class="btn btn-default btn-xs"><i class="fa fa-info"></i> detail</a>
+						<a href="{{ site_url('surat/arsipkan/2/'.$miskin->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
 					</td>
 				</tr>
 				@endforeach

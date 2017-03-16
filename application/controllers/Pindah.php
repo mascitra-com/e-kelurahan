@@ -24,14 +24,14 @@ class Pindah extends MY_Controller
         $this->load->library('pagination');
         $total_data = $this->mutasi_keluar_m->where($filter, 'like', '%')->count_rows();
         $data['mutasi_keluars'] = $this->mutasi_keluar_m->where($filter, 'like', '%')
-            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
-            ->fields('id ,created_at, updated_at')
-            ->with_penduduk('fields:nama')
-            ->paginate(10, $total_data, $page);
+        ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+        ->fields('id ,created_at, updated_at')
+        ->with_penduduk('fields:nama')
+        ->paginate(10, $total_data, $page);
         $data['mutasi_keluar_search'] = $this->mutasi_keluar_m
-            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
-            ->with_penduduk('fields:nama')
-            ->get_all();
+        ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+        ->with_penduduk('fields:nama')
+        ->get_all();
         $data['pagination'] = $this->mutasi_keluar_m->all_pages;
         $this->generateCsrf();
         $this->render('kelurahan/pindah', $data);
@@ -150,10 +150,12 @@ class Pindah extends MY_Controller
                 $this->load->helper(array('agama', 'terbilang', 'date'));
                 $this->render('kelurahan/pindah_pengajuan_cetak', $data);
             }else{
-                die('terjadi kesalahan saat mengambil data untuk mencetak');
+                $this->message('Terjadi kesalahan sistem saat mengambil data untuk mencetak. Coba Lagi nanti.', 'warning');
+                $this->go('pindah');
             }
         }else{
-            die('data cetak tidak ditemukan');
+            $this->message('Data cetak tidak ditemukan', 'warning');
+            $this->go('pindah');
         }
     }
 

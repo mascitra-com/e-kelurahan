@@ -52,7 +52,7 @@
 					<td class="text-center">{{date('d-m-Y', strtotime($blanko->created_at))}}</td>
 					<td class="text-center">{{date('d-m-Y', strtotime($blanko->tanggal_verif))}}</td>
 					<td>
-						<a href="#" class="btn btn-default btn-xs"><i class="fa fa-info"></i> detail</a>
+						<a href="{{site_url('surat/detail/blankoktp/'.$miskin->id)}}" class="btn btn-default btn-xs"><i class="fa fa-info"></i> detail</a>
 						<a href="{{ site_url('surat/arsipkan/0/'.$blanko->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
 					</td>
 				</tr>

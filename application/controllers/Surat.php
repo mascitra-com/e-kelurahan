@@ -351,6 +351,144 @@ class Surat extends MY_Controller
 		$this->redirectJenis($jenis);
 	}
 
+	public function detail($jenis = NULL ,$id = NULL)
+	{
+		if (is_null($id) || empty($id)) {
+			$this->message('Data surat tidak ditemukan', 'warning');
+			$this->redirectJenis($jenis);
+		}else{
+			switch ($jenis) {
+				case 'blankoktp':
+				$jenis = '0';
+				break;
+
+				case 'skck':
+				$jenis = '1';
+				break;
+
+				case 'keterangan_miskin':
+				$jenis = '2';
+				break;
+
+				case 'keterangan_miskin_rt':
+				$jenis = '3';
+				break;
+				
+				default:
+				$jenis= '4';
+				break;
+			}
+			$id_organisasi = $this->ion_auth->get_current_id_org();
+
+			$this->load->model('profil_m');
+
+			//ambil data kelurahan
+			$kelurahan = $this->profil_m
+			->fields('nip, nama_lurah, alamat')
+			->get(array(
+				'id_organisasi' => $id_organisasi
+				));
+
+			//ambil data surat
+			$surat = $this->surat_m
+			->fields('id,no_surat')
+			->with_organisasi('fields:nama')
+			->with_penduduk(array(
+				'fields' => 'nama, tempat_lahir, tanggal_lahir, rt, rw',
+				'with' => array(
+					'relation' => 'pekerjaan',
+					'fields' => 'pekerjaan'
+					)
+				))
+			->get(array(
+				'id' => $id,
+				'id_organisasi' => $id_organisasi
+				));
+
+			if ($surat === FALSE || $kelurahan === FALSE) {
+				$this->message('Data surat tidak ditemukan');
+				$this->redirectJenis($jenis);
+			}else{
+				$data['kelurahan'] = $kelurahan;
+				$data['surat'] = $surat;
+				$this->render('surat/keterangan_miskin_detail', $data);
+			}
+
+		}
+	}
+
+	public function cetak($jenis = NULL ,$id = NULL)
+	{
+		if (is_null($id) || empty($id)) {
+			$this->message('Data surat tidak ditemukan', 'warning');
+			$this->redirectJenis($jenis);
+		}else{
+			$namafile = $jenis;
+
+			switch ($jenis) {
+				case 'blankoktp':
+				$jenis = '0';
+				break;
+
+				case 'skck':
+				$jenis = '1';
+				break;
+
+				case 'keterangan_miskin':
+				$jenis = '2';
+				break;
+
+				case 'keterangan_miskin_rt':
+				$jenis = '3';
+				break;
+				
+				default:
+				$jenis= '4';
+				break;
+			}
+			$id_organisasi = $this->ion_auth->get_current_id_org();
+
+			$this->load->model('profil_m');
+
+			//ambil data kelurahan
+			$kelurahan = $this->profil_m
+			->fields('nip, nama_lurah, alamat')
+			->get(array(
+				'id_organisasi' => $id_organisasi
+				));
+
+			//ambil data surat
+			$surat = $this->surat_m
+			->fields('id,no_surat')
+			->with_organisasi('fields:nama')
+			->with_penduduk(array(
+				'fields' => 'nama, tempat_lahir, tanggal_lahir, rt, rw',
+				'with' => array(
+					'relation' => 'pekerjaan',
+					'fields' => 'pekerjaan'
+					)
+				))
+			->get(array(
+				'id' => $id,
+				'id_organisasi' => $id_organisasi
+				));
+
+			if ($surat === FALSE || $kelurahan === FALSE) {
+				$this->message('Data surat tidak ditemukan');
+				$this->redirectJenis($jenis);
+			}else{
+				$data['kelurahan'] = $kelurahan;
+				$data['surat'] = $surat;
+
+				//cetak
+				$this->load->library('pdfgenerator');
+				$html = $this->load->view('surat/cetak/keterangan_miskin_cetak', $data, true); 
+
+				$this->pdfgenerator->generate($html, $namafile. ' ' . $data['surat']->no_surat .' ('.$data['surat']->nik.')');  
+			}
+		}
+	}
+
 	private function redirectJenis($jenis){
 		if ($jenis === '0') {
 			$this->go('surat/blankoktp');
