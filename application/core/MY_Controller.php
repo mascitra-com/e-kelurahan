@@ -6,6 +6,7 @@ class MY_Controller extends CI_Controller {
     protected $_privileges;
     protected $_super;
     protected $_csrf;
+    protected $_slug;
 
     public function __construct()
     {
@@ -18,36 +19,40 @@ class MY_Controller extends CI_Controller {
         $this->_privileges = $this->ion_auth->get_allowed_links();
         if (empty($this->_privileges)) {
           $this->_privileges = array();
-        }
+      }
 
+  }
+
+  public function _remap($method, $param=array())
+  {
+    if (get_class($this) === 'Homepage' && $method !== 'index') {
+        $this->_slug = $method;
+        $method = array_pop($param);
     }
-
-    public function _remap($method, $param=array())
-    {
-        if (method_exists($this, $method)) {
-            if ($this->ion_auth->logged_in() || $this->_accessable || $this->_super) {
-                if ($this->check_privileges(get_class($this), $method) || $this->_accessable || $this->ion_auth->is_admin()) {
-                    return call_user_func_array(array($this, $method), $param);
-                }else{
-                    die('anda tidak mempunyai hak akses untuk menu ini');
-                }
+    if (method_exists($this, $method)) {
+        if ($this->ion_auth->logged_in() || $this->_accessable || $this->_super) {
+            if ($this->check_privileges(get_class($this), $method) || $this->_accessable || $this->ion_auth->is_admin()) {
+                return call_user_func_array(array($this, $method), $param);
             }else{
-                $this->go('auth');
+                die('anda tidak mempunyai hak akses untuk menu ini');
             }
         }else{
-            show_404();
+            $this->go('auth');
         }
+    }else{
+        show_404();
     }
+}
 
-    protected function check_privileges($class, $method)
-    {
-        foreach ($this->_privileges as $privilege) {
-            if (strtolower($class.'/'.$method) == strtolower($privilege)) {
-                return TRUE;
-            }
+protected function check_privileges($class, $method)
+{
+    foreach ($this->_privileges as $privilege) {
+        if (strtolower($class.'/'.$method) == strtolower($privilege)) {
+            return TRUE;
         }
-        return FALSE;
     }
+    return FALSE;
+}
 
     /**
      * Berfungsi untuk melakukan redirect

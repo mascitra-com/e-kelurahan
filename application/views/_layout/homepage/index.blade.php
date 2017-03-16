@@ -51,7 +51,7 @@
 									<li><a href="#">Tompokersan</a></li>
 								</ul>
 							</li>
-							<li><a href="#">Masuk</a></li>
+							<li><a href="{{ site_url('warga') }}">Masuk</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
@@ -70,7 +70,7 @@
 						<li><a href="#">Peta &amp Batas Wilayah</a></li>
 						<li><a href="#">Prestasi Kelurahanh</a></li>
 						<li><a href="#">Moto Kelurahan</a></li>
-						<li><a href="#">Masuk admin</a></li>
+						<li><a href="{{ site_url('auth/login') }}">Masuk admin</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-6 col-sm-4 col-md-2">
