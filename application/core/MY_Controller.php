@@ -76,41 +76,14 @@ class MY_Controller extends CI_Controller {
      */
     protected function render($view, $data = array())
     {
-      if(!$data['super'] = $this->_super){
+        if(!$data['super'] = $this->_super){
         $data['link_privileges'] = $this->_privileges;
-      } else {
+        } else {
         $data['link_privileges'] = NULL;
-      }
-      $data['slug'] = '';
-      if (get_class($this) === 'Homepage'){
-          $data['slug'] = $this->_slug;
-          $this->load->model(array('pengumuman_m', 'info_m', 'organisasi_m'));
-          $data['pengumuman'] = $this->pengumuman_m->get_all(array('id_organisasi' => $this->checkSlug($this->_slug)));
-          $data['profil'] = $this->info_m->fields('slug, judul')->get_all(array('id_organisasi' => $this->checkSlug($this->_slug)));
-          $data['list_kelurahan'] = $this->organisasi_m
-              ->where(array('status' => '1', 'id >' => '1'))
-              ->get_all();
-      }
+        }
+        $data['slug'] = $this->_slug;
         $data['csrf'] = $this->_csrf;
         $this->blade->render($view, $data);
-    }
-
-    private function checkSlug($slug = NULL)
-    {
-        if (is_null($slug) || empty($slug)) {
-            return 1;
-        }else{
-            //cek slug apakah ada di tabel organisasi
-            $this->load->model(array('organisasi_m'));
-            $query = $this->organisasi_m
-                ->fields('id, slug')
-                ->get(array('slug'=> $slug));
-            if ($query === FALSE) {
-                return FALSE;
-            }else{
-                return $query->id;
-            }
-        }
     }
 
     /**

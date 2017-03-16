@@ -25,6 +25,7 @@
 					</thead>
 					<tbody>
 					<?php $i=0; ?>
+					@if($beritas)
 						@foreach($beritas as $berita)
 						<tr>
 							<td class="text-center">{{++$i}}</td>
@@ -34,17 +35,18 @@
 							<td>
 								<h4>{{ $berita->judul }}</h4>
 								<p>{{ potong_teks(strip_tags($berita->isi), 320) }}</p>
-								<span class="label label-primary">{{ strtolower(mdate('%l, %d %M %Y', strtotime(str_replace('-', '/', $berita->tanggal_publish)))) }}</span>
-								<span class="label label-primary">oleh {{ $berita->akun->username }}</span>
+								<span class="label label-primary">{{ ucfirst(strtolower(mdate('%l, %d %M %Y', strtotime(str_replace('-', '/', $berita->tanggal_publish))))) }}</span>
+								<span class="label label-primary">Oleh {{ $berita->akun->username }}</span>
 							</td>
 							<td class="text-center text-nowrap">
-								<a href="{{ site_url('berita/selengkapnya/'.$berita->slug) }}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-ellipsis-h"></i></a>
-								<a href="{{ site_url('berita/sunting/'.$berita->slug) }}" class="btn btn-primary btn-xs" title="sunting"><i class="fa fa-pencil"></i></a>
-								<a href="{{ site_url('berita/kembalikan/'.$berita->slug) }}" class="btn btn-warning btn-xs" title="kembalikan"><i class="fa fa-share-square-o"></i></a>
-								<a href="{{ site_url('berita/hapus/'.$berita->slug) }}" class="btn btn-danger btn-xs" title="hapus" onclick="return confirm('Aksi ini tidak dapat diurungkan.\nAnda yakin?')"><i class="fa fa-trash"></i></a>
+								<a href="{{ site_url('berita/selengkapnya/'.$berita->slug) }}" class="btn btn-default btn-xs" title="Selengkapnya"><i class="fa fa-ellipsis-h"></i></a>
+								<a href="{{ site_url('berita/sunting/'.$berita->slug) }}" class="btn btn-primary btn-xs" title="Sunting"><i class="fa fa-pencil"></i></a>
+								<a href="{{ site_url('berita/kembalikan/'.$berita->slug) }}" class="btn btn-warning btn-xs" title="Kembalikan"><i class="fa fa-share-square-o"></i></a>
+								<a href="{{ site_url('berita/hapus/'.$berita->slug) }}" class="btn btn-danger btn-xs" title="Hapus" onclick="return confirm('Aksi ini tidak dapat diurungkan.\nAnda yakin?')"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 						@endforeach
+					@endif
 					</tbody>
 				</table>
 			</div>

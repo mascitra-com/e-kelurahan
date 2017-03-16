@@ -15,11 +15,11 @@
 					<div class="form-group">
 						<label for="">Judul Berita</label>
 						{{ form_error('judul') }}
-						<input type="text" class="form-control" name="judul" placeholder="judul berita" value="{{ (isset($berita['judul'])) ? $berita['judul'] : '' }}" required/>
+						<input type="text" class="form-control" name="judul" placeholder="Judul Berita" value="{{ (isset($berita['judul'])) ? $berita['judul'] : '' }}" required/>
 					</div>
 					<div class="form-group">
 						<label for="tanggal_publish">Tanggal Publish</label>
-						<input type="date" class="form-control" name="tanggal_publish" value="{{ (isset($berita['tanggal_publish'])) ? $berita['tanggal_publish'] : '' }}" min="<?=date('Y-m-d');?>" placeholder="Tanggal publish berita">
+						<input type="date" class="form-control" name="tanggal_publish" value="{{ (isset($berita['tanggal_publish'])) ? $berita['tanggal_publish'] : '' }}" min="<?=date('Y-m-d');?>" placeholder="Tanggal Publish Berita">
 					</div>
 					<div class="form-group">
 						<label for="">Isi Berita</label>
@@ -34,7 +34,7 @@
 					<div class="form-group">
 						<button class="btn btn-primary" type="submit"><i class="fa fa-send-o"></i> Publikasikan</button>
 						<button class="btn btn-warning" name="status" type="submit" value="2"><i class="fa fa-pencil-square"></i> Simpan di draf</button>
-						<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> bersihkan</button>
+						<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> Bersihkan</button>
 					</div>
 				</form>
 			</div>

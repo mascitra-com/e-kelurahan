@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Homepage extends MY_Controller {
-
+    private $_data;
     public function __construct()
     {
         parent::__construct();
@@ -22,6 +22,12 @@ class Homepage extends MY_Controller {
                 $this->session->set_userdata('visitor', array('ip' => $this->input->ip_address(), 'visited_articles' => array()));
             }
         }
+        $this->load->model(array('pengumuman_m', 'info_m', 'organisasi_m'));
+        $this->_data['pengumuman'] = $this->pengumuman_m->get_all(array('id_organisasi' => $this->checkSlug($this->uri->segment(2))));
+        $this->_data['profil'] = $this->info_m->fields('slug, judul')->get_all(array('id_organisasi' => $this->checkSlug($this->uri->segment(2))));
+        $this->_data['list_kelurahan'] = $this->organisasi_m
+            ->where(array('status' => '1', 'id >' => '1'))
+            ->get_all();
     }
 
     public function index($slug = NULL)
@@ -100,7 +106,7 @@ class Homepage extends MY_Controller {
             ->limit(4)
             ->get_all('id_organisasi', $id_organisasi);
 
-        $this->render('homepage/homepage', $data);
+        $this->render('homepage/homepage', array_merge($data, $this->_data));
     }
 
     private function checkSlug($slug = NULL)
@@ -155,7 +161,7 @@ class Homepage extends MY_Controller {
             } else
             {
                 $data['beritas'] = $query;
-                $this->render('homepage/berita', $data);
+                $this->render('homepage/berita', array_merge($data, $this->_data));
             }
 
         } else
@@ -207,7 +213,7 @@ class Homepage extends MY_Controller {
                 {
                     $data['berita'] = $query;
                     $data['populers'] = $populer;
-                    $this->render('homepage/berita_detail', $data);
+                    $this->render('homepage/berita_detail', array_merge($data, $this->_data));
                 }
             }
         } else
@@ -222,7 +228,7 @@ class Homepage extends MY_Controller {
         if ($id_organisasi = $this->checkSlug($this->_slug))
         {
             $data['agenda'] = $this->agenda_m->get_all(array('id_organisasi' => $id_organisasi));
-            $this->render('homepage/agenda', $data);
+            $this->render('homepage/agenda', array_merge($data, $this->_data));
         } else
         {
             $this->message('Kelurahan tidak ditemukan', 'danger');
@@ -235,7 +241,7 @@ class Homepage extends MY_Controller {
         if ($id_organisasi = $this->checkSlug($this->_slug))
         {
             $data['regulasi'] = $this->regulasi_m->get_all(array('id_organisasi' => $id_organisasi));
-            $this->render('homepage/regulasi', $data);
+            $this->render('homepage/regulasi', array_merge($data, $this->_data));
         } else
         {
             $this->message('Kelurahan tidak ditemukan', 'danger');
@@ -248,7 +254,7 @@ class Homepage extends MY_Controller {
         if ($id_organisasi = $this->checkSlug($this->_slug))
         {
             $data['profil_detail'] = $this->info_m->get(array('id_organisasi' => $id_organisasi, 'slug' => $slug));
-            $this->render('homepage/profil', $data);
+            $this->render('homepage/profil', array_merge($data, $this->_data));
         } else
         {
             $this->message('Kelurahan tidak ditemukan', 'danger');
@@ -261,7 +267,7 @@ class Homepage extends MY_Controller {
         if ($id_organisasi = $this->checkSlug($this->_slug))
         {
             $data['album'] = $this->galeri_kategori_m->with_galeri()->get_all(array('id_organisasi' => $id_organisasi));
-            $this->render('homepage/album', $data);
+            $this->render('homepage/album', array_merge($data, $this->_data));
         } else
         {
             $this->message('Kelurahan tidak ditemukan', 'danger');
@@ -273,7 +279,7 @@ class Homepage extends MY_Controller {
     {
         $data['album'] = $this->galeri_kategori_m->get($id);
         $data['foto'] = $this->galeri_m->get_all(array('id_kategori' => $id));
-        $this->render('homepage/galeri', $data);
+        $this->render('homepage/galeri', array_merge($data, $this->_data));
     }
 
     public function video()
@@ -281,7 +287,7 @@ class Homepage extends MY_Controller {
         if ($id_organisasi = $this->checkSlug($this->_slug))
         {
             $data['videos'] = $this->galeri_m->get_all(array('id_organisasi' => $id_organisasi, 'tipe' => '1'));
-            $this->render('homepage/video', $data);
+            $this->render('homepage/video', array_merge($data, $this->_data));
         } else
         {
             $this->message('Kelurahan tidak ditemukan', 'danger');

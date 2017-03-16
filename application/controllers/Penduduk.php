@@ -115,7 +115,7 @@ class Penduduk extends MY_Controller {
             $this->render('kependudukan/create', $data);
         }
         $this->message('Data Penduduk Berhasil Ditambahkan', 'success');
-        $this->go('penduduk');
+        $this->go('penduduk/page/1');
     }
 
     /**
@@ -151,7 +151,7 @@ class Penduduk extends MY_Controller {
             $data['penduduk'] = $this->penduduk->get(array('nik' => $nik));
         }
         $this->message('Data Penduduk Berhasil Diubah', 'success');
-        $this->go('penduduk');
+        $this->go('penduduk/detail/'.$nik);
     }
 
     /**
@@ -166,7 +166,7 @@ class Penduduk extends MY_Controller {
         } else {
             $this->message('Data Penduduk Gagal Diubah', 'danger');
         }
-        $this->go('penduduk');
+        $this->go('penduduk/page/1');
     }
 
     /**

@@ -43,8 +43,8 @@
 						@else 
 						{{ site_url('berita/arsip') }}
 						@endif"
-						class="btn btn-default"><i class="fa fa-arrow-left"></i> kembali</a>
-						<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> bersihkan</button>
+						class="btn btn-default"><i class="fa fa-arrow-left"></i> Kembali</a>
+						<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> Bersihkan</button>
 					</div>
 				</form>
 			</div>

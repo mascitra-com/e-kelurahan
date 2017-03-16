@@ -114,7 +114,8 @@ class Keluarga extends MY_Controller
 				);
 			if ($this->detail_kk_m->insert($insert_detail)) {
 			    $this->ion_auth->register($data['nik'], '123456', array('id_organisasi' => $this->ion_auth->get_current_id_org()), array(3));
-				$this->go('keluarga/detail/'.$data['no']);
+                $this->message('Berhasil Menambahkan Anggota Keluarga', 'success');
+                $this->go('keluarga/detail/'.$data['no']);
 			}else{
 				$this->message('Terjadi Kesalahan Saat Menambahkan Anggota Keluarga', 'danger');
             }
