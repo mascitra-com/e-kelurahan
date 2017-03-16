@@ -37,14 +37,14 @@
 							</li>
 							<li><a href="#">Berita</a></li>
 							<li><a href="#">Geleri</a></li>
-							<li><a href="#">Agenda</a></li>
+							<li><a href="{{ site_url('homepage/'.$slug.'/agenda') }}">Agenda</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pelayanan <span class="caret text-white"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="#">Surat Blanko KTP</a></li>
 								</ul>
 							</li>
-							<li><a href="#">Regulasi</a></li>
+							<li><a href="{{ site_url('homepage/'.$slug.'/regulasi') }}">Regulasi</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kelurahan <span class="caret text-white"></span></a>
 								<ul class="dropdown-menu">
