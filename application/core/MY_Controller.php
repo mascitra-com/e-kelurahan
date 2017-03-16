@@ -27,7 +27,13 @@ class MY_Controller extends CI_Controller {
   {
     if (get_class($this) === 'Homepage' && $method !== 'index') {
       $this->_slug = $method;
-      $method = array_pop($param);
+      $method = array_shift($param);
+    }
+    if($method === 'index'){
+      $method = array_shift($param);
+      if (!method_exists($this, $method)){
+        $method = 'index';
+      }
     }
 
     if (method_exists($this, $method)) {
@@ -74,9 +80,11 @@ class MY_Controller extends CI_Controller {
       } else {
         $data['link_privileges'] = NULL;
       }
-
+      $data['slug'] = '';
+      if (get_class($this) === 'Homepage'){
+        $data['slug'] = $this->_slug;
+      }
       $data['csrf'] = $this->_csrf;
-      $data['slug'] = $this->_slug;
 
       $this->blade->render($view, $data);
     }
@@ -102,18 +110,18 @@ class MY_Controller extends CI_Controller {
       $this->session->set_flashdata('message', array($msg, $typ));
     }
 
-     /**
+    /**
      * @param $table - Table Name
      * @param $title - Field as reference for slug
      */
-     protected function slug_config($table, $title){
+    protected function slug_config($table, $title){
       $config = array(
         'table' => $table,
         'id' => 'id',
         'field' => 'slug',
         'title' => $title,
-            'replacement' => 'dash' // Either dash or underscore
-            );
+      'replacement' => 'dash' // Either dash or underscore
+      );
       $this->slug->set_config($config);
     }
 

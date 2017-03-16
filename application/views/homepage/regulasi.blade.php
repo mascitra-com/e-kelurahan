@@ -25,19 +25,21 @@ Regulasi
 					</nav>
 					<table class="table table-striped table-hover table-bordered">
 						<tbody>
-							@for($i=1; $i < 6; $i++)
+						@if($regulasi)
+							@foreach($regulasi as $list)
 							<tr>
 								<td>
-									<h3>Judul regulasi</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic eligendi, illum recusandae eius, voluptate sed.</p>
-									<span class="label label-primary">oleh PEMKAB Lumajang</span>
-									<span class="label label-primary">pada 02/02/2017</span>
+									<h3>{{ $list->judul }}</h3>
+									<p>{{ $list->deskripsi }}</p>
+									<span class="label label-primary">oleh {{ $list->dikeluarkan_oleh }}</span>
+									<span class="label label-primary">pada {{ date('d/m/Y', strtotime($list->tgl_dikeluarkan)) }}</span>
 								</td>
-								<td class="text-center">
-									<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> unduh dokumen</a>
+								<td class="text-center" width="20%">
+									<a href="{{ base_url('assets/regulasi/'.$list->link) }}" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> Unduh Dokumen</a>
 								</td>
 							</tr>
-							@endfor
+							@endforeach
+                        @endif
 						</tbody>
 					</table>
 					<nav aria-label="...">
