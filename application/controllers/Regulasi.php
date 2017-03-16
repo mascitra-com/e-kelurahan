@@ -23,15 +23,16 @@ class Regulasi extends MY_Controller
     {
         $data = $this->input->post();
         if (!empty($_FILES['dokumen']['name'])) {
-            $data['link']= $this->do_upload('dokumen');
+            if($data['link']= $this->do_upload('dokumen')){
+                $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
+                if($this->regulasi_m->insert($data)){
+                    $this->message('Berhasil Menyimpan Data Regulasi');
+                } else {
+                    $this->message('Gagal Menyimpan Data Regulasi');
+                }
+            }
         } else {
-            $data['link'] = prefix_unik(2);
-        }
-        $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
-        if($this->regulasi_m->insert($data)){
-            $this->message('Berhasil Menyimpan Data Regulasi');
-        } else {
-            $this->message('Gagal Menyimpan Data Regulasi');
+            $this->message('Gagal! Belum memilih File Regulasi yang ingin di Upload', 'danger');
         }
         $this->go('regulasi');
     }
