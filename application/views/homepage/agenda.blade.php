@@ -25,15 +25,18 @@ Agenda
 					</nav>
 					<table class="table table-striped table-hover table-bordered">
 						<tbody>
-							@for($i=1; $i < 6; $i++)
+						@if($agenda)
+							@foreach($agenda as $list)
+                            <?php $date = strtotime($list->tanggal_agenda); ?>
 							<tr>
 								<td class="text-center" width="10%">
-									<h2>0{{$i}}</h2>
-									<span>feb</span>
+									<h2>{{ date('d', $date) }}</h2>
+									<span>{{ date('M', $date) }}</span>
 								</td>
-								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum doloribus rerum necessitatibus repudiandae repellendus expedita perspiciatis corporis odio, aperiam neque.</td>
+								<td>{{ $list->perihal }}</td>
 							</tr>
-							@endfor
+							@endforeach
+                        @endif
 						</tbody>
 					</table>
 					<nav aria-label="...">

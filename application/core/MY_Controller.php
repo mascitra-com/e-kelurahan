@@ -73,7 +73,10 @@ protected function check_privileges($class, $method)
         } else {
             $data['link_privileges'] = NULL;
         }
-
+        $data['slug'] = '';
+        if (get_class($this) === 'Homepage'){
+            $data['slug'] = $this->_slug;
+        }
         $data['csrf'] = $this->_csrf;
 
         $this->blade->render($view, $data);
