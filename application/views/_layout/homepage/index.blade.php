@@ -35,7 +35,7 @@
 									<li><a href="#">Another action</a></li>
 								</ul>
 							</li>
-							<li><a href="#">Berita</a></li>
+							<li><a href="{{ site_url('homepage/'.$slug.'/berita') }}">Berita</a></li>
 							<li><a href="#">Geleri</a></li>
 							<li><a href="#">Agenda</a></li>
 							<li class="dropdown">
