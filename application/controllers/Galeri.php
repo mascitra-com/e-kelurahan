@@ -50,15 +50,16 @@ class Galeri extends MY_Controller
     {
         $data = $this->input->post();
         if (!empty($_FILES['link']['name'])) {
-            $data['link'] = $this->do_upload('link', $data['id_kategori']);
+            if($data['link'] = $this->do_upload('link', $data['id_kategori'])){
+                $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
+                if($this->galeri_m->insert($data)){
+                    $this->message('Berhasil Menyimpan Foto Baru');
+                } else {
+                    $this->message('Gagal Menyimpan Foto Baru');
+                }
+            }
         } else {
-            $data['link'] = prefix_unik(3);
-        }
-        $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
-        if($this->galeri_m->insert($data)){
-            $this->message('Berhasil Menyimpan Foto Baru');
-        } else {
-            $this->message('Gagal Menyimpan Foto Baru');
+            $this->message('Gagal! Belum memilih File Foto yang ingin di Upload', 'danger');
         }
         $this->go('galeri/detail/' . $data['id_kategori']);
     }
@@ -67,17 +68,19 @@ class Galeri extends MY_Controller
     {
         $data = $this->input->post();
         if (!empty($_FILES['link']['name'])) {
-            $data['link'] = $this->do_upload('link', 0);
+            if($data['link'] = $this->do_upload('link', 0)){
+                $data['tipe'] = '1';
+                $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
+                if($this->galeri_m->insert($data)){
+                    $this->message('Berhasil Menyimpan Video Baru');
+                } else {
+                    $this->message('Gagal Menyimpan Video Baru');
+                }
+            }
         } else {
-            $data['link'] = prefix_unik(3);
+            $this->message('Gagal! Belum memilih File Video yang ingin di Upload', 'danger');
         }
-        $data['tipe'] = '1';
-        $data['id_organisasi'] = $this->ion_auth->get_current_id_org();
-        if($this->galeri_m->insert($data)){
-            $this->message('Berhasil Menyimpan Video Baru');
-        } else {
-            $this->message('Gagal Menyimpan Video Baru');
-        }
+
         $this->go('galeri/video');
     }
 
