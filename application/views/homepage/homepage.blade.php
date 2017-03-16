@@ -124,18 +124,23 @@ Beranda
 			<div class="box">
 				<h3 class="widget-title">Galeri Foto</h3>
 				<div class="galeri-box">
-					<img src="http://keckotabaru.jambikota.go.id/foto_galeri/2016/10/18/5120161013_163640.jpg" alt="foto">
-					<img src="http://keckotabaru.jambikota.go.id/foto_galeri/2015/06/04/45marching%20band.jpg" alt="foto">
-					<img src="http://keckotabaru.jambikota.go.id/foto_galeri/2015/06/04/72kuda%20lumping.jpg" alt="foto">
-					<img src="http://keckotabaru.jambikota.go.id/foto_galeri/2015/05/26/50barisan%20kec-kel.jpg" alt="foto">
+					@if($foto)
+                        @foreach($foto as $item)
+                        <img src="{{ base_url('assets/galeri/'.$item->link) }}" alt="foto">
+                        @endforeach
+                    @endif
 				</div>
 				<hr>
 				<h3 class="widget-title">Galeri Video</h3>
 				<div class="galeri-box">
-					<img src="http://keckotabaru.jambikota.go.id/foto_galeri/2016/10/18/5120161013_163640.jpg" alt="foto">
-					<img src="http://keckotabaru.jambikota.go.id/foto_galeri/2015/06/04/45marching%20band.jpg" alt="foto">
-					<img src="http://keckotabaru.jambikota.go.id/foto_galeri/2015/06/04/72kuda%20lumping.jpg" alt="foto">
-					<img src="http://keckotabaru.jambikota.go.id/foto_galeri/2015/05/26/50barisan%20kec-kel.jpg" alt="foto">
+                    @if($video)
+                        @foreach($video as $item)
+                            <video width="144" height="108" controls>
+                                <source src="{{ base_url('assets/galeri/'.$item->link) }}">
+                                Your browser does not support the video tag.
+                            </video>
+                        @endforeach
+                    @endif
 				</div>
 			</div>
 		</div>
