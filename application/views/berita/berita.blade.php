@@ -51,12 +51,14 @@
 				</table>
 			</div>
 			<div class="panel-footer">
-				<nav aria-label="...">
-					<ul class="pager">
-						<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Sebelumnya</a></li>
-						<li class="next"><a href="#">Selanjutnya <span aria-hidden="true">&rarr;</span></a></li>
+				<nav aria-label="Page navigation" class="pull-right">
+					<ul class="pagination pagination-sm" style="margin:0">
+						@if(isset($pagination))
+							{{ $pagination }}
+						@endif
 					</ul>
 				</nav>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
