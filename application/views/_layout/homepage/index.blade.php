@@ -31,9 +31,12 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profil <span class="caret text-white"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-								</ul>
+                                    @if($profil)
+                                        @foreach($profil as $list)
+                                            <li><a href="{{ site_url('homepage/'.$slug.'/profil/'.$list->slug) }}">{{ $list->judul }}</a></li>
+                                        @endforeach
+                                    @endif
+                                </ul>
 							</li>
 							<li><a href="{{ site_url('homepage/'.$slug.'/berita') }}">Berita</a></li>
 							<li><a href="#">Galeri</a></li>
@@ -73,13 +76,11 @@
 				<div class="col-xs-6 col-sm-4 col-md-2">
 					<ul class="sitemap">
 						<li class="sitemap-title"><h4>Profil</h4></li>
-						<li><a href="#">Sambutan Lurah</a></li>
-						<li><a href="#">Selayang Pandang</a></li>
-						<li><a href="#">Visi &amp Misi</a></li>
-						<li><a href="#">Program Unggulan</a></li>
-						<li><a href="#">Peta &amp Batas Wilayah</a></li>
-						<li><a href="#">Prestasi Kelurahanh</a></li>
-						<li><a href="#">Moto Kelurahan</a></li>
+                        @if($profil)
+                            @foreach($profil as $list)
+                                <li><a href="{{ site_url('homepage/'.$slug.'/profil/'.$list->slug) }}">{{ $list->judul }}</a></li>
+                            @endforeach
+                        @endif
 						<li><a href="{{ site_url('auth/login') }}">Masuk admin</a></li>
 					</ul>
 				</div>

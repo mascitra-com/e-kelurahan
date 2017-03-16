@@ -9,9 +9,9 @@ class Homepage extends MY_Controller {
 		$this->_accessable = TRUE;
 		// $this->load->library(array('form_validation'));
 		$this->load->helper(array('dump', 'potong_teks', 'cek_file'));
-		$this->load->model(array('organisasi_m', 'agenda_m', 'regulasi_m'));
+		$this->load->model(array('organisasi_m', 'agenda_m', 'regulasi_m', 'info_m'));
 
-		if (is_null($this->session->userdata('visitor'))) {
+        if (is_null($this->session->userdata('visitor'))) {
 			$this->session->set_userdata('visitor', array('ip' => $this->input->ip_address(), 'visited_articles' => array()));
 		}else{
 			if ($this->session->userdata('visitor')['ip'] !== $this->input->ip_address()) {
@@ -189,6 +189,18 @@ class Homepage extends MY_Controller {
 			$this->message('Kelurahan tidak ditemukan', 'danger');
 			$this->go('homepage');
 		}
+	}
+
+    public function profil($slug)
+    {
+        if ($id_organisasi = $this->checkSlug($this->_slug))
+        {
+            $data['profil_detail'] = $this->info_m->get(array('id_organisasi' => $id_organisasi, 'slug' => $slug));
+            $this->render('homepage/profil', $data);
+        }else{
+            $this->message('Kelurahan tidak ditemukan', 'danger');
+            $this->go('homepage');
+        }
 	}
 
 	private function checkSlug($slug = NULL)
