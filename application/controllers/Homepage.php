@@ -9,8 +9,7 @@ class Homepage extends MY_Controller {
 		$this->_accessable = TRUE;
 		// $this->load->library(array('form_validation'));
 		$this->load->helper(array('dump'));
-		$this->load->model(array('organisasi_m'));
-
+		$this->load->model(array('organisasi_m', 'agenda_m'));
 		if (is_null($this->session->userdata('visitor'))) {
 			$this->session->set_userdata('visitor', array('ip' => $this->input->ip_address(), 'visited_articles' => array()));
 		}else{
@@ -96,6 +95,17 @@ class Homepage extends MY_Controller {
 			$this->message('Kelurahan tidak ditemukan', 'danger');
 			$this->go('homepage');
 		}
+	}
+
+    public function agenda()
+    {
+        if ($id_organisasi = $this->checkSlug($this->_slug)) {
+            $data['agenda'] = $this->agenda_m->get_all(array('id_organisasi' => $id_organisasi));
+            $this->render('homepage/agenda', $data);
+        }else{
+            $this->message('Kelurahan tidak ditemukan', 'danger');
+            $this->go('homepage');
+        }
 	}
 
 	private function checkSlug($slug = NULL)
