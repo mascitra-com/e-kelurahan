@@ -37,6 +37,14 @@
 						<div class="collapse navbar-collapse" id="menu">
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i> <span class="badge badge-sm">42</span></a>
+									<ul class="dropdown-menu">
+										<li><a href="#"><span class="badge badge-sm">05</span> Blanko KTP</a></li>
+										<li><a href="#"><span class="badge badge-sm">15</span> SKCK</a></li>
+										<li><a href="#"><span class="badge badge-sm">18</span> Keterangan Miskin</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ainul Yaqin <span class="caret"></span></a>
 									<ul class="dropdown-menu">
 										<li><a href="#">Action</a></li>
