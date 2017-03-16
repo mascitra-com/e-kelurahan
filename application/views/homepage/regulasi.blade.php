@@ -13,14 +13,15 @@ Regulasi
 					<nav class="navbar navbar-default">
 						<div class="container-fluid">
 							<div class="navbar-header">
-								<a class="navbar-brand" href="#">Regulasi</a>
+								<div class="navbar-brand">Regulasi</div>
 							</div>
-							<form action="#" method="post" class="navbar-form navbar-right" role="search">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Cari">
-								</div>
-								<button type="submit" class="btn btn-default">Cari</button>
-							</form>
+                            {{-- TODO Fix This--}}
+							{{--<form action="#" method="post" class="navbar-form navbar-right" role="search">--}}
+								{{--<div class="form-group">--}}
+									{{--<input type="text" class="form-control" placeholder="Cari">--}}
+								{{--</div>--}}
+								{{--<button type="submit" class="btn btn-default">Cari</button>--}}
+							{{--</form>--}}
 						</div>
 					</nav>
 					<table class="table table-striped table-hover table-bordered">
@@ -29,10 +30,10 @@ Regulasi
 							@foreach($regulasi as $list)
 							<tr>
 								<td>
-									<h3>{{ $list->judul }}</h3>
-									<p>{{ $list->deskripsi }}</p>
-									<span class="label label-primary">oleh {{ $list->dikeluarkan_oleh }}</span>
-									<span class="label label-primary">pada {{ date('d/m/Y', strtotime($list->tgl_dikeluarkan)) }}</span>
+									<h3>{{ ucfirst($list->judul) }}</h3>
+									<p>{{ ucfirst($list->deskripsi) }}</p>
+									<span class="label label-primary">Oleh : {{ $list->dikeluarkan_oleh }}</span>
+									<span class="label label-primary">Pada {{ date('d/m/Y', strtotime($list->tgl_dikeluarkan)) }}</span>
 								</td>
 								<td class="text-center" width="20%">
 									<a href="{{ base_url('assets/regulasi/'.$list->link) }}" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> Unduh Dokumen</a>

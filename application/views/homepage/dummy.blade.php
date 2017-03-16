@@ -66,7 +66,6 @@
 					<div class="box">
 					<h3 class="widget-title">SEDANG HANGAT</h3>
 					@if(empty($headline))
-						<!-- TODO -->
 					@else
 						<img src="{{ base_url('assets/images/berita/'.cek_file($headline->gambar,'./assets/images/berita/','default.png')) }}" class="news-img-big" alt="thumbnail">
 						<span class="news-date-big"><?= strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $headline->tanggal_publish)))) ?></span>

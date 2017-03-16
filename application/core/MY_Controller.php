@@ -84,9 +84,12 @@ class MY_Controller extends CI_Controller {
       $data['slug'] = '';
       if (get_class($this) === 'Homepage'){
           $data['slug'] = $this->_slug;
-          $this->load->model(array('pengumuman_m', 'info_m'));
+          $this->load->model(array('pengumuman_m', 'info_m', 'organisasi_m'));
           $data['pengumuman'] = $this->pengumuman_m->get_all(array('id_organisasi' => $this->checkSlug($this->_slug)));
           $data['profil'] = $this->info_m->fields('slug, judul')->get_all(array('id_organisasi' => $this->checkSlug($this->_slug)));
+          $data['list_kelurahan'] = $this->organisasi_m
+              ->where(array('status' => '1', 'id >' => '1'))
+              ->get_all();
       }
         $data['csrf'] = $this->_csrf;
         $this->blade->render($view, $data);
