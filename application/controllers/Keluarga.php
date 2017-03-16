@@ -116,10 +116,10 @@ class Keluarga extends MY_Controller
 			    $this->ion_auth->register($data['nik'], '123456', array('id_organisasi' => $this->ion_auth->get_current_id_org()), array(3));
 				$this->go('keluarga/detail/'.$data['no']);
 			}else{
-				die('terjadi kesalahan saat insert tabel detail keluarga');
-			}
-		}else{
-			die('terjadi kesalahan saat insert | nik kosong');
+				$this->message('Terjadi Kesalahan Saat Menambahkan Anggota Keluarga', 'danger');
+            }
+        }else{
+            $this->message('Terjadi Kesalahan Saat Menambahkan Data Keluarga', 'danger');
 		}
 	}
 
@@ -172,6 +172,19 @@ class Keluarga extends MY_Controller
         $data = $this->input->post();
         $data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
         if($this->detail_kk_m->insert($data)){
+            $this->message('Berhasil Menyimpan Anggota Keluarga Baru', 'success');
+        } else {
+            $this->message('Gagal Menyimpan Anggota Keluarga Baru', 'danger');
+        }
+        $this->go('keluarga/detail/'.$data['no_kk']);
+	}
+
+    public function ubah_anggota($id)
+    {
+        $data = $this->input->post();
+        $data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
+        $data = array_filter($data, function($value) { return $value !== ''; });
+        if($this->detail_kk_m->update($data, $id)){
             $this->message('Berhasil Menyimpan Anggota Keluarga Baru', 'success');
         } else {
             $this->message('Gagal Menyimpan Anggota Keluarga Baru', 'danger');

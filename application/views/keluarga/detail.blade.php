@@ -91,21 +91,22 @@
                                 <td>{{ $item->no_urut_kk }}</td>
                                 <td><a href="{{ site_url('penduduk/detail/'.$item->nik) }}">{{ $item->penduduk->nama }}</a></td>
                                 <td>{{ $item->status->nama_statuskeluarga }}</td>
-                                <td>{{ $item->pendidikan ? $item->pendidikan->pendidikan : '-' }}</td>
+                                <td>{{ !empty($item->pendidikan) ? $item->pendidikan->pendidikan : '-' }}</td>
                                 <td>{{ $item->no_paspor }}</td>
                                 <td>{{ $item->no_kitap }}</td>
                                 <td>{{ $item->ayah }}</td>
                                 <td>{{ $item->ibu }}</td>
                                 <td>
                                     <!-- data dari foreach contoh-->
-                                    <?php $a = array('nik'=> $item->nik, 'nama'=>$item->penduduk->nama); ?>
-
+                                    <?php $a = array('id' => $item->id, 'nik'=> $item->nik, 'nama'=>$item->penduduk->nama, 'ayah' => $item->ayah, 'ibu' => $item->ibu, 'no_paspor' => $item->no_paspor, 'no_kitap' => $item->no_kitap, 'no_urut_kk' => $item->no_urut_kk); ?>
                                     <button class="btn btn-default btn-xs btn-edit" data-detail='{{json_encode($a)}}'>
                                         <i class="fa fa-pencil"></i>
                                     </button>
-                                    <a href="{{ site_url('keluarga/hapus_anggota/'.$item->id) }}" class="btn btn-default btn-xs" onclick="return confirm('anda yakin?')">
-                                        <i class="fa fa-close text-red"></i>
-                                    </a>
+									@if($item->no_urut_kk <> 1)
+                                        <a href="{{ site_url('keluarga/hapus_anggota/'.$item->id) }}" class="btn btn-default btn-xs" onclick="return confirm('anda yakin?')">
+                                            <i class="fa fa-close text-red"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -167,7 +168,7 @@
 						<div class="col-xs-12 col-md-6">
 							<div class="form-group">
 								<label for="">No. Pasport</label>
-								<input type="text" class="form-control" name="no_passport" placeholder="Nomor Passport">
+								<input type="text" class="form-control" name="no_paspor" placeholder="Nomor Passport">
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-6">
@@ -196,7 +197,7 @@
 						<input type="text" class="form-control" name="no_urut_kk" placeholder="No Urut">
 					</div>
 					<div class="form-group">
-						<button class="btn btn-primary" type="submit">Tambah</button>
+						<button class="btn btn-primary" type="submit">Simpan</button>
 						<button class="btn btn-default" type="reset">Bersihkan</button>
 					</div>
 				</form>
@@ -234,9 +235,14 @@
 
 	$("button[data-detail]").click(function(){
 		var data = $(this).data('detail');
-		$("input[name='nik_detail']").val(data.nik);
+		$("input[name='nik']").val(data.nik);
+		$("input[name='ayah']").val(data.ayah);
+		$("input[name='ibu']").val(data.ibu);
+		$("input[name='no_paspor']").val(data.no_paspor);
+		$("input[name='no_kitap']").val(data.no_kitap);
+		$("input[name='no_urut_kk']").val(data.no_urut_kk);
 		// alamat btn-edit
-		$("#modal-tambah form").attr('action', 'edit');
+		$("#modal-tambah form").attr('action', '{{ site_url('keluarga/ubah_anggota/') }}' + data.id);
 		$("#modal-tambah").modal('show');
 	});
 
