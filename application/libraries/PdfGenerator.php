@@ -11,6 +11,7 @@ class PdfGenerator
 
 		$dompdf = new DOMPDF();
 		$dompdf->set_paper('A4', 'portrait');
+		$dompdf->set_base_path(realpath(APPPATH . '/../assets/'));
 		$dompdf->load_html($html);
 		$dompdf->render();
 		$dompdf->stream($filename.'.pdf',array("Attachment"=>0));

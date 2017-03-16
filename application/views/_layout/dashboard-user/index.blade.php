@@ -31,10 +31,12 @@
 						<li class="dropdown active">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pelayanan <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Surat Blanko KTP</a></li>
+								<li><a href="{{ site_url('warga/pengajuan/blankoktp') }}">Surat Blanko KTP</a></li>
+								<li><a href="{{ site_url('warga/pengajuan/keterangan_miskin') }}">Surat Keterangan Miskin</a></li>
 							</ul>
 						</li>
-						<li><a href="#">Status Pengajuan</a></li>
+						<li><a href="{{ site_url('warga/surat/blankoktp') }}">Status Pengajuan</a></li>
+						<li><a href="{{ site_url('warga/logout') }}">Keluar</a></li>
 					</ul>
 				</div>
 			</div>
@@ -43,6 +45,7 @@
 			@yield('content')
 		</div>
 	</div>
+	@yield('modal')
 </body>
 <script src="{{base_url('assets/plugins/jquery/jquery-3.1.1.min.js')}}"></script>
 <script src="{{base_url('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>

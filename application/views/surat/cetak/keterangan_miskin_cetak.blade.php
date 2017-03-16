@@ -8,11 +8,21 @@
 	<link rel="stylesheet" href="{{base_url('assets/css/theme.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/css/theme-helper.css')}}">
 	<style>
+		@page { margin: 0; }
+
+		@media print {
+			@page { margin: 0; }
+		}
+
+		html, body{
+			max-height: 842pt;
+			overflow: hidden;
+		}
+
 		.panel{
 			width: 595pt;
 			height: 842pt;
 			max-width: 595pt;
-			max-height: 842pt;
 			padding: 30px 70px;
 			overflow: hidden;
 			font-size: 10pt;
@@ -70,13 +80,13 @@
 			<div class="col-xs-12 col-center">
 				<div class="panel">
 					<div class="panel-body">
-						<h5>PEMERINTAH KABUPATEN JEMBER</h5>
-						<h5>KECAMATAN : PATRANG</h5>
-						<h5>KELURAHAN : GEBANG</h5>
+						<h5>PEMERINTAH KABUPATEN LUMAJANG</h5>
+						<h5>KECAMATAN : LUMAJANG</h5>
+						<h5>KELURAHAN : {{ strtoupper($surat->organisasi->nama) }}</h5>
 						<div class="break-10"></div>
 						<div class="center" style="border: none;">
 							<span class="text-size-16"><u><b>SURAT PERNYATAAN</b></u></span><br>
-							<span>Nomor : 475 / 18 / 02.2003 / 2017</span>
+							<span>Nomor : {{ $surat->no_surat }}</span>
 						</div>
 						<div class="break-30"></div>
 						<div class="table-responsive">
@@ -90,17 +100,17 @@
 								<tr>
 									<td>Nama</td>
 									<td>:</td>
-									<td>Nama Lurah</td>
+									<td>{{ $kelurahan->nama_lurah }}</td>
 								</tr>
 								<tr>
 									<td>Alamat</td>
 									<td>:</td>
-									<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, veniam.</td>
+									<td>{{ $kelurahan->alamat }}</td>
 								</tr>
 								<tr>
 									<td>Tempat/Tanggal Lahir</td>
 									<td>:</td>
-									<td>Bondowoso, 02 Februari 1985</td>
+									<td>Jember, 02 Mei 1995</td>
 								</tr>
 								<tr>
 									<td>Jabatan</td>
@@ -117,22 +127,22 @@
 								<tr>
 									<td>Nama</td>
 									<td>:</td>
-									<td>Mohammad Ainul Yaqin</td>
+									<td>{{ $surat->penduduk->nama }}</td>
 								</tr>
 								<tr>
 									<td>Tempat/Tanggal Lahir</td>
 									<td>:</td>
-									<td>Bondowoso, 08 November 1992</td>
+									<td>{{ $surat->penduduk->tempat_lahir }}, {{ date('d F Y', strtotime($surat->penduduk->tanggal_lahir)) }}</td>
 								</tr>
 								<tr>
 									<td>Pekerjaan</td>
 									<td>:</td>
-									<td>Mahasiswa</td>
+									<td>{{ $surat->penduduk->pekerjaan->pekerjaan }}</td>
 								</tr>
 								<tr>
 									<td>Alamat</td>
 									<td>:</td>
-									<td>Desa Namadesa RT.XX RW.XX, Kec. Lumajang<br>Kab. Jember</td>
+									<td>Desa {{ $surat->organisasi->nama }} RT.{{ $surat->penduduk->rt }} RW.{{ $surat->penduduk->rw }}, Kec. Lumajang<br>Kab. Lumajang</td>
 								</tr>
 								<!-- AKHIR BIODATA PENGAJU -->
 								<tr>
@@ -146,11 +156,11 @@
 										<tr>
 											<td width="66%"></td>
 											<td width="33%" align="center">
-												<span>Lumajang, 28 Februari 2017</span><br>
-												<span>KEPALA DESA Namakelurahan</span>
+												<span>Lumajang, {{ date('d F Y') }}</span><br>
+												<span>KEPALA DESA {{ $surat->organisasi->nama }}</span>
 												<div class="break-100"></div>
-												<span>NamaLurah</span><br>
-												<span>NIP.1234567890</span>
+												<span>{{ $kelurahan->nama_lurah }}</span><br>
+												<span>NIP.{{ $kelurahan->nip }}</span>
 											</td>
 										</tr>
 									</table>
@@ -162,5 +172,12 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript" src="{{base_url('assets/plugins/jquery/jquery-3.1.1.min.js')}}"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			window.print();
+		});
+	</script>
 </body>
 </html>

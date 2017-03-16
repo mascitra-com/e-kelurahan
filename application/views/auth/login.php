@@ -33,7 +33,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(40, 57, 215,.8)
+  background-color: rgba(255, 167, 91,.8)
 }
 .box{
   width: 45%;
@@ -57,6 +57,7 @@
   background-color: rgba(0,0,0,.35);
   border:none;
   font-size: 14px;
+  color: #FFF;
 }
 .bold{
   font-weight: 500;
@@ -80,7 +81,7 @@
       <span class="text-size-18" style="color:rgba(255,255,255,.5)">Kelurahan masa depan</span>
       <?php $message = $this->session->flashdata('message'); ?>
       <div id="infoMessage"><?php echo $message[0];?></div>
-      <form action="<?= site_url($action.'/login') ?>" method="POST" class="break-top-30">
+      <form action="<?= site_url($action.'/login') ?>" method="POST" class="break-top-30" autocomplete="on">
       <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" />
         <div class="form-group">
           <?php echo lang('login_identity_label', 'identity');?>

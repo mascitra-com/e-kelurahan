@@ -479,12 +479,7 @@ class Surat extends MY_Controller
 			}else{
 				$data['kelurahan'] = $kelurahan;
 				$data['surat'] = $surat;
-
-				//cetak
-				$this->load->library('pdfgenerator');
-				$html = $this->load->view('surat/cetak/keterangan_miskin_cetak', $data, true); 
-
-				$this->pdfgenerator->generate($html, $namafile. ' ' . $data['surat']->no_surat .' ('.$data['surat']->nik.')');  
+				$this->render('surat/cetak/keterangan_miskin_cetak', $data);
 			}
 		}
 	}

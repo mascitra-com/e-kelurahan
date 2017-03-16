@@ -97,7 +97,7 @@
 			</div>
 		</div>
 		<div class="block">
-			<a href="{{site_url('surat/cetak/keterangan_miskin/'.$surat->id)}}" class="btn btn-warning btn-block"><i class="fa fa-print"></i> cetak</a>
+			<a target="_blank" href="{{site_url('surat/cetak/keterangan_miskin/'.$surat->id)}}" class="btn btn-warning btn-block"><i class="fa fa-print"></i> cetak</a>
 		</div>
 	</div>
 </div>
