@@ -12,7 +12,9 @@
 <div class="section img-fade" id="sec1">
 	<div class="article-wrapper">
 		<h1 class="article-headline">Selayang Pandang</h1>
+		@if($profile)
 		<p class="article-overview">{{ $profile->deskripsi }}</p>
+		@endif
 	</div>
 </div>
 <!-- SECTION 2 (BERITA) -->
