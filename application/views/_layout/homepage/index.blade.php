@@ -22,7 +22,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">KEL.TOMPOKERSAN</a>
+						<a class="navbar-brand" href="{{ site_url('homepage/'.$slug) }}">KEL.TOMPOKERSAN</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
