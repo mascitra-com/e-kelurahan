@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	scrollNavbar();
+	$("#alerts").modal('show');
 });
 
 function scrollNavbar()

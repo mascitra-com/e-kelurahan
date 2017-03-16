@@ -23,7 +23,6 @@ class Homepage extends MY_Controller {
 
 	public function index($slug = NULL)
 	{
-
 		if (is_null($slug)) {
 			$slug = 'kecamatan-lumajang';
 			$judul = 'Kecamatan ';
@@ -38,7 +37,7 @@ class Homepage extends MY_Controller {
 		//JUDUL HALAMAN
 		$data['judul'] = $judul.$this->organisasi_m->get($id_organisasi)->nama;
 
-		$this->load->model(array('berita_m', 'agenda_m'));
+		$this->load->model(array('berita_m', 'agenda_m', 'regulasi_m'));
 		$this->load->helper(array('potong_teks', 'cek_file'));
 
 		//BERITA
@@ -70,18 +69,49 @@ class Homepage extends MY_Controller {
 		->fields('judul, isi, slug, gambar, tanggal_publish')
 		->get();
 
-			//AGENDA
+		//AGENDA
 		$data['agendas'] = $this->agenda_m
 		->order_by('tanggal_agenda', 'desc')
 		->limit(4)
 		->fields('perihal, tanggal_agenda')
-		->get_all();
+		->get_all(array(
+			'id_organisasi' => $id_organisasi
+			));
 
-		$this->render('homepage/index', $data);
+		//REGULASI
+		$data['regulations'] = $this->regulasi_m
+		->order_by('tgl_dikeluarkan')
+		->fields('id, judul, tgl_dikeluarkan')
+		->limit(4)
+		->get_all('id_organisasi', $id_organisasi);
+
+		$this->render('homepage/homepage', $data);
 	}
 
+	public function berita()
+	{
+		if ($id_organisasi = $this->checkSlug($this->_slug)) {
+			//todo
+		}else{
+			$this->message('Kelurahan tidak ditemukan', 'danger');
+			$this->go('homepage');
+		}
+	}
 
-	private function getCurrentOrg(){
-		return $this->ion_auth->get_current_id_org();
+	private function checkSlug($slug = NULL)
+	{
+		if (is_null($slug) || empty($slug)) {
+			return FALSE;
+		}else{
+			//cek slug apakah ada di tabel organisasi
+			$query = $this->organisasi_m
+			->fields('id, slug')
+			->get(array('slug'=> $slug));
+			if ($query === FALSE) {
+				return FALSE;
+			}else{
+				return $query->id;
+			}
+		}
 	}
 }
