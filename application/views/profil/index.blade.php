@@ -92,7 +92,8 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="tab3">
                             <form action="{{ empty($profil) ?: site_url('profil/ubah/'.$kelurahan->id) }}" method="POST">
-                            <div class="row">
+                                {{ $csrf }}
+                                <div class="row">
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Telpon</label>
@@ -140,6 +141,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="tab4">
                             <form action="{{ empty($profil) ?: site_url('profil/ganti_password/') }}" method="POST">
+                                {{ $csrf }}
                                 <div class="row">
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
