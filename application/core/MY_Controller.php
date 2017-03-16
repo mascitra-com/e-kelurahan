@@ -82,7 +82,9 @@ class MY_Controller extends CI_Controller {
       }
       $data['slug'] = '';
       if (get_class($this) === 'Homepage'){
-        $data['slug'] = $this->_slug;
+          $this->load->model('pengumuman_m');
+          $data['pengumuman'] = $this->pengumuman_m->get_all();
+          $data['slug'] = $this->_slug;
       }
       $data['csrf'] = $this->_csrf;
 

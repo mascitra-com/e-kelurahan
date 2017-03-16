@@ -146,8 +146,13 @@
 	<!-- PENGUMUAMN -->
 	<div class="pengumuman">
 		<ul class="pengumuman-list">
-			<li>[02/02/17] Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, inventore!</li>
-			<li>[02/02/17] Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, inventore!</li>
+            @if($pengumuman)
+                @foreach($pengumuman as $list)
+                    <li>
+                        [{{ date('d/m/Y', strtotime($list->created_at)) }}] {{ $list->nama }} - {{ $list->isi }}
+                    </li>
+                @endforeach
+            @endif
 		</ul>
 	</div>
 	<!-- ALERT -->
