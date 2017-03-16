@@ -2,10 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Surat extends MY_Controller
-{
-	private $_nik = '389475932753034750954';
-	private $_id_org = '2';
-	
+{	
 	function __construct()
 	{
 		$this->_accessable = TRUE;
@@ -19,7 +16,7 @@ class Surat extends MY_Controller
 	public function blankoktp($optionalData = NULL, $optStatus = FALSE)
 	{
 		$no_kk = $this->keluarga_m
-		->where('nik', $this->_nik)
+		->where('nik', $this->ion_auth->get_current_nik())
 		->fields('no')
 		->get()->no;
 
@@ -37,7 +34,7 @@ class Surat extends MY_Controller
 		$data['blankos'] = $this->surat_m
 		->with_penduduk('fields:nama')
 		->where('jenis', '0')
-		->where('id_organisasi', $this->_id_org)
+		->where('id_organisasi', $this->ion_auth->get_current_id_org())
 		->where('nik', $arr_niks)
 		->fields('no_surat, jenis, status, tanggal_verif, created_at, updated_at, updated_by')
 		->get_all();

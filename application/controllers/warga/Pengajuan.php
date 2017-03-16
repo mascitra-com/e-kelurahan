@@ -3,9 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pengajuan extends MY_Controller
 {
-	private $_nik = '389475932753034750954';
-	private $_id_org = '2';
-
 	function __construct()
 	{
 		$this->_accessable = TRUE;
@@ -28,8 +25,8 @@ class Pengajuan extends MY_Controller
 				)
 			))
 		->where(array(
-			'nik' => $this->_nik,
-			'id_organisasi' => $this->_id_org
+			'nik' => $this->ion_auth->get_current_nik(),
+			'id_organisasi' => $this->ion_auth->get_current_id_org()
 			))
 		->fields('nik')
 		->get();
@@ -43,7 +40,7 @@ class Pengajuan extends MY_Controller
 		$data = $this->input->post();
 		$data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
 		$data_insert = array(
-			"id_organisasi" => $this->_id_org,
+			"id_organisasi" => $this->ion_auth->get_current_id_org(),
 			"jenis" => "0",
 			);
 

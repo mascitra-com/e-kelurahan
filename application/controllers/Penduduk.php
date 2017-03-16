@@ -96,6 +96,8 @@ class Penduduk extends MY_Controller {
         $current_id_org = $this->ion_auth->get_current_id_org();
         $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
         $data['pekerjaan'] = $this->pekerjaan->get_all();
+
+        $this->generateCsrf();
         $this->render('kependudukan/create', $data);
     }
 

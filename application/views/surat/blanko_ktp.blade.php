@@ -24,7 +24,7 @@
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i></button>
 			<button class="btn btn-default btn-sm reload"><i class="fa fa-refresh"></i></button>
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-cari"><i class="fa fa-search"></i></button>
-			<a href="#" class="btn btn-default btn-sm"><i class="fa fa-archive"></i></a>
+			<a href="{{ site_url('surat/arsip/blankoktp') }}" class="btn btn-default btn-sm"><i class="fa fa-archive"></i></a>
 		</div>
 		<div class="clearfix"></div>
 	</div>
@@ -53,7 +53,7 @@
 					<td class="text-center">{{date('d-m-Y', strtotime($blanko->tanggal_verif))}}</td>
 					<td>
 						<a href="#" class="btn btn-default btn-xs"><i class="fa fa-info"></i> detail</a>
-						<a href="#" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
+						<a href="{{ site_url('surat/arsipkan/0/'.$blanko->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
 					</td>
 				</tr>
 				@endif
