@@ -29,11 +29,12 @@ class MY_Controller extends CI_Controller {
       $this->_slug = $method;
       $method = array_shift($param);
     }
-    if($method === 'index'){
-      $method = array_shift($param);
-      if (!method_exists($this, $method)){
-        $method = 'index';
-      }
+      if($method === 'index'){
+          $method = array_shift($param);
+          if (!method_exists($this, $method)){
+              $this->_slug = $method;
+              $method = 'index';
+          }
     }
 
     if (method_exists($this, $method)) {
@@ -82,13 +83,31 @@ class MY_Controller extends CI_Controller {
       }
       $data['slug'] = '';
       if (get_class($this) === 'Homepage'){
-          $this->load->model('pengumuman_m');
-          $data['pengumuman'] = $this->pengumuman_m->get_all();
           $data['slug'] = $this->_slug;
+          $this->load->model(array('pengumuman_m', 'info_m'));
+          $data['pengumuman'] = $this->pengumuman_m->get_all(array('id_organisasi' => $this->checkSlug($this->_slug)));
+          $data['profil'] = $this->info_m->fields('slug, judul')->get_all(array('id_organisasi' => $this->checkSlug($this->_slug)));
       }
-      $data['csrf'] = $this->_csrf;
+        $data['csrf'] = $this->_csrf;
+        $this->blade->render($view, $data);
+    }
 
-      $this->blade->render($view, $data);
+    private function checkSlug($slug = NULL)
+    {
+        if (is_null($slug) || empty($slug)) {
+            return 1;
+        }else{
+            //cek slug apakah ada di tabel organisasi
+            $this->load->model(array('organisasi_m'));
+            $query = $this->organisasi_m
+                ->fields('id, slug')
+                ->get(array('slug'=> $slug));
+            if ($query === FALSE) {
+                return FALSE;
+            }else{
+                return $query->id;
+            }
+        }
     }
 
     /**
