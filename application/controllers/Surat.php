@@ -220,7 +220,7 @@ class Surat extends MY_Controller
 					'no_surat' => $update_no,
 					'tanggal_verif' => date('Y-m-d h:i:s'),
 					'status' => '1'
-				);
+					);
 				$query = $this->surat_m->update($update_data, $id); 
 				if ($query === FALSE) {
 					$this->message('Terjadi kesalahan sistem saat mengkonfirmasi surat', 'danger');
@@ -246,7 +246,7 @@ class Surat extends MY_Controller
 				$update_data = array(
 					'tanggal_verif' => date('Y-m-d h:i:s'),
 					'status' => '2'
-				);
+					);
 				$query = $this->surat_m->update($update_data, $id); 
 				if ($query === FALSE) {
 					$this->message('Terjadi kesalahan sistem saat mengkonfirmasi surat', 'danger');
@@ -260,6 +260,93 @@ class Surat extends MY_Controller
 			}
 		}else{
 			$this->message('Terjadi kesalahan saat mengunjungi halaman', 'warning');
+		}
+		$this->redirectJenis($jenis);
+	}
+
+	public function arsip($jenis = NULL)
+	{
+		if (is_null($jenis) || empty($jenis)) {
+			$this->message('Arsip surat tidak ditemukan');
+			$this->redirectJenis($jenis);
+		}else{
+			switch ($jenis) {
+				case 'blankoktp':
+				$jenis = '0';
+				break;
+
+				case 'skck':
+				$jenis = '1';
+				break;
+
+				case 'keterangan_miskin':
+				$jenis = '2';
+				break;
+
+				case 'keterangan_miskin_rt':
+				$jenis = '3';
+				break;
+				
+				default:
+				$jenis= '4';
+				break;
+			}
+
+			$data['surats'] = $this->surat_m
+			->with_penduduk('fields:nama')
+			->only_trashed()
+			->fields('id ,no_surat, jenis, tanggal_verif, status, created_at, updated_at, updated_by')
+			->get_all(array(
+				'jenis' => $jenis,
+				'id_organisasi' => $this->ion_auth->get_current_id_org()
+				));
+
+			$this->render('surat/arsip_surat', $data);
+		}
+	}
+
+	public function arsipkan($jenis = NULL, $id= NULL)
+	{
+		if ((is_null($jenis) || empty($jenis) ) && (is_null($id) || empty($id)) ) {
+			$this->message('Surat tidak ditemukan', 'danger');
+		}else{
+			$query = $this->surat_m->delete($id);
+			if ($query === FALSE) {
+				$this->message('Terjadi kesalahan sistem saat mengarsipkan surat. Coba lagi nanti', 'danger');
+			}else{
+				$this->message('Surat berhasil diarsipkan', 'success');
+			}
+		}
+		$this->redirectJenis($jenis);
+	}
+
+	public function kembalikan($jenis = NULL, $id= NULL)
+	{
+		if ((is_null($jenis) || empty($jenis) ) && (is_null($id) || empty($id)) ) {
+			$this->message('Surat tidak ditemukan', 'danger');
+		}else{
+			$query = $this->surat_m->restore($id);
+			if ($query === FALSE) {
+				$this->message('Terjadi kesalahan sistem saat mengembalikan surat. Coba lagi nanti', 'danger');
+			}else{
+				$this->message('Surat berhasil dikembalikan', 'success');
+			}
+		}
+		$this->redirectJenis($jenis);
+	}
+
+
+	public function hapus($jenis = NULL, $id= NULL)
+	{
+		if ((is_null($jenis) || empty($jenis) ) && (is_null($id) || empty($id)) ) {
+			$this->message('Surat tidak ditemukan', 'danger');
+		}else{
+			$query = $this->surat_m->force_delete($id);
+			if ($query === FALSE) {
+				$this->message('Terjadi kesalahan sistem saat menghapus surat. Coba lagi nanti', 'danger');
+			}else{
+				$this->message('Surat berhasil dihapus', 'success');
+			}
 		}
 		$this->redirectJenis($jenis);
 	}

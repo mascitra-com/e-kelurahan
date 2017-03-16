@@ -78,7 +78,8 @@
     <div class="box">
       <span class="text-size-28 bold">E-KELURAHAN TOMPOKERSO</span><br>
       <span class="text-size-18" style="color:rgba(255,255,255,.5)">Kelurahan masa depan</span>
-      <div id="infoMessage"><?php echo $message;?></div>
+      <?php $message = $this->session->flashdata('message'); ?>
+      <div id="infoMessage"><?php echo $message[0];?></div>
       <form action="<?= site_url($action.'/login') ?>" method="POST" class="break-top-30">
       <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" />
         <div class="form-group">
