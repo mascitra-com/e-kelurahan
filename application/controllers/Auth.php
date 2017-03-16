@@ -52,7 +52,7 @@ class Auth extends MY_Controller {
 		if ($this->ion_auth->logged_in()) {
 			if($this->uri->segment(1, 0) === 'warga'){
 				$this->session->set_userdata('warga', TRUE);
-				redirect('warga/pengajuan/blankoktp');
+				redirect('warga/surat');
 			}
 			redirect('dashboard', 'refresh');
 		}
@@ -79,7 +79,7 @@ class Auth extends MY_Controller {
 				}
 				elseif($this->uri->segment(1, 0) === 'warga'){
 					$this->session->set_userdata('warga', TRUE);
-					redirect('warga/pengajuan/blankoktp');
+					redirect('warga/surat');
 				}
 				redirect('dashboard', 'refresh');
 			}

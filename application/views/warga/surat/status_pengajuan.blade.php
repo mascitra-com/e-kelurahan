@@ -33,31 +33,82 @@
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($blankos as $blanko)
+										@foreach($surats as $surat)
+										@if($surat->jenis === '0')
 										<tr>
-											<td>{{ $blanko->nik }}</td>
-											<td>{{ $blanko->penduduk->nama }}</td>
-											<td>{{ mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $blanko->created_at))) }}</td>
-											<td>{{ date('l, d F Y', strtotime($blanko->tanggal_verif)) }}</td>
-											<td class="text-center"><div class="label label-{{ ($blanko->status == '0') ? 'warning' : (($blanko->status == '1') ? 'success' : 'danger' ) }}">
-												@if($blanko->status === '0')
+											<td>{{ $surat->nik }}</td>
+											<td>{{ $surat->penduduk->nama }}</td>
+											<td>{{ mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $surat->created_at))) }}</td>
+											<td>{{ date('l, d F Y', strtotime($surat->tanggal_verif)) }}</td>
+											<td class="text-center"><div class="label label-{{ ($surat->status == '0') ? 'warning' : (($surat->status == '1') ? 'success' : 'danger' ) }}">
+												@if($surat->status === '0')
 												menunggu
-												@elseif($blanko->status === '1' )
+												@elseif($surat->status === '1' )
 												disetujui
 												@else
 												ditolak
 												@endif
 											</div></td>
 											<td>
-												@if($blanko->status == '2')
+												@if($surat->status == '2')
 												-
-												@elseif($blanko->status == '1')
-												<button class="btn btn-xs btn-block btn-info" data-toggle="modal" data-target="#modal-info" data-date="{{ date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) }}">Info</button>
+												@elseif($surat->status == '1')
+												<button class="btn btn-xs btn-block btn-info" data-toggle="modal" data-target="#modal-info" data-date="{{ date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) }}">Info</button>
 												@else
 												<a href="#" class="btn btn-xs btn-block btn-warning">Batalkan</a>
 												@endif
 											</td>
 										</tr>
+										@endif
+										@endforeach
+									</tbody>
+								</table>
+							</div>
+							{{-- SKCK --}}
+							<div role="tabpanel" class="tab-pane table" id="tab-2"><p>Under construction</p></div>
+							{{-- SKTM --}}
+							<div role="tabpanel" class="tab-pane table" id="tab-3"><p>Under construction</p></div>
+							{{-- SKM --}}
+							<div role="tabpanel" class="tab-pane table" id="tab-4">
+								<table class="table table-hover table-stripped table-bordered">
+									<thead>
+										<tr>
+											<th>NIK</th>
+											<th>NAMA</th>
+											<th>TANGGAL PENGAJUAN</th>
+											<th>TANGGAL VERIFIKASI</th>
+											<th class="text-center">STATUS</th>
+											<th>AKSI</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach($surats as $surat)
+										@if($surat->jenis === '2')
+										<tr>
+											<td>{{ $surat->nik }}</td>
+											<td>{{ $surat->penduduk->nama }}</td>
+											<td>{{ mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $surat->created_at))) }}</td>
+											<td>{{ date('l, d F Y', strtotime($surat->tanggal_verif)) }}</td>
+											<td class="text-center"><div class="label label-{{ ($surat->status == '0') ? 'warning' : (($surat->status == '1') ? 'success' : 'danger' ) }}">
+												@if($surat->status === '0')
+												menunggu
+												@elseif($surat->status === '1' )
+												disetujui
+												@else
+												ditolak
+												@endif
+											</div></td>
+											<td>
+												@if($surat->status == '2')
+												-
+												@elseif($surat->status == '1')
+												<button class="btn btn-xs btn-block btn-info" data-toggle="modal" data-target="#modal-info" data-date="{{ date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) }}">Info</button>
+												@else
+												<a href="#" class="btn btn-xs btn-block btn-warning">Batalkan</a>
+												@endif
+											</td>
+										</tr>
+										@endif
 										@endforeach
 									</tbody>
 								</table>
@@ -105,9 +156,9 @@
 @endsection
 
 @section('javascript')
-	<script type="text/javascript">
-		$("[data-date]").click(function(){
-			$(".batas_tgl").empty().html($(this).data('date'));
-		});
-	</script>
+<script type="text/javascript">
+	$("[data-date]").click(function(){
+		$(".batas_tgl").empty().html($(this).data('date'));
+	});
+</script>
 @endsection
