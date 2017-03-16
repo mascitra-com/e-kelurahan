@@ -13,7 +13,7 @@ class Surat extends MY_Controller
 		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m', 'keluarga_m', 'detail_kk_m'));
 	}
 
-	public function blankoktp($optionalData = NULL, $optStatus = FALSE)
+	public function index($optionalData = NULL, $optStatus = FALSE)
 	{
 		$no_kk = $this->keluarga_m
 		->where('nik', $this->ion_auth->get_current_nik())
@@ -31,9 +31,8 @@ class Surat extends MY_Controller
 			array_push($arr_niks, $nik->nik);
 		}
 
-		$data['blankos'] = $this->surat_m
+		$data['surats'] = $this->surat_m
 		->with_penduduk('fields:nama')
-		->where('jenis', '0')
 		->where('id_organisasi', $this->ion_auth->get_current_id_org())
 		->where('nik', $arr_niks)
 		->fields('no_surat, jenis, status, tanggal_verif, created_at, updated_at, updated_by')
