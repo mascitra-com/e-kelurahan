@@ -253,15 +253,12 @@ public function ubah($id = NULL)
 public function arsipkan($id = NULL)
 {
     if ($id !== NULL && !empty($id)) {
-        if ($this->mutasi_keluar_m->delete($id)) {
-            if ($this->mutasi_keluar_detail_m->where('id_mutasi', $id)->delete()) {
-                $this->go('pindah');
-                $this->message('Berhasil Mengarsipkan Mutasi', 'success');
-            }else{
-                $this->message('Terjadi Kesalahan Saat Mengarsipkan Mutasi Detail', 'danger');
-            }
+        $query = $this->mutasi_keluar_m->delete($id);
+        if ($query === FALSE) {
+            $this->message('Terjadi Kesalahan Saat Mengarsipkan', 'danger');
         }else{
-            $this->message('Terjadi Kesalahan Saat Mengarsipkan Mutasi', 'danger');
+            $this->message('Berhasil Mengarsipkan Mutasi', 'success');
+            $this->go('pindah');
         }
     }else{
         $this->message('Terjadi Kesalahan Saat Membatalkan Pengajuan | ID Tidak Ditemukan', 'danger');
