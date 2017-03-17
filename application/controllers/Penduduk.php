@@ -114,8 +114,8 @@ class Penduduk extends MY_Controller {
         ->get($data['nik']);
 
         if ($query === FALSE) {
-          $query = $this->penduduk->from_form(NULL, array('id_organisasi' => $this->ion_auth->get_current_id_org()))->insert();
-          if ($query === FALSE) {
+            $insert = $this->penduduk->from_form(NULL, array('id_organisasi' => $this->ion_auth->get_current_id_org()))->insert();
+          if ($insert === FALSE) {
             $current_id_org = $this->ion_auth->get_current_id_org();
             $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
             $data['pekerjaan'] = $this->pekerjaan->get_all();
@@ -130,6 +130,7 @@ class Penduduk extends MY_Controller {
         $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
         $data['pekerjaan'] = $this->pekerjaan->get_all();
         $this->message('Penduduk dengan NIK '. $data['nik'] . ' sudah ada', 'danger');
+        $this->generateCsrf();
         $this->render('kependudukan/create', $data);
     }
 }
