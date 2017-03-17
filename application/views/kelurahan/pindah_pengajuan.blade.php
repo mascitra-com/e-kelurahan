@@ -289,7 +289,7 @@
 		}
 		$.ajax({
 			type: 'POST',
-			data: { 'idProvince' : id },
+			data: { 'idProvince' : id, '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>' },
 			dataType: "json",
 			url: "getCitiesByProvince",
 			success: function (data) {
@@ -311,7 +311,7 @@
 		}
 		$.ajax({
 			type: 'POST',
-			data: { 'idCity' : id },
+			data: { 'idCity' : id, '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>' },
 			dataType: "json",
 			url: "getDistrictByCity",
 			success: function (data) {
@@ -333,7 +333,7 @@
 		}
 		$.ajax({
 			type: 'POST',
-			data: { 'idDistrict' : id },
+			data: { 'idDistrict' : id, '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>' },
 			dataType: "json",
 			url: "getVillageByDistrict",
 			success: function (data) {

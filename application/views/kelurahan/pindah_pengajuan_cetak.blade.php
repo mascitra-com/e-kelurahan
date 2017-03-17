@@ -119,10 +119,17 @@
 							<td width="5%" class="text-left">{{$no++}}.</td>
 							<td width="30%" class="text-left">Pengikut</td>
 							<td width="3%" class="text-center">:</td>
-							<td class="text-left">{{ $j_pengikut }}({{ terbilang($j_pengikut) }}) orang</td>
+							<td class="text-left">
+								@if(!empty($j_pengikut))
+								{{ $j_pengikut }}({{ terbilang($j_pengikut) }}) orang
+								@else
+								-
+								@endif
+							</td>
 						</tr>
 						<tr>
 							<td colspan="4" class="table-responsive">
+								@if(!empty($j_pengikut))
 								<table class="table table-bordered">
 									<tr>
 										<td rowspan="2">No</td>
@@ -171,6 +178,7 @@
 									</tr>
 									@endforeach
 								</table>
+								@endif
 							</td>
 						</tr>
 						<tr>
@@ -224,7 +232,7 @@
 					</div>
 				</div>
 				<div class="block">
-					<a href="{{ site_url('pindah/cetak/'.$cetak->id) }}" class="btn btn-warning btn-block"><i class="fa fa-print"></i> cetak</a>
+					<a href="{{ site_url('pindah/cetak/'.$cetak->id) }}" target="_blank" class="btn btn-warning btn-block"><i class="fa fa-print"></i> cetak</a>
 				</div>
 			</div>
 		</div>
@@ -280,3 +288,9 @@
 			}
 		</style>
 		@endsection
+
+@section('javascript')
+<script type="text/javascript">
+	
+</script>
+@endsection

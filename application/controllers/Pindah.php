@@ -144,7 +144,11 @@ class Pindah extends MY_Controller
 
             if ($jumlah_pengikut) {
                 $data['cetak'] = $this->ambilDataSuratPengajuan($id);
-                $data['j_pengikut'] = $jumlah_pengikut->mutasi_keluar_details[0]->counted_rows;
+                if (is_null($jumlah_pengikut->mutasi_keluar_details)) {
+                    $data['j_pengikut'] = '';
+                }else{
+                    $data['j_pengikut'] = $jumlah_pengikut->mutasi_keluar_details[0]->counted_rows;
+                }
                 $data['current_kelurahan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get($this->ion_auth->get_current_id_org());
                 $data['current_kecamatan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get(1);
                 $this->load->helper(array('agama', 'terbilang', 'date'));
@@ -169,113 +173,119 @@ class Pindah extends MY_Controller
             ->get($id);
 
             if ($jumlah_pengikut) {
-                $data['cetak'] = $this->ambilDataSuratPengajuan($id);
+               if (is_null($jumlah_pengikut->mutasi_keluar_details)) {
+                $data['j_pengikut'] = '';
+            }else{
                 $data['j_pengikut'] = $jumlah_pengikut->mutasi_keluar_details[0]->counted_rows;
-                $data['current_kelurahan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get($this->ion_auth->get_current_id_org());
-                $data['current_kecamatan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get(1);
-                $this->load->helper(array('agama', 'terbilang', 'date'));
-                
-                $this->load->library('pdfgenerator');
+            }
+            $data['current_kelurahan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get($this->ion_auth->get_current_id_org());
+            $data['current_kecamatan'] = $this->organisasi_m->fields('nama, nip, nama_pimpinan')->get(1);
+            $this->load->helper(array('agama', 'terbilang', 'date'));
 
-                //ambil data pengikut
-                $j=0;
-                $data['pengikuts'] ="";
-                foreach ($data['cetak']->mutasi_keluar_details as $pengikut) {
-                    if ($pengikut->penduduk->jenis_kelamin === '0') {
-                        $jk = "v";
-                    }elseif ($pengikut->penduduk->jenis_kelamin === '1') {
-                        $jk = "v";
-                    }
-                    else{
-                        $jk = "-";
-                    }
+            $this->load->library('pdfgenerator');
 
-                    if($pengikut->penduduk->status_nikah == '0'){
-                        $st_nk ="Belum Kawin";
-                    } 
-                    elseif($pengikut->penduduk->status_nikah == '1'){
-                        $st_nk ="Kawin";
-                    }
-                    elseif($pengikut->penduduk->status_nikah == '2'){
-                        $st_nk ="Cerai Hidup";
-                    }
-                    elseif($pengikut->penduduk->status_nikah == '3'){
-                        $st_nk ="Cerai Mati";
-                    }
-                    else{
-                        $st_nk ="Tidak ada Data";
-                    }
-                    $umur = date('Y') - date('Y',strtotime($pengikut->penduduk->tanggal_lahir));
-                    $data['pengikuts'] .="<tr><td>". ++$j ."</td>"."<td>". $pengikut->penduduk->nama ."</td><td>".$jk."</td><td><td>". $umur ."</td><td>".$st_nk."</td><td></td></tr>";
+            //ambil data pengikut
+            $data['cetak'] = $this->ambilDataSuratPengajuan($id);
+            if (!is_null($data['cetak']->mutasi_keluar_details)) {
+               $j=0;
+               $data['pengikuts'] ="";
+               foreach ($data['cetak']->mutasi_keluar_details as $pengikut) {
+                if ($pengikut->penduduk->jenis_kelamin === '0') {
+                    $jk = "v";
+                }elseif ($pengikut->penduduk->jenis_kelamin === '1') {
+                    $jk = "v";
+                }
+                else{
+                    $jk = "-";
                 }
 
-                $html = $this->load->view('kelurahan/format_cetak', $data, true);    
-                $this->pdfgenerator->generate($html,'Surat Pindah No '. $data['cetak']->no_surat .' ('.$data['cetak']->nik.')');            
-            }else{
-                $this->message('Terjadi kesalahan saat mengambil data untuk mencetak', 'danger');
-            }
-        }else{
-            $this->message('Data cetak tidak ditemukan', 'danger');
-        }
-    }
-
-    public function ubah($id = NULL)
-    {
-        $data = $this->input->post();
-        $pengikut_lama = $this->mutasi_keluar_detail_m->where('id_mutasi', $id)->get_all();
-        foreach ($pengikut_lama as $item){
-            $this->mutasi_keluar_detail_m->delete($item->id);
-        }
-        $pengikut_baru = $data['pengikut'];
-        unset($data['no_surat'], $data['nik'], $data['pengikut']);
-        foreach ($pengikut_baru as $item){
-            $temp = array('id_mutasi' => $id, 'nik' => $item);
-            $this->mutasi_keluar_detail_m->insert($temp);
-        }
-        if($this->mutasi_keluar_m->update($data, $id)){
-            $this->message('Berhasil Mengubah Data Pengajuan Pindah', 'success');
-        } else {
-            $this->message('Terjadi Kesalahan Saat Mengubah Data Pengajuan Pindah', 'danger');
-        }
-        $this->go('pindah/detail/'.$id);
-    }
-    
-    public function arsipkan($id = NULL)
-    {
-        if ($id !== NULL && !empty($id)) {
-            if ($this->mutasi_keluar_m->delete($id)) {
-                if ($this->mutasi_keluar_detail_m->where('id_mutasi', $id)->delete()) {
-                    $this->go('pindah');
-                    $this->message('Berhasil Mengarsipkan Mutasi', 'success');
-                }else{
-                    $this->message('Terjadi Kesalahan Saat Mengarsipkan Mutasi Detail', 'danger');
+                if($pengikut->penduduk->status_nikah == '0'){
+                    $st_nk ="Belum Kawin";
+                } 
+                elseif($pengikut->penduduk->status_nikah == '1'){
+                    $st_nk ="Kawin";
                 }
-            }else{
-                $this->message('Terjadi Kesalahan Saat Mengarsipkan Mutasi', 'danger');
-            }
-        }else{
-            $this->message('Terjadi Kesalahan Saat Membatalkan Pengajuan | ID Tidak Ditemukan', 'danger');
-        }
-        $this->go('pindah/arsipkan');
-    }
-
-    public function kembalikan($id = NULL)
-    {
-        if ($id !== NULL && !empty($id)) {
-            if ($this->mutasi_keluar_m->restore($id)) {
-                if ($this->mutasi_keluar_detail_m->restore(array('id_mutasi', $id))) {
-                    $this->go('pindah/arsip');
-                    $this->message('Berhasil Mengembalikan Mutasi', 'success');
-                }else{
-                    $this->message('Terjadi Kesalahan Saat Mengembalikan Mutasi Detail', 'danger');
+                elseif($pengikut->penduduk->status_nikah == '2'){
+                    $st_nk ="Cerai Hidup";
                 }
+                elseif($pengikut->penduduk->status_nikah == '3'){
+                    $st_nk ="Cerai Mati";
+                }
+                else{
+                    $st_nk ="Tidak ada Data";
+                }
+                $umur = date('Y') - date('Y',strtotime($pengikut->penduduk->tanggal_lahir));
+                $data['pengikuts'] .="<tr><td>". ++$j ."</td>"."<td>". $pengikut->penduduk->nama ."</td><td>".$jk."</td><td><td>". $umur ."</td><td>".$st_nk."</td><td></td></tr>";
+            }   
+        }
+
+        $this->render('kelurahan/format_cetak', $data);    
+            // $this->pdfgenerator->generate($html,'Surat Pindah No '. $data['cetak']->no_surat .' ('.$data['cetak']->nik.')');            
+    }else{
+        $this->message('Terjadi kesalahan saat mengambil data untuk mencetak', 'danger');
+    }
+}else{
+    $this->message('Data cetak tidak ditemukan', 'danger');
+}
+}
+
+public function ubah($id = NULL)
+{
+    $data = $this->input->post();
+    $pengikut_lama = $this->mutasi_keluar_detail_m->where('id_mutasi', $id)->get_all();
+    foreach ($pengikut_lama as $item){
+        $this->mutasi_keluar_detail_m->delete($item->id);
+    }
+    $pengikut_baru = $data['pengikut'];
+    unset($data['no_surat'], $data['nik'], $data['pengikut']);
+    foreach ($pengikut_baru as $item){
+        $temp = array('id_mutasi' => $id, 'nik' => $item);
+        $this->mutasi_keluar_detail_m->insert($temp);
+    }
+    if($this->mutasi_keluar_m->update($data, $id)){
+        $this->message('Berhasil Mengubah Data Pengajuan Pindah', 'success');
+    } else {
+        $this->message('Terjadi Kesalahan Saat Mengubah Data Pengajuan Pindah', 'danger');
+    }
+    $this->go('pindah/detail/'.$id);
+}
+
+public function arsipkan($id = NULL)
+{
+    if ($id !== NULL && !empty($id)) {
+        if ($this->mutasi_keluar_m->delete($id)) {
+            if ($this->mutasi_keluar_detail_m->where('id_mutasi', $id)->delete()) {
+                $this->go('pindah');
+                $this->message('Berhasil Mengarsipkan Mutasi', 'success');
             }else{
-                $this->message('Terjadi Kesalahan Saat Mengembalikan Mutasi', 'danger');
+                $this->message('Terjadi Kesalahan Saat Mengarsipkan Mutasi Detail', 'danger');
             }
         }else{
-            $this->message('Terjadi Kesalahan Saat Mengembalikan Mutasi | ID Tidak Ditemukan');
+            $this->message('Terjadi Kesalahan Saat Mengarsipkan Mutasi', 'danger');
         }
+    }else{
+        $this->message('Terjadi Kesalahan Saat Membatalkan Pengajuan | ID Tidak Ditemukan', 'danger');
     }
+    $this->go('pindah/arsipkan');
+}
+
+public function kembalikan($id = NULL)
+{
+    if ($id !== NULL && !empty($id)) {
+        if ($this->mutasi_keluar_m->restore($id)) {
+            if ($this->mutasi_keluar_detail_m->restore(array('id_mutasi', $id))) {
+                $this->go('pindah/arsip');
+                $this->message('Berhasil Mengembalikan Mutasi', 'success');
+            }else{
+                $this->message('Terjadi Kesalahan Saat Mengembalikan Mutasi Detail', 'danger');
+            }
+        }else{
+            $this->message('Terjadi Kesalahan Saat Mengembalikan Mutasi', 'danger');
+        }
+    }else{
+        $this->message('Terjadi Kesalahan Saat Mengembalikan Mutasi | ID Tidak Ditemukan');
+    }
+}
 
     /**
      * Get All Cities by Province ID
