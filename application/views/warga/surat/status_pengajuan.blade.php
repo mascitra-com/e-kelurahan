@@ -21,7 +21,8 @@
 					<div class="col-xs-12 col-sm-9">
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane table active" id="tab-1">
-								<table class="table table-hover table-stripped table-bordered">
+								@unless(!$surats)
+									<table class="table table-hover table-stripped table-bordered">
 									<thead>
 										<tr>
 											<th>NIK</th>
@@ -63,6 +64,9 @@
 										@endforeach
 									</tbody>
 								</table>
+								@else
+								<p>Tidak ada data surat</p>
+								@endunless
 							</div>
 							{{-- SKCK --}}
 							<div role="tabpanel" class="tab-pane table" id="tab-2"><p>Under construction</p></div>
@@ -70,6 +74,7 @@
 							<div role="tabpanel" class="tab-pane table" id="tab-3"><p>Under construction</p></div>
 							{{-- SKM --}}
 							<div role="tabpanel" class="tab-pane table" id="tab-4">
+							@unless(!$surats)
 								<table class="table table-hover table-stripped table-bordered">
 									<thead>
 										<tr>
@@ -112,6 +117,9 @@
 										@endforeach
 									</tbody>
 								</table>
+								@else
+								<p>Tidak ada data surat</p>
+								@endunless
 							</div>
 						</div>
 					</div>
