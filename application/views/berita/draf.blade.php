@@ -46,7 +46,6 @@
 							</td>
 						</tr>
 						@endforeach
-                    @endif
 						@else
 							<tr>
 								<td colspan="4" class="text-center"><h4 class="text-grey">Tidak ada berita</h4></td>
