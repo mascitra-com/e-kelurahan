@@ -106,17 +106,34 @@ class Penduduk extends MY_Controller {
      */
     public function simpan()
     {
-        $this->input->post(NULL, TRUE);
-        if ( ! $this->penduduk->from_form(NULL, array('id_organisasi' => $this->ion_auth->get_current_id_org()))->insert())
-        {
+        $data = $this->input->post(NULL, TRUE);
+
+        //cek duplikasi nik
+        $query = $this->penduduk_m
+        ->fields('nik')
+        ->get($data['nik']);
+
+        if ($query === FALSE) {
+            $insert = $this->penduduk->from_form(NULL, array('id_organisasi' => $this->ion_auth->get_current_id_org()))->insert();
+          if ($insert === FALSE) {
             $current_id_org = $this->ion_auth->get_current_id_org();
             $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
             $data['pekerjaan'] = $this->pekerjaan->get_all();
+            $this->generateCsrf();
             $this->render('kependudukan/create', $data);
+        }else{
+            $this->message('Data Penduduk Berhasil Ditambahkan', 'success');
+            $this->go('penduduk/page/1');
         }
-        $this->message('Data Penduduk Berhasil Ditambahkan', 'success');
-        $this->go('penduduk/page/1');
+    }else{
+        $current_id_org = $this->ion_auth->get_current_id_org();
+        $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
+        $data['pekerjaan'] = $this->pekerjaan->get_all();
+        $this->message('Penduduk dengan NIK '. $data['nik'] . ' sudah ada', 'danger');
+        $this->generateCsrf();
+        $this->render('kependudukan/create', $data);
     }
+}
 
     /**
      * Show Specific Detail of Data Penduduk
