@@ -13,8 +13,8 @@
 				</div>
 			</div>
 			<div class="panel-footer">
-				<a href="{{ site_url('info/sunting/'.$info->slug) }}" class="btn btn-warning"><i class="fa fa-pencil"></i> sunting</a>
-				<a href="{{ site_url('info') }}" class="btn btn-default"><i class="fa fa-arrow-back"></i> kembali</a>
+				<a href="{{ site_url('info/sunting/'.$info->slug) }}" class="btn btn-warning"><i class="fa fa-pencil"></i> Sunting</a>
+				<a href="{{ site_url('info') }}" class="btn btn-default"><i class="fa fa-arrow-back"></i> Kembali</a>
 			</div>
 		</div>
 	</div>
