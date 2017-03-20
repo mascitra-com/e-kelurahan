@@ -9,7 +9,7 @@
 		<div class="btn-group pull-right">
 			<!-- BARU DARISINI -->
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-konfirmasi">
-				<span class="badge space-right-10">04</span>
+				<span class="badge badge-sm space-right-10">04</span>
 				<i class="fa fa-bell"></i>
 			</button>
 			<!-- SAMPAI SINI -->
@@ -24,11 +24,14 @@
 		<table class="table table-stripped table-hover table-bordered">
 			<thead>
 				<tr>
-					<th class="text-center">NO. URUT</th>
+					<th class="text-center">NO.</th>
 					<th>NO. SURAT</th>
 					<th>PENGAJU</th>
-					<th class="text-center">TANGGAL PENGAJUAN</th>
-					<th class="text-center">TANGGAL VERIFIKASI</th>
+					<th class="text-center">TGL PENGAJUAN</th>
+					<th class="text-center">TGL VERIFIKASI</th>
+					<th class="text-center">TGL AMBIL</th>
+					<th class="text-center">PENGAMBIL</th>
+					<th class="text-center">STATUS</th>
 					<th class="text-center">AKSI</th>
 				</tr>
 			</thead>
@@ -37,11 +40,16 @@
 					<td class="text-center">01</td>
 					<td>23/18/02.002/2017</td>
 					<td><a href="#">Mohammad Ainul Yakin</a></td>
-					<td class="text-center">{{date('d-m-Y')}}</td>
-					<td class="text-center">{{date('d-m-Y')}}</td>
-					<td>
-						<a href="#" class="btn btn-default btn-xs"><i class="fa fa-info"></i> detail</a>
-						<a href="#" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
+					<td class="text-center">{{date('d/m/Y')}}</td>
+					<td class="text-center">{{date('d/m/Y')}}</td>
+					<td class="text-center">-</td>
+					<td class="text-center">-</td>
+					<td class="text-center"><span class="label label-warning">menunggu</span></td>
+					<td class="text-center text-nowrap">
+						<a href="#" class="btn btn-success btn-xs" title="telah diambil" data-toggle="modal" data-target="#modal-ambil"><i class="fa fa-check"></i></a>
+						<a href="#" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
+						<a href="#" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
+						<a href="#" class="btn btn-default btn-xs" title="arsipkan" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i></a>
 					</td>
 				</tr>
 			</tbody>
@@ -137,7 +145,6 @@
 		</div>
 	</div>
 </div>
-<!-- BARU DISINI -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modal-konfirmasi">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -176,14 +183,37 @@
 		</div>
 	</div>
 </div>
-<!-- SAMPAI SINI -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-ambil">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Pengambilan Surat</h4>
+			</div>
+			<div class="modal-body">
+				<form action="#" method="POST">
+					<div class="form-group">
+						<label for="">Nama Pengambil</label>
+						<input type="text" class="form-control" name="nama" placeholder="nama pengambil" required/>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary">simpan</button>
+						<button class="btn btn-default" data-dismiss="modal">batal</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 @endsection
 
 @section('style')
 <style>
 	.label{display:block; width: 100%; padding: 5px 0;}
 	/*BARU DARISINI*/
-	.badge{font-weight: 300; border-radius: 3px; font-size: 7pt; padding: 3px; background-color: #D9534F!important}
-	/*SAMPAI SINI*/
+	td, th{
+		vertical-align: middle!important;
+		font-size: 10pt;
+	}
 </style>
 @endsection
