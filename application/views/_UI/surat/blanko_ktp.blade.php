@@ -171,8 +171,8 @@
 							<td>Ainul Yaqin</td>
 							<td class="text-center">{{date('d-m-Y')}}</td>
 							<td class="text-center">
-								<button class="btn btn-sm btn-success"><i class="fa fa-check space-right-5"></i>setuju</button>
-								<button class="btn btn-sm btn-danger"><i class="fa fa-times space-right-5"></i>tolak</button>
+								<button class="btn btn-sm btn-success" data-konfirmasi="1" data-id="xxx"><i class="fa fa-check space-right-5"></i>setuju</button>
+								<button class="btn btn-sm btn-danger" data-konfirmasi="2" data-id="xxx"><i class="fa fa-times space-right-5"></i>tolak</button>
 							</td>
 						</tr>
 						@endfor
@@ -197,6 +197,34 @@
 						<input type="text" class="form-control" name="nama" placeholder="nama pengambil" required/>
 					</div>
 					<div class="form-group">
+						<label for="">Keterangan</label>
+						<textarea class="form-control" name="keterangan" placeholder="keterangan"></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary">simpan</button>
+						<button class="btn btn-default" data-dismiss="modal">batal</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-konfirmasi-dialog">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Alasan <span class="status"></span></h4>
+			</div>
+			<div class="modal-body">
+				<form action="#" method="POST" id="form-konfirmasi">
+					<div class="form-group">
+						<label for="">Keterangan</label>
+						<input type="hidden" name="id" value="">
+						<input type="hidden" name="status" value="">
+						<textarea class="form-control" name="keterangan" placeholder="keterangan"></textarea>
+					</div>
+					<div class="form-group">
 						<button class="btn btn-primary">simpan</button>
 						<button class="btn btn-default" data-dismiss="modal">batal</button>
 					</div>
@@ -216,4 +244,18 @@
 		font-size: 10pt;
 	}
 </style>
+@endsection
+
+@section('javascript')
+<script>
+	$(document).ready(function(){
+		$("[data-konfirmasi]").click(function(){
+			var status = ($(this).data('konfirmasi') == 1) ? 'Persetujuan' : 'Penolakan';
+			$("#modal-konfirmasi-dialog .modal-title > .status").empty().html(status);
+			$("#form-konfirmasi input[name='id']").val($(this).data('id'));
+			$("#form-konfirmasi input[name='status']").val($(this).data('konfirmasi'));
+			$("#modal-konfirmasi-dialog").modal('show');
+		});
+	});
+</script>
 @endsection
