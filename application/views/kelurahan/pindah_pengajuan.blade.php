@@ -9,10 +9,10 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<ul class="nav nav-pills">
-					<li role="presentation" class="tab-nav step1 active">Langkah ke-1</li>
-					<li role="presentation" class="tab-nav step2">Langkah ke-2</li>
-					<li role="presentation" class="tab-nav step3">Langkah ke-3</li>
-					<li role="presentation" class="tab-nav step4">Langkah Terakhir</li>
+					<li role="presentation" class="tab-nav step1 active">1. Penentuan Nomor Surat</li>
+					<li role="presentation" class="tab-nav step2">2. Data Warga</li>
+					<li role="presentation" class="tab-nav step3">3. Data Perpindahan</li>
+					<li role="presentation" class="tab-nav step4">4. Data Pengikut</li>
 				</ul>
 			</div>
 			<div class="panel-body">
@@ -21,7 +21,7 @@
 					<div class="tab-content break-20">
 						<!-- TAB 1 -->
 						<div role="tabpanel" class="tab-pane active" id="step1">
-							<div class="text-size-24 break-bottom-30">Langkah 1: Penentuan Nomor Surat</div>
+							<div class="text-size-24 break-bottom-30">Langkah 1. Penentuan Nomor Surat</div>
 							<div class="row">
 								<div class="col-xs-12 col-md-6">
 									<div class="form-group break-bottom-30">
@@ -40,7 +40,7 @@
 						</div>
 						<!-- TAB 2 -->
 						<div role="tabpanel" class="tab-pane" id="step2">
-							<div class="text-size-24 break-bottom-30">Langkah 2: Data Warga</div>
+							<div class="text-size-24 break-bottom-30">Langkah 2. Data Warga</div>
 							<div class="row">
 								<div class="col-xs-12 col-md-6">
 									<div class="form-group">
@@ -93,7 +93,7 @@
 						</div>
 						<!-- TAB 3 -->
 						<div role="tabpanel" class="tab-pane" id="step3">
-							<div class="text-size-24 break-bottom-30">Langkah 3: Data Perpindahan</div>
+							<div class="text-size-24 break-bottom-30">Langkah 3. Data Perpindahan</div>
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="row">
@@ -161,7 +161,7 @@
 						</div>
 						<!-- TAB 4 -->
 						<div role="tabpanel" class="tab-pane" id="step4">
-							<div class="text-size-24 break-bottom-30">Langkah 4: Data Pengikut</div>
+							<div class="text-size-24 break-bottom-30">Langkah 4. Data Pengikut</div>
 							<div class="row">
 								<div class="col-xs-12 col-md-6">
 									<span class="text-size-20">Cari Warga</span>
