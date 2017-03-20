@@ -36,6 +36,10 @@
 						</div>
 						<div class="collapse navbar-collapse" id="menu">
 							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown notifikasi">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i></a>
+									<ul class="dropdown-menu notifikasi-list"></ul>
+								</li>
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ str_replace('@lumajang', '', $this->session->userdata('identity')) }} <span class="caret"></span></a>
 									<ul class="dropdown-menu">
@@ -78,6 +82,7 @@
 <script src="{{base_url('assets/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <script src="{{base_url('assets/js/theme.js')}}"></script>
 <script>
+	var count_test = 0;
 	$(document).ready(function(){
 		$("button.reload").click(function(){location.reload();});
 		$("#alerts").modal('show');
@@ -87,7 +92,29 @@
 		$(".modal").on('hide.bs.modal', function(e){
 			$(".modal form").trigger('reset');
 		});
+
+		// Notifikasi
+		setInterval(refresh_notifikasi, 1000);
 	});
+
+	function refresh_notifikasi(){
+		var notif_count = count_test++; //Diisi dengan jumlah pengajuan
+		var notif_list = [
+							{nama:"SKCK", jumlah:"10", link:"#"},
+							{nama:"Blanko KTP", jumlah:"05", link:"#"}
+						 ];
+		// Tulis pesan notifikasi kosong
+		$(".notifikasi > a > .badge").remove();
+		$(".notifikasi-list").append("<li><a href='#'>Tak ada pengajuan</a></li>");
+		if (notif_count > 0) {
+			$(".notifikasi > a").append(" <span class='badge badge-sm'>"+notif_count+"</span>");
+			$(".notifikasi-list").empty();
+
+			$.each(notif_list, function(index,value){
+				$(".notifikasi-list").append("<li><a href='"+value.link+"'><span class='badge badge-sm'>"+value.jumlah+"</span> "+value.nama+"</a></li>");
+			});
+		}
+	}
 </script>
 @yield('javascript')
 </html>
