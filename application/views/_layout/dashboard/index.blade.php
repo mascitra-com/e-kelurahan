@@ -94,26 +94,26 @@
 		});
 
 		// Notifikasi
-		setInterval(refresh_notifikasi, 1000);
+        refresh_notifikasi();
+		setInterval(refresh_notifikasi, 5 * (60 * 1000));
 	});
 
 	function refresh_notifikasi(){
-		var notif_count = count_test++; //Diisi dengan jumlah pengajuan
-		var notif_list = [
-							{nama:"SKCK", jumlah:"10", link:"#"},
-							{nama:"Blanko KTP", jumlah:"05", link:"#"}
-						 ];
-		// Tulis pesan notifikasi kosong
-		$(".notifikasi > a > .badge").remove();
-		$(".notifikasi-list").append("<li><a href='#'>Tak ada pengajuan</a></li>");
-		if (notif_count > 0) {
-			$(".notifikasi > a").append(" <span class='badge badge-sm'>"+notif_count+"</span>");
-			$(".notifikasi-list").empty();
+	    $.getJSON('{{ site_url('dashboard/notifikasi') }}', function (result) {
+            var notif_count = result.notif_count; //Diisi dengan jumlah pengajuan
+            var notif_list = result.notif_list;
+            // Tulis pesan notifikasi kosong
+            $(".notifikasi > a > .badge").remove();
+            $(".notifikasi-list").append("<li><a href='#'>Tak ada pengajuan</a></li>");
+            if (notif_count > 0) {
+                $(".notifikasi > a").append(" <span class='badge badge-sm'>"+notif_count+"</span>");
+                $(".notifikasi-list").empty();
 
-			$.each(notif_list, function(index,value){
-				$(".notifikasi-list").append("<li><a href='"+value.link+"'><span class='badge badge-sm'>"+value.jumlah+"</span> "+value.nama+"</a></li>");
-			});
-		}
+                $.each(notif_list, function(index,value){
+                    $(".notifikasi-list").append("<li><a href='"+value.link+"'><span class='badge badge-sm'>"+value.jumlah+"</span> "+value.jenis+"</a></li>");
+                });
+            }
+        });
 	}
 </script>
 @yield('javascript')
