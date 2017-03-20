@@ -40,7 +40,7 @@ class Dashboard extends MY_Controller {
             $result = array('notif_count' => $total,
                 'notif_list' => $data
             );
-            $this->cache->save('result', $result, 300);
+            $this->cache->save('result', $result, 270);
         }
         echo json_encode($result);
     }
