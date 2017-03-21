@@ -21,7 +21,7 @@ class Surat extends MY_Controller
 		->where('jenis', '0')
 		->where('id_organisasi', $this->ion_auth->get_current_id_org())
 		->where('status', array('0', '1'))
-		->fields('id ,no_surat, jenis, tanggal_verif, status, created_at, updated_at, updated_by')
+		->fields('id ,no_surat, jenis, tanggal_verif, status, tanggal_ambil,nama_pengambil, created_at, updated_at, updated_by')
 		->get_all();
 
 		$data['unconfirmeds'] = $this->surat_m
@@ -185,83 +185,89 @@ class Surat extends MY_Controller
 		$this->redirectJenis($jenis);
 	}
 
-	public function setuju($jenis = NULL, $id = NULL)
+	public function konfirmasi()
 	{
-		if ($jenis !== NULL && $id !== NULL) {
+		$data = $this->input->post();
+		if (!is_null($data['jenis']) && !is_null($data['id'])) {
+			if ($data['jenis'] === '0' || $data['jenis'] === '1' || $data['jenis'] === '2' || $data['jenis'] === '3') {
+				if ($data['status'] === '1') {
+				# SETUJUI
+				//AMBIL NO SURAT DENGAN JENIS YANG BERSANGKUTAN PALING TERAKHIR
+					$no_surat = $this->surat_m
+					->where(array(
+						'id_organisasi' => $this->ion_auth->get_current_id_org(),
+						'jenis' => $data['jenis'],
+						))
+					->order_by('no_surat', 'desc')
+					->fields('no_surat')
+					->get()->no_surat;
 
-			//AMBIL NO SURAT DENGAN JENIS YANG BERSANGKUTAN PALING TERAKHIR
-			$no_surat = $this->surat_m
-			->where(array(
-				'id_organisasi' => $this->ion_auth->get_current_id_org(),
-				'jenis' => $jenis,
-				))
-			->order_by('no_surat', 'desc')
-			->fields('no_surat')
-			->get()->no_surat;
 
-			$no_surat = explode('/', $no_surat);
-			$no_surat = (int)$no_surat[1]+1;
+					$no_surat = explode('/', $no_surat);
+					$no_surat = (int)$no_surat[1]+1;
 
-			if ($jenis === '0') {
-				$update_no = '23/'. $no_surat .'/02.002/'.date('Y');
-			}elseif ($jenis === '1') {
-				$update_no = '24/'. $no_surat .'/02.002/'.date('Y');
-			}elseif ($jenis === '2') {
-				$update_no = '25/'. $no_surat .'/02.002/'.date('Y');
-			}elseif ($jenis === '3') {
-				$update_no = '26/'. $no_surat .'/02.002/'.date('Y');
-			}else{
-				$this->message('Terjadi kesalahan sistem saat memasukkan no surat', 'danger');
-				$this->redirectJenis($jenis);
-			}
-
-			if ($jenis === '0' || $jenis === '1' || $jenis === '2' || $jenis === '3') {
-				$update_data = array(
-					'no_surat' => $update_no,
-					'tanggal_verif' => date('Y-m-d h:i:s'),
-					'status' => '1'
-					);
-				$query = $this->surat_m->update($update_data, $id); 
-				if ($query === FALSE) {
-					$this->message('Terjadi kesalahan sistem saat mengkonfirmasi surat', 'danger');
-					$this->redirectJenis($jenis);
+					if ($data['jenis'] === '0') {
+						$update_no = '23/'. $no_surat .'/02.002/'.date('Y');
+					}elseif ($data['jenis'] === '1') {
+						$update_no = '24/'. $no_surat .'/02.002/'.date('Y');
+					}elseif ($data['jenis'] === '2') {
+						$update_no = '25/'. $no_surat .'/02.002/'.date('Y');
+					}elseif ($data['jenis'] === '3') {
+						$update_no = '26/'. $no_surat .'/02.002/'.date('Y');
+					}else{
+						$this->message('Terjadi kesalahan sistem saat memasukkan no surat', 'danger');
+						$this->redirectdataJenis($data['jenis']);
+					}
+					$update_data = array(
+						'no_surat' => $update_no,
+						'tanggal_verif' => date('Y-m-d h:i:s'),
+						'status' => '1'
+						);
+				}elseif ($data['status'] === '2') {
+				# TOLAK
+					$update_data = array(
+						'tanggal_verif' => date('Y-m-d h:i:s'),
+						'status' => '2'
+						);
 				}else{
-					$this->message('Data Surat berhasil disetujui', 'success');
-					$this->redirectJenis($jenis);
+					$this->message('Terjadi kesalahan sistem saat membaca status surat. Coba lagi nanti.', 'danger');
+					$this->redirectJenis($data['jenis']);
+				}
+				$query = $this->surat_m->update($update_data, $data['id']); 
+				if ($query === FALSE) {
+					$this->message('Terjadi kesalahan sistem saat memverifikasi surat', 'danger');
+					$this->redirectJenis($data['jenis']);
+				}else{
+					$this->message('Data Surat berhasil diverifikasi', 'success');
+					$this->redirectJenis($data['jenis']);
 				}
 			}else{
-				$this->message('Terjadi kesalahan saat mengunjungi halaman', 'danger');
+				$this->message('Terjadi kesalahan sistem. Coba lagi nanti.', 'danger');
 			}
 		}else{
-			$this->message('Terjadi kesalahan saat mengunjungi halaman', 'warning');
+			$this->message('Terjadi kesalahan sistem. Coba lagi nanti.', 'danger');
 		}
-		$this->redirectJenis($jenis);
+		$this->redirectJenis($data['jenis']);
 	}
 
-	public function tolak($jenis = NULL, $id = NULL)
+	public function ambil()
 	{
-		if ($jenis !== NULL && $id !== NULL) {
-
-			if ($jenis === '0' || $jenis === '1' || $jenis === '2' || $jenis === '3') {
-				$update_data = array(
-					'tanggal_verif' => date('Y-m-d h:i:s'),
-					'status' => '2'
-					);
-				$query = $this->surat_m->update($update_data, $id); 
-				if ($query === FALSE) {
-					$this->message('Terjadi kesalahan sistem saat mengkonfirmasi surat', 'danger');
-					$this->redirectJenis($jenis);
-				}else{
-					$this->message('Data Surat berhasil ditolak', 'success');
-					$this->redirectJenis($jenis);
-				}
+		$data = $this->input->post();
+		if (!is_null($data['id_surat']) && !is_null($data['jenis_surat'])) {
+			$query = $this->surat_m->update(array(
+				'nama_pengambil' => $data['nama_pengambil'],
+				'keterangan' => $data['keterangan'],
+				'tanggal_ambil' => date('Y-m-d h:i:s')
+			), $data['id_surat']);
+			if ($query === FALSE) {
+				$this->message('Terjadi kesalahan sistem. Coba lagi nanti.', 'danger');
 			}else{
-				$this->message('Terjadi kesalahan saat mengunjungi halaman', 'danger');
+				$this->message('Data surat telah disunting.', 'success');
 			}
 		}else{
-			$this->message('Terjadi kesalahan saat mengunjungi halaman', 'warning');
+			$this->message('Surat tidak ditemukan.', 'warning');
 		}
-		$this->redirectJenis($jenis);
+		$this->redirectJenis($data['jenis_surat']);
 	}
 
 	public function arsip($jenis = NULL)
