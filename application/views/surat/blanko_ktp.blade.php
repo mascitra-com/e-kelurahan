@@ -10,7 +10,7 @@
 			<!-- BARU DARISINI -->
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-konfirmasi">
 				@if($unconfirmeds !== 0)
-				<span class="badge space-right-10">
+				<span class="badge badge-sm space-right-10">
 					@if($unconfirmeds < 10)
 					{{ '0'.$unconfirmeds }}
 					@else
@@ -33,11 +33,14 @@
 		<table class="table table-stripped table-hover table-bordered">
 			<thead>
 				<tr>
-					<th class="text-center">NO. URUT</th>
+					<th class="text-center">NO.</th>
 					<th>NO. SURAT</th>
 					<th>PENGAJU</th>
-					<th class="text-center">TANGGAL PENGAJUAN</th>
-					<th class="text-center">TANGGAL VERIFIKASI</th>
+					<th class="text-center">TGL PENGAJUAN</th>
+					<th class="text-center">TGL VERIFIKASI</th>
+					<th class="text-center">TGL AMBIL</th>
+					<th class="text-center">PENGAMBIL</th>
+					<th class="text-center">STATUS</th>
 					<th class="text-center">AKSI</th>
 				</tr>
 			</thead>
@@ -51,9 +54,21 @@
 					<td><a href="{{ site_url('penduduk/detail/'. $blanko->nik) }}">{{ $blanko->penduduk->nama }}</a></td>
 					<td class="text-center">{{date('d-m-Y', strtotime($blanko->created_at))}}</td>
 					<td class="text-center">{{date('d-m-Y', strtotime($blanko->tanggal_verif))}}</td>
+					<td class="text-center">{{ is_null($blanko->tanggal_ambil) ? '-' : date('d-m-Y', strtotime($blanko->tanggal_ambil)) }}</td>
+					<td class="text-center">{{ is_null($blanko->nama_pengambil) ? '-' : $blanko->nama_pengambil }}</td>
+					<td class="text-center"><span class="label label-{{ (!is_null($blanko->nama_pengambil)) ? 'success' : (( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ) ? 'danger' : 'warning') }}">
+						{{ (!is_null($blanko->nama_pengambil)) ? 'diambil' : (( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ) ? 'kadaluarsa' : 'menunggu' ) }}
+					</span></td>
 					<td>
-						<a href="#" class="btn btn-default btn-xs"><i class="fa fa-info"></i> detail</a>
-						<a href="{{ site_url('surat/arsipkan/0/'.$blanko->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
+						@if(is_null($blanko->nama_pengambil) && !( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ))
+						<button class="btn btn-block btn-success btn-xs btn-ambil" title="telah diambil" data-toggle="modal" data-target="#modal-ambil" data-id_surat={{ $blanko->id }} data-jenis_surat={{ $blanko->jenis }}><i class="fa fa-check"></i></button>	
+						@elseif(is_null($blanko->nama_pengambil) && ( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ))
+						<a href="{{ site_url('surat/arsipkan/0/'.$blanko->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						@else
+						<a href="{{site_url('surat/detail/blankoktp/'.$blanko->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
+						<a href="{{site_url('surat/cetak/blankoktp/'.$blanko->id)}}" target="_blank" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
+						<a href="{{ site_url('surat/arsipkan/0/'.$blanko->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						@endif
 					</td>
 				</tr>
 				@endif
@@ -109,7 +124,7 @@
 				<h4 class="modal-title">Filter Pencarian</h4>
 			</div>
 			<div class="modal-body">
-				<form action="#">
+				<form action="#" method="POST">
 					<div class="row">
 						<div class="col-xs-12- col-md-6">
 							<div class="form-group">
@@ -193,8 +208,8 @@
 							<td>{{ $blanko->penduduk->nama }}</td>
 							<td class="text-center">{{date('d-m-Y', strtotime($blanko->created_at))}}</td>
 							<td class="text-center">
-								<a href="{{ site_url('surat/setuju/0/'.$blanko->id) }}" class="btn btn-sm btn-success"><i class="fa fa-check space-right-5"></i>setuju</a>
-								<a class="btn btn-sm btn-danger" href="{{ site_url('surat/tolak/0/'.$blanko->id) }}"><i class="fa fa-times space-right-5"></i>tolak</a>
+								<button class="btn btn-sm btn-success" data-konfirmasi="1" data-id="{{ $blanko->id }}"><i class="fa fa-check space-right-5"></i>setuju</button>
+								<button class="btn btn-sm btn-danger" data-konfirmasi="2" data-id="{{ $blanko->id }}"><i class="fa fa-times space-right-5"></i>tolak</button>
 							</td>
 						</tr>
 						@endif
@@ -208,12 +223,71 @@
 	</div>
 </div>
 <!-- SAMPAI SINI -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-ambil">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Pengambilan Surat</h4>
+			</div>
+			<div class="modal-body">
+				<form action="{{ site_url('surat/ambil') }}" method="POST" class="form">
+					{{ $csrf }}
+					<input type="hidden" name="id_surat">
+					<input type="hidden" name="jenis_surat">
+					<div class="form-group">
+						<label for="nama_pengambil">Nama Pengambil</label>
+						<input type="text" class="form-control" name="nama_pengambil" placeholder="nama pengambil" minlength="3" required/>
+					</div>
+					<div class="form-group">
+						<label for="keterangan">Keterangan</label>
+						<textarea class="form-control" name="keterangan" placeholder="keterangan"></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary" type="sumbit">simpan</button>
+						<button class="btn btn-default" data-dismiss="modal">batal</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-konfirmasi-dialog">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Alasan <span class="status"></span></h4>
+			</div>
+			<div class="modal-body">
+				<form action="{{ site_url('surat/konfirmasi') }}" method="POST" id="form-konfirmasi">
+					{{$csrf}}
+					<div class="form-group">
+						<label for="">Keterangan</label>
+						<input type="hidden" name="id" value="">
+						<input type="hidden" name="status" value="">
+						<input type="hidden" name="jenis" value="0">
+						<textarea class="form-control" name="keterangan" placeholder="keterangan"></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary">simpan</button>
+						<button class="btn btn-default" data-dismiss="modal">batal</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 @endsection
 
 @section('style')
 <style>
 	.label{display:block; width: 100%; padding: 5px 0;}
-	.badge{font-weight: 300; border-radius: 3px; font-size: 7pt; padding: 3px; background-color: #D9534F!important}
+	/*BARU DARISINI*/
+	td, th{
+		vertical-align: middle!important;
+		font-size: 10pt;
+	}
 </style>
 @endsection
 
@@ -221,6 +295,19 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		getKepNik();
+
+		$("[data-konfirmasi]").click(function(){
+			var status = ($(this).data('konfirmasi') == 1) ? 'Persetujuan' : 'Penolakan';
+			$("#modal-konfirmasi-dialog .modal-title > .status").empty().html(status);
+			$("#form-konfirmasi input[name='id']").val($(this).data('id'));
+			$("#form-konfirmasi input[name='status']").val($(this).data('konfirmasi'));
+			$("#modal-konfirmasi-dialog").modal('show');
+		});
+
+		$(".btn-ambil").click(function(){
+			$("#modal-ambil .form input[name='id_surat']").val($(this).data('id_surat'));
+			$("#modal-ambil .form input[name='jenis_surat']").val($(this).data('jenis_surat'));
+		});
 	});
 
 	function getKepNik() {

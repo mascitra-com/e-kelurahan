@@ -41,14 +41,8 @@
 											<td>{{ $surat->penduduk->nama }}</td>
 											<td>{{ mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $surat->created_at))) }}</td>
 											<td>{{ date('l, d F Y', strtotime($surat->tanggal_verif)) }}</td>
-											<td class="text-center"><div class="label label-{{ ($surat->status == '0') ? 'warning' : (($surat->status == '1') ? 'success' : 'danger' ) }}">
-												@if($surat->status === '0')
-												menunggu
-												@elseif($surat->status === '1' )
-												disetujui
-												@else
-												ditolak
-												@endif
+											<td class="text-center"><div class="label label-{{ ($surat->status == '1') ? ((!is_null($surat->nama_pengambil)) ? 'success' : ((( date('d-m-Y') > date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) )) ? 'danger' : 'success') ) : (($surat->status == '2') ? 'danger' : 'warning') }}">
+												{{ ($surat->status == '1') ? ((!is_null($surat->nama_pengambil)) ? 'diambil' : ((( date('d-m-Y') > date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) )) ? 'kadaluarsa' : 'disetujui') ) : (($surat->status == '2') ? 'ditolak' : 'menunggu') }}
 											</div></td>
 											<td>
 												@if($surat->status == '2')
