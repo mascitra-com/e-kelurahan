@@ -11,8 +11,19 @@ class Penduduk extends MY_Controller {
         $this->load->model('organisasi_m', 'organisasi');
         $this->load->model('pekerjaan_m', 'pekerjaan');
         $this->load->model('pendidikan_m', 'pendidikan');
+        $this->load->model('meninggal_m');
         $this->load->model('penduduk_m');
         $this->load->library('form_validation');
+    }
+
+    /**
+     * Use to make URI looks good
+     *
+     * @param int $page
+     */
+    public function page($page = 1)
+    {
+        $this->index($page);
     }
 
     /**
@@ -22,7 +33,8 @@ class Penduduk extends MY_Controller {
      */
     public function index($page = NULL)
     {
-        if(!$page){
+        if ( ! $page)
+        {
             $this->go('penduduk/page/1');
         }
         // Get Filter and Order By from Session
@@ -42,16 +54,6 @@ class Penduduk extends MY_Controller {
 
         $this->generateCsrf();
         $this->render('kependudukan/kependudukan', $data);
-    }
-
-    /**
-     * Use to make URI looks good
-     *
-     * @param int $page
-     */
-    public function page($page = 1)
-    {
-        $this->index($page);
     }
 
     /**
@@ -109,31 +111,43 @@ class Penduduk extends MY_Controller {
         $data = $this->input->post(NULL, TRUE);
 
         //cek duplikasi nik
-        $query = $this->penduduk_m
-        ->fields('nik')
-        ->get($data['nik']);
+        $cek_nik = $this->penduduk_m
+            ->fields('nik')
+            ->get($data['nik']);
 
-        if ($query === FALSE) {
+        $cek_meninggal = $this->meninggal_m
+            ->fields('nik')
+            ->get($data['nik']);
+
+        if ($cek_nik === FALSE && $cek_meninggal === FALSE)
+        {
             $insert = $this->penduduk->from_form(NULL, array('id_organisasi' => $this->ion_auth->get_current_id_org()))->insert();
-          if ($insert === FALSE) {
+            if ($insert === FALSE)
+            {
+                $current_id_org = $this->ion_auth->get_current_id_org();
+                $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
+                $data['pekerjaan'] = $this->pekerjaan->get_all();
+                $this->generateCsrf();
+                $this->render('kependudukan/create', $data);
+            } else
+            {
+                $this->message('Data Penduduk Berhasil Ditambahkan', 'success');
+                $this->go('penduduk/page/1');
+            }
+        } else
+        {
             $current_id_org = $this->ion_auth->get_current_id_org();
             $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
             $data['pekerjaan'] = $this->pekerjaan->get_all();
+            if($cek_nik){
+                $this->message('Penduduk dengan NIK ' . $data['nik'] . ' sudah ada', 'danger');
+            } else if($cek_meninggal){
+                $this->message('Penduduk dengan NIK ' . $data['nik'] . ' sudah meninggal', 'danger');
+            }
             $this->generateCsrf();
             $this->render('kependudukan/create', $data);
-        }else{
-            $this->message('Data Penduduk Berhasil Ditambahkan', 'success');
-            $this->go('penduduk/page/1');
         }
-    }else{
-        $current_id_org = $this->ion_auth->get_current_id_org();
-        $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
-        $data['pekerjaan'] = $this->pekerjaan->get_all();
-        $this->message('Penduduk dengan NIK '. $data['nik'] . ' sudah ada', 'danger');
-        $this->generateCsrf();
-        $this->render('kependudukan/create', $data);
     }
-}
 
     /**
      * Show Specific Detail of Data Penduduk
@@ -168,7 +182,7 @@ class Penduduk extends MY_Controller {
             $data['penduduk'] = $this->penduduk->get(array('nik' => $nik));
         }
         $this->message('Data Penduduk Berhasil Diubah', 'success');
-        $this->go('penduduk/detail/'.$nik);
+        $this->go('penduduk/detail/' . $nik);
     }
 
     /**
@@ -178,9 +192,11 @@ class Penduduk extends MY_Controller {
      */
     public function hapus($nik = NULL)
     {
-        if($this->penduduk->delete($nik)){
+        if ($this->penduduk->delete($nik))
+        {
             $this->message('Data Penduduk Berhasil Diubah', 'success');
-        } else {
+        } else
+        {
             $this->message('Data Penduduk Gagal Diubah', 'danger');
         }
         $this->go('penduduk/page/1');
@@ -195,15 +211,19 @@ class Penduduk extends MY_Controller {
     public function ambil_penduduk($nik)
     {
         $current_id_org = $this->ion_auth->get_current_id_org();
-        $penduduk_hidup =$this->penduduk_m->ambilSatuPendudukHidup($current_id_org, $nik);
+        $penduduk_hidup = $this->penduduk_m->ambilSatuPendudukHidup($current_id_org, $nik);
 
-        if ($penduduk_hidup) {
-            if ($penduduk_hidup !== 'Penduduk tidak ditemukan') {
+        if ($penduduk_hidup)
+        {
+            if ($penduduk_hidup !== 'Penduduk tidak ditemukan')
+            {
                 echo json_encode($penduduk_hidup);
-            }else{
+            } else
+            {
                 echo(json_encode(FALSE));
             }
-        }else{
+        } else
+        {
             die('Kesalahan query saat mengambil penduduk hidup');
         }
     }
@@ -216,15 +236,19 @@ class Penduduk extends MY_Controller {
     public function ambil_nama_nik()
     {
         $current_id_org = $this->ion_auth->get_current_id_org();
-        $penduduk_hidup =$this->penduduk_m->ambilSemuaPendudukHidup($current_id_org);
+        $penduduk_hidup = $this->penduduk_m->ambilSemuaPendudukHidup($current_id_org);
 
-        if ($penduduk_hidup) {
-            if ( $penduduk_hidup !== 'Penduduk tidak ditemukan') {
+        if ($penduduk_hidup)
+        {
+            if ($penduduk_hidup !== 'Penduduk tidak ditemukan')
+            {
                 echo json_encode($penduduk_hidup);
-            }else{
+            } else
+            {
                 echo(json_encode(FALSE));
             }
-        }else{
+        } else
+        {
             die('Kesalahan query saat mengambil penduduk hidup');
         }
     }
