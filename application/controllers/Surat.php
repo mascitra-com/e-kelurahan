@@ -11,7 +11,7 @@ class Surat extends MY_Controller
 
 		$this->load->helper(array('dump', 'form'));
 		$this->load->library(array('form_validation'));
-		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m'));
+		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m', 'surat_m'));
 	}
 
 	public function blankoktp($optionalData = NULL, $optStatus = FALSE)
@@ -119,7 +119,13 @@ class Surat extends MY_Controller
 
 	public function simpan($jenis = NULL)
 	{
-		if ($jenis !== NULL) {
+	    $where = array(
+            'nik' => $this->input->post('nik'),
+            'jenis' => $jenis,
+            'status' => '0'
+        );
+	    $query = $this->surat_m->get($where);
+		if ($jenis !== NULL && $query === FALSE) {
 			$input = $this->input->post();
 			//cek input kosong
 			if (empty($input['no_surat']) || empty($input['nik'])) {
@@ -179,7 +185,9 @@ class Surat extends MY_Controller
 			}else{
 				$this->message('Terjadi kesalahan saat mengunjungi halaman', 'danger');
 			}
-		}else{
+		} else if($query){
+            $this->message('Penduduk masih memilik surat yang harus disetujui sebelum melakukan pengajuan surat baru', 'warning');
+        } else {
 			$this->message('Terjadi kesalahan saat mengunjungi halaman', 'warning');
 		}
 		$this->redirectJenis($jenis);
