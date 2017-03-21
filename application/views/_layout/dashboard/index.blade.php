@@ -82,7 +82,7 @@
 <script src="{{base_url('assets/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <script src="{{base_url('assets/js/theme.js')}}"></script>
 <script>
-	var count_test = 0;
+	var count_test = 1;
 	$(document).ready(function(){
 		$("button.reload").click(function(){location.reload();});
 		$("#alerts").modal('show');
