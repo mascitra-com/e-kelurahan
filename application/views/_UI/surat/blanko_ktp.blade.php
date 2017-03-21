@@ -7,12 +7,10 @@
 	<div class="panel-heading">
 		<h3 class="panel-title pull-left">Blanko Isian KTP</h3>
 		<div class="btn-group pull-right">
-			<!-- BARU DARISINI -->
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-konfirmasi">
 				<span class="badge badge-sm space-right-10">04</span>
 				<i class="fa fa-bell"></i>
 			</button>
-			<!-- SAMPAI SINI -->
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i></button>
 			<button class="btn btn-default btn-sm reload"><i class="fa fa-refresh"></i></button>
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-cari"><i class="fa fa-search"></i></button>
