@@ -110,7 +110,7 @@
                 $(".notifikasi-list").empty();
 
                 $.each(notif_list, function(index,value){
-                    $(".notifikasi-list").append("<li><a href='"+value.link+"'><span class='badge badge-sm'>"+value.jumlah+"</span> "+value.jenis+"</a></li>");
+                    $(".notifikasi-list").append("<li><a href='{{ site_url() }}"+value.link+"'><span class='badge badge-sm'>"+value.jumlah+"</span> "+value.jenis+"</a></li>");
                 });
             }
         });
