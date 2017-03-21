@@ -46,12 +46,23 @@
 			</li>
 			<li><a href="#"><i class="fa fa-fw fa-truck"></i><span class="nav-label">Pindah RT</span></a></li>
 			<li>
-				<a href="#nav-surat" data-toggle="collapse" aria-controls="nav-surat">
+				<a href="#nav-surat-masuk" data-toggle="collapse" aria-controls="nav-surat-masuk">
 					<i class="fa fa-fw fa-envelope"></i>
-					<span class="nav-label">Surat</span>
+					<span class="nav-label">Surat Masuk</span>
 					<span class="nav-caret"><i class="fa fa-caret-down"></i></span>
 				</a>
-				<ul class="sidebar-nav-child collapse collapseable" id="nav-surat">
+				<ul class="sidebar-nav-child collapse collapseable" id="nav-surat-masuk">
+					<li><a href="#"><i class="fa fa-file-o"></i><span class="nav-label">Daftar Surat Masuk</span></a></li>
+					<li><a href="#"><i class="fa fa-archive"></i><span class="nav-label">Arsip Surat Masuk</span></a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#nav-surat-keluar" data-toggle="collapse" aria-controls="nav-surat-keluar">
+					<i class="fa fa-fw fa-envelope-open"></i>
+					<span class="nav-label">Surat Keluar</span>
+					<span class="nav-caret"><i class="fa fa-caret-down"></i></span>
+				</a>
+				<ul class="sidebar-nav-child collapse collapseable" id="nav-surat-keluar">
 					<li><a href="{{site_url('ui/surat_blanko_ktp')}}"><i class="fa fa-file-o"></i><span class="nav-label">Blanko Isian KTP</span></a></li>
 					<li><a href="{{site_url('ui/surat_skck')}}"><i class="fa fa-file-o"></i><span class="nav-label">SKCK</span></a></li>
 					<li><a href="{{site_url('ui/surat_keterangan_miskin')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin</span></a></li>

@@ -223,4 +223,14 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/surat/keterangan_miskin_cetak');
 	}
+
+	public function homepage_galeri()
+	{
+		$this->render('_UI/homepage/galeri');
+	}
+
+	public function homepage_galeri_list()
+	{
+		$this->render('_UI/homepage/galeri_list');
+	}
 }

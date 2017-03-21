@@ -50,9 +50,9 @@
 								<td><a href="{{ site_url('penduduk/detail/'.$mutasi->nik) }}">{{ $mutasi->penduduk->nama }}</a></td>
 								<td class="text-center">{{date('d-m-Y', strtotime($mutasi->created_at))}}</td>
 								<td width="30%">
-									<a href="{{ site_url('pindah/detail/'.$mutasi->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-info"></i> detail</a>
-									<a href="{{ site_url('pindah/arsipkan/'. $mutasi->id) }}" class="btn btn-warning btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> arsipkan</a>
-									<a href="{{ site_url('pindah/pratinjau/'.$mutasi->id) }}" class="btn btn-success btn-xs"><i class="fa fa-file-pdf-o"></i> cetak surat</a>
+									<a href="{{ site_url('pindah/detail/'.$mutasi->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-info"></i> Detail</a>
+									<a href="{{ site_url('pindah/arsipkan/'. $mutasi->id) }}" class="btn btn-warning btn-xs" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i> Arsipkan</a>
+									<a href="{{ site_url('pindah/pratinjau/'.$mutasi->id) }}" class="btn btn-success btn-xs"><i class="fa fa-file-pdf-o"></i> Cetak Surat</a>
 								</td>
 							</tr>
 							@endforeach

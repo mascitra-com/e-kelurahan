@@ -46,7 +46,7 @@
 								<td>{{ potong_teks($info->judul, 47) }}</td>
 								<td class="text-center">{{ $info->akun->username }}</td>
 								<td class="text-center">{{ date('Y/m/d', strtotime($info->created_at)) }}</td>
-								<td class="text-center"><span class="label label-{{ (is_null($info->deleted_at)) ? 'success' : 'danger' }}">{{ (is_null($info->deleted_at)) ? 'aktif' : 'non-aktif' }}</span></td>
+								<td class="text-center"><span class="label label-{{ (is_null($info->deleted_at)) ? 'success' : 'danger' }}">{{ (is_null($info->deleted_at)) ? 'Aktif' : 'Non-aktif' }}</span></td>
 								<td class="text-center">
 									<a href="{{ site_url('info/selengkapnya/'.$info->slug) }}" class="btn btn-xs btn-default" title="selengkapnya"><i class="fa fa-ellipsis-h"></i></a>
 									<a href="{{site_url('info/sunting/'.$info->slug) }}" class="btn btn-xs btn-default" title="sunting"><i class="fa fa-pencil"></i></a>

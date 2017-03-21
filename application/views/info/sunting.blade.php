@@ -23,8 +23,8 @@
 						<textarea class="form-control content" name="isi">{{ (isset($info['isi'])) ? $info['isi'] : '' }}</textarea>
 					</div>
 					<div class="form-group">
-						<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> simpan</button>
-						<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> bersihkan</button>
+						<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Simpan</button>
+						<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> Bersihkan</button>
 					</div>
 				</form>
 			</div>
