@@ -56,8 +56,11 @@ class Auth extends MY_Controller {
 			}
 			redirect('dashboard', 'refresh');
 		}
-
-		$this->data['action'] = $action = $this->uri->segment(1, 0);
+        if($this->uri->segment(1, 0) === 'warga')
+        {
+            $this->session->set_userdata('warga', TRUE);
+        }
+        $this->data['action'] = $action = $this->uri->segment(1, 0);
 		$this->data['title'] = $this->lang->line('login_heading');
 
 		//validate form input
@@ -117,7 +120,8 @@ class Auth extends MY_Controller {
 		$this->data['title'] = "Logout";
 
 		// log the user out
-		$logout = $this->ion_auth->logout();
+		$this->ion_auth->logout();
+		$this->session->sess_destroy();
 
 		// redirect them to the login page
 		redirect('/', 'refresh');

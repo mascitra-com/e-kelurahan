@@ -965,6 +965,9 @@ class Ion_auth_model extends CI_Model
 			$this->set_error('login_unsuccessful');
 			return FALSE;
 		}
+		if(!is_numeric($identity) && $this->session->userdata('warga')){
+		    goto unauthorize;
+        }
 
 		$this->trigger_events('extra_where');
 
@@ -1025,7 +1028,7 @@ class Ion_auth_model extends CI_Model
 				return TRUE;
 			}
 		}
-
+        unauthorize:
 		// Hash something anyway, just to take up time
 		$this->hash_password($password);
 
