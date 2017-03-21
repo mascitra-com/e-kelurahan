@@ -297,6 +297,16 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 	font-weight: normal;
 }
 
+/*Notif*/
+.badge-sm{
+	font-size: 7pt;
+	font-weight: 300;
+	padding: 3px;
+	padding-bottom: 2px;
+	background-color: red!important;
+	margin:0;
+}
+
 /*RESPONSIVE*/
 @media(max-width: 992px){
 	#sidebar{
