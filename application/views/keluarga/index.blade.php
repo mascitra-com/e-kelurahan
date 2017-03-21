@@ -47,7 +47,7 @@
 						@foreach($keluargas as $keluarga)
 						<tr>
 							<td>{{ $keluarga->no }}</td>
-							<td>{{ $keluarga->penduduk->nama }}</td>
+							<td>{{ $keluarga->penduduk->nik }} | {{ $keluarga->penduduk->nama }}</td>
 							<td>{{ $keluarga->alamat }}</td>
 							<td class="text-center">{{ $keluarga->rt }}</td>
 							<td class="text-center">{{ $keluarga->rw }}</td>
@@ -93,8 +93,8 @@
 						<input type="text" class="form-control" name="no" placeholder="Masukkan Nomor KK">
 					</div>
 					<div class="form-group">
-						<label for="">Kepala Keluarga</label>
-						<input type="text" class="form-control"name="nik" placeholder="Masukkan Kepala Keluarga">
+						<label for="">NIK Kepala Keluarga</label>
+						<input type="text" class="form-control"name="nik" placeholder="Masukkan Kepala Keluarga" autocomplete="on">
 					</div>
 					<div class="form-group">
 						<label for="">RT / RW</label>
@@ -106,7 +106,7 @@
 					</div>
 					<div class="form-group break-top-20">
 						<button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Cari</button>
-						<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> bersihkan</button>
+						<button class="btn btn-default" type="reset"><i class="fa fa-refresh"></i> Bersihkan</button>
 					</div>
 				</form>
 			</div>
