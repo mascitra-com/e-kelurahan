@@ -63,11 +63,11 @@
 						@if(is_null($blanko->nama_pengambil) && !( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ))
 						<button class="btn btn-block btn-success btn-xs btn-ambil" title="telah diambil" data-toggle="modal" data-target="#modal-ambil" data-id_surat={{ $blanko->id }} data-jenis_surat={{ $blanko->jenis }}><i class="fa fa-check"></i></button>	
 						@elseif(is_null($blanko->nama_pengambil) && ( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ))
-						<a href="{{ site_url('surat/arsipkan/0/'.$blanko->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						<a href="{{ site_url('surat/arsipkan/$blanko->jenis/'.$blanko->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
 						@else
 						<a href="{{site_url('surat/detail/blankoktp/'.$blanko->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
 						<a href="{{site_url('surat/cetak/blankoktp/'.$blanko->id)}}" target="_blank" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
-						<a href="{{ site_url('surat/arsipkan/0/'.$blanko->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						<a href="{{ site_url('surat/arsipkan/$blanko->jenis/'.$blanko->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
 						@endif
 					</td>
 				</tr>
