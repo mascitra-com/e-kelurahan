@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 22 Mar 2017 pada 09.08
+-- Generation Time: 22 Mar 2017 pada 09.13
 -- Versi Server: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `surat_ijin_usaha` (
   `id` varchar(10) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
+  `nik` varchar(40) NOT NULL,
   `no_surat` varchar(50) DEFAULT NULL,
   `nama` varchar(255) NOT NULL,
   `jenis_usaha` varchar(255) NOT NULL,
