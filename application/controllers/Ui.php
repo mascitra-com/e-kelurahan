@@ -233,4 +233,19 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/homepage/galeri_list');
 	}
+
+	public function dashboard()
+	{
+		$this->render('_UI/dashboard/dashboard');
+	}
+
+	public function keterangan_ijin_usaha()
+	{
+		$this->render('_UI/surat/keterangan_ijin_usaha');
+	}
+
+	public function sktm()
+	{
+		$this->render('_UI/surat/sktm');
+	}
 }
