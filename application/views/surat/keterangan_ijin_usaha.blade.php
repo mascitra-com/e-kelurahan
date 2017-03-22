@@ -202,6 +202,7 @@
                     <h4 class="modal-title">Konfirmasi Pengajuan</h4>
                 </div>
                 <div class="modal-body table-responsive table-full">
+                    @if(!empty($ijin))
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                         <tr>
@@ -213,24 +214,23 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @for($i=0; $i < 4; $i++)
+                        @foreach($ijin as $item)
+                            @if($item->status == '0')
                             <tr>
-                                <td class="text-center">00{{$i+1}}</td>
-                                <td class="text-center">122410101086</td>
-                                <td>Ainul Yaqin</td>
-                                <td class="text-center">{{date('d-m-Y')}}</td>
+                                <td class="text-center">{{ $item->id }}</td>
+                                <td class="text-center">{{ $item->nik }}</td>
+                                <td>{{ $item->penduduk->nama }}</td>
+                                <td class="text-center">{{date('d-m-Y', strtotime($item->created_at))}}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-success" data-konfirmasi="1" data-id="xxx"><i
-                                                class="fa fa-check space-right-5"></i>setuju
-                                    </button>
-                                    <button class="btn btn-sm btn-danger" data-konfirmasi="2" data-id="xxx"><i
-                                                class="fa fa-times space-right-5"></i>tolak
-                                    </button>
+                                    <button class="btn btn-sm btn-success" data-konfirmasi="1" data-id="{{ $item->id }}"><i class="fa fa-check space-right-5"></i>setuju</button>
+                                    <button class="btn btn-sm btn-danger" data-konfirmasi="2" data-id="{{ $item->id }}"><i class="fa fa-times space-right-5"></i>tolak</button>
                                 </td>
                             </tr>
-                        @endfor
+                            @endif
+                        @endforeach
                         </tbody>
                     </table>
+                    @endif
                 </div>
                 <div class="modal-footer"></div>
             </div>
@@ -245,21 +245,19 @@
                     <h4 class="modal-title">Pengambilan Surat</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="POST">
+                    <form action="{{ site_url('surat_ijin_usaha/ambil') }}" method="POST" class="form">
+                    {{ $csrf }}
+                    <input type="hidden" name="id">
                         <div class="form-group">
                             <label for="">Nama Pengambil</label>
-                            <input type="text" class="form-control" name="nama" placeholder="nama pengambil" required/>
+                            <input type="text" class="form-control" name="nama_pengambil" placeholder="nama pengambil" required/>
                         </div>
                         <div class="form-group">
                             <label for="">Keterangan</label>
                             <textarea class="form-control" name="keterangan" placeholder="keterangan"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="">Nomor Surat</label>
-                            <input type="text" class="form-control" name="no_surat" placeholder="nomor surat"/>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary">simpan</button>
+                            <button class="btn btn-primary" type="submit">simpan</button>
                             <button class="btn btn-default" data-dismiss="modal">batal</button>
                         </div>
                     </form>
@@ -276,7 +274,8 @@
                     <h4 class="modal-title">Alasan <span class="status"></span></h4>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="POST" id="form-konfirmasi">
+                    <form action="{{ site_url('surat_ijin_usaha/konfirmasi') }}" method="POST" id="form-konfirmasi">
+                        {{ $csrf }}
                         <div class="form-group">
                             <label for="">Keterangan</label>
                             <input type="hidden" name="id" value="">
@@ -321,6 +320,10 @@
                 $("#form-konfirmasi input[name='id']").val($(this).data('id'));
                 $("#form-konfirmasi input[name='status']").val($(this).data('konfirmasi'));
                 $("#modal-konfirmasi-dialog").modal('show');
+            });
+
+            $(".btn-ambil").click(function(){
+                $("#modal-ambil .form input[name='id']").val($(this).data('id_surat'));
             });
         });
 

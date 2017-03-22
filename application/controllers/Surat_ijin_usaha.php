@@ -55,8 +55,9 @@ class Surat_ijin_usaha extends MY_Controller {
 
 
             $input['nik'] = str_replace(' ', '', substr($input['nik'], 0, strpos($input['nik'], "|")));
-            $input['no_surat'] = '27/'. $input['no_surat'] .'/02.002/'.date('Y');
+            $input['no_surat'] = '27/' . $input['no_surat'] . '/02.002/' . date('Y');
             $add_input = array(
+                'id' => $this->surat_ijin_usaha_m->get_last_id('SIU'),
                 'id_organisasi' => $this->ion_auth->get_current_id_org(),
                 'status' => '1',
                 'tanggal_verif' => date('Y-m-d h:i:s'),
@@ -79,6 +80,105 @@ class Surat_ijin_usaha extends MY_Controller {
         } else
         {
             $this->message('Terjadi kesalahan saat mengunjungi halaman', 'warning');
+        }
+        $this->go('surat_ijin_usaha');
+    }
+
+    public function ambil()
+    {
+        $data = $this->input->post();
+        if ( ! is_null($data['id']))
+        {
+            $query = $this->surat_ijin_usaha_m->update(array(
+                'nama_pengambil' => $data['nama_pengambil'],
+                'keterangan' => $data['keterangan'],
+                'tanggal_ambil' => date('Y-m-d h:i:s')
+            ), $data['id_surat']);
+            if ($query === FALSE)
+            {
+                $this->message('Terjadi kesalahan sistem. Coba lagi nanti.', 'danger');
+            } else
+            {
+                $this->message('Data surat telah di sunting.', 'success');
+            }
+        } else
+        {
+            $this->message('Surat tidak ditemukan.', 'warning');
+        }
+        $this->go('surat_ijin_usaha');
+    }
+
+    public function arsipkan($id = NULL)
+    {
+        if (is_null($id) || empty($id))
+        {
+            $this->message('Surat tidak ditemukan', 'danger');
+        } else
+        {
+            $query = $this->surat_ijin_usaha_m->delete($id);
+            if ($query === FALSE)
+            {
+                $this->message('Terjadi kesalahan sistem saat mengarsipkan surat. Coba lagi nanti', 'danger');
+            } else
+            {
+                $this->message('Surat berhasil diarsipkan', 'success');
+            }
+        }
+        $this->go('surat_ijin_usaha');
+    }
+
+
+    public function konfirmasi()
+    {
+        $data = $this->input->post();
+        if ( ! is_null($data['id']))
+        {
+            if ($data['status'] === '1')
+            {
+                # SETUJUI
+                //AMBIL NO SURAT DENGAN JENIS YANG BERSANGKUTAN PALING TERAKHIR
+                $no_surat = $this->surat_ijin_usaha_m
+                    ->where(array(
+                        'id_organisasi' => $this->ion_auth->get_current_id_org(),
+                    ))
+                    ->order_by('no_surat', 'desc')
+                    ->fields('no_surat')
+                    ->get()->no_surat;
+
+                $no_surat = explode('/', $no_surat);
+                $no_surat = (int) (!empty($no_surat[1]) ? $no_surat[1] : 0) + 1;
+                $update_no = '27/' . $no_surat . '/02.002/' . date('Y');
+                $update_data = array(
+                    'no_surat' => $update_no,
+                    'tanggal_verif' => date('Y-m-d h:i:s'),
+                    'status' => '1'
+                );
+            } elseif ($data['status'] === '2')
+            {
+                # TOLAK
+                $update_data = array(
+                    'tanggal_verif' => date('Y-m-d h:i:s'),
+                    'status' => '2'
+                );
+            } else
+            {
+                $this->message('Terjadi kesalahan sistem saat membaca status surat. Coba lagi nanti.', 'danger');
+                $this->go('surat_ijin_usaha');
+            }
+            $query = $this->surat_ijin_usaha_m->update($update_data, array('id' => $data['id']));
+            if ($query === FALSE)
+            {
+                $this->message('Terjadi kesalahan sistem saat memverifikasi surat', 'danger');
+                $this->go('surat_ijin_usaha');
+            } else
+            {
+                $this->message('Data Surat berhasil diverifikasi', 'success');
+                $this->cache->delete('notifikasi');
+                $this->go('surat_ijin_usaha');
+            }
+        } else
+        {
+            $this->message('Terjadi kesalahan sistem. Coba lagi nanti.', 'danger');
         }
         $this->go('surat_ijin_usaha');
     }
