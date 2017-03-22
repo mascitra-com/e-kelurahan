@@ -1,11 +1,11 @@
 @layout('_layout/dashboard/index')
-@section('title')Blanko Isian KTP@endsection
+@section('title')Surat Keterangan Tidak Mampu@endsection
 @section('nama-kelurahan')Lumajang@endsection
 
 @section('content')
 <div class="panel panel-theme">
 	<div class="panel-heading">
-		<h3 class="panel-title pull-left">Blanko Isian KTP</h3>
+		<h3 class="panel-title pull-left">Surat Keterangan Tidak Mampu</h3>
 		<div class="btn-group pull-right">
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-konfirmasi">
 				<span class="badge badge-sm space-right-10">04</span>
@@ -25,6 +25,8 @@
 					<th class="text-center">NO.</th>
 					<th>NO. SURAT</th>
 					<th>PENGAJU</th>
+					<th class="text-center">JURUSAN</th>
+					<th>ASAL SEKOLAH</th>
 					<th class="text-center">TGL PENGAJUAN</th>
 					<th class="text-center">TGL VERIFIKASI</th>
 					<th class="text-center">TGL AMBIL</th>
@@ -38,6 +40,8 @@
 					<td class="text-center">01</td>
 					<td>23/18/02.002/2017</td>
 					<td><a href="#">Mohammad Ainul Yakin</a></td>
+					<td class="text-center">IPA</td>
+					<td>SMKN 01 Bondowoso</td>
 					<td class="text-center">{{date('d/m/Y')}}</td>
 					<td class="text-center">{{date('d/m/Y')}}</td>
 					<td class="text-center">-</td>
@@ -70,6 +74,14 @@
 					<div class="form-group">
 						<label for="">NIK / NAMA</label>
 						<input type="text" class="form-control" name="nik" placeholder="NIK/NAMA" />
+					</div>
+					<div class="form-group">
+						<label for="">Jurusan</label>
+						<input type="text" class="form-control" name="jurusan" placeholder="jurusan" required/>
+					</div>
+					<div class="form-group">
+						<label for="">Asal Sekolah</label>
+						<input type="text" class="form-control" name="asal_sekolah" placeholder="asal sekolah" required/>
 					</div>
 					<div class="form-group">
 						<button class="btn btn-primary"><i class="fa fa-save"></i> tambah</button>
@@ -153,6 +165,8 @@
 							<td class="text-center">No. Pengajuan</td>
 							<td class="text-center">NIK Pengaju</td>
 							<td>Nama Pengaju</td>
+							<td class="text-center">Jurusan</td>
+							<td>Asal Sekolah</td>
 							<td class="text-center">Tanggal Pengajuan</td>
 							<td class="text-center">Konfirmasi</td>
 						</tr>
@@ -163,6 +177,8 @@
 							<td class="text-center">00{{$i+1}}</td>
 							<td class="text-center">122410101086</td>
 							<td>Ainul Yaqin</td>
+							<td class="text-center">bla bla</td>
+							<td>bla bla</td>
 							<td class="text-center">{{date('d-m-Y')}}</td>
 							<td class="text-center">
 								<button class="btn btn-sm btn-success" data-konfirmasi="1" data-id="xxx"><i class="fa fa-check space-right-5"></i>setuju</button>

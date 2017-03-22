@@ -86,7 +86,8 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 }
 
 .sidebar-nav > li > a,
-.sidebar-nav-child > li > a{
+.sidebar-nav-child > li > a,
+.sidebar-nav > li.nav-label{
 	display: block;
 	padding: 10px 30px;
 	font-family: 'Roboto', sans-serif;
@@ -126,6 +127,10 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 
 .sidebar-nav-child > li.active > a{
 	color: #FFF;
+}
+
+.sidebar-nav > li.nav-label{
+	margin-top: 20px;
 }
 
 .sidebar-footer{
@@ -291,6 +296,10 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 .table > thead > tr > th{
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
+}
+
+.table-scroll{
+	overflow-x: scroll!important;
 }
 
 .label, label{
