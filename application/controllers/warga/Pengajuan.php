@@ -140,4 +140,45 @@ class Pengajuan extends MY_Controller
 		}
 		$this->go('warga/surat');
 	}
+
+	public function blankokk()
+	{
+		$data['anggotas'] = $this->keluarga_m
+		->with_penduduk('fields:nama')
+		->with_detailKK(array(
+			'fields' => 'nik',
+			'with' => array(
+				'relation' => 'penduduk',
+				'fields' => 'nama'
+				)
+			))
+		->where(array(
+			'nik' => $this->ion_auth->get_current_nik(),
+			'id_organisasi' => $this->ion_auth->get_current_id_org()
+			))
+		->fields('nik')
+		->get();
+
+		$this->generateCsrf();
+		$this->render('warga/pengajuan/pengajuan_kk', $data);
+	}
+
+	public function blankokk_simpan()
+	{
+		$data = $this->input->post();
+		$data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
+		$data_insert = array(
+			"id_organisasi" => $this->ion_auth->get_current_id_org(),
+			"jenis" => "4",
+			);
+
+		$insert = $this->surat_m->insert(array_merge($data, $data_insert));
+
+		if($insert === FALSE){   
+			$this->message('Berhasil mengajukan SKCK', 'success');
+		}else{
+			$this->message('Gagal mengajukan SKCK', 'danger');
+		}
+		$this->go('warga/surat');
+	}
 }

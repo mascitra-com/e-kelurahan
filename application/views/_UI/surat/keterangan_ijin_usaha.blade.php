@@ -1,11 +1,11 @@
 @layout('_layout/dashboard/index')
-@section('title')Blanko Isian KTP@endsection
+@section('title')Keterangan Ijin Usaha@endsection
 @section('nama-kelurahan')Lumajang@endsection
 
 @section('content')
 <div class="panel panel-theme">
 	<div class="panel-heading">
-		<h3 class="panel-title pull-left">Blanko Isian KTP</h3>
+		<h3 class="panel-title pull-left">Keterangan Ijin Usaha</h3>
 		<div class="btn-group pull-right">
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-konfirmasi">
 				<span class="badge badge-sm space-right-10">04</span>
@@ -18,13 +18,15 @@
 		</div>
 		<div class="clearfix"></div>
 	</div>
-	<div class="panel-body table-responsive table-full">
+	<div class="panel-body table-responsive table-full table-scroll">
 		<table class="table table-stripped table-hover table-bordered">
 			<thead>
 				<tr>
 					<th class="text-center">NO.</th>
 					<th>NO. SURAT</th>
 					<th>PENGAJU</th>
+					<th>JENIS USAHA</th>
+					<th>ALAMAT USAHA</th>
 					<th class="text-center">TGL PENGAJUAN</th>
 					<th class="text-center">TGL VERIFIKASI</th>
 					<th class="text-center">TGL AMBIL</th>
@@ -38,6 +40,8 @@
 					<td class="text-center">01</td>
 					<td>23/18/02.002/2017</td>
 					<td><a href="#">Mohammad Ainul Yakin</a></td>
+					<td>Toko baju</td>
+					<td>Jember</td>
 					<td class="text-center">{{date('d/m/Y')}}</td>
 					<td class="text-center">{{date('d/m/Y')}}</td>
 					<td class="text-center">-</td>
@@ -70,6 +74,14 @@
 					<div class="form-group">
 						<label for="">NIK / NAMA</label>
 						<input type="text" class="form-control" name="nik" placeholder="NIK/NAMA" />
+					</div>
+					<div class="form-group">
+						<label for="">Jenis Usaha</label>
+						<input type="text" class="form-control" name="jenis_usaha" placeholder="jenis usaha" required/>
+					</div>
+					<div class="form-group">
+						<label for="">Alamat Usaha</label>
+						<textarea class="form-control" name="alamat" placeholder="alamat usaha" required></textarea>
 					</div>
 					<div class="form-group">
 						<button class="btn btn-primary"><i class="fa fa-save"></i> tambah</button>
@@ -153,6 +165,8 @@
 							<td class="text-center">No. Pengajuan</td>
 							<td class="text-center">NIK Pengaju</td>
 							<td>Nama Pengaju</td>
+							<th>Jenis Usaha</th>
+							<th>Alamat Usaha</th>
 							<td class="text-center">Tanggal Pengajuan</td>
 							<td class="text-center">Konfirmasi</td>
 						</tr>
@@ -163,6 +177,8 @@
 							<td class="text-center">00{{$i+1}}</td>
 							<td class="text-center">122410101086</td>
 							<td>Ainul Yaqin</td>
+							<td>bla bla</td>
+							<td>bla bla</td>
 							<td class="text-center">{{date('d-m-Y')}}</td>
 							<td class="text-center">
 								<button class="btn btn-sm btn-success" data-konfirmasi="1" data-id="xxx"><i class="fa fa-check space-right-5"></i>setuju</button>

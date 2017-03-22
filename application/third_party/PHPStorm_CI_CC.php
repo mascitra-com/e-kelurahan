@@ -95,6 +95,7 @@
 	 * @property Kecamatan_m         $kecamatan_m
 	 * @property Kelurahan_m         $kelurahan_m
 	 * @property Surat_m             $surat_m
+	 * @property Surat_ijin_usaha_m  $surat_ijin_usaha_m
 	 * @property Mutasi_keluar_m     $mutasi_keluar_m
 	 * @property Mutasi_keluar_detail_m         $mutasi_keluar_detail_m
 	 */

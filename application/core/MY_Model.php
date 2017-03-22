@@ -346,6 +346,28 @@ class MY_Model extends CI_Model {
 
     }
 
+    /*
+    * MAIN FUNCTIONS
+    * get_next_id($prefix)
+    * Get last ID from Table
+    */
+    public function get_last_id($prefix="", $len=1)
+    {
+        $this->db->select($this->primary);
+        $this->db->order_by($this->primary,'DESC');
+        $this->db->limit(1);
+        $result = $this->db->get($this->table);
+        if ($result->num_rows() > 0) {
+            $result = $result->result_array()[0][$this->primary];
+            $result = str_replace($prefix, "", $result);
+        }else{
+            $result = 0; 
+        }
+        $len -= strlen($prefix);
+        $result++;
+        return $prefix.(str_pad($result,$len,'0',STR_PAD_LEFT));
+    }
+
     /**
      * public function insert($data)
      * Inserts data into table. Can receive an array or a multidimensional array depending on what kind of insert we're talking about.

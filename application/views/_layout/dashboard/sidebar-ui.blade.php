@@ -4,6 +4,7 @@
 		<ul class="sidebar-nav">
 			<li class="sidebar-close"><a href="#"><i class="fa fa-fw fa-close"></i></a></li>
 			<li><a href="#"><i class="fa fa-fw fa-home"></i><span class="nav-label">Dashboard</span></a></li>
+			<li class="nav-label">Kelurahan</li>
 			<li><a href="#"><i class="fa fa-fw fa-info-circle"></i><span class="nav-label">Profil</span></a></li>
 			<li><a href="{{site_url('ui/kelurahan')}}"><i class="fa fa-fw fa-bank"></i><span class="nav-label">Kelurahan</span></a></li>
 			<li><a href="{{site_url('ui/konfirmasi_kelurahan')}}"><i class="fa fa-fw fa-check"></i><span class="nav-label">Konfirmasi</span></a></li>
@@ -20,6 +21,7 @@
 					<li><a href="#"><i class="fa fa-fw fa-user-times"></i><span class="nav-label">Kematian</span></a></li>
 				</ul>
 			</li>
+			<li class="nav-label">Surat</li>
 			<li>
 				<a href="#nav-2" data-toggle="collapse" aria-controls="nav-2">
 					<i class="fa fa-fw fa-upload"></i>
@@ -64,12 +66,17 @@
 				</a>
 				<ul class="sidebar-nav-child collapse collapseable" id="nav-surat-keluar">
 					<li><a href="{{site_url('ui/surat_blanko_ktp')}}"><i class="fa fa-file-o"></i><span class="nav-label">Blanko Isian KTP</span></a></li>
-					<li><a href="{{site_url('ui/surat_skck')}}"><i class="fa fa-file-o"></i><span class="nav-label">SKCK</span></a></li>
-					<li><a href="{{site_url('ui/surat_keterangan_miskin')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin</span></a></li>
-					<li><a href="{{site_url('ui/surat_keterangan_miskin_rt')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin (RT)</span></a></li>
+					<li><a href="#"><i class="fa fa-file-o"></i><span class="nav-label">Blanko Isian KK</span></a></li>
+					<li><a href="#"><i class="fa fa-file-o"></i><span class="nav-label">SKCK</span></a></li>
+					<li><a href="#"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin</span></a></li>
+					<li><a href="#"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin (RT)</span></a></li>
+					<li><a href="{{site_url('ui/keterangan_ijin_usaha')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Ijin Usaha</span></a></li>
+					<li><a href="{{site_url('ui/sktm')}}"><i class="fa fa-file-o"></i><span class="nav-label">SKTM</span></a></li>
 				</ul>
 			</li>
+			<li class="nav-label">Rekapitulasi</li>
 			<li><a href="#"><i class="fa fa-fw fa-file"></i><span class="nav-label">Laporan</span></a></li>
+			<li class="nav-label">Website</li>
 			<li>
 				<a href="#nav-berita" data-toggle="collapse" aria-controls="nav-berita">
 					<i class="fa fa-fw fa-newspaper-o"></i>
@@ -97,6 +104,7 @@
 			</li>
 			<li><a href="#"><i class="fa fa-fw fa-legal"></i><span class="nav-label">Regulasi</span></a></li>
 			<li><a href="#"><i class="fa fa-fw fa-bullhorn"></i><span class="nav-label">Pengumuman</span></a></li>
+			<li class="nav-label">Lain-Lain</li>
 			<li><a href="#"><i class="fa fa-fw fa-cog"></i><span class="nav-label">Pengaturan</span></a></li>
 			<li class="active"><a href="{{base_url('ui')}}"><i class="fa fa-fw fa-rocket"></i><span class="nav-label">UI</span></a></li>
 		</ul>

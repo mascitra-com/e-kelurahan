@@ -39,6 +39,31 @@ class Surat extends MY_Controller
 		$this->render('surat/blanko_ktp', $data);
 	}
 
+	public function blankokk($optionalData = NULL, $optStatus = FALSE)
+	{
+		$data['blankos'] = $this->surat_m
+		->with_penduduk('fields:nama')
+		->where('jenis', '4')
+		->where('id_organisasi', $this->ion_auth->get_current_id_org())
+		->where('status', array('0', '1'))
+		->fields('id ,no_surat, jenis, tanggal_verif, status, tanggal_ambil,nama_pengambil, created_at, updated_at, updated_by')
+		->get_all();
+
+		$data['unconfirmeds'] = $this->surat_m
+		->where('status', '0')
+		->where('jenis', '0')
+		->where('id_organisasi', $this->ion_auth->get_current_id_org())
+		->as_array()
+		->count_rows();
+
+		if ($optStatus) {
+			$data['prev_input'] = $optionalData['prev_input'];
+			$this->message($optionalData['msg'], $optionalData['msg_type']);	
+		}
+		$this->generateCsrf();
+		$this->render('surat/blanko_kk', $data);
+	}
+
 	public function skck($optionalData = NULL, $optStatus = FALSE)
 	{
 		$data['skcks'] = $this->surat_m
@@ -140,6 +165,8 @@ class Surat extends MY_Controller
 				$input['no_surat'] = '25/'. $input['no_surat'] .'/02.002/'.date('Y');
 			}elseif ($jenis === '3') {
 				$input['no_surat'] = '26/'. $input['no_surat'] .'/02.002/'.date('Y');
+			}elseif ($jenis === '4') {
+				$input['no_surat'] = '27/'. $input['no_surat'] .'/02.002/'.date('Y');
 			}else{
 				$this->message('Terjadi kesalahan sistem saat memasukkan no surat', 'danger');
 				$this->redirectJenis($jenis);
@@ -160,7 +187,7 @@ class Surat extends MY_Controller
 				'tanggal_verif' => date('Y-m-d h:i:s'),
 				);
 			$insert = array_merge($input, $add_input);
-			if ($jenis === '0' || $jenis === '1' || $jenis === '2' || $jenis === '3') {
+			if ($jenis === '0' || $jenis === '1' || $jenis === '2' || $jenis === '3' || $jenis === '4') {
 				$query = $this->surat_m->insert($insert); 
 				if ($query === FALSE) {
 					$data['msg'] = 'Terjadi kesalahan saat membuat data surat';
@@ -174,6 +201,8 @@ class Surat extends MY_Controller
 						$this->keterangan_miskin($data, TRUE);
 					}elseif ($jenis === '3') {
 						$this->keterangan_miskin_rt($data, TRUE);
+					}elseif ($jenis === '4') {
+						$this->blankokk($data, TRUE);
 					}else{
 						$this->message('Terjadi kesalahan sistem saat kondisi memasukkan data FALSE', 'danger');
 						$this->redirectJenis($jenis);
@@ -210,7 +239,6 @@ class Surat extends MY_Controller
 					->fields('no_surat')
 					->get()->no_surat;
 
-
 					$no_surat = explode('/', $no_surat);
 					$no_surat = (int)$no_surat[1]+1;
 
@@ -221,6 +249,8 @@ class Surat extends MY_Controller
 					}elseif ($data['jenis'] === '2') {
 						$update_no = '25/'. $no_surat .'/02.002/'.date('Y');
 					}elseif ($data['jenis'] === '3') {
+						$update_no = '26/'. $no_surat .'/02.002/'.date('Y');
+					}elseif ($data['jenis'] === '4') {
 						$update_no = '26/'. $no_surat .'/02.002/'.date('Y');
 					}else{
 						$this->message('Terjadi kesalahan sistem saat memasukkan no surat', 'danger');
@@ -301,9 +331,13 @@ class Surat extends MY_Controller
 				case 'keterangan_miskin_rt':
 				$jenis = '3';
 				break;
+
+				case 'blankokk':
+				$jenis = '4';
+				break;
 				
 				default:
-				$jenis= '4';
+				$jenis= '5';
 				break;
 			}
 
@@ -388,9 +422,13 @@ class Surat extends MY_Controller
 				case 'keterangan_miskin_rt':
 				$jenis = '3';
 				break;
+
+				case 'blankokk':
+				$jenis = '4';
+				break;
 				
 				default:
-				$jenis= '4';
+				$jenis= '5';
 				break;
 			}
 			$id_organisasi = $this->ion_auth->get_current_id_org();
@@ -456,9 +494,13 @@ class Surat extends MY_Controller
 				case 'keterangan_miskin_rt':
 				$jenis = '3';
 				break;
+
+				case 'blankokk':
+				$jenis = '4';
+				break;
 				
 				default:
-				$jenis= '4';
+				$jenis= '5';
 				break;
 			}
 			$id_organisasi = $this->ion_auth->get_current_id_org();
@@ -508,6 +550,8 @@ class Surat extends MY_Controller
 			$this->go('surat/keterangan_miskin');
 		}elseif ($jenis === '3') {
 			$this->go('surat/keterangan_miskin_rt');
+		}elseif ($jenis === '4') {
+			$this->go('surat/blankokk');
 		}
 		else{
 			show_404();

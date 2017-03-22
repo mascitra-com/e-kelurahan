@@ -1,24 +1,35 @@
 @layout('_layout/dashboard/index')
-@section('title')Blanko Isian KTP@endsection
+@section('title')Blanko Isian KK@endsection
 @section('nama-kelurahan')Lumajang@endsection
 
 @section('content')
 <div class="panel panel-theme">
 	<div class="panel-heading">
-		<h3 class="panel-title pull-left">Blanko Isian KTP</h3>
+		<h3 class="panel-title pull-left">Blanko Isian kk</h3>
 		<div class="btn-group pull-right">
+			<!-- BARU DARISINI -->
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-konfirmasi">
-				<span class="badge badge-sm space-right-10">04</span>
+				@if($unconfirmeds !== 0)
+				<span class="badge badge-sm space-right-10">
+					@if($unconfirmeds < 10)
+					{{ '0'.$unconfirmeds }}
+					@else
+					{{ $unconfirmeds }}
+					@endif
+				</span>
+				@endif
 				<i class="fa fa-bell"></i>
 			</button>
+			<!-- SAMPAI SINI -->
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i></button>
 			<button class="btn btn-default btn-sm reload"><i class="fa fa-refresh"></i></button>
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-cari"><i class="fa fa-search"></i></button>
-			<a href="#" class="btn btn-default btn-sm"><i class="fa fa-archive"></i></a>
+			<a href="{{ site_url('surat/arsip/blankokk') }}" class="btn btn-default btn-sm"><i class="fa fa-archive"></i></a>
 		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body table-responsive table-full">
+		@if(!empty($blankos))
 		<table class="table table-stripped table-hover table-bordered">
 			<thead>
 				<tr>
@@ -34,24 +45,40 @@
 				</tr>
 			</thead>
 			<tbody>
+				<?php $no = 0; ?>
+				@foreach($blankos as $blanko)
+				@if($blanko->status == '1')
 				<tr>
-					<td class="text-center">01</td>
-					<td>23/18/02.002/2017</td>
-					<td><a href="#">Mohammad Ainul Yakin</a></td>
-					<td class="text-center">{{date('d/m/Y')}}</td>
-					<td class="text-center">{{date('d/m/Y')}}</td>
-					<td class="text-center">-</td>
-					<td class="text-center">-</td>
-					<td class="text-center"><span class="label label-warning">menunggu</span></td>
-					<td class="text-center text-nowrap">
-						<a href="#" class="btn btn-success btn-xs" title="telah diambil" data-toggle="modal" data-target="#modal-ambil"><i class="fa fa-check"></i></a>
-						<a href="#" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
-						<a href="#" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
-						<a href="#" class="btn btn-default btn-xs" title="arsipkan" onclick="return confirm('Anda yakin?')"><i class="fa fa-archive"></i></a>
+					<td class="text-center">{{ ++$no }}</td>
+					<td>{{ $blanko->no_surat }}</td>
+					<td><a href="{{ site_url('penduduk/detail/'. $blanko->nik) }}">{{ $blanko->penduduk->nama }}</a></td>
+					<td class="text-center">{{date('d-m-Y', strtotime($blanko->created_at))}}</td>
+					<td class="text-center">{{date('d-m-Y', strtotime($blanko->tanggal_verif))}}</td>
+					<td class="text-center">{{ is_null($blanko->tanggal_ambil) ? '-' : date('d-m-Y', strtotime($blanko->tanggal_ambil)) }}</td>
+					<td class="text-center">{{ is_null($blanko->nama_pengambil) ? '-' : $blanko->nama_pengambil }}</td>
+					<td class="text-center"><span class="label label-{{ (!is_null($blanko->nama_pengambil)) ? 'success' : (( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ) ? 'danger' : 'warning') }}">
+						{{ (!is_null($blanko->nama_pengambil)) ? 'diambil' : (( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ) ? 'kadaluarsa' : 'menunggu' ) }}
+					</span></td>
+					<td>
+						@if(is_null($blanko->nama_pengambil) && !( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ))
+						<button class="btn btn-block btn-success btn-xs btn-ambil" title="telah diambil" data-toggle="modal" data-target="#modal-ambil" data-id_surat={{ $blanko->id }} data-jenis_surat={{ $blanko->jenis }}><i class="fa fa-check"></i></button>	
+						@elseif(is_null($blanko->nama_pengambil) && ( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ))
+						<a href="{{ site_url('surat/arsipkan/$blanko->jenis/'.$blanko->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						@else
+						<a href="{{site_url('surat/detail/blankokk/'.$blanko->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
+						<a href="{{site_url('surat/cetak/blankokk/'.$blanko->id)}}" target="_blank" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
+						<a href="{{ site_url('surat/arsipkan/$blanko->jenis/'.$blanko->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						@endif
 					</td>
 				</tr>
+				@endif
+				@endforeach
 			</tbody>
 		</table>
+		@else
+		<br>
+		<p class="text-center">Tidak ada data surat</p>
+		@endif
 	</div>
 	<div class="panel-footer"><span class="text-grey">last edited by admin 12/02/2017 08:50</span></div>
 </div>
@@ -66,13 +93,22 @@
 				<h4 class="modal-title">Tambah Data</h4>
 			</div>
 			<div class="modal-body">
-				<form action="#">
+				<form action="{{ site_url('surat/simpan/4') }}" method="POST">
+					{{ $csrf }}
 					<div class="form-group">
-						<label for="">NIK / NAMA</label>
-						<input type="text" class="form-control" name="nik" placeholder="NIK/NAMA" />
+						<label for="no_surat">Nomor Surat</label>
+						<?php echo form_error('no_surat'); ?>
+						<input type="number" class="form-control" name="no_surat" placeholder="nomor surat" min="1" required autocomplete="off" />
 					</div>
 					<div class="form-group">
-						<button class="btn btn-primary"><i class="fa fa-save"></i> tambah</button>
+						<label for="nik">NIK / NAMA</label>
+						<?php echo form_error('nik'); ?>
+						<input list="nik" class="form-control" placeholder="NIK/NAMA" / autocomplete="off" name="nik" required>
+						<datalist id="nik">
+						</datalist>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> tambah</button>
 						<button class="btn btn-default" type="refresh"><i class="fa fa-refresh"></i> bersihkan</button>
 					</div>
 				</form>
@@ -88,7 +124,7 @@
 				<h4 class="modal-title">Filter Pencarian</h4>
 			</div>
 			<div class="modal-body">
-				<form action="#">
+				<form action="#" method="POST">
 					<div class="row">
 						<div class="col-xs-12- col-md-6">
 							<div class="form-group">
@@ -139,6 +175,8 @@
 		</div>
 	</div>
 </div>
+
+<!-- BARU DISINI -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modal-konfirmasi">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -147,6 +185,10 @@
 				<h4 class="modal-title">Konfirmasi Pengajuan</h4>
 			</div>
 			<div class="modal-body table-responsive table-full">
+				@if(empty($blankos))
+				<br>
+				<p class="text-center">Tidak ada pengajuan</p>
+				@else
 				<table class="table table-bordered table-striped table-hover">
 					<thead>
 						<tr>
@@ -158,25 +200,29 @@
 						</tr>
 					</thead>
 					<tbody>
-						@for($i=0; $i < 4; $i++)
+						@foreach($blankos as $blanko)
+						@if($blanko->status == '0')
 						<tr>
-							<td class="text-center">00{{$i+1}}</td>
-							<td class="text-center">122410101086</td>
-							<td>Ainul Yaqin</td>
-							<td class="text-center">{{date('d-m-Y')}}</td>
+							<td class="text-center">{{ $blanko->id }}</td>
+							<td class="text-center">{{ $blanko->nik }}</td>
+							<td>{{ $blanko->penduduk->nama }}</td>
+							<td class="text-center">{{date('d-m-Y', strtotime($blanko->created_at))}}</td>
 							<td class="text-center">
-								<button class="btn btn-sm btn-success" data-konfirmasi="1" data-id="xxx"><i class="fa fa-check space-right-5"></i>setuju</button>
-								<button class="btn btn-sm btn-danger" data-konfirmasi="2" data-id="xxx"><i class="fa fa-times space-right-5"></i>tolak</button>
+								<button class="btn btn-sm btn-success" data-konfirmasi="1" data-id="{{ $blanko->id }}"><i class="fa fa-check space-right-5"></i>setuju</button>
+								<button class="btn btn-sm btn-danger" data-konfirmasi="2" data-id="{{ $blanko->id }}"><i class="fa fa-times space-right-5"></i>tolak</button>
 							</td>
 						</tr>
-						@endfor
+						@endif
+						@endforeach
 					</tbody>
 				</table>
+				@endif
 			</div>
 			<div class="modal-footer"></div>
 		</div>
 	</div>
 </div>
+<!-- SAMPAI SINI -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modal-ambil">
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
@@ -185,21 +231,20 @@
 				<h4 class="modal-title">Pengambilan Surat</h4>
 			</div>
 			<div class="modal-body">
-				<form action="#" method="POST">
+				<form action="{{ site_url('surat/ambil') }}" method="POST" class="form">
+					{{ $csrf }}
+					<input type="hidden" name="id_surat">
+					<input type="hidden" name="jenis_surat">
 					<div class="form-group">
-						<label for="">Nama Pengambil</label>
-						<input type="text" class="form-control" name="nama" placeholder="nama pengambil" required/>
+						<label for="nama_pengambil">Nama Pengambil</label>
+						<input type="text" class="form-control" name="nama_pengambil" placeholder="nama pengambil" minlength="3" required/>
 					</div>
 					<div class="form-group">
-						<label for="">Keterangan</label>
+						<label for="keterangan">Keterangan</label>
 						<textarea class="form-control" name="keterangan" placeholder="keterangan"></textarea>
 					</div>
 					<div class="form-group">
-						<label for="">Nomor Surat</label>
-						<input type="text" class="form-control" name="no_surat" placeholder="nomor surat" />
-					</div>
-					<div class="form-group">
-						<button class="btn btn-primary">simpan</button>
+						<button class="btn btn-primary" type="sumbit">simpan</button>
 						<button class="btn btn-default" data-dismiss="modal">batal</button>
 					</div>
 				</form>
@@ -215,11 +260,13 @@
 				<h4 class="modal-title">Alasan <span class="status"></span></h4>
 			</div>
 			<div class="modal-body">
-				<form action="#" method="POST" id="form-konfirmasi">
+				<form action="{{ site_url('surat/konfirmasi') }}" method="POST" id="form-konfirmasi">
+					{{$csrf}}
 					<div class="form-group">
 						<label for="">Keterangan</label>
 						<input type="hidden" name="id" value="">
 						<input type="hidden" name="status" value="">
+						<input type="hidden" name="jenis" value="4">
 						<textarea class="form-control" name="keterangan" placeholder="keterangan"></textarea>
 					</div>
 					<div class="form-group">
@@ -245,8 +292,10 @@
 @endsection
 
 @section('javascript')
-<script>
+<script type="text/javascript">
 	$(document).ready(function(){
+		getKepNik();
+
 		$("[data-konfirmasi]").click(function(){
 			var status = ($(this).data('konfirmasi') == 1) ? 'Persetujuan' : 'Penolakan';
 			$("#modal-konfirmasi-dialog .modal-title > .status").empty().html(status);
@@ -254,6 +303,23 @@
 			$("#form-konfirmasi input[name='status']").val($(this).data('konfirmasi'));
 			$("#modal-konfirmasi-dialog").modal('show');
 		});
+
+		$(".btn-ambil").click(function(){
+			$("#modal-ambil .form input[name='id_surat']").val($(this).data('id_surat'));
+			$("#modal-ambil .form input[name='jenis_surat']").val($(this).data('jenis_surat'));
+		});
 	});
+
+	function getKepNik() {
+		$.getJSON('{{ site_url() }}'+'penduduk/ambil_nama_nik', function (result) {
+			$("#nik").empty();
+			if (result) {
+				for (var i = 0; i < result.length; i++) {
+					var penduduk= result[i];
+					$("#nik").append("<option value='"+penduduk.nik + " | " + penduduk.nama+"'");
+				}
+			}
+		});
+	}
 </script>
 @endsection
