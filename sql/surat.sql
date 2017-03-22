@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 21, 2017 at 07:13 AM
+-- Generation Time: Mar 22, 2017 at 07:24 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -35,6 +35,7 @@ CREATE TABLE `surat` (
   `tanggal_verif` timestamp NULL DEFAULT NULL,
   `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
   `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
   `nama_pengambil` varchar(50) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
@@ -48,23 +49,11 @@ CREATE TABLE `surat` (
 -- Dumping data for table `surat`
 --
 
-INSERT INTO `surat` (`id`, `no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal_verif`, `status`, `keterangan`, `nama_pengambil`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(002, '23/2/02.002/2017', '3764289649123', 2, '0', '2017-02-28 03:33:07', '2', NULL, NULL, '2017-02-28 03:33:08', 2, NULL, NULL, NULL, NULL),
-(003, '23/7/02.002/2017', '389475932753034750954', 2, '0', '2017-03-15 02:50:51', '1', NULL, NULL, '2017-03-02 03:40:28', 2, '2017-03-15 02:50:51', 2, NULL, 2),
-(004, '24/1/02.002/2017', '389475932753034750954', 2, '1', '2017-02-28 01:45:40', '1', NULL, NULL, '2017-02-28 01:45:40', 2, NULL, NULL, NULL, NULL),
-(005, '24/2/02.002/2017', '3764289649123', 2, '1', '2017-02-28 01:49:22', '1', NULL, NULL, '2017-02-28 01:49:22', 2, NULL, NULL, NULL, NULL),
-(006, '25/1/02.002/2017', '83740927349074', 2, '2', '2017-02-28 01:56:21', '1', NULL, NULL, '2017-02-28 01:56:21', 2, NULL, NULL, NULL, NULL),
-(007, '26/1/02.002/2017', '7289379132', 2, '3', '2017-02-28 02:10:12', '1', NULL, NULL, '2017-02-28 02:10:12', 2, NULL, NULL, NULL, NULL),
-(009, '23/4/02.002/2017', '123809123810938', 2, '0', '2017-03-03 01:36:13', '1', NULL, NULL, '2017-03-03 01:36:13', 2, NULL, NULL, NULL, NULL),
-(010, NULL, '3764289649123', 2, '0', NULL, '0', NULL, NULL, '2017-03-03 02:56:49', 2, NULL, NULL, NULL, NULL),
-(011, '23/5/02.002/2017', '83740927349074', 2, '0', '2017-03-15 02:48:59', '1', NULL, NULL, '2017-03-15 02:48:59', 2, NULL, NULL, NULL, NULL),
-(012, '23/6/02.002/2017', '7289379132', 2, '0', '2017-03-15 02:49:21', '1', NULL, NULL, '2017-03-15 02:49:21', 2, NULL, NULL, NULL, NULL),
-(013, NULL, '389475932753034750954', 2, '0', NULL, '0', NULL, NULL, '2017-03-15 02:54:03', 2, NULL, NULL, NULL, NULL),
-(014, '23/8/02.002/2017', '13241010101044', 2, '0', '2017-03-15 19:16:45', '1', NULL, NULL, '2017-03-16 01:18:17', 3, '2017-03-16 07:16:45', 2, NULL, NULL),
-(015, NULL, '13241010101044', 2, '0', NULL, '0', NULL, NULL, '2017-03-16 07:53:03', 3, NULL, NULL, NULL, NULL),
-(016, NULL, '13241010101044', 2, '2', NULL, '0', NULL, NULL, '2017-03-16 07:54:14', 3, NULL, NULL, NULL, NULL),
-(017, NULL, '13241010101044', 2, '2', NULL, '0', NULL, NULL, '2017-03-16 07:56:27', 3, NULL, NULL, NULL, NULL),
-(018, NULL, '13241010101044', 2, '2', NULL, '0', NULL, NULL, '2017-03-16 07:56:53', 3, NULL, NULL, NULL, NULL);
+INSERT INTO `surat` (`id`, `no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal_verif`, `status`, `keterangan`, `tanggal_ambil`, `nama_pengambil`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(001, '23/1/02.002/2017', '13241010101044', 2, '0', '2017-03-21 04:22:22', '1', 'Oke', NULL, NULL, '2017-03-21 01:24:04', 3, '2017-03-21 04:22:22', 2, NULL, NULL),
+(002, '23/3/02.002/2017', '123456789', 2, '0', '2017-03-21 02:22:19', '1', '', '2017-03-21 03:04:00', 'Citra', '2017-03-21 01:37:45', 4, '2017-03-21 03:04:00', 2, NULL, NULL),
+(003, '23/2/02.002/2017', '123809123810938', 2, '0', '2017-03-21 01:57:16', '1', 'mohon dilengkapi', '2017-03-21 02:58:55', 'Budi', '2017-03-21 01:57:16', 2, '2017-03-21 02:58:55', 2, NULL, NULL),
+(005, NULL, '13241010101044', 2, '1', NULL, '0', NULL, NULL, NULL, '2017-03-22 00:08:46', 3, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -87,7 +76,7 @@ ALTER TABLE `surat`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --
