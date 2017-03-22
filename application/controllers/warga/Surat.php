@@ -35,7 +35,7 @@ class Surat extends MY_Controller
 		->with_penduduk('fields:nama')
 		->where('id_organisasi', $this->ion_auth->get_current_id_org())
 		->where('nik', $arr_niks)
-		->fields('no_surat, jenis, status, tanggal_verif, keterangan, nama_pengambil, created_at, updated_at, updated_by')
+		->fields('id, jenis, status, tanggal_verif, keterangan, nama_pengambil, created_at, updated_at, updated_by')
 		->get_all();
 
 		if ($optStatus) {
@@ -44,5 +44,35 @@ class Surat extends MY_Controller
 		}
 
 		$this->render('warga/surat/status_pengajuan', $data);
+	}
+
+	public function batalkan($id= NULL)
+	{
+		if (is_null($id) || empty($id) ) {
+			$this->message('Surat tidak ditemukan', 'danger');
+		}else{
+			$query = $this->surat_m->force_delete($id);
+			if ($query === FALSE) {
+				$this->message('Terjadi kesalahan sistem saat membatalkan surat. Coba lagi nanti', 'danger');
+			}else{
+				$this->message('Surat berhasil dibatalkan', 'success');
+			}
+		}
+		$this->go('warga/surat');
+	}
+
+	public function hapus($id= NULL)
+	{
+		if (is_null($id) || empty($id) ) {
+			$this->message('Surat tidak ditemukan', 'danger');
+		}else{
+			$query = $this->surat_m->force_delete($id);
+			if ($query === FALSE) {
+				$this->message('Terjadi kesalahan sistem saat menghapus surat. Coba lagi nanti', 'danger');
+			}else{
+				$this->message('Surat berhasil dihapus', 'success');
+			}
+		}
+		$this->go('warga/surat');
 	}
 }
