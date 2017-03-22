@@ -24,7 +24,7 @@ if (!function_exists('cetak_agama')) {
 			case '3':
 				return 'Keterangan Miskin RT';
 			case '4':
-				return 'SKTM';
+				return 'BlankoKK';
 			default:
 				return 'Tidak ada data';
 		}
