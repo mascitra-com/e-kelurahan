@@ -50,7 +50,7 @@
 				@if($miskin->status == '1')
 				<tr>
 					<td class="text-center">{{ ++$no }}</td>
-					<td>{{ $miskin->no_surat }}</td>
+					<td class="text-center">{{ (is_null($miskin->no_surat)) ? '-' : $miskin->no_surat }}</td>
 					<td><a href="{{ site_url('penduduk/detail/'. $miskin->nik) }}">{{ $miskin->penduduk->nama }}</a></td>
 					<td class="text-center">{{date('d-m-Y', strtotime($miskin->created_at))}}</td>
 					<td class="text-center">{{date('d-m-Y', strtotime($miskin->tanggal_verif))}}</td>
@@ -63,11 +63,11 @@
 						@if(is_null($miskin->nama_pengambil) && !( date('d-m-Y') > date('d-m-Y', strtotime($miskin->tanggal_verif. ' + 7 days')) ))
 						<button class="btn btn-block btn-success btn-xs btn-ambil" title="telah diambil" data-toggle="modal" data-target="#modal-ambil" data-id_surat={{ $miskin->id }} data-jenis_surat={{ $miskin->jenis }}><i class="fa fa-check"></i></button>	
 						@elseif(is_null($miskin->nama_pengambil) && ( date('d-m-Y') > date('d-m-Y', strtotime($miskin->tanggal_verif. ' + 7 days')) ))
-						<a href="{{ site_url('surat/arsipkan/$miskin->jenis/'.$miskin->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						<a href="{{ site_url('surat/arsipkan/'.$miskin->jenis.'/'.$miskin->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
 						@else
 						<a href="{{site_url('surat/detail/miskinktp/'.$miskin->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
 						<a href="{{site_url('surat/cetak/miskinktp/'.$miskin->id)}}" target="_blank" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
-						<a href="{{ site_url('surat/arsipkan/$miskin->jenis/'.$miskin->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						<a href="{{ site_url('surat/arsipkan/'.$miskin->jenis.'/'.$miskin->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
 						@endif
 					</td>
 				</tr>
@@ -95,11 +95,6 @@
 			<div class="modal-body">
 				<form action="{{ site_url('surat/simpan/3') }}" method="POST">
 					{{ $csrf }}
-					<div class="form-group">
-						<label for="no_surat">Nomor Surat</label>
-						<?php echo form_error('no_surat'); ?>
-						<input type="number" class="form-control" name="no_surat" placeholder="nomor surat" min="1" required autocomplete="off" />
-					</div>
 					<div class="form-group">
 						<label for="nik">NIK / NAMA</label>
 						<?php echo form_error('nik'); ?>
@@ -235,6 +230,11 @@
 					{{ $csrf }}
 					<input type="hidden" name="id_surat">
 					<input type="hidden" name="jenis_surat">
+					<div class="form-group">
+						<label for="no_surat">Nomor Surat</label>
+						<?php echo form_error('no_surat'); ?>
+						<input type="number" class="form-control" name="no_surat" placeholder="nomor surat" min="1" required autocomplete="off" />
+					</div>
 					<div class="form-group">
 						<label for="nama_pengambil">Nama Pengambil</label>
 						<input type="text" class="form-control" name="nama_pengambil" placeholder="nama pengambil" minlength="3" required/>

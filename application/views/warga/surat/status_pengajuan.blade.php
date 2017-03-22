@@ -45,6 +45,9 @@
 												{{ ($surat->status == '1') ? ((!is_null($surat->nama_pengambil)) ? 'diambil' : ((( date('d-m-Y') > date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) )) ? 'kadaluarsa' : 'disetujui') ) : (($surat->status == '2') ? 'ditolak' : 'menunggu') }}
 											</div></td>
 											<td>
+												@if(!is_null($surat->nama_pengambil))
+												<button class="btn btn-xs btn-xs btn-info" data-toggle="modal" data-target="#modal-info" data-keterangan="{{ $surat->keterangan }}">Info</button>
+												@else
 												@if($surat->status == '2')
 												<button class="btn btn-xs btn-xs btn-info" data-toggle="modal" data-target="#modal-info" data-keterangan="{{ $surat->keterangan }}">Info</button>
 												<a href="{{ site_url('warga/surat/hapus/'.$surat->id) }}" class="btn btn-xs btn-danger" onclick="return confirm('Anda yakin?')">Hapus</a>
@@ -52,6 +55,7 @@
 												<button class="btn btn-xs btn-block btn-info" data-toggle="modal" data-target="#modal-info" data-date="{{ date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) }}">Info</button>
 												@else
 												<a href="{{ site_url('warga/surat/batalkan/'.$surat->id) }}" class="btn btn-xs btn-block btn-warning" onclick="return confirm('Anda yakin?')">Batalkan</a>
+												@endif
 												@endif
 											</td>
 										</tr>
@@ -89,6 +93,9 @@
 												{{ ($surat->status == '1') ? ((!is_null($surat->nama_pengambil)) ? 'diambil' : ((( date('d-m-Y') > date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) )) ? 'kadaluarsa' : 'disetujui') ) : (($surat->status == '2') ? 'ditolak' : 'menunggu') }}
 											</div></td>
 											<td>
+												@if(!is_null($surat->nama_pengambil))
+												<button class="btn btn-xs btn-xs btn-info" data-toggle="modal" data-target="#modal-info" data-keterangan="{{ $surat->keterangan }}">Info</button>
+												@else
 												@if($surat->status == '2')
 												<button class="btn btn-xs btn-xs btn-info" data-toggle="modal" data-target="#modal-info" data-keterangan="{{ $surat->keterangan }}">Info</button>
 												<a href="{{ site_url('warga/surat/hapus/'.$surat->id) }}" class="btn btn-xs btn-danger" onclick="return confirm('Anda yakin?')">Hapus</a>
@@ -96,6 +103,7 @@
 												<button class="btn btn-xs btn-block btn-info" data-toggle="modal" data-target="#modal-info" data-date="{{ date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) }}">Info</button>
 												@else
 												<a href="{{ site_url('warga/surat/batalkan/'.$surat->id) }}" class="btn btn-xs btn-block btn-warning" onclick="return confirm('Anda yakin?')">Batalkan</a>
+												@endif
 												@endif
 											</td>
 										</tr>
@@ -133,6 +141,9 @@
 												{{ ($surat->status == '1') ? ((!is_null($surat->nama_pengambil)) ? 'diambil' : ((( date('d-m-Y') > date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) )) ? 'kadaluarsa' : 'disetujui') ) : (($surat->status == '2') ? 'ditolak' : 'menunggu') }}
 											</div></td>
 											<td>
+												@if(!is_null($surat->nama_pengambil))
+												<button class="btn btn-xs btn-xs btn-info" data-toggle="modal" data-target="#modal-info" data-keterangan="{{ $surat->keterangan }}">Info</button>
+												@else
 												@if($surat->status == '2')
 												<button class="btn btn-xs btn-xs btn-info" data-toggle="modal" data-target="#modal-info" data-keterangan="{{ $surat->keterangan }}">Info</button>
 												<a href="{{ site_url('warga/surat/hapus/'.$surat->id) }}" class="btn btn-xs btn-danger" onclick="return confirm('Anda yakin?')">Hapus</a>
@@ -140,6 +151,7 @@
 												<button class="btn btn-xs btn-block btn-info" data-toggle="modal" data-target="#modal-info" data-date="{{ date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) }}">Info</button>
 												@else
 												<a href="{{ site_url('warga/surat/batalkan/'.$surat->id) }}" class="btn btn-xs btn-block btn-warning" onclick="return confirm('Anda yakin?')">Batalkan</a>
+												@endif
 												@endif
 											</td>
 										</tr>
@@ -177,6 +189,9 @@
 												{{ ($surat->status == '1') ? ((!is_null($surat->nama_pengambil)) ? 'diambil' : ((( date('d-m-Y') > date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) )) ? 'kadaluarsa' : 'disetujui') ) : (($surat->status == '2') ? 'ditolak' : 'menunggu') }}
 											</div></td>
 											<td>
+												@if(!is_null($surat->nama_pengambil))
+												<button class="btn btn-xs btn-xs btn-info" data-toggle="modal" data-target="#modal-info" data-keterangan="{{ $surat->keterangan }}">Info</button>
+												@else
 												@if($surat->status == '2')
 												<button class="btn btn-xs btn-xs btn-info" data-toggle="modal" data-target="#modal-info" data-keterangan="{{ $surat->keterangan }}">Info</button>
 												<a href="{{ site_url('warga/surat/hapus/'.$surat->id) }}" class="btn btn-xs btn-danger" onclick="return confirm('Anda yakin?')">Hapus</a>
@@ -184,6 +199,7 @@
 												<button class="btn btn-xs btn-block btn-info" data-toggle="modal" data-target="#modal-info" data-date="{{ date('d-m-Y', strtotime($surat->tanggal_verif. ' + 7 days')) }}">Info</button>
 												@else
 												<a href="{{ site_url('warga/surat/batalkan/'.$surat->id) }}" class="btn btn-xs btn-block btn-warning" onclick="return confirm('Anda yakin?')">Batalkan</a>
+												@endif
 												@endif
 											</td>
 										</tr>

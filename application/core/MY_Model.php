@@ -353,12 +353,12 @@ class MY_Model extends CI_Model {
     */
     public function get_last_id($prefix="", $len=1)
     {
-        $this->db->select($this->primary);
-        $this->db->order_by($this->primary,'DESC');
+        $this->db->select($this->primary_key);
+        $this->db->order_by($this->primary_key,'DESC');
         $this->db->limit(1);
         $result = $this->db->get($this->table);
         if ($result->num_rows() > 0) {
-            $result = $result->result_array()[0][$this->primary];
+            $result = $result->result_array()[0][$this->primary_key];
             $result = str_replace($prefix, "", $result);
         }else{
             $result = 0; 

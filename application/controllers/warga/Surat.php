@@ -51,7 +51,7 @@ class Surat extends MY_Controller
 		if (is_null($id) || empty($id) ) {
 			$this->message('Surat tidak ditemukan', 'danger');
 		}else{
-			$query = $this->surat_m->force_delete($id);
+			$query = $this->surat_m->force_delete(array('id' => $id));
 			if ($query === FALSE) {
 				$this->message('Terjadi kesalahan sistem saat membatalkan surat. Coba lagi nanti', 'danger');
 			}else{
@@ -66,7 +66,7 @@ class Surat extends MY_Controller
 		if (is_null($id) || empty($id) ) {
 			$this->message('Surat tidak ditemukan', 'danger');
 		}else{
-			$query = $this->surat_m->force_delete($id);
+			$query = $this->surat_m->force_delete(array('id' => $id));
 			if ($query === FALSE) {
 				$this->message('Terjadi kesalahan sistem saat menghapus surat. Coba lagi nanti', 'danger');
 			}else{
