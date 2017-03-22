@@ -171,9 +171,9 @@ class Surat extends MY_Controller
 					}elseif ($jenis === '1') {
 						$this->skck($data, TRUE);
 					}elseif ($jenis === '2') {
-						//TODO 2
+						$this->keterangan_miskin($data, TRUE);
 					}elseif ($jenis === '3') {
-						//TODO 3
+						$this->keterangan_miskin_rt($data, TRUE);
 					}else{
 						$this->message('Terjadi kesalahan sistem saat kondisi memasukkan data FALSE', 'danger');
 						$this->redirectJenis($jenis);
