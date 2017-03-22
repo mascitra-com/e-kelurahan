@@ -32,6 +32,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pelayanan <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="{{ site_url('warga/pengajuan/blankoktp') }}">Surat Blanko KTP</a></li>
+								<li><a href="{{ site_url('warga/pengajuan/blankokk') }}">Surat Blanko KK</a></li>
 								<li><a href="{{ site_url('warga/pengajuan/skck') }}">SKCK</a></li>
 								<li><a href="{{ site_url('warga/pengajuan/keterangan_miskin') }}">Surat Keterangan Miskin</a></li>
 							</ul>
