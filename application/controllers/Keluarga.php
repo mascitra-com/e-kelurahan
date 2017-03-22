@@ -26,8 +26,17 @@ class Keluarga extends MY_Controller
         $order_type = $this->session->userdata('otk');
         // Setting up Pagination
         $this->load->library('pagination');
-        $total_data = $this->keluarga_m->where($filter, 'like', '%')->where('id_organisasi', $this->ion_auth->get_current_id_org())->count_rows();
-		$data['keluargas'] = $this->keluarga_m->order_by($order_by, $order_type)->where($filter, 'like', '%')->where('id_organisasi', $this->ion_auth->get_current_id_org())->fields('no, alamat, rt, rw, updated_at')->with_penduduk('fields:nama')->paginate(10, $total_data, $page);
+        $total_data = $this->keluarga_m
+            ->where($filter, 'like', '%')
+            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+            ->count_rows();
+		$data['keluargas'] = $this->keluarga_m
+            ->order_by($order_by, $order_type)
+            ->where($filter, 'like', '%')
+            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+            ->fields('no, alamat, rt, rw, updated_at')
+            ->with_penduduk('fields:nama')
+            ->paginate(10, $total_data, $page);
         $data['pagination'] = $this->keluarga_m->all_pages;
         $data['order_by'] = $order_by;
         $data['order_type'] = $order_type === 'asc' ? 'desc' : 'asc';
@@ -85,8 +94,16 @@ class Keluarga extends MY_Controller
 	    if(is_null($no)){
 	        $this->go('keluarga');
         }
-		$data['keluarga'] = $this->keluarga_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->fields('no, alamat, rt, rw, kode_pos')->with_penduduk('fields:nik,nama')->get($no);
-		$data['detail'] = $this->detail_kk_m->order_by('no_urut_kk')->with_status()->with_pendidikan()->with_penduduk()->get_all(array('no_kk' => $data['keluarga']->no));
+		$data['keluarga'] = $this->keluarga_m
+            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+            ->fields('no, alamat, rt, rw, kode_pos')
+            ->with_penduduk('fields:nik,nama')->get($no);
+		$data['detail'] = $this->detail_kk_m
+            ->order_by('no_urut_kk')
+            ->with_status()
+            ->with_pendidikan()
+            ->with_penduduk()
+            ->get_all(array('no_kk' => $data['keluarga']->no));
         $data['penduduk'] = $this->penduduk_m->ambilPendudukHidup($this->ion_auth->get_current_id_org());
         $data['status'] = $this->status_keluarga_m->get_all(array('id_statuskeluarga >' =>'1'));
         $data['pendidikan'] = $this->pendidikan_m->get_all();

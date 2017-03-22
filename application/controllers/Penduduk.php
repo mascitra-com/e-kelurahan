@@ -43,7 +43,10 @@ class Penduduk extends MY_Controller {
         $order_type = $this->session->userdata('otp');
         // Setting up Pagination
         $this->load->library('pagination');
-        $total_data = $this->penduduk->where($filter, 'like', '%')->where('id_organisasi', $this->ion_auth->get_current_id_org())->count_rows();
+        $total_data = $this->penduduk
+            ->where($filter, 'like', '%')
+            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+            ->count_rows();
         // Get Data Penduduk by filter if it's exist
         $data['penduduk'] = $this->penduduk
             ->order_by($order_by, $order_type)
