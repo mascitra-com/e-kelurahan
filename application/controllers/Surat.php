@@ -247,6 +247,7 @@ class Surat extends MY_Controller
 					$this->redirectJenis($data['jenis']);
 				}else{
 					$this->message('Data Surat berhasil diverifikasi', 'success');
+                    $this->cache->delete('notifikasi');
 					$this->redirectJenis($data['jenis']);
 				}
 			}else{
