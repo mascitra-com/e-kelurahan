@@ -26,7 +26,7 @@ class Keluarga extends MY_Controller
         $order_type = $this->session->userdata('otk');
         // Setting up Pagination
         $this->load->library('pagination');
-        $total_data = $this->keluarga_m->where($filter, 'like', '%')->count_rows();
+        $total_data = $this->keluarga_m->where($filter, 'like', '%')->where('id_organisasi', $this->ion_auth->get_current_id_org())->count_rows();
 		$data['keluargas'] = $this->keluarga_m->order_by($order_by, $order_type)->where($filter, 'like', '%')->where('id_organisasi', $this->ion_auth->get_current_id_org())->fields('no, alamat, rt, rw, updated_at')->with_penduduk('fields:nama')->paginate(10, $total_data, $page);
         $data['pagination'] = $this->keluarga_m->all_pages;
         $data['order_by'] = $order_by;
