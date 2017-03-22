@@ -266,7 +266,7 @@
 						<label for="">Keterangan</label>
 						<input type="hidden" name="id" value="">
 						<input type="hidden" name="status" value="">
-						<input type="hidden" name="jenis" value="0">
+						<input type="hidden" name="jenis" value="1">
 						<textarea class="form-control" name="keterangan" placeholder="keterangan"></textarea>
 					</div>
 					<div class="form-group">

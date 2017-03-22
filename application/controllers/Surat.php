@@ -46,7 +46,7 @@ class Surat extends MY_Controller
 		->where('jenis', '1')
 		->where('id_organisasi', $this->ion_auth->get_current_id_org())
 		->where('status', array('0', '1'))
-		->fields('id ,no_surat, jenis, tanggal_verif, status, created_at, updated_at, updated_by')
+		->fields('id ,no_surat, jenis, tanggal_verif, status, tanggal_ambil,nama_pengambil, created_at, updated_at, updated_by')
 		->get_all();
 
 		$data['unconfirmeds'] = $this->surat_m
@@ -72,7 +72,7 @@ class Surat extends MY_Controller
 		->where('jenis', '2')
 		->where('id_organisasi', $this->ion_auth->get_current_id_org())
 		->where('status', array('0', '1'))
-		->fields('id ,no_surat, jenis, tanggal_verif, status, created_at, updated_at, updated_by')
+		->fields('id ,no_surat, jenis, tanggal_verif, status, tanggal_ambil,nama_pengambil, created_at, updated_at, updated_by')
 		->get_all();
 
 		$data['unconfirmeds'] = $this->surat_m
@@ -98,7 +98,7 @@ class Surat extends MY_Controller
 		->where('jenis', '3')
 		->where('id_organisasi', $this->ion_auth->get_current_id_org())
 		->where('status', array('0', '1'))
-		->fields('id ,no_surat, jenis, tanggal_verif, status, created_at, updated_at, updated_by')
+		->fields('id ,no_surat, jenis, tanggal_verif, status, tanggal_ambil,nama_pengambil, created_at, updated_at, updated_by')
 		->get_all();
 
 		$data['unconfirmeds'] = $this->surat_m
