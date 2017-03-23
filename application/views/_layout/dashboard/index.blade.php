@@ -44,8 +44,7 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ str_replace('@lumajang', '', $this->session->userdata('identity')) }} <span class="caret"></span></a>
 									<ul class="dropdown-menu">
 										<li><a href="#"><i class="fa fa-user"></i> Profil</a></li>
-										<li><a href="#"><i class="fa fa-lock"></i> Keluar</a></li>
-										<li><a href="{{ site_url('auth/logout') }}">Log Out</a></li>
+										<li><a href="{{ site_url('auth/logout') }}"><i class="fa fa-lock"></i> Keluar</a></li>
 									</ul>
 								</li>
 							</ul>
