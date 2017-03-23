@@ -31,6 +31,7 @@ class Pengajuan extends MY_Controller
 		$data = $this->input->post();
 		$data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
 		$data_insert = array(
+			"id" => $this->surat_m->get_last_id("SRU", 10),
 			"id_organisasi" => $this->ion_auth->get_current_id_org(),
 			"jenis" => "0",
 			);
@@ -58,6 +59,7 @@ class Pengajuan extends MY_Controller
 		$data = $this->input->post();
 		$data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
 		$data_insert = array(
+			"id" => $this->surat_m->get_last_id("SRU", 10),
 			"id_organisasi" => $this->ion_auth->get_current_id_org(),
 			"jenis" => "2",
 			);
@@ -85,6 +87,7 @@ class Pengajuan extends MY_Controller
 		$data = $this->input->post();
 		$data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
 		$data_insert = array(
+			"id" => $this->surat_m->get_last_id("SRU", 10),
 			"id_organisasi" => $this->ion_auth->get_current_id_org(),
 			"jenis" => "1",
 			);
@@ -112,6 +115,7 @@ class Pengajuan extends MY_Controller
 		$data = $this->input->post();
 		$data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
 		$data_insert = array(
+			"id" => $this->surat_m->get_last_id("SRU", 10),
 			"id_organisasi" => $this->ion_auth->get_current_id_org(),
 			"jenis" => "4",
 			);

@@ -50,7 +50,7 @@
 				@if($blanko->status == '1')
 				<tr>
 					<td class="text-center">{{ ++$no }}</td>
-					<td>{{ $blanko->no_surat }}</td>
+					<td class="text-center">{{ (is_null($blanko->no_surat)) ? '-' : $blanko->no_surat }}</td>
 					<td><a href="{{ site_url('penduduk/detail/'. $blanko->nik) }}">{{ $blanko->penduduk->nama }}</a></td>
 					<td class="text-center">{{date('d-m-Y', strtotime($blanko->created_at))}}</td>
 					<td class="text-center">{{date('d-m-Y', strtotime($blanko->tanggal_verif))}}</td>
@@ -63,11 +63,11 @@
 						@if(is_null($blanko->nama_pengambil) && !( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ))
 						<button class="btn btn-block btn-success btn-xs btn-ambil" title="telah diambil" data-toggle="modal" data-target="#modal-ambil" data-id_surat={{ $blanko->id }} data-jenis_surat={{ $blanko->jenis }}><i class="fa fa-check"></i></button>	
 						@elseif(is_null($blanko->nama_pengambil) && ( date('d-m-Y') > date('d-m-Y', strtotime($blanko->tanggal_verif. ' + 7 days')) ))
-						<a href="{{ site_url('surat/arsipkan/$blanko->jenis/'.$blanko->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						<a href="{{ site_url('surat/arsipkan/'.$blanko->jenis.'/'.$blanko->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
 						@else
 						<a href="{{site_url('surat/detail/blankoktp/'.$blanko->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
 						<a href="{{site_url('surat/cetak/blankoktp/'.$blanko->id)}}" target="_blank" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
-						<a href="{{ site_url('surat/arsipkan/$blanko->jenis/'.$blanko->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						<a href="{{ site_url('surat/arsipkan/'.$blanko->jenis.'/'.$blanko->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
 						@endif
 					</td>
 				</tr>
@@ -95,11 +95,6 @@
 			<div class="modal-body">
 				<form action="{{ site_url('surat/simpan/0') }}" method="POST">
 					{{ $csrf }}
-					<div class="form-group">
-						<label for="no_surat">Nomor Surat</label>
-						<?php echo form_error('no_surat'); ?>
-						<input type="number" class="form-control" name="no_surat" placeholder="nomor surat" min="1" required autocomplete="off" />
-					</div>
 					<div class="form-group">
 						<label for="nik">NIK / NAMA</label>
 						<?php echo form_error('nik'); ?>
@@ -235,6 +230,11 @@
 					{{ $csrf }}
 					<input type="hidden" name="id_surat">
 					<input type="hidden" name="jenis_surat">
+					<div class="form-group">
+						<label for="no_surat">Nomor Surat</label>
+						<?php echo form_error('no_surat'); ?>
+						<input type="number" class="form-control" name="no_surat" placeholder="nomor surat" min="1" required autocomplete="off" />
+					</div>
 					<div class="form-group">
 						<label for="nama_pengambil">Nama Pengambil</label>
 						<input type="text" class="form-control" name="nama_pengambil" placeholder="nama pengambil" minlength="3" required/>

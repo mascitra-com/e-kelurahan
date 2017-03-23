@@ -144,43 +144,23 @@ class Surat extends MY_Controller
 
 	public function simpan($jenis = NULL)
 	{
-	    $where = array(
-            'nik' => $this->input->post('nik'),
-            'jenis' => $jenis,
-            'status' => '0'
-        );
-	    $query = $this->surat_m->get($where);
+		$where = array(
+			'nik' => $this->input->post('nik'),
+			'jenis' => $jenis,
+			'status' => '0'
+			);
+		$query = $this->surat_m->get($where);
 		if ($jenis !== NULL && $query === FALSE) {
 			$input = $this->input->post();
 			//cek input kosong
-			if (empty($input['no_surat']) || empty($input['nik'])) {
-				$this->message('Terjadi kesalahan saat memasukkan data surat | Data ada yang kosong', 'warning');
+			if (empty($input['nik'])) {
+				$this->message('Terjadi kesalahan saat memasukkan data surat | NIK kosong', 'warning');
 				$this->redirectJenis($jenis);
-			}
-			if ($jenis === '0') {
-				$input['no_surat'] = '23/'. $input['no_surat'] .'/02.002/'.date('Y');
-			}elseif ($jenis === '1') {
-				$input['no_surat'] = '24/'. $input['no_surat'] .'/02.002/'.date('Y');
-			}elseif ($jenis === '2') {
-				$input['no_surat'] = '25/'. $input['no_surat'] .'/02.002/'.date('Y');
-			}elseif ($jenis === '3') {
-				$input['no_surat'] = '26/'. $input['no_surat'] .'/02.002/'.date('Y');
-			}elseif ($jenis === '4') {
-				$input['no_surat'] = '27/'. $input['no_surat'] .'/02.002/'.date('Y');
-			}else{
-				$this->message('Terjadi kesalahan sistem saat memasukkan no surat', 'danger');
-				$this->redirectJenis($jenis);
-			}
-
-			//CEK DUPLIKASI NO SURAT
-			$exist_surat = $this->surat_m->where('no_surat', $input['no_surat'])->get();
-			if ($exist_surat) {
-				$this->message('Surat dengan nomor: <strong>'. $input['no_surat'] .'</strong> sudah ada', 'warning');
-				$this->redirectJenis($jenis);	
 			}
 
 			$input['nik'] = str_replace(' ', '', substr($input['nik'], 0, strpos($input['nik'], "|")));
 			$add_input = array(
+				'id' => $this->surat_m->get_last_id("SRU", 10),
 				'id_organisasi' => $this->ion_auth->get_current_id_org(),
 				'jenis' => $jenis,
 				'status' => '1',
@@ -215,8 +195,8 @@ class Surat extends MY_Controller
 				$this->message('Terjadi kesalahan saat mengunjungi halaman', 'danger');
 			}
 		} else if($query){
-            $this->message('Penduduk masih memilik surat yang harus disetujui sebelum melakukan pengajuan surat baru', 'warning');
-        } else {
+			$this->message('Penduduk masih memilik surat yang harus disetujui sebelum melakukan pengajuan surat baru', 'warning');
+		} else {
 			$this->message('Terjadi kesalahan saat mengunjungi halaman', 'warning');
 		}
 		$this->redirectJenis($jenis);
@@ -226,58 +206,18 @@ class Surat extends MY_Controller
 	{
 		$data = $this->input->post();
 		if (!is_null($data['jenis']) && !is_null($data['id'])) {
-			if ($data['jenis'] === '0' || $data['jenis'] === '1' || $data['jenis'] === '2' || $data['jenis'] === '3') {
-				if ($data['status'] === '1') {
-				# SETUJUI
-				//AMBIL NO SURAT DENGAN JENIS YANG BERSANGKUTAN PALING TERAKHIR
-					$no_surat = $this->surat_m
-					->where(array(
-						'id_organisasi' => $this->ion_auth->get_current_id_org(),
-						'jenis' => $data['jenis'],
-						))
-					->order_by('no_surat', 'desc')
-					->fields('no_surat')
-					->get()->no_surat;
-
-					$no_surat = explode('/', $no_surat);
-					$no_surat = (int)$no_surat[1]+1;
-
-					if ($data['jenis'] === '0') {
-						$update_no = '23/'. $no_surat .'/02.002/'.date('Y');
-					}elseif ($data['jenis'] === '1') {
-						$update_no = '24/'. $no_surat .'/02.002/'.date('Y');
-					}elseif ($data['jenis'] === '2') {
-						$update_no = '25/'. $no_surat .'/02.002/'.date('Y');
-					}elseif ($data['jenis'] === '3') {
-						$update_no = '26/'. $no_surat .'/02.002/'.date('Y');
-					}elseif ($data['jenis'] === '4') {
-						$update_no = '26/'. $no_surat .'/02.002/'.date('Y');
-					}else{
-						$this->message('Terjadi kesalahan sistem saat memasukkan no surat', 'danger');
-						$this->redirectdataJenis($data['jenis']);
-					}
-					$update_data = array(
-						'no_surat' => $update_no,
-						'tanggal_verif' => date('Y-m-d h:i:s'),
-						'status' => '1'
-						);
-				}elseif ($data['status'] === '2') {
-				# TOLAK
-					$update_data = array(
-						'tanggal_verif' => date('Y-m-d h:i:s'),
-						'status' => '2'
-						);
-				}else{
-					$this->message('Terjadi kesalahan sistem saat membaca status surat. Coba lagi nanti.', 'danger');
-					$this->redirectJenis($data['jenis']);
-				}
-				$query = $this->surat_m->update($update_data, $data['id']); 
+			if ($data['jenis'] === '0' || $data['jenis'] === '1' || $data['jenis'] === '2' || $data['jenis'] === '3' || $data['jenis'] === '4') {
+				$query = $this->surat_m->update(array(
+					'tanggal_verif' => date('Y-m-d h:i:s'),
+					'status' => $data['status'],
+					'keterangan' => $data['keterangan']
+					), array('id' => $data['id'])); 
 				if ($query === FALSE) {
 					$this->message('Terjadi kesalahan sistem saat memverifikasi surat', 'danger');
 					$this->redirectJenis($data['jenis']);
 				}else{
 					$this->message('Data Surat berhasil diverifikasi', 'success');
-                    $this->cache->delete('notifikasi');
+					$this->cache->delete('notifikasi');
 					$this->redirectJenis($data['jenis']);
 				}
 			}else{
@@ -293,11 +233,21 @@ class Surat extends MY_Controller
 	{
 		$data = $this->input->post();
 		if (!is_null($data['id_surat']) && !is_null($data['jenis_surat'])) {
+			//generate no surat
+			$no_surat = $this->surat_m->generateNoSurat($data['jenis_surat'], $data['no_surat']);
+
+			//cek duplikasi surat
+			if ($this->surat_m->cekDuplikasiSurat($no_surat)) {
+				$this->message('Surat dengan nomor: <strong>'. $no_surat .'</strong> sudah ada', 'warning');
+				$this->redirectJenis($data['jenis_surat']);
+			}
+
 			$query = $this->surat_m->update(array(
+				'no_surat' => $no_surat,
 				'nama_pengambil' => $data['nama_pengambil'],
 				'keterangan' => $data['keterangan'],
 				'tanggal_ambil' => date('Y-m-d h:i:s')
-			), $data['id_surat']);
+				), array('id' => $data['id_surat']));
 			if ($query === FALSE) {
 				$this->message('Terjadi kesalahan sistem. Coba lagi nanti.', 'danger');
 			}else{
@@ -359,7 +309,7 @@ class Surat extends MY_Controller
 		if ((is_null($jenis) || empty($jenis) ) && (is_null($id) || empty($id)) ) {
 			$this->message('Surat tidak ditemukan', 'danger');
 		}else{
-			$query = $this->surat_m->delete($id);
+			$query = $this->surat_m->delete(array('id' => $id));
 			if ($query === FALSE) {
 				$this->message('Terjadi kesalahan sistem saat mengarsipkan surat. Coba lagi nanti', 'danger');
 			}else{
@@ -374,7 +324,7 @@ class Surat extends MY_Controller
 		if ((is_null($jenis) || empty($jenis) ) && (is_null($id) || empty($id)) ) {
 			$this->message('Surat tidak ditemukan', 'danger');
 		}else{
-			$query = $this->surat_m->restore($id);
+			$query = $this->surat_m->restore(array('id' => $id));
 			if ($query === FALSE) {
 				$this->message('Terjadi kesalahan sistem saat mengembalikan surat. Coba lagi nanti', 'danger');
 			}else{
@@ -390,7 +340,7 @@ class Surat extends MY_Controller
 		if ((is_null($jenis) || empty($jenis) ) && (is_null($id) || empty($id)) ) {
 			$this->message('Surat tidak ditemukan', 'danger');
 		}else{
-			$query = $this->surat_m->force_delete($id);
+			$query = $this->surat_m->force_delete(array('id' => $id));
 			if ($query === FALSE) {
 				$this->message('Terjadi kesalahan sistem saat menghapus surat. Coba lagi nanti', 'danger');
 			}else{
