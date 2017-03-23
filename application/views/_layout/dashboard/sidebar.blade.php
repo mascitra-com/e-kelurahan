@@ -72,7 +72,7 @@
 					<li><a href="{{site_url('surat/skck')}}"><i class="fa fa-file-o"></i><span class="nav-label">SKCK</span></a></li>
 					<li><a href="{{site_url('surat/keterangan_miskin')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin</span></a></li>
 					<li><a href="{{site_url('surat/keterangan_miskin_rt')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Miskin (RT)</span></a></li>
-					<li><a href="{{site_url('ui/keterangan_ijin_usaha')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Ijin Usaha</span></a></li>
+					<li><a href="{{site_url('surat_ijin_usaha')}}"><i class="fa fa-file-o"></i><span class="nav-label">Keterangan Ijin Usaha</span></a></li>
 					<li><a href="{{site_url('ui/sktm')}}"><i class="fa fa-file-o"></i><span class="nav-label">SKTM</span></a></li>
 				</ul>
 			</li>
