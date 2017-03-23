@@ -20,21 +20,7 @@ class Pengajuan extends MY_Controller
 
 	public function blankoktp()
 	{
-		$data['anggotas'] = $this->keluarga_m
-		->with_penduduk('fields:nama')
-		->with_detailKK(array(
-			'fields' => 'nik',
-			'with' => array(
-				'relation' => 'penduduk',
-				'fields' => 'nama'
-				)
-			))
-		->where(array(
-			'nik' => $this->ion_auth->get_current_nik(),
-			'id_organisasi' => $this->ion_auth->get_current_id_org()
-			))
-		->fields('nik')
-		->get();
+        $data = $this->get_data_anggota_keluarga();
 
 		$this->generateCsrf();
 		$this->render('warga/pengajuan/pengajuan_ktp', $data);
@@ -51,7 +37,7 @@ class Pengajuan extends MY_Controller
 
 		$insert = $this->surat_m->insert(array_merge($data, $data_insert));
 
-		if($insert === FALSE){   
+		if($insert === FALSE){
 			$this->message('Berhasil mengajukan surat blanko ktp', 'success');
 		}else{
 			$this->message('Gagal mengajukan surat blanko ktp', 'danger');
@@ -61,21 +47,7 @@ class Pengajuan extends MY_Controller
 
 	public function keterangan_miskin()
 	{
-		$data['anggotas'] = $this->keluarga_m
-		->with_penduduk('fields:nama')
-		->with_detailKK(array(
-			'fields' => 'nik',
-			'with' => array(
-				'relation' => 'penduduk',
-				'fields' => 'nama'
-				)
-			))
-		->where(array(
-			'nik' => $this->ion_auth->get_current_nik(),
-			'id_organisasi' => $this->ion_auth->get_current_id_org()
-			))
-		->fields('nik')
-		->get();
+        $data = $this->get_data_anggota_keluarga();
 
 		$this->generateCsrf();
 		$this->render('warga/pengajuan/pengajuan_keterangan_miskin', $data);
@@ -92,7 +64,7 @@ class Pengajuan extends MY_Controller
 
 		$insert = $this->surat_m->insert(array_merge($data, $data_insert));
 
-		if($insert === FALSE){   
+		if($insert === FALSE){
 			$this->message('Berhasil mengajukan surat blanko ktp', 'success');
 		}else{
 			$this->message('Gagal mengajukan surat blanko ktp', 'danger');
@@ -102,21 +74,7 @@ class Pengajuan extends MY_Controller
 
 	public function skck()
 	{
-		$data['anggotas'] = $this->keluarga_m
-		->with_penduduk('fields:nama')
-		->with_detailKK(array(
-			'fields' => 'nik',
-			'with' => array(
-				'relation' => 'penduduk',
-				'fields' => 'nama'
-				)
-			))
-		->where(array(
-			'nik' => $this->ion_auth->get_current_nik(),
-			'id_organisasi' => $this->ion_auth->get_current_id_org()
-			))
-		->fields('nik')
-		->get();
+        $data = $this->get_data_anggota_keluarga();
 
 		$this->generateCsrf();
 		$this->render('warga/pengajuan/skck', $data);
@@ -133,7 +91,7 @@ class Pengajuan extends MY_Controller
 
 		$insert = $this->surat_m->insert(array_merge($data, $data_insert));
 
-		if($insert === FALSE){   
+		if($insert === FALSE){
 			$this->message('Berhasil mengajukan SKCK', 'success');
 		}else{
 			$this->message('Gagal mengajukan SKCK', 'danger');
@@ -143,23 +101,9 @@ class Pengajuan extends MY_Controller
 
 	public function blankokk()
 	{
-		$data['anggotas'] = $this->keluarga_m
-		->with_penduduk('fields:nama')
-		->with_detailKK(array(
-			'fields' => 'nik',
-			'with' => array(
-				'relation' => 'penduduk',
-				'fields' => 'nama'
-				)
-			))
-		->where(array(
-			'nik' => $this->ion_auth->get_current_nik(),
-			'id_organisasi' => $this->ion_auth->get_current_id_org()
-			))
-		->fields('nik')
-		->get();
+        $data = $this->get_data_anggota_keluarga();
 
-		$this->generateCsrf();
+        $this->generateCsrf();
 		$this->render('warga/pengajuan/pengajuan_kk', $data);
 	}
 
@@ -174,11 +118,34 @@ class Pengajuan extends MY_Controller
 
 		$insert = $this->surat_m->insert(array_merge($data, $data_insert));
 
-		if($insert === FALSE){   
+		if($insert === FALSE){
 			$this->message('Berhasil mengajukan SKCK', 'success');
 		}else{
 			$this->message('Gagal mengajukan SKCK', 'danger');
 		}
 		$this->go('warga/surat');
 	}
+
+    /**
+     * @return mixed - Anggota Keluarga dari Pengguna Yang Sedang Login
+     */
+    private function get_data_anggota_keluarga()
+    {
+        $data['anggotas'] = $this->keluarga_m
+            ->with_penduduk('fields:nama')
+            ->with_detailKK(array(
+                'fields' => 'nik',
+                'with' => array(
+                    'relation' => 'penduduk',
+                    'fields' => 'nama'
+                )
+            ))
+            ->where(array(
+                'nik' => $this->ion_auth->get_current_nik(),
+                'id_organisasi' => $this->ion_auth->get_current_id_org()
+            ))
+            ->fields('nik')
+            ->get();
+        return $data;
+    }
 }
