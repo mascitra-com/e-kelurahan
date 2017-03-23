@@ -11,7 +11,7 @@ class Surat extends MY_Controller
 
 		$this->load->helper(array('dump', 'form'));
 		$this->load->library(array('form_validation'));
-		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m', 'surat_m'));
+		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m'));
 	}
 
 	public function blankoktp($optionalData = NULL, $optStatus = FALSE)
@@ -333,7 +333,6 @@ class Surat extends MY_Controller
 		}
 		$this->redirectJenis($jenis);
 	}
-
 
 	public function hapus($jenis = NULL, $id= NULL)
 	{
