@@ -10,7 +10,7 @@ class Surat extends MY_Controller
 
 		$this->load->helper(array('dump', 'form'));
 		$this->load->library(array('form_validation'));
-		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m', 'keluarga_m', 'detail_kk_m'));
+		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m', 'keluarga_m', 'detail_kk_m', 'surat_ijin_usaha_m'));
 	}
 
 	public function index($optionalData = NULL, $optStatus = FALSE)
@@ -38,6 +38,14 @@ class Surat extends MY_Controller
 		->fields('id, jenis, status, tanggal_verif, keterangan, nama_pengambil, created_at, updated_at, updated_by')
 		->get_all();
 
+        $data['ijin_usaha'] = $this->surat_ijin_usaha_m
+            ->with_penduduk('fields:nama')
+            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+            ->where('nik', $this->ion_auth->get_current_nik())
+            ->where('status', array('0', '1'))
+            ->fields('id ,no_surat, jenis_usaha, tanggal_verif, alamat, status, tanggal_ambil,nama_pengambil, created_at, updated_at, updated_by')
+            ->get_all();
+
 		if ($optStatus) {
 			$data['prev_input'] = $optionalData['prev_input'];
 			$this->message($optionalData['msg'], $optionalData['msg_type']);	
@@ -59,6 +67,21 @@ class Surat extends MY_Controller
 			}
 		}
 		$this->go('warga/surat');
+	}
+
+    public function batalkan_ijin_usaha($id= NULL)
+    {
+        if (is_null($id) || empty($id) ) {
+            $this->message('Surat tidak ditemukan', 'danger');
+        }else{
+            $query = $this->surat_ijin_usaha_m->force_delete(array('id' => $id));
+            if ($query === FALSE) {
+                $this->message('Terjadi kesalahan sistem saat membatalkan surat. Coba lagi nanti', 'danger');
+            }else{
+                $this->message('Surat berhasil dibatalkan', 'success');
+            }
+        }
+        $this->go('warga/surat');
 	}
 
 	public function hapus($id= NULL)

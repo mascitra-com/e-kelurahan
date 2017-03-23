@@ -30,14 +30,15 @@ class Dashboard extends MY_Controller {
                 ->having('jumlah >', '0')
                 ->get('surat')
                 ->result();
-            $total = 0;
+            $total_notif = 0;
             foreach ($data as $index => $value)
             {
                 $data[$index]->jenis = get_tipe_surat($value->jenis);
                 $data[$index]->link = 'surat/' . strtolower(str_replace(' ', '_', $data[$index]->jenis));
-                $total += $data[$index]->jumlah;
+                $total_notif += $data[$index]->jumlah;
             }
-            $result = array('notif_count' => $total,
+            // TODO Tambahkan Notifikasi Surat lainnya
+            $result = array('notif_count' => $total_notif,
                 'notif_list' => $data
             );
             $this->cache->save('result', $result, 270);

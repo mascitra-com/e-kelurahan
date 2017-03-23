@@ -40,7 +40,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 	left: 0;
 	bottom: 0;
 	/*SIDEBAR WIDTH*/
-	width: 260px;
+	width: 240px;
 	overflow-y: hidden;
 	overflow-x: hidden;
 	z-index: 1000;
@@ -89,7 +89,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 .sidebar-nav-child > li > a,
 .sidebar-nav > li.nav-label{
 	display: block;
-	padding: 10px 30px;
+	padding: 7px 30px;
 	font-family: 'Roboto', sans-serif;
 	font-size: 13px;
 	font-weight: 500;
@@ -100,8 +100,8 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 
 .sidebar-nav > li > a > .fa,
 .sidebar-nav-child > li > a > .fa{
-	margin-right: 20px;
-	font-size: 20px;
+	margin-right: 10px;
+	font-size: 16px;
 	color: #FFF;
 }
 
@@ -174,11 +174,12 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 
 .nav-caret{
 	float: right;
+	margin-right: 10px;
 }
 
 #content{
 	position: relative;
-	width: calc(100% - 260px);
+	width: calc(100% - 240px);
 	float: right;
 	min-height: 100%;
 	padding: 0;
@@ -314,6 +315,20 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 	padding-bottom: 2px;
 	background-color: red!important;
 	margin:0;
+}
+
+/*DROPDOWN*/
+.dropdown-menu > li > a{
+	font-weight: 300!important;
+	padding: 5px 20px;
+}
+
+.dropdown-menu > li > a:hover{
+	background-color: #CCC;
+}
+
+.dropdown-menu > li > a > .fa{
+	margin-right: 10px;
 }
 
 /*RESPONSIVE*/

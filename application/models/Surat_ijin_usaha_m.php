@@ -9,7 +9,6 @@ class Surat_ijin_usaha_m extends MY_Model
 {
 	public $table = 'surat_ijin_usaha';
 	public $primary_key = 'id';
-    public $protected = array('id');
 
 	public function __construct()
 	{
