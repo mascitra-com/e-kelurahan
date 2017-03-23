@@ -55,7 +55,7 @@ class Surat_ijin_usaha extends MY_Controller {
 
 
             $input['nik'] = str_replace(' ', '', substr($input['nik'], 0, strpos($input['nik'], "|")));
-            $input['no_surat'] = '27/' . $input['no_surat'] . '/02.002/' . date('Y');
+            $input['no_surat'] = '28/' . $input['no_surat'] . '/02.002/' . date('Y');
             $add_input = array(
                 'id' => $this->surat_ijin_usaha_m->get_last_id('SIU'),
                 'id_organisasi' => $this->ion_auth->get_current_id_org(),
@@ -147,7 +147,7 @@ class Surat_ijin_usaha extends MY_Controller {
 
                 $no_surat = explode('/', $no_surat);
                 $no_surat = (int) (!empty($no_surat[1]) ? $no_surat[1] : 0) + 1;
-                $update_no = '27/' . $no_surat . '/02.002/' . date('Y');
+                $update_no = '28/' . $no_surat . '/02.002/' . date('Y');
                 $update_data = array(
                     'no_surat' => $update_no,
                     'tanggal_verif' => date('Y-m-d h:i:s'),
