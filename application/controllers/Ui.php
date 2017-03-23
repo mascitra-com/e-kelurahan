@@ -247,4 +247,9 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/surat/sktm_detail');
 	}
+
+	public function sktm_cetak()
+	{
+		$this->render('_UI/surat/sktm_cetak');
+	}
 }
