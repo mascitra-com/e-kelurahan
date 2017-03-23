@@ -237,4 +237,9 @@ class Ui extends MY_Controller {
 	{
 		$this->render('_UI/surat/sktm_detail');
 	}
+
+	public function pengaturan()
+	{
+		$this->render('_UI/pengaturan/pengaturan');
+	}
 }
