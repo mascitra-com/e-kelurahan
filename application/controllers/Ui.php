@@ -98,11 +98,6 @@ class Ui extends MY_Controller {
 		$this->render('_UI/surat/keterangan_miskin');
 	}
 
-	public function surat_sktm()
-	{
-		$this->render('_UI/surat/sktm');
-	}
-
 	public function pengajuan_blanko()
 	{
 		$this->render('_UI/homepage/dashboard-user/pengajuan_ktp');
@@ -213,11 +208,6 @@ class Ui extends MY_Controller {
 		$this->render('_UI/surat/keterangan_miskin_detail');
 	}
 
-	public function surat_keterangan_miskin_cetak()
-	{
-		$this->render('_UI/surat/keterangan_miskin_cetak');
-	}
-
 	public function homepage_galeri()
 	{
 		$this->render('_UI/homepage/galeri');
@@ -238,18 +228,13 @@ class Ui extends MY_Controller {
 		$this->render('_UI/surat/keterangan_ijin_usaha');
 	}
 
-	public function sktm()
+	public function surat_sktm()
 	{
 		$this->render('_UI/surat/sktm');
 	}
 
-	public function sktm_detail()
+	public function surat_sktm_detail()
 	{
 		$this->render('_UI/surat/sktm_detail');
-	}
-
-	public function sktm_cetak()
-	{
-		$this->render('_UI/surat/sktm_cetak');
 	}
 }

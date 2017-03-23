@@ -3,7 +3,7 @@
 @section('nama-kelurahan')Lumajang@endsection
 
 @section('content')
-<div class="row">
+<div class="row" id="print-area">
 	<div class="col-xs-12 col-center">
 		<div class="panel">
 			<div class="panel-body">
@@ -98,8 +98,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="block">
-			<a class="btn btn-warning btn-block"><i class="fa fa-print"></i> cetak</a>
+		<div class="block" id="print-button">
+			<button class="btn btn-warning btn-block"><i class="fa fa-print"></i> cetak</button>
 		</div>
 	</div>
 </div>
@@ -107,6 +107,27 @@
 
 @section('style')
 <style>
+	@page {margin:0;}
+	@media print{
+		@page{margin: 0}
+		body * {
+			visibility: hidden;
+		}
+
+		html, body{
+			max-height: 842pt;
+			overflow: hidden;
+		}
+
+		#print-area, #print-area *{
+			visibility: visible;
+		}
+
+		#print-area #print-button{
+			display: none;
+		}
+	}
+
 	.panel{
 		width: 595pt;
 		height: 842pt;
@@ -162,4 +183,12 @@
 		font-size: 11pt;
 	}
 </style>
+@endsection
+
+@section('javascript')
+<script>
+	$("#print-button > button").click(function(){
+		window.print();
+	});
+</script>
 @endsection
