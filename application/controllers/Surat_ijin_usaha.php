@@ -53,11 +53,11 @@ class Surat_ijin_usaha extends MY_Controller {
                 $this->go('surat_ijin_usaha');
             }
 
-
             $input['nik'] = str_replace(' ', '', substr($input['nik'], 0, strpos($input['nik'], "|")));
             $input['no_surat'] = '28/' . $input['no_surat'] . '/02.002/' . date('Y');
+            // TODO Set Umur Warga yang mengajukan
             $add_input = array(
-                'id' => $this->surat_ijin_usaha_m->get_last_id('SIU'),
+                'id' => $this->surat_ijin_usaha_m->get_last_id('SIU', 10),
                 'id_organisasi' => $this->ion_auth->get_current_id_org(),
                 'status' => '1',
                 'tanggal_verif' => date('Y-m-d h:i:s'),

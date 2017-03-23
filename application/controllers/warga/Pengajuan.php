@@ -10,7 +10,7 @@ class Pengajuan extends MY_Controller
 
 		$this->load->helper(array('dump', 'form'));
 		$this->load->library(array('form_validation'));
-		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m', 'keluarga_m'));
+		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m', 'keluarga_m', 'surat_ijin_usaha_m'));
 	}
 
 	public function index()
@@ -130,8 +130,40 @@ class Pengajuan extends MY_Controller
 		$this->go('warga/surat');
 	}
 
+    public function ijin_usaha()
+    {
+        $this->generateCsrf();
+        $data['warga'] = $this->penduduk_m->get(array('nik' => $this->ion_auth->get_current_nik()));
+        $this->render('warga/pengajuan/ijin_usaha', $data);
+    }
+
+    public function ijin_usaha_simpan()
+    {
+        $data = $this->input->post();
+        if($data['pengambilan'] === NULL){
+            $this->message('Gagal mengajukan Surat Keterangan Ijin Usaha. Silahkan Pilih Mekanisme Pengambilan Surat', 'danger');
+            $this->go('warga/pengajuan/ijin_usaha');
+        }
+        $data['nik'] = $this->ion_auth->get_current_nik();
+        $data_insert = array(
+            'id' => $this->surat_ijin_usaha_m->get_last_id('SIU', 10),
+            'id_organisasi' => $this->ion_auth->get_current_id_org(),
+            'status' => '0',
+        );
+        $insert = $this->surat_ijin_usaha_m->insert(array_merge($data, $data_insert));
+
+        if($insert === FALSE){
+            $this->message('Berhasil mengajukan Surat Keterangan Ijin Usaha', 'success');
+        }else{
+            $this->message('Gagal mengajukan Surat Keterangan Ijin Usaha', 'danger');
+        }
+        $this->go('warga/surat');
+    }
+
     /**
-     * @return mixed - Anggota Keluarga dari Pengguna Yang Sedang Login
+     * Mendapatkan Daftar Anggota Keluarga dari Pengguna Yang Sedang Login
+     * 
+     * @return mixed - Anggota Keluarga 
      */
     private function get_data_anggota_keluarga()
     {

@@ -35,6 +35,7 @@
 								<li><a href="{{ site_url('warga/pengajuan/blankokk') }}">Surat Blanko KK</a></li>
 								<li><a href="{{ site_url('warga/pengajuan/skck') }}">SKCK</a></li>
 								<li><a href="{{ site_url('warga/pengajuan/keterangan_miskin') }}">Surat Keterangan Miskin</a></li>
+								<li><a href="{{ site_url('warga/pengajuan/ijin_usaha') }}">Surat Keterangan Ijin Usaha</a></li>
 							</ul>
 						</li>
 						<li><a href="{{ site_url('warga/surat') }}">Status Pengajuan</a></li>
