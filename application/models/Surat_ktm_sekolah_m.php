@@ -5,9 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
 * 
 */
-class Surat_m extends MY_Model
+class Surat_ktm_sekolah_m extends MY_Model
 {
-	public $table = 'surat';
+	public $table = 'surat_ktm_sekolah';
 	public $primary_key = 'id';
 
     public $rules = array(
@@ -20,6 +20,14 @@ class Surat_m extends MY_Model
                 'field' => 'no_surat',
                 'label' => 'Nomor Surat',
                 'rules' => 'trim|required|max_length[50]'),
+            'jurusan' => array(
+                'field' => 'jurusan',
+                'label' => 'Jurusan',
+                'rules' => 'trim|required|min_length[3]|max_length[30]'),
+             'asal_sekolah' => array(
+                'field' => 'asal_sekolah',
+                'label' => 'Asal Sekolah',
+                'rules' => 'trim|required|min_length[5]|max_length[255]'),
         ),
     );
 
@@ -32,22 +40,9 @@ class Surat_m extends MY_Model
 		parent::__construct();
 	}
 
-    public function generateNoSurat($jenis, $no_surat)
+    public function generateNoSurat($no_surat)
     {
-        $no = '';
-        if ($jenis === '0') {
-            $no = '23/'. $no_surat .'/02.002/'.date('Y');
-        }elseif ($jenis === '1') {
-            $no = '24/'. $no_surat .'/02.002/'.date('Y');
-        }elseif ($jenis === '2') {
-            $no = '25/'. $no_surat .'/02.002/'.date('Y');
-        }elseif ($jenis === '3') {
-            $no = '26/'. $no_surat .'/02.002/'.date('Y');
-        }elseif ($jenis === '4') {
-            $no = '27/'. $no_surat .'/02.002/'.date('Y');
-        }else{
-            return $no;
-        }
+        $no = '29/'. $no_surat .'/02.002/'.date('Y');
         return $no;
     }
 
