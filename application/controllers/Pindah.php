@@ -22,7 +22,10 @@ class Pindah extends MY_Controller
         $filter = $this->session->userdata('fpi');
         // Setting up Pagination
         $this->load->library('pagination');
-        $total_data = $this->mutasi_keluar_m->where($filter, 'like', '%')->count_rows();
+        $total_data = $this->mutasi_keluar_m
+            ->with_penduduk('fields:nama')
+            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+            ->where($filter, 'like', '%')->count_rows();
         $data['mutasi_keluars'] = $this->mutasi_keluar_m->where($filter, 'like', '%')
         ->where('id_organisasi', $this->ion_auth->get_current_id_org())
         ->fields('id ,created_at, updated_at')
