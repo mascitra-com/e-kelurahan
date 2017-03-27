@@ -107,7 +107,7 @@
 			<li><a href="{{ site_url('regulasi') }}"><i class="fa fa-fw fa-legal"></i><span class="nav-label">Regulasi</span></a></li>
 			<li><a href="{{ site_url('pengumuman') }}"><i class="fa fa-fw fa-bullhorn"></i><span class="nav-label">Pengumuman</span></a></li>
 			<li class="nav-label">Lain-Lain</li>
-			<li><a href="#"><i class="fa fa-fw fa-cog"></i><span class="nav-label">Pengaturan</span></a></li>
+			<li><a href="{{ site_url('pengaturan') }}"><i class="fa fa-fw fa-cog"></i><span class="nav-label">Pengaturan</span></a></li>
 			<li class="active"><a href="{{base_url('ui')}}"><i class="fa fa-fw fa-rocket"></i><span class="nav-label">UI</span></a></li>
 		</ul>
 		<div class="sidebar-footer"></div>
