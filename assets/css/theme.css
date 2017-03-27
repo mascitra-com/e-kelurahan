@@ -45,16 +45,18 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 	overflow-x: hidden;
 	z-index: 1000;
 	background-color: transparent;
-	/*direction: rtl;*/
-	padding-right: 15px;
+	direction: rtl;
+	transition: unset;
 }
 
 #sidebar:hover{
 	overflow-y: auto;
+	left:-17px;
+	width: 257px;
 }
 
 #sidebar-wrapper{
-	/*direction: ltr;*/
+	direction: ltr;
 	position: relative;
 	width: 245px;
 	max-height: none;
@@ -174,7 +176,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 
 .nav-caret{
 	float: right;
-	margin-right: 10px;
+	margin-right: 5px;
 }
 
 #content{
@@ -310,11 +312,23 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
 /*Notif*/
 .badge-sm{
 	font-size: 7pt;
-	font-weight: 300;
+	font-weight: 500;
 	padding: 3px;
 	padding-bottom: 2px;
 	background-color: red!important;
 	margin:0;
+	border-radius: 0;
+}
+
+.notifikasi > a > .badge{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	border-radius: 100px;
+}
+
+.notifikasi > .notifikasi-list > li > a > .badge{
+	margin-right: 8px;
 }
 
 /*DROPDOWN*/
