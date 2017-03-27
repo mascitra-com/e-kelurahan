@@ -6,10 +6,10 @@ class Surat extends MY_Controller
 	
 	public function __construct()
 	{
-		$this->_accessable = TRUE;
-		parent::__construct();
+        parent::__construct();
+        $this->_accessable = TRUE;
 
-		$this->load->helper(array('dump', 'form'));
+        $this->load->helper(array('dump', 'form'));
 		$this->load->library(array('form_validation'));
 		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m'));
 	}

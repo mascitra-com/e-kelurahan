@@ -14,7 +14,13 @@ class Dashboard extends MY_Controller {
 
     public function index()
     {
-        $this->render('dashboard/index');
+        $data['surats'] = $this->surat_m
+            ->where('status', '0')
+            ->with_penduduk('fields:nama')
+            ->where('id_organisasi', $this->ion_auth->get_current_id_org())
+            ->fields('id, jenis, status, tanggal_verif, keterangan, nama_pengambil, created_at, updated_at, updated_by')
+            ->get_all();
+        $this->render('dashboard/index', $data);
     }
 
     public function notifikasi()
