@@ -100,7 +100,7 @@
 			</div>
 			<!-- FOTO BUPATI -->
 			<div class="box widget widget-picbox">
-				<img src="http://keckotabaru.jambikota.go.id/images/banner-pemkot.jpg" alt="thumbnail">
+				<img src="{{ base_url('assets/images/banner/'.$banner->banner_samping) }}" alt="thumbnail">
 			</div>
 			<!-- LINK PELAYANAN -->
 			<div class="box widget">
@@ -124,7 +124,7 @@
 </div>
 <!-- GAMBAR BANNER -->
 <div class="section" id="sec-banner">
-	<img src="http://www.hazliseconomist.com/uploads/events/2013/GRT2013/1146x270_GRT2013.jpg" class="banner" alt="banner">
+	<img src="{{ base_url('assets/images/banner/'.$banner->banner_bawah) }}" class="banner" alt="banner">
 </div>
 <!-- GALERI -->
 <div class="section" id="sec3">
@@ -176,7 +176,7 @@
 				<div class="box">
 					<h3 class="widget-title">Regulasi</h3>
 					<ul class="agenda-list">
-						@if(empty($agendas))
+						@if(empty($regulasi))
 						<li>
 							<span class="agenda-desc">Belum ada regulasi.</span>
 						</li>
@@ -207,7 +207,7 @@
 			padding: 65px;
 			padding-top: 100px;
 			background-color: rgba(255,255,255,.5);
-			background-image: url('https://www.suarapetani.com/wp-content/uploads/2016/05/mentari-pagi-sawah.jpg');
+			background-image: url('{{ base_url('assets/images/banner/'.$banner->banner_atas) }}');
 			background-size: cover;
 			background-position: bottom;
 			background-attachment: fixed;

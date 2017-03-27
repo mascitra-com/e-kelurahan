@@ -38,6 +38,7 @@ class Homepage extends MY_Controller {
             $judul = 'Kecamatan ';
         } else
         {
+            $slug = $this->uri->segment(2, 'kecamatan-lumajang');
             $judul = 'Kelurahan ';
         }
 
@@ -111,6 +112,9 @@ class Homepage extends MY_Controller {
             ->where('tipe', '1')
             ->limit(4)
             ->get_all('id_organisasi', $id_organisasi);
+
+        $data['banner'] = $this->organisasi_m->fields('banner_atas, banner_samping, banner_bawah')
+            ->get($this->checkSlug($slug));
 
         $this->render('homepage/homepage', array_merge($data, $this->_data));
     }
