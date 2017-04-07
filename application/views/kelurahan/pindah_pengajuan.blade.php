@@ -259,6 +259,7 @@
 	});
 
 	$("tbody").delegate('tr>td>[data-index]','click', function(){
+		alert('delegate');
 		var ind = data.indexOf($(this).data('index'));
 		if (ind > -1) {
 			data.splice(ind, 1);
