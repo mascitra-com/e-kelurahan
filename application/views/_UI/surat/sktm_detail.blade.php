@@ -1,5 +1,5 @@
 @layout('_layout/dashboard/index')
-@section('title')Cetak Surat Keterangan Miskin@endsection
+@section('title')Cetak Surat Keterangan Tidak Mampu@endsection
 @section('nama-kelurahan')Lumajang@endsection
 
 @section('content')
@@ -20,62 +20,64 @@
 					<table class="table table-condensed borderless">
 						<tr>
 							<td colspan="3">
-								<p>Yang bertanda tangan di bawah ini:</p>
-							</td>
-						</tr>
-						<!-- BIODATA KEPALA LURAH/DESA -->
-						<tr>
-							<td>Nama</td>
-							<td>:</td>
-							<td>Nama Lurah</td>
-						</tr>
-						<tr>
-							<td>Alamat</td>
-							<td>:</td>
-							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, veniam.</td>
-						</tr>
-						<tr>
-							<td>Tempat/Tanggal Lahir</td>
-							<td>:</td>
-							<td>Bondowoso, 02 Februari 1985</td>
-						</tr>
-						<tr>
-							<td>Jabatan</td>
-							<td>:</td>
-							<td>Kepala Desa</td>
-						</tr>
-						<!-- AKHIR BIODATA KEPALA LURAH/DESA -->
-						<tr>
-							<td colspan="3">
-								<p class="break-top-20">Dengan ini menyatakan dengan sebenarnya bahwa Surat Keterangan Miskin (SKM) atau Surat Keterangan Tidak Mampu (SKTM) yang telah saya buat untuk :</p>
+								<p>Kami kepala Desa XXX Kabupaten Lumajang Menyatakan:</p>
 							</td>
 						</tr>
 						<!-- BIODATA PENGAJU -->
 						<tr>
 							<td>Nama</td>
 							<td>:</td>
-							<td>Mohammad Ainul Yaqin</td>
+							<td>[Nama siswa]</td>
 						</tr>
 						<tr>
 							<td>Tempat/Tanggal Lahir</td>
 							<td>:</td>
-							<td>Bondowoso, 08 November 1992</td>
+							<td>[TTL]</td>
 						</tr>
 						<tr>
-							<td>Pekerjaan</td>
+							<td>Siswa</td>
 							<td>:</td>
-							<td>Mahasiswa</td>
+							<td>[Asal sekolah]</td>
+						</tr>
+						<tr>
+							<td>Jurusan</td>
+							<td>:</td>
+							<td>[Jurusan]</td>
 						</tr>
 						<tr>
 							<td>Alamat</td>
 							<td>:</td>
-							<td>Desa Namadesa RT.XX RW.XX, Kec. Lumajang<br>Kab. Jember</td>
+							<td>[alamat]</td>
+						</tr>
+						<tr>
+							<td>Anak dari:</td>
+							<td><br><br><br></td>
+						</tr>
+						<tr>
+							<td>Nama</td>
+							<td>:</td>
+							<td>[Nama Ortu/Wali]</td>
+						</tr>
+						<tr>
+							<td>Umur</td>
+							<td>:</td>
+							<td>[umur]</td>
+						</tr>
+						<tr>
+							<td>Pekerjaan</td>
+							<td>:</td>
+							<td>[Pekerjaan]</td>
+						</tr>
+						<tr>
+							<td>Tempat Tinggal</td>
+							<td>:</td>
+							<td>[Alamat]</td>
 						</tr>
 						<!-- AKHIR BIODATA PENGAJU -->
 						<tr>
 							<td colspan="3">
-								<p class="break-top-20">Adalah sesuai dengan keadaan yang sebenarnya dan sesuai dengan Kriteria Masyarakat Miskin atau Tidak Mampu. Apabila di kemudian hari diketahui bahwa Surat Pernyataan tentang SKTM/SKM tersebut di atas tidak benar, maka saya akan bertanggung jawab atas akibat yang ditimbulkan baik Perdata maupun Pidana.</p>
-								<p>Demikian Surat ini saya buat dengan penuh tanggung jawab tanpa ada unsur tekanan/paksaan dari manapun.</p>
+								<p class="break-top-20">Bahwa yang bernama tersebut diatas dengan keberadaan yang sebenarnya termasuk KK Tidak Mampu.</p>
+								<p>Demikian surat keterangan ini dibuat dengan sebenarnya, mohon kepada semua pihak yang terkait harap maklum dan terimakasih.</p>
 							</td>
 						</tr>
 						<tr>
