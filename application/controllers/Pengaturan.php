@@ -13,6 +13,7 @@ class Pengaturan extends MY_Controller
 
     public function index()
     {
+        $this->load->helper('cek_file');
         $data['banner'] = $this->organisasi_m->fields('banner_atas, banner_samping, banner_bawah')
             ->get($this->ion_auth->get_current_id_org());
         $data['sosmed'] = $this->profil_m->fields('facebook, twitter, instagram')

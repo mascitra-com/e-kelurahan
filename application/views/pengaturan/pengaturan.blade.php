@@ -19,7 +19,7 @@
 					<div role="tabpanel" class="tab-pane active" id="tab1">
 						<div class="form-group">
 							<label for="">Gambar Depan</label><br>
-							<img src="{{base_url('assets/images/banner/'.$banner->banner_atas)}}" width="40%" alt="">
+							<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_atas,'.assets/images/banner/','default.png')) }}" width="40%" alt="thumbnail">
 						</div>
 						<div class="form-group">
 							<button class="btn btn-primary" data-form="{{ site_url('pengaturan/simpan_banner/1') }}"><i class="fa fa-refresh"></i> Ubah</button>
@@ -31,7 +31,7 @@
 							<div class="col-xs-12 col-md-6">
 								<div class="form-group">
 									<label for="">Banner Samping</label><br>
-									<img src="{{base_url('assets/images/banner/'.$banner->banner_samping)}}" width="40%" alt="">
+									<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_samping,'.assets/images/banner/','default.png')) }}" width="40%" alt="">
 								</div>
 								<div class="form-group">
 									<button class="btn btn-primary" data-form="{{ site_url('pengaturan/simpan_banner/2') }}"><i class="fa fa-refresh"></i> Ubah</button>
@@ -41,7 +41,7 @@
 							<div class="col-xs-12 col-md-6">
 								<div class="form-group">
 									<label for="">Banner Besar</label><br>
-									<img src="{{base_url('assets/images/banner/'.$banner->banner_bawah)}}" width="40%" alt="">
+									<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_bawah,'.assets/images/banner/','default.png')) }}" width="40%" alt="">
 								</div>
 								<div class="form-group">
 									<button class="btn btn-primary" data-form="{{ site_url('pengaturan/simpan_banner/3') }}"><i class="fa fa-refresh"></i> Ubah</button>
@@ -57,21 +57,21 @@
 								<label for="">Facebook</label>
 								<div class="input-group">
 									<span class="input-group-addon">https://facebook.com/</span>
-									<input type="text" class="form-control" name="facebook" value="{{ $sosmed->facebook }}" placeholder="facebook">
+									<input type="text" class="form-control" name="facebook" value="{{ (isset($sosmed->facebook)) ? $sosmed->facebook : '' }}" placeholder="facebook">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="">Twitter</label>
 								<div class="input-group">
 									<span class="input-group-addon">https://twitter.com/</span>
-									<input type="text" class="form-control" name="twitter" value="{{ $sosmed->twitter }}" placeholder="twitter">
+									<input type="text" class="form-control" name="twitter" value="{{ (isset($sosmed->twitter)) ? $sosmed->twitter : '' }}" placeholder="twitter">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="">Instagram</label>
 								<div class="input-group">
 									<span class="input-group-addon">https://instagram.com/</span>
-									<input type="text" class="form-control" name="instagram" value="{{ $sosmed->instagram }}" placeholder="instagram">
+									<input type="text" class="form-control" name="instagram" value="{{ (isset($sosmed->instagram)) ? $sosmed->instagram : '' }}" placeholder="instagram">
 								</div>
 							</div>
 							<div class="form-group">

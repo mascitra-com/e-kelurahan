@@ -17,6 +17,9 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="panel-body table-responsive table-full">
+				@if(empty($beritas))
+				<p class="text-center"><br>Tidak ada data berita</p>
+				@else
 				<table class="table table-hover table-striped">
 					<thead>
 						<tr>
@@ -26,8 +29,8 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php $i=0; ?>
-					@foreach($beritas as $berita)
+						<?php $i=0; ?>
+						@foreach($beritas as $berita)
 						<tr>
 							<td class="text-center">{{++$i}}</td>
 							<td>
@@ -49,12 +52,13 @@
 						@endforeach
 					</tbody>
 				</table>
+				@endif
 			</div>
 			<div class="panel-footer">
 				<nav aria-label="Page navigation" class="pull-right">
 					<ul class="pagination pagination-sm" style="margin:0">
 						@if(isset($pagination))
-							{{ $pagination }}
+						{{ $pagination }}
 						@endif
 					</ul>
 				</nav>

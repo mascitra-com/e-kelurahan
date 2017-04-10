@@ -35,6 +35,8 @@
                                         @foreach($profil as $list)
                                             <li><a href="{{ site_url('homepage/'.$slug.'/profil/'.$list->slug) }}">{{ $list->judul }}</a></li>
                                         @endforeach
+                                    @else
+                                    	<li><a href="#">Tidak ada Profil</a></li>
                                     @endif
                                 </ul>
 							</li>

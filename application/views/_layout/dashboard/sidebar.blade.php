@@ -19,11 +19,11 @@
 				<ul class="sidebar-nav-child collapse collapseable" id="nav-1">
 					<li><a href="{{site_url('penduduk')}}"><i class="fa fa-fw fa-user"></i><span class="nav-label">Data Penduduk</span></a></li>
 					<li><a href="{{site_url('keluarga')}}"><i class="fa fa-fw fa-users"></i><span class="nav-label">Data Keluarga</span></a></li>
-					<li><a href="#"><i class="fa fa-fw fa-user-plus"></i><span class="nav-label">Kelahiran</span></a></li>
-					<li><a href="#"><i class="fa fa-fw fa-user-times"></i><span class="nav-label">Kematian</span></a></li>
 				</ul>
 			</li>
 			<li class="nav-label">Surat</li>
+			<li><a href="{{ site_url('kelahiran') }}"><i class="fa fa-fw fa-user-plus"></i><span class="nav-label">Keterangan Kelahiran</span></a></li>
+			<li><a href="{{ site_url('kematian') }}"><i class="fa fa-fw fa-user-times"></i><span class="nav-label">Keterangan Kematian</span></a></li>
 			<li>
 				<a href="#nav-2" data-toggle="collapse" aria-controls="nav-2">
 					<i class="fa fa-fw fa-upload"></i>
@@ -91,7 +91,7 @@
 					<li><a href="{{ site_url('berita/arsip') }}"><i class="fa fa-archive"></i><span class="nav-label">Arsip</span></a></li>
 				</ul>
 			</li>
-			<li><a href="{{ site_url('info') }}"><i class="fa fa-fw fa-sitemap"></i><span class="nav-label">Profil</span></a></li>
+			<li><a href="{{ site_url('info') }}"><i class="fa fa-fw fa-sitemap"></i><span class="nav-label">Info</span></a></li>
 			<li><a href="{{ site_url('agenda') }}"><i class="fa fa-fw fa-calendar"></i><span class="nav-label">Agenda</span></a></li>
 			<li>
 				<a href="#nav-5" data-toggle="collapse" aria-controls="nav-5">

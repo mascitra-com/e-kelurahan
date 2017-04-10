@@ -119,7 +119,7 @@
 					<div class="modal-body">
 						<div class="form-group">
 						<label for="id">id</label>
-							<input type="text" name="id" class="form-control" placeholder="id" readonly>
+							<input type="text" name="id" class="form-control" placeholder="Tidak boleh diisi" readonly>
 						</div>
 						<div class="form-group">
 							<label for="nama">nama kelurahan</label>

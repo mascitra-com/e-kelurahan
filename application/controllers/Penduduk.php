@@ -199,7 +199,7 @@ class Penduduk extends MY_Controller {
      */
     public function hapus($nik = NULL)
     {
-        if ($this->penduduk->delete($nik))
+        if ($this->penduduk->force_delete($nik))
         {
             $this->message('Data Penduduk Berhasil Diubah', 'success');
         } else

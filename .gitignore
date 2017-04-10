@@ -17,6 +17,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 #ASSETS
 #-------------------------
 assets/images/berita/*
+assets/images/banner/*
 
 # IDE Files
 #-------------------------

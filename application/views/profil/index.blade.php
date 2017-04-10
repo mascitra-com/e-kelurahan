@@ -63,17 +63,17 @@
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Nama Lurah</label>
-                                            <input type="text" class="form-control" name="nama_lurah" value="{{ empty($profil) ?: $profil->nama_lurah }}"
+                                            <input type="text" class="form-control" name="nama_lurah" value="{{ empty($profil) ? '' : $profil->nama_lurah }}"
                                                    placeholder="Nama Lurah"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nomor Induk Pegawai Lurah</label>
-                                            <input type="text" class="form-control" name="nip" placeholder="NIP Lurah" value="{{ empty($profil) ?: $profil->nip }}"/>
+                                            <input type="text" class="form-control" name="nip" placeholder="NIP Lurah" value="{{ empty($profil) ? '' : $profil->nip }}"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Golongan Pegawai</label>
                                             <input class="form-control" name="id_golongan" list="golongan_list"
-                                                   placeholder="Pilih Golongan" value="{{ empty($profil) ?: $profil->id_golongan . '. '.$profil->golongan->nama }}"/>
+                                                   placeholder="Pilih Golongan" value="{{ empty($profil) ? '' : $profil->id_golongan . '. '.$profil->golongan->nama }}"/>
                                             <datalist id="golongan_list">
                                                 @foreach($golongan as $item)
                                                     <option value="{{ $item->id . '. ' . $item->nama }}">
@@ -98,14 +98,14 @@
                                         <div class="form-group">
                                             <label for="">Telpon</label>
                                             <input type="text" class="form-control" name="telepon"
-                                                   placeholder="Nomor Telepon" value="{{ empty($profil) ?: $profil->telepon }}"/>
+                                                   placeholder="Nomor Telepon" value="{{ empty($profil) ? '' : $profil->telepon }}"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Email</label>
                                             <input type="text" class="form-control" name="email"
-                                                   placeholder="Alamat Email" value="{{ empty($profil) ?: $profil->email }}"/>
+                                                   placeholder="Alamat Email" value="{{ empty($profil) ? '' : $profil->email }}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +116,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon">https://facebook.com/</span>
                                                 <input type="text" class="form-control" name="facebook"
-                                                       placeholder="Alamat Facebook" value="{{ empty($profil) ?: $profil->facebook }}"/>
+                                                       placeholder="Alamat Facebook" value="{{ empty($profil) ? '' : $profil->facebook }}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon">https://twitter.com/</span>
                                                 <input type="text" class="form-control" name="twitter"
-                                                       placeholder="Alamat Twitter" value="{{ empty($profil) ?: $profil->twitter }}"/>
+                                                       placeholder="Alamat Twitter" value="{{ empty($profil) ? '' : $profil->twitter }}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -147,13 +147,13 @@
                                         <div class="form-group">
                                             <label for="">Username</label>
                                             <input type="text" class="form-control" name="username"
-                                                   placeholder="Username" value="{{ empty($akun) ?: $akun->username }}" readonly/>
+                                                   placeholder="Username" value="{{ empty($akun) ? '' : $akun->username }}" readonly/>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
                                             <label for="">Waktu login terakhir</label>
-                                            <input type="text" class="form-control" placeholder="Waktu Login" value="{{ empty($akun) ?: date('d-m-Y H:i:s', $akun->last_login) }}" readonly/>
+                                            <input type="text" class="form-control" placeholder="Waktu Login" value="{{ empty($akun) ? '' : date('d-m-Y H:i:s', $akun->last_login) }}" readonly/>
                                         </div>
                                     </div>
                                 </div>

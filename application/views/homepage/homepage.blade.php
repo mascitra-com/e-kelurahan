@@ -100,7 +100,7 @@
 			</div>
 			<!-- FOTO BUPATI -->
 			<div class="box widget widget-picbox">
-				<img src="{{ base_url('assets/images/banner/'.$banner->banner_samping) }}" alt="thumbnail">
+				<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_samping,'./assets/images/banner/','default.png')) }}" alt="thumbnail">
 			</div>
 			<!-- LINK PELAYANAN -->
 			<div class="box widget">
@@ -124,7 +124,7 @@
 </div>
 <!-- GAMBAR BANNER -->
 <div class="section" id="sec-banner">
-	<img src="{{ base_url('assets/images/banner/'.$banner->banner_bawah) }}" class="banner" alt="banner">
+	<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_bawah,'./assets/images/banner/','default.png')) }}" class="banner" alt="banner">
 </div>
 <!-- GALERI -->
 <div class="section" id="sec3">
@@ -207,7 +207,7 @@
 			padding: 65px;
 			padding-top: 100px;
 			background-color: rgba(255,255,255,.5);
-			background-image: url('{{ base_url('assets/images/banner/'.$banner->banner_atas) }}');
+			background-image: url('{{ base_url('assets/images/banner/'.cek_file($banner->banner_atas,'./assets/images/banner/','bg.jpg')) }}');
 			background-size: cover;
 			background-position: bottom;
 			background-attachment: fixed;
