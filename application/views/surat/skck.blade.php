@@ -65,8 +65,8 @@
 						@elseif(is_null($skck->nama_pengambil) && ( date('d-m-Y') > date('d-m-Y', strtotime($skck->tanggal_verif. ' + 7 days')) ))
 						<a href="{{ site_url('surat/arsipkan/'.$skck->jenis.'/'.$skck->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
 						@else
-						<a href="{{site_url('surat/detail/skckktp/'.$skck->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
-						<a href="{{site_url('surat/cetak/skckktp/'.$skck->id)}}" target="_blank" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
+						<a href="{{site_url('surat/detail/skck/'.$skck->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
+						<a href="{{site_url('surat/cetak/skck/'.$skck->id)}}" target="_blank" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
 						<a href="{{ site_url('surat/arsipkan/'.$skck->jenis.'/'.$skck->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
 						@endif
 					</td>
