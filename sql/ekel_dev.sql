@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 16, 2017 at 08:25 AM
+-- Generation Time: Apr 17, 2017 at 10:00 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -52,7 +52,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 0, '', 'superadmin@super', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1488257314, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL);
+(1, 0, '', 'superadmin@super', '$2y$10$Mxtld8FnsQzQTzk4u5khO.LSXuigvJvPEjltfAXe54lYZQtEjKyYe', NULL, NULL, NULL, NULL, NULL, 1491812907, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -72,14 +72,6 @@ CREATE TABLE `agenda` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `agenda`
---
-
-INSERT INTO `agenda` (`id`, `id_organisasi`, `perihal`, `tanggal_agenda`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, '<p><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', '2017-03-06', '2017-02-28 17:00:00', 2, NULL, NULL, NULL, NULL),
-(3, 2, 'Pernikahan Anak Pak Camat', '2017-03-13', '2017-03-14 04:24:28', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -113,9 +105,9 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487680998, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 2, '127.0.0.1', 'Kelurahan-tompokersan@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1489652119, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL),
-(3, 2, '', '13241010101044', '$2y$08$n4C8B4S6oGmNJ2hxKXEKne.vTqaRk0btEOAQH3GbELEUDqAok0ZUq', NULL, NULL, NULL, NULL, NULL, 1489652288, 1, '2017-03-16 01:03:36', NULL, NULL, NULL, NULL, NULL);
+(1, 1, '127.0.0.1', 'admin@kecamatan', '$2y$10$2L0i4ZPWEr29m0U29Y/lJutIb.xGqwO8KiUs1eGiW9tdAiykklHGC', NULL, NULL, NULL, NULL, NULL, 1492401968, 1, '2017-04-09 17:00:00', 1, NULL, NULL, NULL, NULL),
+(2, 2, '', 'Kelurahan-tompokersan@lumajang', '$2y$10$cY1VToAXQHByW5nvW/9.xuyRWtBRUruKfavB45hdZTk0ukQE/C9EK', NULL, NULL, NULL, NULL, NULL, 1492401980, 1, '2017-04-10 01:32:40', NULL, '2017-04-10 01:33:20', 1, NULL, NULL),
+(3, 2, '', '123456789', '$2y$08$kbOzLTLx6BCSeR8b1LnjP.PrxEiX1ndBhsI9ShWfvBi8aO3Rwz6/G', NULL, NULL, NULL, NULL, NULL, NULL, 1, '2017-04-10 02:44:44', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,18 +160,6 @@ CREATE TABLE `berita` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `berita`
---
-
-INSERT INTO `berita` (`id`, `id_organisasi`, `judul`, `isi`, `slug`, `gambar`, `status`, `tipe`, `count`, `tanggal_publish`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 'The news is epic!', '<p><strong>Jemberedit -</strong>&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'the-news-is-epic', 'NWSUWL20170309100512.jpg', '0', '0', 0, '2017-03-09', '2017-02-28 17:00:00', 2, '2017-03-09 03:05:12', 2, NULL, 2),
-(2, 2, 'Hola this is an awesome article!', '<p><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\n<p>&nbsp;</p>\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'hola-this-is-an-awesome-article', 'default.png', '0', '0', 0, '2017-03-13', '2017-02-28 17:00:00', 2, '2017-03-13 01:10:38', 2, NULL, 2),
-(3, 2, 'The new article is awesome', '<p><strong>Lumajang</strong></p><br><p>On a slow boat in the middle of the Mekong, I am as far away from comfort as I have ever been. Physically, this ride is uncomfortable, the way the hard right angles of the wooden bench have done unspeakably awkward things to my butt in the last two days. But it is a mental discomfort too. You may be shocked to learn that there is no Wi-Fi signal in the middle of a mile-wide river in remote Northern Laos, and without the typical distractions you are left only with books, conversation, and your own thoughts. Ah, here was the real issue: under no circumstances was I to be left alone with my own thoughts. I gaze straight ahead and my eyes land on a family. A little girl is busy coloring and her father is handing her new markers as he is cued. She leans against him with the incontrovertible air of someone who knows they are safe. Her brown curls fall into her eyes as she focuses with the precision of a heart surgeon. She looks only at the coloring book, and he looks only at her. Before these long and solitary hours on the river I would have smiled warmly at them and moved on. But so many things have changed. I feel a bubble of panic rise in my chest. In my mind, the words appear like the chosen numbers in a lottery: one day she will lose him. I need to warn her that a loving father’s presence is impermanent and equivocal, just like everything beautiful in this world. That some day he will leave her and it will not be his choice.</p>', 'the-new-article-is-awesome', 'IMGKLD20170213103432.jpg', '0', '1', 1, '2017-03-01', '2017-02-28 17:00:00', 2, NULL, NULL, NULL, 2),
-(4, 2, 'Festival Layang-Layang', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid voluptate temporibus obcaecati, voluptates blanditiis! Eius. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ipsam cum nihil voluptatum in, alias.</p>', 'festival-layang-layang', 'NWSMBN20170308105409.jpg', '0', '0', 0, '2017-03-10', '2017-03-08 03:54:09', 2, '2017-03-13 01:13:42', 2, NULL, 2),
-(5, 2, 'Berita untuk draft', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid voluptate temporibus obcaecati, voluptates blanditiis! Eius. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ipsam cum nihil voluptatum in, alias.</p>', 'berita-untuk-draft', 'default.png', '2', '0', 0, '0000-00-00', '2017-03-08 03:57:06', 2, NULL, NULL, NULL, 2),
-(6, 2, 'This is a news without pictures', '<p><strong>Jember -</strong>&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'this-is-a-news-without-pictures-1', 'default.png', '0', '0', 0, '2017-03-09', '2017-03-09 02:22:17', 2, '2017-03-09 03:07:27', 2, '2017-03-13 01:35:10', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -210,10 +190,10 @@ CREATE TABLE `detail_kartu_keluarga` (
 --
 
 INSERT INTO `detail_kartu_keluarga` (`id`, `no_kk`, `nik`, `id_pendidikan`, `status_keluarga`, `no_urut_kk`, `no_paspor`, `no_kitap`, `ayah`, `ibu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(2, '123', '389475932753034750954', 8, 1, 1, 'edit', '', '', '', '2017-02-20 05:29:09', 2, '2017-02-21 05:25:49', 2, NULL, NULL),
-(3, '678', '83740927349074', 7, 1, 1, '', '', '', '', '2017-02-20 23:01:08', 2, '2017-02-21 05:23:14', 2, NULL, NULL),
-(4, '123', '3764289649123', 2, 1, 1, NULL, NULL, NULL, NULL, '2017-03-01 17:00:00', 2, NULL, NULL, NULL, NULL),
-(5, '888', '13241010101044', NULL, 1, 1, NULL, NULL, NULL, NULL, '2017-03-16 01:03:36', 2, '2017-03-16 01:04:21', 2, NULL, NULL);
+(1, '987654321', '123456789', 8, 2, 1, '123456789', '2345678', 'Kakek A', 'Ibu A', '2017-04-10 02:44:44', 2, '2017-04-10 02:45:17', 2, NULL, NULL),
+(2, '987654321', '12345678', 8, 3, 2, '456789o', '34567890', 'Ayah istri A', 'Ibu istri A', '2017-04-10 02:45:49', 2, NULL, NULL, NULL, NULL),
+(3, '987654321', '123456', 1, 4, 3, '', '', 'Kepala Keluarga A', 'Istri A', '2017-04-10 02:46:16', 2, NULL, NULL, NULL, NULL),
+(4, '987654321', '1234567', 4, 7, 4, '', '', 'Ayah Kakek A', 'Ibu Kakek A', '2017-04-10 02:46:44', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -238,9 +218,9 @@ CREATE TABLE `detail_tingkatan` (
 --
 
 INSERT INTO `detail_tingkatan` (`id`, `id_akun`, `id_tingkatan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(2, 2, 2, '2017-02-18 06:03:29', 0, NULL, NULL, NULL, NULL),
-(4, 1, 1, '2017-02-18 06:12:02', 0, NULL, NULL, NULL, NULL),
-(5, 3, 3, '2017-03-15 17:00:00', 2, NULL, NULL, NULL, NULL);
+(1, 1, 1, '2017-04-09 17:00:00', 1, NULL, NULL, NULL, NULL),
+(2, 2, 2, '2017-04-10 08:32:40', 0, NULL, NULL, NULL, NULL),
+(3, 3, 3, '2017-04-10 09:44:44', 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -264,15 +244,6 @@ CREATE TABLE `galeri` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `galeri`
---
-
-INSERT INTO `galeri` (`id`, `id_organisasi`, `id_kategori`, `nama`, `deskripsi`, `tipe`, `link`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 1, '', '', '0', 'IMGI1720170315094644.png', '2017-03-15 02:46:44', 2, NULL, NULL, NULL, NULL),
-(2, 2, 1, '', '', '0', 'IMGWUI20170315094659.jpg', '2017-03-15 02:46:59', 2, NULL, NULL, NULL, NULL),
-(3, 2, 1, '', '', '0', 'IMG3IR20170315094737.jpg', '2017-03-15 02:47:37', 2, NULL, NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -291,14 +262,6 @@ CREATE TABLE `galeri_kategori` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `galeri_kategori`
---
-
-INSERT INTO `galeri_kategori` (`id`, `id_organisasi`, `nama`, `deskripsi`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 'Rapat RT & RW', 'Deskripsi Galeri', '2017-03-15 00:09:30', 2, NULL, NULL, NULL, NULL),
-(2, 2, 'Pernikahan', '', '2017-03-15 00:10:27', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -356,15 +319,6 @@ CREATE TABLE `info_organisasi` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `info_organisasi`
---
-
-INSERT INTO `info_organisasi` (`id`, `id_organisasi`, `judul`, `isi`, `slug`, `pos`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 'Sejarah', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam voluptatibus sed qui commodi dolores culpa perferendis iure est sapiente sint atque, necessitatibus adipisci fugiat, nisi veritatis quos amet rem, quasi nesciunt quae provident et! Ducimus consequuntur maxime aspernatur quam sed. Reiciendis labore sapiente totam asperiores molestias illo illum veniam voluptatibus accusantium nobis nisi iure qui nulla temporibus ipsum quas ad, odio veritatis aspernatur quam error eligendi necessitatibus fugit assumenda. Doloribus et dicta, reiciendis accusantium esse asperiores officiis quibusdam non nulla praesentium dolores, quas rem illo placeat numquam a quaerat. Eos voluptatibus in quas magnam eligendi atque dolorum velit asperiores, provident!\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo pariatur fugit nam, nobis illum animi? Inventore quaerat corrupti cum, consectetur, corporis fugit repudiandae tenetur. Provident error dicta est, perspiciatis aut?', 'sejarah', 0, '2017-03-13 17:00:00', 2, NULL, NULL, NULL, NULL),
-(2, 2, 'Visi & Misi', '<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">For more than 130 years, Intertek&rsquo;s story has always been about innovation. In 1885 we began testing and certifying grain cargoes before they were put to sea, and in 1888 we pioneered the idea of independent testing laboratories. Then in 1896, the greatest inventor of them all became part of our story. When Thomas Edison released the wonders of electricity and the light bulb he wanted to ensure that his products were checked, tested and safe. He established the Lamp Testing Bureau, later to become the Electrical Testing Laboratories.</p>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">Over a century later, we maintain his ETL mark of quality, and continue to establish new standards in quality to protect consumers and our clients&rsquo; reputations across the world. Today we are a global force, operating in over 100 countries, offering Total Quality Assurance expertise, delivered consistently with precision, pace and passion, enabling our customers to power ahead safely.</p>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">The foundations and aspirations of our business remain true to those established by our visionary founders, and their innovation and energy continue to be our inspiration. Our passion and entrepreneurial culture will ensure that we deliver for our customers in safety, quality and assurance &ndash; today and in the future.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Purpose</h3>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">Bringing quality and safety to life.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Mission</h3>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">To exceed our customers&rsquo; expectations with innovative and bespoke Assurance, Testing, Inspection and Certification services for their operations and supply chain. Globally. 24/7.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Vision</h3>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">To be the world&rsquo;s most trusted partner for Quality Assurance.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Values</h3>\r\n<ul style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin-top: 0px; margin-bottom: 10px; color: #595654; font-size: 16px;\">\r\n<li style=\"box-sizing: border-box;\">We are a global family that values diversity.</li>\r\n<li style=\"box-sizing: border-box;\">We always do the right thing. With precision, pace and passion.</li>\r\n<li style=\"box-sizing: border-box;\">We trust each other and have fun winning together.</li>\r\n<li style=\"box-sizing: border-box;\">We own and shape our future.</li>\r\n<li style=\"box-sizing: border-box;\">We create sustainable growth. For All.</li>\r\n</ul>', 'visi-misi', 1, '2017-03-14 02:19:59', 2, NULL, NULL, NULL, NULL),
-(3, 2, 'Dummy edit', '<p>dummy content edit</p>', 'dummy-edit-1', 2, '2017-03-14 02:40:09', 2, '2017-03-14 02:49:45', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8179,25 +8133,36 @@ INSERT INTO `kecamatan` (`id`, `id_kabupaten`, `nama`) VALUES
 --
 
 CREATE TABLE `kelahiran` (
-  `id` int(11) NOT NULL,
-  `no_kk` varchar(40) NOT NULL,
+  `id` varchar(10) NOT NULL COMMENT 'SKL',
   `id_organisasi` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `jenis_kelamin` varchar(250) NOT NULL,
-  `tempat_lahir` varchar(200) NOT NULL,
-  `tanggal_lahir` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `nama_ayah` varchar(250) NOT NULL,
-  `nama_ibu` varchar(250) NOT NULL,
-  `alamat` varchar(255) NOT NULL,
-  `rt` int(3) UNSIGNED ZEROFILL NOT NULL,
-  `rw` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `nik_ibu` varchar(40) NOT NULL,
+  `nik_ayah` varchar(40) DEFAULT NULL,
+  `nik_pelapor` varchar(40) NOT NULL,
+  `hubungan_pelapor` varchar(50) NOT NULL,
+  `nama_anak` varchar(100) NOT NULL,
+  `tanggal_kelahiran` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tempat_kelahiran` text NOT NULL,
+  `tanggal_verif` timestamp NULL DEFAULT NULL,
+  `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
+  `nama_pengambil` varchar(50) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` int(11) DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kelahiran`
+--
+
+INSERT INTO `kelahiran` (`id`, `id_organisasi`, `no_surat`, `nik_ibu`, `nik_ayah`, `nik_pelapor`, `hubungan_pelapor`, `nama_anak`, `tanggal_kelahiran`, `tempat_kelahiran`, `tanggal_verif`, `status`, `keterangan`, `tanggal_ambil`, `nama_pengambil`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+('SKL0000001', 2, '1/SKK/LMJG/02.2002/2017', '12345678', '123456789', '1234567', 'Mertua', 'Anak Baru A', '2017-02-06 05:14:10', 'Jember', NULL, '1', 'Sudah diambil', '2017-04-16 21:43:05', 'Andre', '2017-04-09 17:00:00', 2, '2017-04-16 21:43:05', 2, NULL, NULL),
+('SKL0000002', 2, NULL, '12345678', '123456789', '123456', 'Kakak kandung', 'Vonny Prillina', '2017-04-17 08:16:26', 'Manado', NULL, '0', 'nope', NULL, NULL, '2017-04-17 00:44:06', 2, '2017-04-17 01:15:29', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8226,9 +8191,7 @@ CREATE TABLE `keluarga` (
 --
 
 INSERT INTO `keluarga` (`no`, `id_organisasi`, `nik`, `alamat`, `rt`, `rw`, `kode_pos`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-('123', 2, '389475932753034750954', 'Lorem ipsum dolor sit amet, consectetur.', 002, 011, '68118', '2017-02-20 05:29:09', 2, '2017-02-20 23:15:28', 2, NULL, NULL),
-('678', 2, '83740927349074', 'Lorem ipsum dolor sit amet, consectetur.', 001, 009, '68118', '2017-02-20 23:01:07', 2, NULL, NULL, NULL, NULL),
-('888', 2, '13241010101044', 'Example street', 002, 011, '68118', '2017-03-16 01:03:36', 2, '2017-03-16 01:04:20', 2, NULL, NULL);
+('987654321', 2, '123456789', 'Jalan Belimbing Barat 52', 002, 011, '68118', '2017-04-10 02:44:44', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13360,6 +13323,48 @@ INSERT INTO `kelurahan` (`id`, `id_kecamatan`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kematian`
+--
+
+CREATE TABLE `kematian` (
+  `id` varchar(10) NOT NULL COMMENT 'SKL',
+  `id_organisasi` int(11) NOT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `nik_meninggal` varchar(40) NOT NULL,
+  `nik_pelapor` varchar(40) NOT NULL,
+  `hubungan_pelapor` varchar(50) NOT NULL,
+  `tanggal_meninggal` timestamp NOT NULL DEFAULT current_timestamp(),
+  `dusun` varchar(100) NOT NULL,
+  `rt_meninggal` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `rw_meninggal` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `kampung` varchar(100) NOT NULL,
+  `kec_meninggal` varchar(100) NOT NULL,
+  `kab_meninggal` varchar(100) NOT NULL,
+  `tanggal_verif` timestamp NULL DEFAULT NULL,
+  `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
+  `nama_pengambil` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kematian`
+--
+
+INSERT INTO `kematian` (`id`, `id_organisasi`, `no_surat`, `nik_meninggal`, `nik_pelapor`, `hubungan_pelapor`, `tanggal_meninggal`, `dusun`, `rt_meninggal`, `rw_meninggal`, `kampung`, `kec_meninggal`, `kab_meninggal`, `tanggal_verif`, `status`, `keterangan`, `tanggal_ambil`, `nama_pengambil`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+('SKL0000001', 2, '1/SMT/LMJG/02.2002/2017', '12345678', '1234567', 'Mertua', '2017-02-06 05:14:10', 'Jember', 001, 003, 'Jember LOR', 'Patrang', 'Jember', '2017-04-16 17:00:00', '1', 'Sudah diambil', '2017-04-17 01:40:46', 'Andre', '2017-04-09 17:00:00', 2, '2017-04-17 01:40:46', 2, NULL, NULL),
+('SKL0000002', 2, NULL, '12345678', '123456', 'Kakak kandung', '2017-04-17 08:16:26', 'Manado', 000, 000, '', '', '', NULL, '0', 'nope', NULL, NULL, '2017-04-17 00:44:06', 2, '2017-04-17 01:15:29', 2, NULL, NULL),
+('SMTSKL0000', 2, NULL, '1234567', '123456', 'Cucu', '2017-04-17 17:00:00', 'Pujer', 011, 002, 'Mangli', 'Pujer', 'Bondowoso', '2017-04-17 02:22:21', '1', NULL, NULL, NULL, '2017-04-17 02:22:21', 2, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `meninggal`
 --
 
@@ -13441,14 +13446,6 @@ CREATE TABLE `mutasi_keluar` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `mutasi_keluar`
---
-
-INSERT INTO `mutasi_keluar` (`id`, `id_organisasi`, `no_surat`, `nik`, `alamat_asal`, `alamat_tujuan`, `rt_tujuan`, `rw_tujuan`, `id_prov_tujuan`, `id_kab_tujuan`, `id_kec_tujuan`, `id_kel_tujuan`, `keterangan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 18, '389475932753034750954', 'Jalan Bungur 130', 'Jalan Blimbing 52', 011, 004, 11, 1101, 1101010, 1101010001, 'Ketahuan istri pertama', '2017-02-21 17:00:00', 2, NULL, NULL, NULL, 2),
-(2, 2, 19, '83740927349074', 'Jalan Asal', 'Jalan Tujuan', 000, 000, 11, 1101, 1101010, 1101010001, 'Tengkar', '2017-02-24 01:41:43', 2, NULL, NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -13466,15 +13463,6 @@ CREATE TABLE `mutasi_keluar_detail` (
   `deleted_at` timestamp NULL DEFAULT current_timestamp(),
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mutasi_keluar_detail`
---
-
-INSERT INTO `mutasi_keluar_detail` (`id`, `id_mutasi`, `nik`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 1, '3764289649123', '2017-02-21 17:00:00', 2, NULL, NULL, NULL, 2),
-(2, 1, '83740927349074', '2017-02-22 17:00:00', 2, NULL, NULL, NULL, NULL),
-(3, 2, '389475932753034750954', '2017-02-24 01:41:43', 2, '2017-02-24 08:41:43', NULL, '2017-02-24 08:41:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -13509,6 +13497,9 @@ CREATE TABLE `organisasi` (
   `nama_pimpinan` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `banner_atas` text DEFAULT NULL,
+  `banner_samping` text DEFAULT NULL,
+  `banner_bawah` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -13521,12 +13512,9 @@ CREATE TABLE `organisasi` (
 -- Dumping data for table `organisasi`
 --
 
-INSERT INTO `organisasi` (`id`, `nama`, `nip`, `nama_pimpinan`, `slug`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 'Lumajang', '123402302003121002', 'Paimin, AP', 'kecamatan-lumajang', '1', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 'Tompokersan', '198503302003121002', 'Samsul, SH', 'tompokersan', '1', '2017-02-17 17:00:00', 1, NULL, NULL, NULL, NULL),
-(3, 'Patrang edit', 'belum diisi', 'belum diisi', 'patrang-edit', '0', '2017-02-17 17:00:00', 1, '2017-02-19 01:26:50', 1, NULL, NULL),
-(4, 'Deket lapangan', 'belum diisi', 'belum diisi', 'deket-lapangan', '0', '2017-02-19 00:50:15', 1, '2017-02-19 01:03:34', 1, '2017-02-19 01:44:45', 1),
-(5, 'Deket lapangan', 'belum diisi', 'belum diisi', 'deket-lapangan-1', '0', '2017-02-20 04:48:43', 2, NULL, NULL, NULL, NULL);
+INSERT INTO `organisasi` (`id`, `nama`, `nip`, `nama_pimpinan`, `slug`, `status`, `banner_atas`, `banner_samping`, `banner_bawah`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 'Lumajang', '123456789', 'John Doe', 'lumajang', '1', NULL, NULL, NULL, '2017-04-09 17:00:00', 1, NULL, NULL, NULL, NULL),
+(2, 'Tompokersan', '', '', 'tompokersan', '1', NULL, NULL, NULL, '2017-04-10 01:27:23', 1, '2017-04-10 01:32:40', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13561,12 +13549,10 @@ CREATE TABLE `penduduk` (
 --
 
 INSERT INTO `penduduk` (`nik`, `id_organisasi`, `nama`, `tempat_lahir`, `golongan_darah`, `status_nikah`, `jenis_kelamin`, `tanggal_lahir`, `agama`, `pekerjaan`, `rt`, `rw`, `kewarganegaraan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-('123809123810938', 2, 'Kepala Keluarga A', 'Jember', 'O', 1, '0', '1980-02-26 17:00:00', 1, 1, 011, 001, '0', '2017-02-26 17:00:00', 1, NULL, NULL, NULL, NULL),
-('13241010101044', 2, 'John Doe', 'Jember', 'A', 1, '0', '1995-03-14 17:00:00', 2, 15, 002, 011, '0', '2017-03-16 01:02:56', 2, NULL, NULL, NULL, NULL),
-('3764289649123', 2, 'Rizki', 'Sumenep', 'AB', 0, '0', '1993-01-06 17:00:00', 0, 1, 002, 001, '0', '2017-02-19 02:43:22', 2, '2017-02-19 03:06:21', 2, NULL, NULL),
-('389475932753034750954', 2, 'Farida', 'Sumenep', 'O', 2, '1', '1970-02-23 07:38:04', 1, 4, 002, 001, '0', '2017-02-19 23:08:40', 2, NULL, NULL, NULL, NULL),
-('7289379132', 2, 'Anggota Keluarga A1', 'Jember', 'O', 1, '0', '1980-02-26 17:00:00', 1, 1, 011, 001, '0', '2017-02-26 17:00:00', 1, NULL, NULL, NULL, NULL),
-('83740927349074', 2, 'Rizki Herdatullah', 'Sumenep', 'O', 0, '0', '1992-02-19 17:00:00', 0, 1, 002, 001, '0', '2017-02-19 23:06:40', 2, '2017-02-19 23:10:13', 2, NULL, NULL);
+('123456', 2, 'Anak A', 'Jember', 'B', 0, '1', '2019-02-11 17:00:00', 1, 1, 002, 011, '0', '2017-04-10 02:34:51', 2, NULL, NULL, NULL, NULL),
+('1234567', 2, 'Kakek A', 'Manado', 'A', 3, '0', '0000-00-00 00:00:00', 2, 1, 001, 003, '0', '2017-04-10 02:33:54', 2, NULL, NULL, NULL, NULL),
+('12345678', 2, 'Istri A', 'Jember', 'AB', 1, '1', '1996-04-13 17:00:00', 1, 67, 009, 001, '0', '2017-04-10 02:32:28', 2, NULL, NULL, NULL, NULL),
+('123456789', 2, 'Kepala Keluarga A', 'Manado', 'A', 1, '0', '1995-02-04 17:00:00', 2, 83, 002, 011, '0', '2017-04-10 02:31:29', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13589,15 +13575,6 @@ CREATE TABLE `pengumuman` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pengumuman`
---
-
-INSERT INTO `pengumuman` (`id`, `id_organisasi`, `slug`, `nama`, `isi`, `tanggal_kadaluarsa`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 'cek-berkas-terlebih-dahulu', 'Cek Berkas Terlebih Dahulu', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At debitis, eos facere magni labore delectus.', '2017-03-15', '0', '2017-03-12 17:00:00', 2, '2017-03-13 03:47:57', 2, NULL, NULL),
-(2, 2, 'spread-the-word', 'Spread the word!', 'Spread the word! Save 50% on custom announcements at Shutterfly. We\'re happy to make it easy and affordable to share life\'s joy.', '2017-03-31', '0', '2017-03-13 03:28:16', 2, '2017-03-14 00:40:01', 2, NULL, NULL),
-(4, 2, 'pengumuman-ini-aktif-selamanya', 'Pengumuman ini aktif selamanya', 'Latest News from the Company announcements, reports, corporate announcements & notices.', NULL, '0', '2017-03-13 03:54:48', 2, '2017-03-13 03:59:15', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13652,6 +13629,7 @@ CREATE TABLE `profil_organisasi` (
   `kode_pos` varchar(20) NOT NULL,
   `facebook` text DEFAULT NULL,
   `twitter` text DEFAULT NULL,
+  `instagram` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -13665,8 +13643,9 @@ CREATE TABLE `profil_organisasi` (
 -- Dumping data for table `profil_organisasi`
 --
 
-INSERT INTO `profil_organisasi` (`no`, `id_organisasi`, `nip`, `nama_lurah`, `deskripsi`, `alamat`, `telepon`, `email`, `kode_pos`, `facebook`, `twitter`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`, `id_golongan`) VALUES
-(1, 2, 2147483647, 'Rizki', 'Deskripsi Tompo', 'Alamat', '08243243', 'rizkiherda@gmail.com', '32343', 'rizki.herdatullah', 'herdatullah', '2017-02-27 16:17:35', 2, '2017-02-27 18:52:57', 2, NULL, NULL, 12);
+INSERT INTO `profil_organisasi` (`no`, `id_organisasi`, `nip`, `nama_lurah`, `deskripsi`, `alamat`, `telepon`, `email`, `kode_pos`, `facebook`, `twitter`, `instagram`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`, `id_golongan`) VALUES
+(0, 1, 12314123, 'Andre', 'Lumajang', 'alamat', '085808596142', 'example@example.com', '68118', NULL, NULL, NULL, '2017-03-16 22:20:51', 2, NULL, NULL, NULL, NULL, 0),
+(1, 2, 2147483647, 'Rizki', 'Tompokersan adalah Kelurahan di Kecamatan Lumajang, Kabupaten Lumajang, Provinsi Jawa Timur, Indonesia.', 'Alamat', '08243243', 'rizkiherda@gmail.com', '32343', 'rizki.herdatullah', 'herdatullah', NULL, '2017-02-27 16:17:35', 2, '2017-02-27 18:52:57', 2, NULL, NULL, 12);
 
 -- --------------------------------------------------------
 
@@ -13741,14 +13720,6 @@ CREATE TABLE `regulasi` (
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `regulasi`
---
-
-INSERT INTO `regulasi` (`id`, `id_organisasi`, `judul`, `deskripsi`, `tgl_dikeluarkan`, `dikeluarkan_oleh`, `link`, `deleted_by`, `deleted_at`, `updated_by`, `updated_at`, `created_by`, `created_at`) VALUES
-(1, 2, 'Judul', 'Deskripsi', '2017-03-14 10:55:24', 'Bupati', 'REGLZC20170314105628.docx', NULL, NULL, NULL, NULL, 2, '2017-03-14 03:55:24'),
-(2, 2, 'Judul', 'Deskripsi', '2017-03-14 10:56:29', 'Gubernur', 'REGLZC20170314105628.docx', NULL, NULL, NULL, NULL, 2, '2017-03-14 03:56:29');
-
 -- --------------------------------------------------------
 
 --
@@ -13781,13 +13752,16 @@ INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUE
 --
 
 CREATE TABLE `surat` (
-  `id` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `id` varchar(10) NOT NULL,
   `no_surat` varchar(50) DEFAULT NULL,
   `nik` varchar(40) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
-  `jenis` enum('0','1','2','3') NOT NULL COMMENT '0=Blanko KTP, 1=SKCK, 2=Ket Miskon, 3=Ket.Miskin(RT)',
+  `jenis` enum('0','1','2','3','4') NOT NULL COMMENT '0=Blanko KTP, 1=SKCK, 2=Ket Miskon, 3=Ket.Miskin(RT)',
   `tanggal_verif` timestamp NULL DEFAULT NULL,
   `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
+  `nama_pengambil` varchar(50) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -13800,19 +13774,65 @@ CREATE TABLE `surat` (
 -- Dumping data for table `surat`
 --
 
-INSERT INTO `surat` (`id`, `no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal_verif`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(002, '23/2/02.002/2017', '3764289649123', 2, '0', '2017-02-28 03:33:07', '2', '2017-02-28 03:33:08', 2, NULL, NULL, NULL, NULL),
-(003, '23/7/02.002/2017', '389475932753034750954', 2, '0', '2017-03-15 02:50:51', '1', '2017-03-02 03:40:28', 2, '2017-03-15 02:50:51', 2, NULL, 2),
-(004, '24/1/02.002/2017', '389475932753034750954', 2, '1', '2017-02-28 01:45:40', '1', '2017-02-28 01:45:40', 2, NULL, NULL, NULL, NULL),
-(005, '24/2/02.002/2017', '3764289649123', 2, '1', '2017-02-28 01:49:22', '1', '2017-02-28 01:49:22', 2, NULL, NULL, NULL, NULL),
-(006, '25/1/02.002/2017', '83740927349074', 2, '2', '2017-02-28 01:56:21', '1', '2017-02-28 01:56:21', 2, NULL, NULL, NULL, NULL),
-(007, '26/1/02.002/2017', '7289379132', 2, '3', '2017-02-28 02:10:12', '1', '2017-02-28 02:10:12', 2, NULL, NULL, NULL, NULL),
-(009, '23/4/02.002/2017', '123809123810938', 2, '0', '2017-03-03 01:36:13', '1', '2017-03-03 01:36:13', 2, NULL, NULL, NULL, NULL),
-(010, NULL, '3764289649123', 2, '0', NULL, '0', '2017-03-03 02:56:49', 2, NULL, NULL, NULL, NULL),
-(011, '23/5/02.002/2017', '83740927349074', 2, '0', '2017-03-15 02:48:59', '1', '2017-03-15 02:48:59', 2, NULL, NULL, NULL, NULL),
-(012, '23/6/02.002/2017', '7289379132', 2, '0', '2017-03-15 02:49:21', '1', '2017-03-15 02:49:21', 2, NULL, NULL, NULL, NULL),
-(013, NULL, '389475932753034750954', 2, '0', NULL, '0', '2017-03-15 02:54:03', 2, NULL, NULL, NULL, NULL),
-(014, NULL, '13241010101044', 2, '0', NULL, '0', '2017-03-16 01:18:17', 3, NULL, NULL, NULL, NULL);
+INSERT INTO `surat` (`id`, `no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal_verif`, `status`, `keterangan`, `tanggal_ambil`, `nama_pengambil`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+('SRU0000001', '23/1/02.002/2017', '123456', 2, '0', '2017-04-16 21:37:28', '1', '', '2017-04-16 21:43:50', 'Andre Hardika', '2017-04-16 21:37:28', 2, '2017-04-16 21:43:50', 2, NULL, NULL),
+('SRU0000002', '24/1/02.002/2017', '12345678', 2, '1', '2017-04-16 21:38:17', '1', '', '2017-04-16 21:45:25', 'Vonny', '2017-04-16 21:38:17', 2, '2017-04-16 21:45:25', 2, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `surat_ijin_usaha`
+--
+
+CREATE TABLE `surat_ijin_usaha` (
+  `id` varchar(10) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `nik` varchar(40) NOT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `nama` varchar(255) NOT NULL,
+  `jenis_usaha` varchar(255) NOT NULL,
+  `umur` tinyint(3) NOT NULL,
+  `pekerjaan` varchar(255) NOT NULL,
+  `alamat` text NOT NULL,
+  `pengambilan` enum('0','1') NOT NULL DEFAULT '0',
+  `status` enum('0','1','2') DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `tanggal_verif` timestamp NULL DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
+  `nama_pengambil` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `surat_ktm_sekolah`
+--
+
+CREATE TABLE `surat_ktm_sekolah` (
+  `id` varchar(10) NOT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `nik` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `jurusan` varchar(30) NOT NULL,
+  `asal_sekolah` varchar(255) NOT NULL,
+  `tanggal_verif` timestamp NULL DEFAULT NULL,
+  `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
+  `nama_pengambil` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -13840,7 +13860,7 @@ CREATE TABLE `tingkatan` (
 INSERT INTO `tingkatan` (`id`, `name`, `description`, `menu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
 (1, 'Admin Kecamatan', 'Mengakses semua fitur kecamatan', '1:2:3:4:5:6:7', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
 (2, 'Operator', 'Operator Kelurahan', '1:8:9:10:11:12:13:14:15:16:17:18', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(3, 'mem', 'mem', '', '2017-02-18 06:12:10', 0, NULL, NULL, NULL, NULL);
+(3, 'member', 'member', '', '2017-02-18 06:12:10', 0, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -13972,7 +13992,11 @@ ALTER TABLE `kecamatan`
 -- Indexes for table `kelahiran`
 --
 ALTER TABLE `kelahiran`
-  ADD KEY `no_kk` (`no_kk`),
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `no_surat` (`no_surat`),
+  ADD KEY `nik_ibu` (`nik_ibu`),
+  ADD KEY `nik_ayah` (`nik_ayah`),
+  ADD KEY `nik_pelapor` (`nik_pelapor`),
   ADD KEY `id_organisasi` (`id_organisasi`);
 
 --
@@ -13989,6 +14013,16 @@ ALTER TABLE `keluarga`
 ALTER TABLE `kelurahan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_kecamatan` (`id_kecamatan`);
+
+--
+-- Indexes for table `kematian`
+--
+ALTER TABLE `kematian`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `no_surat` (`no_surat`),
+  ADD KEY `nik_ibu` (`nik_meninggal`),
+  ADD KEY `nik_pelapor` (`nik_pelapor`),
+  ADD KEY `id_organisasi` (`id_organisasi`);
 
 --
 -- Indexes for table `meninggal`
@@ -14086,6 +14120,21 @@ ALTER TABLE `surat`
   ADD KEY `nik` (`nik`);
 
 --
+-- Indexes for table `surat_ijin_usaha`
+--
+ALTER TABLE `surat_ijin_usaha`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `surat_ktm_sekolah`
+--
+ALTER TABLE `surat_ktm_sekolah`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `no_surat` (`no_surat`),
+  ADD KEY `id_organisasi` (`id_organisasi`),
+  ADD KEY `nik` (`nik`);
+
+--
 -- Indexes for table `tingkatan`
 --
 ALTER TABLE `tingkatan`
@@ -14099,7 +14148,7 @@ ALTER TABLE `tingkatan`
 -- AUTO_INCREMENT for table `agenda`
 --
 ALTER TABLE `agenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `akun`
 --
@@ -14114,32 +14163,32 @@ ALTER TABLE `akun_warga`
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `detail_kartu_keluarga`
 --
 ALTER TABLE `detail_kartu_keluarga`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `detail_tingkatan`
 --
 ALTER TABLE `detail_tingkatan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `galeri`
 --
 ALTER TABLE `galeri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `galeri_kategori`
 --
 ALTER TABLE `galeri_kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `info_organisasi`
 --
 ALTER TABLE `info_organisasi`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `jenis_pekerjaan`
 --
@@ -14159,22 +14208,22 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `mutasi_keluar`
 --
 ALTER TABLE `mutasi_keluar`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mutasi_keluar_detail`
 --
 ALTER TABLE `mutasi_keluar_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `organisasi`
 --
 ALTER TABLE `organisasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `percobaan_login`
 --
@@ -14184,12 +14233,7 @@ ALTER TABLE `percobaan_login`
 -- AUTO_INCREMENT for table `regulasi`
 --
 ALTER TABLE `regulasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `surat`
---
-ALTER TABLE `surat`
-  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tingkatan`
 --
