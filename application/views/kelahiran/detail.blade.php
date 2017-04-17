@@ -170,7 +170,9 @@
 			</div>
 		</div>
 		<div class="block" id="print-button">
+			@if($surat->status === '1' && (!is_null($surat->nama_pengambil) && !is_null($surat->tanggal_ambil)))
 			<a href="{{ site_url('kelahiran/cetak/'. $surat->id) }}" target="_blank" class="btn btn-warning btn-block"><i class="fa fa-print"></i> cetak</a>
+			@endif
 			<a href="{{ site_url('kelahiran') }}" class="btn btn-default btn-block"><i class="fa fa-arrow-left"></i> kembali</a>
 		</div>
 	</div>
