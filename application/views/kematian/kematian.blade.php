@@ -1,11 +1,11 @@
 @layout('_layout/dashboard/index')
-@section('title')Surat Keterangan Kelahiran@endsection
+@section('title')Surat Keterangan kematian@endsection
 @section('nama-kelurahan')Lumajang@endsection
 
 @section('content')
 <div class="panel panel-theme">
 	<div class="panel-heading">
-		<h3 class="panel-title pull-left">Keterangan Kelahiran</h3>
+		<h3 class="panel-title pull-left">Keterangan kematian</h3>
 		<div class="btn-group pull-right">
 			<!-- BARU DARISINI -->
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-konfirmasi">
@@ -21,15 +21,15 @@
 				<i class="fa fa-bell"></i>
 			</button>
 			<!-- SAMPAI SINI -->
-			<button href="kelahiran/tambah" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i></button>
+			<button href="kematian/tambah" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i></button>
 			<button class="btn btn-default btn-sm reload"><i class="fa fa-refresh"></i></button>
 			<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-cari"><i class="fa fa-search"></i></button>
-			<a href="{{ site_url('kelahiran/arsip') }}" class="btn btn-default btn-sm"><i class="fa fa-archive"></i></a>
+			<a href="{{ site_url('kematian/arsip') }}" class="btn btn-default btn-sm"><i class="fa fa-archive"></i></a>
 		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="panel-body table-responsive table-full">
-		@if(!empty($kelahirans))
+		@if(!empty($kematians))
 		<table class="table table-stripped table-hover table-bordered">
 			<thead>
 				<tr>
@@ -46,29 +46,29 @@
 			</thead>
 			<tbody>
 				<?php $no = 0; ?>
-				@foreach($kelahirans as $kelahiran)
-				@if($kelahiran->status == '1')
+				@foreach($kematians as $kematian)
+				@if($kematian->status == '1')
 				<tr>
 					<td class="text-center">{{ ++$no }}</td>
-					<td class="text-center">{{ (is_null($kelahiran->no_surat)) ? '-' : $kelahiran->no_surat }}</td>
-					<td><a href="{{ site_url('penduduk/detail/'. $kelahiran->nik_pelapor) }}">{{ $kelahiran->pelapor->nama }}</a></td>
-					<td class="text-center">{{date('d-m-Y', strtotime($kelahiran->created_at))}}</td>
-					<td class="text-center">{{date('d-m-Y', strtotime($kelahiran->tanggal_verif))}}</td>
-					<td class="text-center">{{ is_null($kelahiran->tanggal_ambil) ? '-' : date('d-m-Y', strtotime($kelahiran->tanggal_ambil)) }}</td>
-					<td class="text-center">{{ is_null($kelahiran->nama_pengambil) ? '-' : $kelahiran->nama_pengambil }}</td>
-					<td class="text-center"><span class="label label-{{ (!is_null($kelahiran->nama_pengambil)) ? 'success' : (( date('d-m-Y') > date('d-m-Y', strtotime($kelahiran->tanggal_verif. ' + 7 days')) ) ? 'danger' : 'warning') }}">
-						{{ (!is_null($kelahiran->nama_pengambil)) ? 'diambil' : (( date('d-m-Y') > date('d-m-Y', strtotime($kelahiran->tanggal_verif. ' + 7 days')) ) ? 'kadaluarsa' : 'menunggu' ) }}
+					<td class="text-center">{{ (is_null($kematian->no_surat)) ? '-' : $kematian->no_surat }}</td>
+					<td><a href="{{ site_url('penduduk/detail/'. $kematian->nik_pelapor) }}">{{ $kematian->pelapor->nama }}</a></td>
+					<td class="text-center">{{date('d-m-Y', strtotime($kematian->created_at))}}</td>
+					<td class="text-center">{{date('d-m-Y', strtotime($kematian->tanggal_verif))}}</td>
+					<td class="text-center">{{ is_null($kematian->tanggal_ambil) ? '-' : date('d-m-Y', strtotime($kematian->tanggal_ambil)) }}</td>
+					<td class="text-center">{{ is_null($kematian->nama_pengambil) ? '-' : $kematian->nama_pengambil }}</td>
+					<td class="text-center"><span class="label label-{{ (!is_null($kematian->nama_pengambil)) ? 'success' : (( date('d-m-Y') > date('d-m-Y', strtotime($kematian->tanggal_verif. ' + 7 days')) ) ? 'danger' : 'warning') }}">
+						{{ (!is_null($kematian->nama_pengambil)) ? 'diambil' : (( date('d-m-Y') > date('d-m-Y', strtotime($kematian->tanggal_verif. ' + 7 days')) ) ? 'kadaluarsa' : 'menunggu' ) }}
 					</span></td>
 					<td>
-						@if(is_null($kelahiran->nama_pengambil) && !( date('d-m-Y') > date('d-m-Y', strtotime($kelahiran->tanggal_verif. ' + 7 days')) ))
-						<a href="{{site_url('kelahiran/detail/'.$kelahiran->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
-						<button class="btn btn-success btn-xs btn-ambil" title="telah diambil" data-toggle="modal" data-target="#modal-ambil" data-id_surat={{ $kelahiran->id }}><i class="fa fa-check"></i></button>	
-						@elseif(is_null($kelahiran->nama_pengambil) && ( date('d-m-Y') > date('d-m-Y', strtotime($kelahiran->tanggal_verif. ' + 7 days')) ))
-						<a href="{{ site_url('kelahiran/arsipkan/'.$kelahiran->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						@if(is_null($kematian->nama_pengambil) && !( date('d-m-Y') > date('d-m-Y', strtotime($kematian->tanggal_verif. ' + 7 days')) ))
+						<a href="{{site_url('kematian/detail/'.$kematian->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
+						<button class="btn btn-success btn-xs btn-ambil" title="telah diambil" data-toggle="modal" data-target="#modal-ambil" data-id_surat={{ $kematian->id }}><i class="fa fa-check"></i></button>	
+						@elseif(is_null($kematian->nama_pengambil) && ( date('d-m-Y') > date('d-m-Y', strtotime($kematian->tanggal_verif. ' + 7 days')) ))
+						<a href="{{ site_url('kematian/arsipkan/'.$kematian->id) }}" class="btn btn-block btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
 						@else
-						<a href="{{site_url('kelahiran/detail/'.$kelahiran->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
-						<a href="{{site_url('kelahiran/cetak/'.$kelahiran->id)}}" target="_blank" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
-						<a href="{{ site_url('kelahiran/arsipkan/'.$kelahiran->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
+						<a href="{{site_url('kematian/detail/'.$kematian->id)}}" class="btn btn-default btn-xs" title="selengkapnya"><i class="fa fa-info"></i></a>
+						<a href="{{site_url('kematian/cetak/'.$kematian->id)}}" target="_blank" class="btn btn-default btn-xs" title="cetak"><i class="fa fa-print"></i></a>
+						<a href="{{ site_url('kematian/arsipkan/'.$kematian->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Anda yakin?')" title="arsipkan"><i class="fa fa-archive"></i></a>
 						@endif
 					</td>
 				</tr>
@@ -94,54 +94,78 @@
 				<h4 class="modal-title">Tambah Data</h4>
 			</div>
 			<div class="modal-body">
-				<form action="{{ site_url('kelahiran/simpan') }}" method="POST">
+				<form action="{{ site_url('kematian/simpan') }}" method="POST">
 					{{ $csrf }}
+					<div class="form-group">
+						<label for="nik_ibu">NIK / NAMA Almarhum/Almarhumah</label>
+						<?php echo form_error('nik_meninggal'); ?>
+						<input list="nik" class="form-control" placeholder="NIK/NAMA" autocomplete="off" name="nik_meninggal" required>
+						<datalist id="nik">
+						</datalist>
+					</div>
+					<div class="form-group">
+						<label for="tanggal_kematian">Tanggal Meninggal</label>
+						<?php echo form_error('tanggal_meninggal'); ?>
+						<input type="date" class="form-control" placeholder="Tanggal meninggal" name="tanggal_meninggal" required max="{{ date('Y-m-d') }}">
+					</div>
+					<label>Tempat Meninggal</label>
+					<div class="row">
+						<div class="col-xs-12 col-md-4">
+							<div class="form-group">
+								<?php echo form_error('dusun'); ?>
+								<input type="text" class="form-control" placeholder="Nama dusun" name="dusun" required maxlength="100">
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<div class="form-group">
+								<?php echo form_error('rt_meninggal'); ?>
+								<input type="text" class="form-control" placeholder="RT" name="rt_meninggal" required maxlength="100">
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<div class="form-group">
+								<?php echo form_error('rw_meninggal'); ?>
+								<input type="text" class="form-control" placeholder="RW" name="rw_meninggal" required maxlength="100">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-md-4">
+							<div class="form-group">
+								<?php echo form_error('kampung'); ?>
+								<input type="text" class="form-control" placeholder="Nama kampung" name="kampung" required maxlength="100">
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<div class="form-group">
+								<?php echo form_error('kec_meninggal'); ?>
+								<input type="text" class="form-control" placeholder="Kecamatan" name="kec_meninggal" required maxlength="100">
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<div class="form-group">
+								<?php echo form_error('kab_meninggal'); ?>
+								<input type="text" class="form-control" placeholder="Kabupaten" name="kab_meninggal" required maxlength="100">
+							</div>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-xs-12 col-md-6">
 							<div class="form-group">
-								<label for="nama_anak">Nama Lengkap Bayi</label>
-								<?php echo form_error('nama_anak'); ?>
-								<input type="text" class="form-control" placeholder="Nama lengkap bayi" name="nama_anak" required maxlength="100">
+								<label for="nik_pelapor">NIK / NAMA Pelapor</label>
+								<?php echo form_error('nik_pelapor'); ?>
+								<input list="nik" class="form-control" placeholder="NIK/NAMA" autocomplete="off" name="nik_pelapor" required>
+								<datalist id="nik">
+								</datalist>
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-6">
 							<div class="form-group">
-								<label for="tanggal_kelahiran">Tanggal Lahir Bayi</label>
-								<?php echo form_error('tanggal_kelahiran'); ?>
-								<input type="date" class="form-control" placeholder="Tanggal lahir bayi" name="tanggal_kelahiran" required max="{{ date('Y-m-d') }}">
+							<label for="hubungan_pelapor">Hubungan Pelapor</label>
+								<?php echo form_error('hubungan_pelapor'); ?>
+								<input type="text" class="form-control" placeholder="Hubungan pelapor dg yg meninggal" name="hubungan_pelapor" required minlength="3" maxlength="50">
 							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label for="tempat_kelahiran">Tempat Lahir Bayi</label>
-						<?php echo form_error('tempat_kelahiran'); ?>
-						<textarea type="text" class="form-control" placeholder="Tempat lahir bayi" name="tempat_kelahiran" required></textarea>
-					</div>
-					<div class="form-group">
-						<label for="nik_ibu">NIK / NAMA Ibu</label>
-						<?php echo form_error('nik_ibu'); ?>
-						<input list="nik" class="form-control" placeholder="NIK/NAMA" autocomplete="off" name="nik_ibu" required>
-						<datalist id="nik">
-						</datalist>
-					</div>
-					<div class="form-group">
-						<label for="nik_ayah">NIK / NAMA Ayah</label>
-						<?php echo form_error('nik_ayah'); ?>
-						<input list="nik" class="form-control" placeholder="NIK/NAMA" autocomplete="off" name="nik_ayah" required>
-						<datalist id="nik">
-						</datalist>
-					</div>
-					<div class="form-group">
-						<label for="nik_pelapor">NIK / NAMA Pelapor</label>
-						<?php echo form_error('nik_pelapor'); ?>
-						<input list="nik" class="form-control" placeholder="NIK/NAMA" autocomplete="off" name="nik_pelapor" required>
-						<datalist id="nik">
-						</datalist>
-					</div>
-					<div class="form-group">
-						<label for="hubungan_pelapor">Hubungan Pelapor dengan Bayi</label>
-						<?php echo form_error('hubungan_pelapor'); ?>
-						<input type="text" class="form-control" placeholder="Hubungan pelapor" name="hubungan_pelapor" required minlength="3" maxlength="50">
 					</div>
 					<div class="form-group">
 						<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> tambah</button>
@@ -221,7 +245,7 @@
 				<h4 class="modal-title">Konfirmasi Pengajuan</h4>
 			</div>
 			<div class="modal-body table-responsive table-full">
-				@if(empty($kelahirans))
+				@if(empty($kematians))
 				<br>
 				<p class="text-center">Tidak ada pengajuan</p>
 				@else
@@ -236,17 +260,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($kelahirans as $kelahiran)
-						@if($kelahiran->status == '0')
+						@foreach($kematians as $kematian)
+						@if($kematian->status == '0')
 						<tr>
-							<td class="text-center">{{ $kelahiran->id }}</td>
-							<td class="text-center">{{ $kelahiran->nik_pelapor }}</td>
-							<td>{{ $kelahiran->pelapor->nama }}</td>
-							<td class="text-center">{{date('d-m-Y', strtotime($kelahiran->created_at))}}</td>
+							<td class="text-center">{{ $kematian->id }}</td>
+							<td class="text-center">{{ $kematian->nik_pelapor }}</td>
+							<td>{{ $kematian->pelapor->nama }}</td>
+							<td class="text-center">{{date('d-m-Y', strtotime($kematian->created_at))}}</td>
 							<td class="text-center">
-								<a href="{{site_url('kelahiran/detail/'.$kelahiran->id)}}" class="btn btn-sm btn-default"><i class="fa fa-info space-right-5"></i>detail</a>
-								<button class="btn btn-sm btn-success" data-konfirmasi="1" data-id="{{ $kelahiran->id }}"><i class="fa fa-check space-right-5"></i>setuju</button>
-								<button class="btn btn-sm btn-danger" data-konfirmasi="2" data-id="{{ $kelahiran->id }}"><i class="fa fa-times space-right-5"></i>tolak</button>
+								<a href="{{site_url('kematian/detail/'.$kematian->id)}}" class="btn btn-sm btn-default"><i class="fa fa-info space-right-5"></i>detail</a>
+								<button class="btn btn-sm btn-success" data-konfirmasi="1" data-id="{{ $kematian->id }}"><i class="fa fa-check space-right-5"></i>setuju</button>
+								<button class="btn btn-sm btn-danger" data-konfirmasi="2" data-id="{{ $kematian->id }}"><i class="fa fa-times space-right-5"></i>tolak</button>
 							</td>
 						</tr>
 						@endif
@@ -268,7 +292,7 @@
 				<h4 class="modal-title">Pengambilan Surat</h4>
 			</div>
 			<div class="modal-body">
-				<form action="{{ site_url('kelahiran/ambil') }}" method="POST" class="form">
+				<form action="{{ site_url('kematian/ambil') }}" method="POST" class="form">
 					{{ $csrf }}
 					<input type="hidden" name="id_surat">
 					<div class="form-group">
@@ -301,7 +325,7 @@
 				<h4 class="modal-title">Alasan <span class="status"></span></h4>
 			</div>
 			<div class="modal-body">
-				<form action="{{ site_url('kelahiran/konfirmasi') }}" method="POST" id="form-konfirmasi">
+				<form action="{{ site_url('kematian/konfirmasi') }}" method="POST" id="form-konfirmasi">
 					{{$csrf}}
 					<div class="form-group">
 						<label for="">Keterangan</label>
