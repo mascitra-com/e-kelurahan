@@ -6,8 +6,6 @@ class Dashboard extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        // TODO Fix This
-        $this->_accessable = TRUE;
         $this->load->library(array('form_validation'));
         $this->load->model(array('surat_m'));
     }

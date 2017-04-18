@@ -7,7 +7,6 @@ class Profil extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->_accessable = TRUE;
         $this->load->model(array('organisasi_m', 'profil_m', 'akun_m', 'golongan_m'));
     }
 

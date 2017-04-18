@@ -5,7 +5,6 @@ class Penduduk extends MY_Controller {
 
     public function __construct()
     {
-        $this->_accessable = TRUE;
         parent::__construct();
         $this->load->model('penduduk_m', 'penduduk');
         $this->load->model('organisasi_m', 'organisasi');

@@ -7,7 +7,6 @@ class Surat extends MY_Controller
 	public function __construct()
 	{
         parent::__construct();
-        $this->_accessable = TRUE;
 
         $this->load->helper(array('dump', 'form'));
 		$this->load->library(array('form_validation'));

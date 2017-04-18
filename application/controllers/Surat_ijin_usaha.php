@@ -6,7 +6,6 @@ class Surat_ijin_usaha extends MY_Controller {
     public function __construct()
     {
         // TODO Fix This
-        $this->_accessable = TRUE;
         parent::__construct();
         $this->load->model(array('surat_ijin_usaha_m'));
     }

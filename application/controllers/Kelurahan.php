@@ -6,7 +6,6 @@ class Kelurahan extends MY_Controller
 	
 	public function __construct()
 	{
-		$this->_accessable = TRUE;
 		parent::__construct();
 
 		$this->load->library(array('form_validation', 'slug'));

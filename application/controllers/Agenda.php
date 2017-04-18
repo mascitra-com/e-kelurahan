@@ -6,8 +6,6 @@ class Agenda extends MY_Controller
 
     public function __construct()
     {
-        // TODO Privileges untuk fitur Agenda & Regulasi Belum di set
-        $this->_accessable = TRUE;
         parent::__construct();
         $this->load->model(array('agenda_m'));
     }

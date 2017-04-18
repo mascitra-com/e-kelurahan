@@ -6,7 +6,6 @@ class Regulasi extends MY_Controller
 
     public function __construct()
     {
-        $this->_accessable = TRUE;
         parent::__construct();
         $this->load->helper('prefix_unik');
         $this->load->model(array('regulasi_m'));

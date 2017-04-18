@@ -36,12 +36,14 @@
 						</div>
 						<div class="collapse navbar-collapse" id="menu">
 							<ul class="nav navbar-nav navbar-right">
+								@if(show_sidebar_menu('dashboard/notifikasi', $link_privileges))
 								<li class="dropdown notifikasi">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 										<i class="fa fa-envelope"></i>
 									</a>
 									<ul class="dropdown-menu notifikasi-list"></ul>
 								</li>
+								@endif
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ str_replace('@lumajang', '', $this->session->userdata('identity')) }} <span class="caret"></span></a>
 									<ul class="dropdown-menu">
@@ -102,19 +104,19 @@
 	});
 
 	function refresh_notifikasi(){
-	    $.getJSON('{{ site_url('dashboard/notifikasi') }}', function (result) {
+		$.getJSON('{{ site_url('dashboard/notifikasi') }}', function (result) {
             var notif_count = result.notif_count; //Diisi dengan jumlah pengajuan
             var notif_list = result.notif_list;
             // Tulis pesan notifikasi kosong
             $(".notifikasi > a > .badge").remove();
             $(".notifikasi-list").append("<li><a href='#'>Tak ada pengajuan</a></li>");
             if (notif_count > 0) {
-                $(".notifikasi > a").append(" <span class='badge badge-sm'>"+notif_count+"</span>");
-                $(".notifikasi-list").empty();
+            	$(".notifikasi > a").append(" <span class='badge badge-sm'>"+notif_count+"</span>");
+            	$(".notifikasi-list").empty();
 
-                $.each(notif_list, function(index,value){
-                    $(".notifikasi-list").append("<li><a href='{{ site_url() }}"+value.link+"'><span class='badge badge-sm'>"+value.jumlah+"</span> "+value.jenis+"</a></li>");
-                });
+            	$.each(notif_list, function(index,value){
+            		$(".notifikasi-list").append("<li><a href='{{ site_url() }}"+value.link+"'><span class='badge badge-sm'>"+value.jumlah+"</span> "+value.jenis+"</a></li>");
+            	});
             }
         });
 	}

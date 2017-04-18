@@ -10,7 +10,6 @@ class Kelahiran extends MY_Controller
 		$this->load->library(array('form_validation'));
 		$this->load->helper(array('dump'));
 		$this->load->model(array('organisasi_m', 'penduduk_m', 'kelahiran_m'));
-		$this->_accessable = TRUE;
 	}
 
 	public function index()

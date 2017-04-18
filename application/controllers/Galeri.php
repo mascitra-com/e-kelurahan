@@ -6,7 +6,6 @@ class Galeri extends MY_Controller
 
     public function __construct()
     {
-        $this->_accessable = TRUE;
         parent::__construct();
         $this->load->helper('prefix_unik');
         $this->load->model(array('galeri_m', 'galeri_kategori_m'));

@@ -3,13 +3,22 @@
 		<div class="sidebar-title"><h2>E-Kelurahan</h2><span>@yield('nama-kelurahan')</span></div>
 		<ul class="sidebar-nav">
 			<li class="sidebar-close"><a href="#"><i class="fa fa-fw fa-close"></i></a></li>
+			@if(show_sidebar_menu('dashboard/index', $link_privileges))
 			<li><a href="{{ site_url('dashboard') }}"><i class="fa fa-fw fa-home"></i><span class="nav-label">Dashboard</span></a></li>
+			@endif
+			@if(show_sidebar_menu('profil/index', $link_privileges) || show_sidebar_menu('kelurahan/index', $link_privileges) || $super)
 			<li class="nav-label">Kelurahan</li>
+			@endif
+			@if(show_sidebar_menu('profil/index', $link_privileges))
 			<li><a href="{{ site_url('profil') }}"><i class="fa fa-fw fa-info-circle"></i><span class="nav-label">Profil</span></a></li>
+			@endif
+			@if(show_sidebar_menu('kelurahan/index', $link_privileges))
 			<li><a href="{{site_url('kelurahan')}}"><i class="fa fa-fw fa-bank"></i><span class="nav-label">Kelurahan</span></a></li>
+			@endif
 			@if($super)
 			<li><a href="{{site_url('kelurahan/konfirmasi')}}"><i class="fa fa-fw fa-check"></i><span class="nav-label">Konfirmasi</span></a></li>
 			@endif
+			@if(show_sidebar_menu('penduduk/index', $link_privileges) || show_sidebar_menu('keluarga/index', $link_privileges))
 			<li>
 				<a href="#nav-1" data-toggle="collapse" aria-controls="nav-1">
 					<i class="fa fa-fw fa-user"></i>
@@ -21,9 +30,17 @@
 					<li><a href="{{site_url('keluarga')}}"><i class="fa fa-fw fa-users"></i><span class="nav-label">Data Keluarga</span></a></li>
 				</ul>
 			</li>
+			@endif
+			@if(show_sidebar_menu('kelahiran/index', $link_privileges))
 			<li class="nav-label">Surat</li>
+			@endif
+			@if(show_sidebar_menu('kelahiran/index', $link_privileges))
 			<li><a href="{{ site_url('kelahiran') }}"><i class="fa fa-fw fa-user-plus"></i><span class="nav-label">Keterangan Kelahiran</span></a></li>
+			@endif
+			@if(show_sidebar_menu('kematian/index', $link_privileges))
 			<li><a href="{{ site_url('kematian') }}"><i class="fa fa-fw fa-user-times"></i><span class="nav-label">Keterangan Kematian</span></a></li>
+			@endif
+			@if(show_sidebar_menu('pindah/index', $link_privileges))
 			<li>
 				<a href="#nav-2" data-toggle="collapse" aria-controls="nav-2">
 					<i class="fa fa-fw fa-upload"></i>
@@ -36,6 +53,7 @@
 					<li><a href="{{site_url('pindah/arsip')}}"><i class="fa fa-archive"></i><span class="nav-label">Arsip Pengajuan</span></a></li>
 				</ul>
 			</li>
+			@endif
 			<li>
 				<a href="#nav-3" data-toggle="collapse" aria-controls="nav-3">
 					<i class="fa fa-fw fa-download"></i>
@@ -60,6 +78,7 @@
 					<li><a href="#"><i class="fa fa-archive"></i><span class="nav-label">Arsip Surat Masuk</span></a></li>
 				</ul>
 			</li>
+			@if(show_sidebar_menu('surat/blankokk', $link_privileges))
 			<li>
 				<a href="#nav-surat" data-toggle="collapse" aria-controls="nav-surat">
 					<i class="fa fa-fw fa-envelope"></i>
@@ -76,8 +95,10 @@
 					<li><a href="{{site_url('sktm_sekolah')}}"><i class="fa fa-file-o"></i><span class="nav-label">SKTM</span></a></li>
 				</ul>
 			</li>
+			@endif
 			<li class="nav-label">Rekapitulasi</li>
 			<li><a href="#"><i class="fa fa-fw fa-file"></i><span class="nav-label">Laporan</span></a></li>
+			@if(show_sidebar_menu('berita/index', $link_privileges) || show_sidebar_menu('info/index', $link_privileges) ||show_sidebar_menu('agenda/index', $link_privileges) || show_sidebar_menu('galeri/index', $link_privileges) || show_sidebar_menu('regulasi/index', $link_privileges) || show_sidebar_menu('pengumuman/index', $link_privileges))
 			<li class="nav-label">Website</li>
 			<li>
 				<a href="#nav-berita" data-toggle="collapse" aria-controls="nav-berita">
@@ -91,6 +112,7 @@
 					<li><a href="{{ site_url('berita/arsip') }}"><i class="fa fa-archive"></i><span class="nav-label">Arsip</span></a></li>
 				</ul>
 			</li>
+			@endif
 			<li><a href="{{ site_url('info') }}"><i class="fa fa-fw fa-sitemap"></i><span class="nav-label">Info</span></a></li>
 			<li><a href="{{ site_url('agenda') }}"><i class="fa fa-fw fa-calendar"></i><span class="nav-label">Agenda</span></a></li>
 			<li>

@@ -8,7 +8,6 @@ class Info extends MY_Controller
 	
 	public function __construct()
 	{
-		$this->_accessable = TRUE;
 		parent::__construct();
 
 		$this->load->helper(array('dump', 'form', 'potong_teks'));
