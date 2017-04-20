@@ -4,6 +4,7 @@ class MY_Controller extends CI_Controller {
 
   protected $_accessable;
   protected $_warga;
+  protected $_wargaAuth;
   protected $_privileges;
   protected $_super;
   protected $_csrf;
@@ -17,6 +18,7 @@ class MY_Controller extends CI_Controller {
     $this->load->library('ion_auth');
 
     $this->_super = $this->session->userdata('super');
+    $this->_wargaAuth = $this->session->userdata('warga');
     $this->_privileges = $this->ion_auth->get_allowed_links();
     if (empty($this->_privileges)) {
       $this->_privileges = array();
@@ -39,9 +41,8 @@ class MY_Controller extends CI_Controller {
     }
 
     if (method_exists($this, $method)) {
-      // dump($this->_privileges);
-      if ($this->ion_auth->logged_in() || $this->_accessable || $this->_super) {
-        if ($this->check_privileges(get_class($this), $method) || $this->_accessable) {
+      if ($this->ion_auth->logged_in() || $this->_accessable || $this->_wargaAuth || $this->_super) {
+        if ($this->check_privileges(get_class($this), $method) || $this->_accessable || $this->_wargaAuth) {
           return call_user_func_array(array($this, $method), $param);
         }else{
           die('anda tidak mempunyai hak akses untuk menu ini');
