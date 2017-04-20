@@ -36,7 +36,7 @@
 						<div class="col-xs-12 col-md-4">
 							<div class="form-group">
 								<label for="">Tanggal Lahir</label>
-								<input type="date" class="form-control" name="tanggal_lahir" placeholder="tanggal lahir" value="{{ date('m/d/Y', strtotime($penduduk->tanggal_lahir)) }}">
+								<input type="date" class="form-control" name="tanggal_lahir" placeholder="tanggal lahir" value="{{ date('Y-m-d', strtotime($penduduk->tanggal_lahir)) }}">
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-4">
@@ -126,6 +126,7 @@
 						</div>
 					</div>
 					<div class="form-group break-top-20">
+						<a href="{{ site_url('penduduk') }}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Kembali</a>
 						<button class="btn btn-default btn-edit" type="button"><i class="fa fa-pencil"></i> Ubah Data</button>
 						<button class="btn btn-primary btn-save" type="submit"><i class="fa fa-save"></i> Simpan</button>
 						<button class="btn btn-warning" type="reset"><i class="fa fa-refresh"></i> Kembalikan</button>

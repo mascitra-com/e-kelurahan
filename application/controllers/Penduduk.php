@@ -184,11 +184,10 @@ class Penduduk extends MY_Controller {
             $current_id_org = $this->ion_auth->get_current_id_org();
             $data['kelurahan'] = $this->organisasi->get(array('id' => $current_id_org))->nama;
             $data['pekerjaan'] = $this->pekerjaan->get_all();
-            // TODO View untuk Tanggal Lahir belum benar
             $data['penduduk'] = $this->penduduk->get(array('nik' => $nik));
         }
         $this->message('Data Penduduk Berhasil Diubah', 'success');
-        $this->go('penduduk/detail/' . $nik);
+        $this->go('penduduk/detail/' . $data['nik']);
     }
 
     /**
