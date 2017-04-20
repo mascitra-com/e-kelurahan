@@ -35,9 +35,9 @@
 								<li><a href="{{ site_url('warga/pengajuan/blankokk') }}">Blanko Isian KK</a></li>
 								<li><a href="{{ site_url('warga/pengajuan/skck') }}">SKCK</a></li>
 								<li><a href="{{ site_url('warga/pengajuan/keterangan_kelahiran') }}">Surat Keterangan Kelahiran</a></li>
-								<li><a href="#">Surat Keterangan Kematian</a></li>
+								<li><a href="{{ site_url('warga/pengajuan/keterangan_kematian') }}">Surat Keterangan Kematian</a></li>
 								<li><a href="#">Surat Pengantar Ijin Keramaian</a></li>
-								<li><a href="#">Surat Keterangan Pindah</a></li>
+								<li><a href="{{ site_url('warga/pengajuan/pindah') }}">Surat Keterangan Pindah</a></li>
 								<li><a href="{{ site_url('warga/pengajuan/ijin_usaha') }}">Surat Keterangan Ijin Berusaha</a></li>
 								<li><a href="{{ site_url('warga/pengajuan/sktm_sekolah') }}">SKTM (Sekolah)</a></li>
 								<li><a href="{{ site_url('warga/pengajuan/keterangan_miskin') }}">Surat Keterangan Miskin</a></li>

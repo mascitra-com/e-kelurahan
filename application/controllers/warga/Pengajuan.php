@@ -11,7 +11,7 @@ class Pengajuan extends MY_Controller
 
 		$this->load->helper(array('dump', 'form'));
 		$this->load->library(array('form_validation'));
-		$this->load->model(array('surat_m', 'organisasi_m', 'penduduk_m', 'keluarga_m', 'surat_ijin_usaha_m'));
+		$this->load->model(array('provinsi_m', 'kabupaten_m', 'kecamatan_m', 'kelurahan_m', 'surat_m', 'organisasi_m', 'penduduk_m', 'keluarga_m', 'surat_ijin_usaha_m'));
 	}
 
 	public function index()
@@ -195,25 +195,78 @@ class Pengajuan extends MY_Controller
 		$this->render('warga/pengajuan/keterangan_kelahiran', $data);
 	}
 
-	public function keterangan_kelahiran_simpan($value='')
+	public function keterangan_kelahiran_simpan()
 	{
+		$this->load->model('kelahiran_m');
 		$input = $this->input->post();
 		$input['id'] = $this->kelahiran_m->get_last_id("SKL", 10);
 		$input['id_organisasi'] = $this->ion_auth->get_current_id_org();
 		$input['nik_ibu'] = str_replace(' ', '', substr($input['nik_ibu'], 0, strpos($input['nik_ibu'], "|")));
 		$input['nik_ayah'] = str_replace(' ', '', substr($input['nik_ayah'], 0, strpos($input['nik_ayah'], "|")));
 		$input['nik_pelapor'] = str_replace(' ', '', substr($input['nik_pelapor'], 0, strpos($input['nik_pelapor'], "|")));
-		$input['status'] = '1';
-		$input['tanggal_verif'] = date('Y-m-d h:i:s');
 
 		$query = $this->kelahiran_m->insert($input);
 		if ($query === FALSE) {
 			$this->message('Terjadi kesalahan saat membuat data surat keterangan kelahiran!', 'warning');
-			dump(form_error());
 		}else{
 			$this->message('Pengajuan surat keterangan kelahiran berhasil dibuat', 'success');
 		}
-		$this->go('kelahiran');
+		$this->go('warga/surat');
+	}
+
+	public function keterangan_kematian()
+	{
+		$this->generateCsrf();
+		$data['penduduks'] = $this->penduduk_m->ambilSemuaPendudukHidup($this->ion_auth->get_current_id_org());
+		$this->render('warga/pengajuan/keterangan_kematian', $data);
+	}
+
+	public function keterangan_kematian_simpan()
+	{
+		$this->load->model('kematian_m');
+
+		$input = $this->input->post();
+		$input['id'] = $this->kematian_m->get_last_id("SMT", 10);
+		$input['id_organisasi'] = $this->ion_auth->get_current_id_org();
+		$input['nik_meninggal'] = str_replace(' ', '', substr($input['nik_meninggal'], 0, strpos($input['nik_meninggal'], "|")));
+		$input['nik_pelapor'] = str_replace(' ', '', substr($input['nik_pelapor'], 0, strpos($input['nik_pelapor'], "|")));
+		$input['rt_meninggal'] = ltrim($input['rt_meninggal'], '0');
+		$input['rw_meninggal'] = ltrim($input['rw_meninggal'], '0');
+
+		$query = $this->kematian_m->insert($input);
+		if ($query === FALSE) {
+			$this->message('Terjadi kesalahan saat membuat data surat keterangan kematian!', 'warning');
+		}else{
+			$this->message('Pengajuan surat keterangan kematian berhasil dibuat', 'success');
+		}
+		$this->go('warga/surat');
+	}
+
+	public function pindah()
+	{
+		$data['provinsi'] = $this->provinsi_m->get_all();
+		$data['penduduk'] = $this->penduduk_m->where('id_organisasi', $this->ion_auth->get_current_id_org())->get_all();
+
+		$this->generateCsrf();
+		$this->render('warga/pengajuan/pindah', $data);
+	}
+
+	public function pindah_simpan()
+	{
+		$this->load->model('mutasi_keluar_m');
+		$data = $this->input->post();
+		$data['nik'] = str_replace(' ', '', substr($data['nik'], 0, strpos($data['nik'], '|')));
+		$data['id_organisasi'] = $this->ion_auth->get_current_id_org();
+		$pengikut = $data['pengikut'];
+		unset($data['pengikut']);
+		if($id_mutasi = $this->mutasi_keluar_m->insert($data)){
+			$this->message('Berhasil menyimpan data Pindah');
+			foreach ($pengikut as $item){
+				$temp = array('id_mutasi' => $id_mutasi, 'nik' => $item);
+				$this->mutasi_keluar_detail_m->insert($temp);
+			}
+		}
+		$this->go('pindah');
 	}
 
     /**
@@ -239,5 +292,104 @@ class Pengajuan extends MY_Controller
     	->fields('nik')
     	->get();
     	return $data;
+    }
+
+    /**
+     * Ambil penduduk yang masih hidup
+     *
+     * @param $nik
+     * @return $penduduk_hidup(JSON)
+     */
+    public function ambil_penduduk($nik)
+    {
+    	$current_id_org = $this->ion_auth->get_current_id_org();
+    	$penduduk_hidup = $this->penduduk_m->ambilSatuPendudukHidup($current_id_org, $nik);
+
+    	if ($penduduk_hidup)
+    	{
+    		if ($penduduk_hidup !== 'Penduduk tidak ditemukan')
+    		{
+    			echo json_encode($penduduk_hidup);
+    		} else
+    		{
+    			echo(json_encode(FALSE));
+    		}
+    	} else
+    	{
+    		die('Kesalahan query saat mengambil penduduk hidup');
+    	}
+    }
+
+    /**
+     * Ambil semua penduduk yang masih hidup dalam organisasi yang bersangkutan
+     *
+     * @return $penduduk_hidup(JSON)
+     */
+    public function ambil_nama_nik()
+    {
+    	$current_id_org = $this->ion_auth->get_current_id_org();
+    	$penduduk_hidup = $this->penduduk_m->ambilSemuaPendudukHidup($current_id_org);
+
+    	if ($penduduk_hidup)
+    	{
+    		if ($penduduk_hidup !== 'Penduduk tidak ditemukan')
+    		{
+    			echo json_encode($penduduk_hidup);
+    		} else
+    		{
+    			echo(json_encode(FALSE));
+    		}
+    	} else
+    	{
+    		die('Kesalahan query saat mengambil penduduk hidup');
+    	}
+    }
+
+    /**
+     * Get All Cities by Province ID
+     */
+    public function getCitiesByProvince()
+    {
+    	$idProvince = $this->input->post('idProvince');
+    	$cities = $this->kabupaten_m->where('id_provinsi', $idProvince)->get_all();
+    	$data = array('<option value="">Pilih Kabupaten / Kota</option>');
+
+        // Store all cities to array as combo box attribute
+    	foreach ($cities as $list) {
+    		$data[] = "<option value='$list->id'>$list->nama</option>";
+    	}
+    	echo json_encode($data);
+    }
+
+    /**
+     * Get All Districts by City ID
+     */
+    public function getDistrictByCity()
+    {
+    	$idCity = $this->input->post('idCity');
+    	$districts = $this->kecamatan_m->where('id_kabupaten', $idCity)->get_all();
+    	$data = array('<option value="">Pilih Kecamatan Tujuan</option>');
+
+        // Store all districts to array as combo box attribute
+    	foreach ($districts as $list) {
+    		$data[] = "<option value='$list->id'>$list->nama</option>";
+    	}
+    	echo json_encode($data);
+    }
+
+    /**
+     * Get All Districts by City ID
+     */
+    public function getVillageByDistrict()
+    {
+    	$idDistrict = $this->input->post('idDistrict');
+    	$villages = $this->kelurahan_m->where('id_kecamatan', $idDistrict)->get_all();
+    	$data = array('<option value="">Pilih Kelurahan/Desa Tujuan</option>');
+
+        // Store all districts to array as combo box attribute
+    	foreach ($villages as $list) {
+    		$data[] = "<option value='$list->id'>$list->nama</option>";
+    	}
+    	echo json_encode($data);
     }
 }
