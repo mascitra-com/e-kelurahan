@@ -1,12 +1,12 @@
 @layout('_layout/dashboard-user/index')
-@section('title')Pengajuan Surat Blanko KTP@endsection
+@section('title')Pengajuan Surat Ijin Usaha@endsection
 
 @section('content')
 <div class="row row-center">
 	<div class="col-xs-12 col-sm-6">
 		<div class="panel">
 			<div class="panel-heading">
-				<h3 class="panel-title">Pengajuan Surat Blanko KTP</h3>
+				<h3 class="panel-title">Pengajuan Surat Ijin Usaha</h3>
 			</div>
 			<div class="panel-body">
 				<h3>Keterangan</h3>
