@@ -121,6 +121,7 @@ class Auth extends MY_Controller {
 
 		// log the user out
 		$this->ion_auth->logout();
+		session_start();
 		$this->session->sess_destroy();
 
 		// redirect them to the login page
