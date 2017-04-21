@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'ekel_dev',
+	'hostname' => 'mascitra.com',
+	'username' => 'mascitra_ekel',
+	'password' => 'ekel12345',
+	'database' => 'mascitra_ekel',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

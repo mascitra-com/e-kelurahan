@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 16, 2017 at 08:25 AM
+-- Generation Time: Apr 21, 2017 at 09:27 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.1.1
 
@@ -52,7 +52,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 0, '', 'superadmin@super', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1488257314, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL);
+(1, 0, '', 'superadmin@super', '$2y$10$Mxtld8FnsQzQTzk4u5khO.LSXuigvJvPEjltfAXe54lYZQtEjKyYe', NULL, NULL, NULL, NULL, NULL, 1492678166, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -78,8 +78,8 @@ CREATE TABLE `agenda` (
 --
 
 INSERT INTO `agenda` (`id`, `id_organisasi`, `perihal`, `tanggal_agenda`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, '<p><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', '2017-03-06', '2017-02-28 17:00:00', 2, NULL, NULL, NULL, NULL),
-(3, 2, 'Pernikahan Anak Pak Camat', '2017-03-13', '2017-03-14 04:24:28', 2, NULL, NULL, NULL, NULL);
+(1, 2, 'Apel rutin', '2017-04-21', '2017-04-21 01:13:04', 2, NULL, NULL, NULL, NULL),
+(2, 2, 'Jalan Sehat', '2017-04-29', '2017-04-21 01:13:15', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -113,9 +113,10 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id`, `id_organisasi`, `ip_address`, `username`, `password`, `salt`, `kode_aktivasi`, `kode_lupa_password`, `waktu_lupa_password`, `kode_pengingat`, `last_login`, `active`, `created_on`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 1, '', 'admin@kecamatan', '$2y$10$AMHHt36SU/nDMfPQ.VPFG.E2SXIipPQF/crjrwkVhFYO0PC10eAJS', NULL, NULL, NULL, NULL, NULL, 1487680998, 1, '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 2, '127.0.0.1', 'Kelurahan-tompokersan@lumajang', '$2y$08$l1Taj8cY4fsLXlnjqzdAQ.hP69enNVE4NrWXv6CDAAvRhx0xk3obe', NULL, NULL, NULL, NULL, NULL, 1489652119, 1, '2017-02-17 23:03:29', 1, '2017-02-21 02:32:29', 1, NULL, NULL),
-(3, 2, '', '13241010101044', '$2y$08$n4C8B4S6oGmNJ2hxKXEKne.vTqaRk0btEOAQH3GbELEUDqAok0ZUq', NULL, NULL, NULL, NULL, NULL, 1489652288, 1, '2017-03-16 01:03:36', NULL, NULL, NULL, NULL, NULL);
+(1, 1, '127.0.0.1', 'admin@kecamatan', '$2y$10$2L0i4ZPWEr29m0U29Y/lJutIb.xGqwO8KiUs1eGiW9tdAiykklHGC', NULL, NULL, NULL, NULL, NULL, 1492763924, 1, '2017-04-09 17:00:00', 1, NULL, NULL, NULL, NULL),
+(2, 2, '', 'Kelurahan-tompokersan@lumajang', '$2y$10$cY1VToAXQHByW5nvW/9.xuyRWtBRUruKfavB45hdZTk0ukQE/C9EK', NULL, NULL, NULL, NULL, NULL, 1492761189, 1, '2017-04-10 01:32:40', NULL, '2017-04-10 01:33:20', 1, NULL, NULL),
+(3, 2, '', '1050241708900001', '$2y$08$hfkMfzXvvzo66pz82FKyuudlDwfgNhZdDde8IGjnXc5Ub9rvwOUry', NULL, NULL, NULL, NULL, NULL, 1492762981, 1, '2017-04-21 00:58:24', NULL, NULL, NULL, NULL, NULL),
+(4, 2, '', '1020241708900001', '$2y$08$TBgNAzAuwwDjuTI7SmxAQuRgMJOB8DVTKR3WZq7q0UhTNHEcSQlgq', NULL, NULL, NULL, NULL, NULL, NULL, 1, '2017-04-21 01:00:00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -152,11 +153,11 @@ CREATE TABLE `akun_warga` (
 CREATE TABLE `berita` (
   `id` int(11) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
-  `judul` varchar(50) NOT NULL,
+  `judul` varchar(100) NOT NULL,
   `isi` text NOT NULL,
   `slug` varchar(255) NOT NULL,
   `gambar` varchar(25) NOT NULL DEFAULT 'default.png' COMMENT 'nama gambar, disimpan dengan prefix',
-  `status` enum('0','1','2') CHARACTER SET latin1 COLLATE latin1_swedish_nopad_ci NOT NULL DEFAULT '0' COMMENT '0=terpublikasi, 1=terjadwal, 2=draft',
+  `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=terpublikasi, 1=terjadwal, 2=draft',
   `tipe` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0=umum, 1=headline',
   `count` int(11) NOT NULL DEFAULT 0,
   `tanggal_publish` date DEFAULT NULL,
@@ -173,12 +174,10 @@ CREATE TABLE `berita` (
 --
 
 INSERT INTO `berita` (`id`, `id_organisasi`, `judul`, `isi`, `slug`, `gambar`, `status`, `tipe`, `count`, `tanggal_publish`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 'The news is epic!', '<p><strong>Jemberedit -</strong>&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'the-news-is-epic', 'NWSUWL20170309100512.jpg', '0', '0', 0, '2017-03-09', '2017-02-28 17:00:00', 2, '2017-03-09 03:05:12', 2, NULL, 2),
-(2, 2, 'Hola this is an awesome article!', '<p><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\n<p>&nbsp;</p>\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'hola-this-is-an-awesome-article', 'default.png', '0', '0', 0, '2017-03-13', '2017-02-28 17:00:00', 2, '2017-03-13 01:10:38', 2, NULL, 2),
-(3, 2, 'The new article is awesome', '<p><strong>Lumajang</strong></p><br><p>On a slow boat in the middle of the Mekong, I am as far away from comfort as I have ever been. Physically, this ride is uncomfortable, the way the hard right angles of the wooden bench have done unspeakably awkward things to my butt in the last two days. But it is a mental discomfort too. You may be shocked to learn that there is no Wi-Fi signal in the middle of a mile-wide river in remote Northern Laos, and without the typical distractions you are left only with books, conversation, and your own thoughts. Ah, here was the real issue: under no circumstances was I to be left alone with my own thoughts. I gaze straight ahead and my eyes land on a family. A little girl is busy coloring and her father is handing her new markers as he is cued. She leans against him with the incontrovertible air of someone who knows they are safe. Her brown curls fall into her eyes as she focuses with the precision of a heart surgeon. She looks only at the coloring book, and he looks only at her. Before these long and solitary hours on the river I would have smiled warmly at them and moved on. But so many things have changed. I feel a bubble of panic rise in my chest. In my mind, the words appear like the chosen numbers in a lottery: one day she will lose him. I need to warn her that a loving father’s presence is impermanent and equivocal, just like everything beautiful in this world. That some day he will leave her and it will not be his choice.</p>', 'the-new-article-is-awesome', 'IMGKLD20170213103432.jpg', '0', '1', 1, '2017-03-01', '2017-02-28 17:00:00', 2, NULL, NULL, NULL, 2),
-(4, 2, 'Festival Layang-Layang', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid voluptate temporibus obcaecati, voluptates blanditiis! Eius. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ipsam cum nihil voluptatum in, alias.</p>', 'festival-layang-layang', 'NWSMBN20170308105409.jpg', '0', '0', 0, '2017-03-10', '2017-03-08 03:54:09', 2, '2017-03-13 01:13:42', 2, NULL, 2),
-(5, 2, 'Berita untuk draft', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid voluptate temporibus obcaecati, voluptates blanditiis! Eius. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ipsam cum nihil voluptatum in, alias.</p>', 'berita-untuk-draft', 'default.png', '2', '0', 0, '0000-00-00', '2017-03-08 03:57:06', 2, NULL, NULL, NULL, 2),
-(6, 2, 'This is a news without pictures', '<p><strong>Jember -</strong>&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Hoc loco tenere se Triarius non potuit. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Audeo dicere, inquit. Duo Reges: constructio interrete. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L.</p>\r\n<p>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Quodcumque in mentem incideret, et quodcumque tamquam occurreret. Quamquam haec quidem praeposita recte et reiecta dicere licebit. Nos paucis ad haec additis finem faciamus aliquando; Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres. Sextilio Rufo, cum is rem ad amicos ita deferret, se esse heredem Q. Ergo hoc quidem apparet, nos ad agendum esse natos. Quasi ego id curem, quid ille aiat aut neget.</p>\r\n<p>Omnes enim iucundum motum, quo sensus hilaretur. Sed plane dicit quod intellegit. Etenim nec iustitia nec amicitia esse omnino poterunt, nisi ipsae per se expetuntur. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Diodorus, eius auditor, adiungit ad honestatem vacuitatem doloris. Si enim ad populum me vocas, eum. Primum in nostrane potestate est, quid meminerimus? Idem adhuc; Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Quid ait Aristoteles reliquique Platonis alumni? Quis non odit sordidos, vanos, leves, futtiles? Bonum valitudo: miser morbus.</p>\r\n<p>Proclivi currit oratio. Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta. Mihi, inquam, qui te id ipsum rogavi? Atqui reperies, inquit, in hoc quidem pertinacem;</p>\r\n<p>&nbsp;</p>\r\n<p>Sit sane ista voluptas. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ergo id est convenienter naturae vivere, a natura discedere. Certe non potest.&nbsp;</p>', 'this-is-a-news-without-pictures-1', 'default.png', '0', '0', 0, '2017-03-09', '2017-03-09 02:22:17', 2, '2017-03-09 03:07:27', 2, '2017-03-13 01:35:10', 2);
+(1, 2, 'Puluhan Pelajar Ikuti Lomba Jurnalistik Dinas Kearsipan dan Perpustakaan Lumajang', '<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: 1.42857; font-family: inherit; vertical-align: baseline;\"><strong style=\"box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">Lumajang (lumajangsatu.com)</strong>&nbsp;- Dinas Kearsipan dan Perpustakaan Kabupaten Lumajang menggelar lomba jurnalistik tingkat SMA/SMK/MA, Kamis (20/04/2017). Lomba yang bekerjasama dengan lumajangsatu.com itu diikuti oleh puluhan peserta dari beberapa sekolah.&nbsp;</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">Khoiruddin, &nbsp;Kasi Pembinaan, Pengembangan dan Otomatis Dinas Kearsipan dan Perpustakaan menyatakan, &nbsp;dari beberapa lomba yang digelar peserta paling banyak di lomba jurnalistik. Harapannya, &nbsp;dengan lomba tersebut para pelajar disamping membaca juga bisa menulis.&nbsp;</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">\"Kalian ini adalah generasi yang hebat, &nbsp;kami berharap para siswa suka membaca dan menulis. Lomba ini juga ingin mengenalkan Perpustakaan kepada masyarakat dan menjadikan perpustakaan sebagai area publik yang menyenangkan, \" ujar Khoiruddin.&nbsp;</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">Anis Yulianti, &nbsp;pendamping dari SMA Katolik Lumajang memberikan apresiasi atas lomba jurnalistik. Jika bisa digelar secara rutin, maka akan lebih baik karena sekolah akan lebih siap.&nbsp;</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">\"Ini kan baru pertama kali digelar ya, kalau bisa rutin digelar setiap tahun akan lebih baik karena sekolah dan siswa bisa menyiapkan sejak awal, \" ujar perempuan manis itu.</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">M. Dandy Kris Indrawan, &nbsp;salah satu peserta dari SMA Negeri 3 menyatakan apresiasi atas kegiatan lomba jurnalistik. Yang menjadi kendala saat wawancara tidak fokus karena banyak peserta. Disamping itu, &nbsp;banyak petugas dari Perpustakaan saat ditanya soal Lumajang Kota Literasi banyak yang tidak faham.&nbsp;</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">\"Saat kita tanya Lumajang pernah dapat penghargaan Kota Literasi, petugas banyak yang tidak tahu, \" pungkasnya.<strong style=\"box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">(Yd/red)</strong></p>', 'puluhan-pelajar-ikuti-lomba-jurnalistik-dinas-kearsipan-dan-perpustakaan-lumajang', 'NWSZWY20170421080837.jpg', '0', '0', 0, '2017-04-21', '2017-04-21 01:08:37', 2, NULL, NULL, NULL, NULL),
+(2, 2, 'Inspektorat Ikut Awasi Hasil Pembangunan Alun-alun Lumajang', '<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\"><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: 1.42857; font-family: inherit; vertical-align: baseline;\"><strong style=\"box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">Lumajang (lumajangsatu.com)</strong>&nbsp;- Perhatian masyarakat atas hasil pembangunan di Lumajang sangat tinggi. Hal itu terlihat dari pengaduan warga di Inspektorat Lumajang, paling banyak soal pembangunan fisik.</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">\"Dengan keterbukaan informasi publik, ada aduan yang masuk ke Inspektorat termasuk pembangunan Alun-alun Lumajang, \" ujar Edy Khuzaini Plt Inspektorat Lumajang, Selasa (18/08/2017).</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">Inspektorat langsung mengambil langkah dengan melakukan pengawasan dan pengukuran. Inspektorat menggandeng lembaga teknis Dinas Pekerjaan Umum dan Tata Ruang untuk melakukan pengukuran hasil pembangunan Alun-alun Lumajang.&nbsp;</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">\"Kita gandeng Dinas PU untuk melakukan pengukuran hasil pembangunan Alun-alun Lumajang, \" jelas Edy.&nbsp;</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">Dari hasil pengawasan nantinya akan disampaikan kepada Bupati Lumajang. &nbsp;Setelah dilaporkan pada pimpinan, maka hasil pengawasan juga akan disampaikan pada publik.</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 25px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: Arial, sans-serif; vertical-align: baseline; color: #727272; text-align: justify;\">\"Setelah kita laporkan pada pimpinan, hasilnya juga akan disampaikan pada publik, \" pungkasnya.&nbsp;<strong style=\"box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">(Yd/red)</strong>&nbsp;</p>', 'inspektorat-ikut-awasi-hasil-pembangunan-alun-alun-lumajang', 'NWSTOS20170421080941.jpg', '0', '0', 0, '2017-04-21', '2017-04-21 01:09:41', 2, NULL, NULL, NULL, NULL),
+(3, 1, 'WAKIL BUPATI HADIRI KHATAMAN SERENTAK NASIONAL DI LAPAS KELAS IIB LUMAJANG', '<p><span style=\"text-align: justify; color: #e01a1a; font-family: \'century gothic\'; font-size: small;\"><strong>[lumajangkab.go.id]</strong></span><span style=\"font-family: Verdana; font-size: 10.6667px; text-align: justify;\">&nbsp;</span><span class=\"isi_berita\" style=\"font-family: Verdana; font-size: 10.6667px; text-align: justify;\"><strong><em>Khataman serentak warga binaan lapas se-Nusantara pecahkan rekor muri. Tercatat sebanyak 57.364 warga binaan se-Indonesia mengikuti Khataman Al Qur&rsquo;an yang diinstruksikan oleh Menteri Hukum dan Hak Asasi Manusia, Yasonna Laoly.</em></strong>&nbsp;<br /><br />Untuk memperingati Hari Bhakti Permasyarakatan ke 53, Lapas Kelas IIB Lumajang mengadakan Khataman Al Qur&rsquo;an, Kamis (20/4). Hadir dalam acara tersebut Wakil Bupati Lumajang, dr. Buntaran Supriyanto, M.Kes didampingi Kalapas IIB Lumajang, Agus Pritiatno, Bc.Ip, SH, MH.<br /><br />Khataman Al Qur&rsquo;an ini diselenggarakan serentak di seluruh lapas di Indonesia. Ribuan warga binaan di ratusan lembaga pemasyarakatan seluruh Indonesia, termasuk Lapas IIB Lumajang. Kalapas IIB Agus Pritiatno mengatakan bahwa diadakannya khataman Al Qur&rsquo;an ini sebagai momentum memperbaiki diri.&nbsp;<br /><br />&ldquo;Khataman Al Qur&rsquo;an serentak ini sebagai momentum memperbaiki diri, diharapkan warga binaan setelah keluar menjadi manusia yang lebih baik, berguna bagi keluarga, bagsa dan negara&rdquo;, ujar Agus.&nbsp;<br /><br />Khataman Al Qur&rsquo;an yang digelar serentak di seluruh lapas Nusantara ini tercatat di rekor MURI dengan total 57.364 warga binaan. Sementara itu Wakil Bupati Lumajang, dr. Buntaran Supriyanto, M.Kes mengapresiasi kegiatan ini. &ldquo;Khataman Al Quran serentak nasional ini luar biasa&rdquo;, ujar Wabup Buntaran.&nbsp;<br /><br />Momentum Hari Bhakti Permasyarakatan 53 yang berdekatan dengan peringatan Isra&rsquo; Mi&rsquo;raj ini digunakan untuk merevolusi mental warga binaan. Wabup Buntaran mengajak warga binaan selama berada di Lapas menggunakan waktunya sebaik mungkin, beliau mengajak warga binaan mengisi kegiatannya dengan ibadah dan memperbaiki diri.&nbsp;<br /><br />&ldquo;Selama berada disini, gunakanlah waktu panjenengan semua untuk memperbanyak ibadah, syukur-syukur panjenengan bisa mengkhatamkan Al Qur&rsquo;an, agar waktu selama menjadi warga binaan tidak sia-sia&rdquo;, pungkasnya. (Kominfo-lmj)</span></p>', 'wakil-bupati-hadiri-khataman-serentak-nasional-di-lapas-kelas-iib-lumajang', 'NWSAFE20170421083043.jpg', '0', '0', 0, '2017-04-21', '2017-04-21 01:30:43', 1, NULL, NULL, NULL, NULL),
+(4, 1, 'LUMAJANG TERUS KOMITMEN GARAP LITERASI', '<p><span style=\"text-align: justify; color: #e01a1a; font-family: \'century gothic\'; font-size: small;\"><strong>[lumajangkab.go.id]</strong></span><span style=\"font-family: Verdana; font-size: 10.6667px; text-align: justify;\">&nbsp;</span><span class=\"isi_berita\" style=\"font-family: Verdana; font-size: 10.6667px; text-align: justify;\"><strong><em>Pendidikan yang berkualitas menjadi kebutuhan penting di era persaingan global yang kian kompetitif. Salah satu upaya pemerintah menjadikan pendidikan berkualitas melalui peningkatan budaya literasi (membaca dan menulis).&nbsp;</em></strong><br /><br />Untuk meningkatkan budaya gemar membaca dan menulis bagi pelajar dan masyarakat, Dinas Kearsipan dan Perpustakan Kabupaten Lumajang menggelar Lomba Jurnalistik untuk siswa SMA/SMK dan MA se Kabupaten Lumajang. Acara ini diselenggarakan tanggal 18-20 April 2017.<br /><br />Lomba jurnalistik ini merupakan salah satu lomba dari empat lomba yang digelar. Lomba lainnya, meliputi Lomba Bercerita Rakyat bagi siswa SD/MI, Lomba Penghantar Tidur bagi Wali Murid Kelompok Bermain, Lomba Implementasi Budaya Baca dan Uji Cerdas bagi siswa SMA/SMK se-Kabupaten Lumajang.&nbsp;<br /><br />Kepala Dinas Kearsipan dan Perpustakaan Kabupaten Lumajang, Drs. Yos Sudarso mengatakan bahwa lomba ini diadakan sebagai upaya meningkatkan budaya baca di lingkungan masyarakat melalui perpustakaan. Yos Sudarso juga menambahkan bahwa selama tahun 2017, Dinas Kearsipan dan Perpustakaan mengadakan Wisata Buku Nonton Cerdas bagi anak-anak pemula. Setiap harinya mengundang anak-anak PAUD dan TK untuk membaca buku dan diakhiri nonton cerdas.&nbsp;<br /><br />&ldquo;Serangkaian kegiatan termasuk yang diadakan selama tahun 2017 ini, kita mengadakan Wisata Buku Nonton Cerdas bagi anak-anak pemula, hal ini dalam rangka mendukung program Bupati beserta Ketua TP. PKK mendorong Lumajang menjadi Kabupaten Layak Anak&rdquo;, tutur Yos.&nbsp;<br /><br />Lebih lanjut Yos Sudarso mengatakan bahwa terkait literasi atau budaya baca, Kabupaten Lumajang meraih penghargaan tingkat nasional dari Menteri Pendidikan dan Kebudayaan Republik Indonesia sebagai Kabupaten Literasi Mitra USAID Prioritas dengan kategori A atau sangat baik. Kabupaten Lumajang tercatat menduduki peringkat kedua setelah Kabupaten Serdang Bedagai dalam Indeks Pembangunan Literasi.&nbsp;<br /><br />&ldquo;Alhamdulillah kolaborasi antara Perpustakaan, Dinas Pendidikan dan Kementrian Agama berhasil membawa Lumajang peringkat 2 Nasional, tahun depan Lumajang bertekad untuk dapat nomor 1&rdquo;, ujar Yos. (Kominfo-lmj)</span></p>\r\n<p><span class=\"isi_berita\" style=\"font-family: Verdana; font-size: 10.6667px; text-align: justify;\">&nbsp;</span></p>', 'lumajang-terus-komitmen-garap-literasi', 'NWS8PJ20170421083127.jpg', '0', '0', 0, '2017-04-21', '2017-04-21 01:31:27', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -210,10 +209,10 @@ CREATE TABLE `detail_kartu_keluarga` (
 --
 
 INSERT INTO `detail_kartu_keluarga` (`id`, `no_kk`, `nik`, `id_pendidikan`, `status_keluarga`, `no_urut_kk`, `no_paspor`, `no_kitap`, `ayah`, `ibu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(2, '123', '389475932753034750954', 8, 1, 1, 'edit', '', '', '', '2017-02-20 05:29:09', 2, '2017-02-21 05:25:49', 2, NULL, NULL),
-(3, '678', '83740927349074', 7, 1, 1, '', '', '', '', '2017-02-20 23:01:08', 2, '2017-02-21 05:23:14', 2, NULL, NULL),
-(4, '123', '3764289649123', 2, 1, 1, NULL, NULL, NULL, NULL, '2017-03-01 17:00:00', 2, NULL, NULL, NULL, NULL),
-(5, '888', '13241010101044', NULL, 1, 1, NULL, NULL, NULL, NULL, '2017-03-16 01:03:36', 2, '2017-03-16 01:04:21', 2, NULL, NULL);
+(1, '3203041711053312', '1050241708900001', 8, 2, 1, NULL, NULL, 'Jeni Ardianto', 'Theresia Fenny Susita Loho', '2017-04-21 00:58:24', 2, '2017-04-21 00:58:52', 2, NULL, NULL),
+(2, '3203041711053312', '1050345708900002', 8, 3, 2, '', '', '', '', '2017-04-21 00:59:10', 2, NULL, NULL, NULL, NULL),
+(3, '3203041711053311', '1020241708900001', 4, 2, 1, NULL, NULL, NULL, NULL, '2017-04-21 01:00:00', 2, '2017-04-21 01:00:11', 2, NULL, NULL),
+(4, '3203041711053311', '1053241708900002', 7, 3, 2, '', '', 'Vence Lasut Loho', 'Eka Susmiasih', '2017-04-21 01:00:35', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -238,9 +237,10 @@ CREATE TABLE `detail_tingkatan` (
 --
 
 INSERT INTO `detail_tingkatan` (`id`, `id_akun`, `id_tingkatan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(2, 2, 2, '2017-02-18 06:03:29', 0, NULL, NULL, NULL, NULL),
-(4, 1, 1, '2017-02-18 06:12:02', 0, NULL, NULL, NULL, NULL),
-(5, 3, 3, '2017-03-15 17:00:00', 2, NULL, NULL, NULL, NULL);
+(1, 1, 1, '2017-04-09 17:00:00', 1, NULL, NULL, NULL, NULL),
+(2, 2, 2, '2017-04-10 08:32:40', 0, NULL, NULL, NULL, NULL),
+(3, 3, 3, '2017-04-21 07:58:24', 0, NULL, NULL, NULL, NULL),
+(4, 4, 3, '2017-04-21 08:00:00', 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -269,9 +269,9 @@ CREATE TABLE `galeri` (
 --
 
 INSERT INTO `galeri` (`id`, `id_organisasi`, `id_kategori`, `nama`, `deskripsi`, `tipe`, `link`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 1, '', '', '0', 'IMGI1720170315094644.png', '2017-03-15 02:46:44', 2, NULL, NULL, NULL, NULL),
-(2, 2, 1, '', '', '0', 'IMGWUI20170315094659.jpg', '2017-03-15 02:46:59', 2, NULL, NULL, NULL, NULL),
-(3, 2, 1, '', '', '0', 'IMG3IR20170315094737.jpg', '2017-03-15 02:47:37', 2, NULL, NULL, NULL, NULL);
+(1, 2, 1, 'Kegiatan paguyuban', '', '0', 'IMGO9J20170421081404.jpg', '2017-04-21 01:14:04', 2, NULL, NULL, NULL, NULL),
+(2, 2, 1, 'Cosplay', '', '0', 'IMGKMV20170421081415.jpg', '2017-04-21 01:14:15', 2, NULL, NULL, NULL, NULL),
+(3, 2, 0, 'Klub Sinematografi T', 'Merupakan hasil karya anak-anak muda tompokersan', '1', 'IMGR2B20170421081517.mp4', '2017-04-21 01:15:17', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -297,8 +297,7 @@ CREATE TABLE `galeri_kategori` (
 --
 
 INSERT INTO `galeri_kategori` (`id`, `id_organisasi`, `nama`, `deskripsi`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 'Rapat RT & RW', 'Deskripsi Galeri', '2017-03-15 00:09:30', 2, NULL, NULL, NULL, NULL),
-(2, 2, 'Pernikahan', '', '2017-03-15 00:10:27', 2, NULL, NULL, NULL, NULL);
+(1, 2, 'Foto-Foto', 'Foto kegiatan Kelurahan Tompokersan', '2017-04-21 01:13:43', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -362,9 +361,12 @@ CREATE TABLE `info_organisasi` (
 --
 
 INSERT INTO `info_organisasi` (`id`, `id_organisasi`, `judul`, `isi`, `slug`, `pos`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 'Sejarah', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam voluptatibus sed qui commodi dolores culpa perferendis iure est sapiente sint atque, necessitatibus adipisci fugiat, nisi veritatis quos amet rem, quasi nesciunt quae provident et! Ducimus consequuntur maxime aspernatur quam sed. Reiciendis labore sapiente totam asperiores molestias illo illum veniam voluptatibus accusantium nobis nisi iure qui nulla temporibus ipsum quas ad, odio veritatis aspernatur quam error eligendi necessitatibus fugit assumenda. Doloribus et dicta, reiciendis accusantium esse asperiores officiis quibusdam non nulla praesentium dolores, quas rem illo placeat numquam a quaerat. Eos voluptatibus in quas magnam eligendi atque dolorum velit asperiores, provident!\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo pariatur fugit nam, nobis illum animi? Inventore quaerat corrupti cum, consectetur, corporis fugit repudiandae tenetur. Provident error dicta est, perspiciatis aut?', 'sejarah', 0, '2017-03-13 17:00:00', 2, NULL, NULL, NULL, NULL),
-(2, 2, 'Visi & Misi', '<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">For more than 130 years, Intertek&rsquo;s story has always been about innovation. In 1885 we began testing and certifying grain cargoes before they were put to sea, and in 1888 we pioneered the idea of independent testing laboratories. Then in 1896, the greatest inventor of them all became part of our story. When Thomas Edison released the wonders of electricity and the light bulb he wanted to ensure that his products were checked, tested and safe. He established the Lamp Testing Bureau, later to become the Electrical Testing Laboratories.</p>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">Over a century later, we maintain his ETL mark of quality, and continue to establish new standards in quality to protect consumers and our clients&rsquo; reputations across the world. Today we are a global force, operating in over 100 countries, offering Total Quality Assurance expertise, delivered consistently with precision, pace and passion, enabling our customers to power ahead safely.</p>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">The foundations and aspirations of our business remain true to those established by our visionary founders, and their innovation and energy continue to be our inspiration. Our passion and entrepreneurial culture will ensure that we deliver for our customers in safety, quality and assurance &ndash; today and in the future.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Purpose</h3>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">Bringing quality and safety to life.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Mission</h3>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">To exceed our customers&rsquo; expectations with innovative and bespoke Assurance, Testing, Inspection and Certification services for their operations and supply chain. Globally. 24/7.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Vision</h3>\r\n<p style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin: 0px 0px 10px; color: #595654; font-size: 16px;\">To be the world&rsquo;s most trusted partner for Quality Assurance.</p>\r\n<h3 style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; font-weight: 500; line-height: 1.1; color: #595654; margin-top: 20px; margin-bottom: 10px; font-size: 24px;\">Our Values</h3>\r\n<ul style=\"box-sizing: border-box; font-family: \'Neo Sans W01\', Calibri, \'Lucida Grande\', Arial; margin-top: 0px; margin-bottom: 10px; color: #595654; font-size: 16px;\">\r\n<li style=\"box-sizing: border-box;\">We are a global family that values diversity.</li>\r\n<li style=\"box-sizing: border-box;\">We always do the right thing. With precision, pace and passion.</li>\r\n<li style=\"box-sizing: border-box;\">We trust each other and have fun winning together.</li>\r\n<li style=\"box-sizing: border-box;\">We own and shape our future.</li>\r\n<li style=\"box-sizing: border-box;\">We create sustainable growth. For All.</li>\r\n</ul>', 'visi-misi', 1, '2017-03-14 02:19:59', 2, NULL, NULL, NULL, NULL),
-(3, 2, 'Dummy edit', '<p>dummy content edit</p>', 'dummy-edit-1', 2, '2017-03-14 02:40:09', 2, '2017-03-14 02:49:45', 2, NULL, NULL);
+(1, 2, 'Motto, Visi & Misi', '<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-weight: bold; line-height: 24px; color: #fe0e01;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">MOTTO</span></span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">Loyalitas</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">Amanah</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">Nyaman</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">Transparan</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">Optimal</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">Ramah</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">Adil</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\"><br style=\"box-sizing: border-box;\" /><span style=\"box-sizing: border-box; font-weight: bold; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; color: #fe0e01;\">VISI</span></span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">\"Terwujudnya pelayanan prima, profesional, responsif menuju&nbsp;<em style=\"box-sizing: border-box;\">Good Governance</em>&nbsp;pada kantor kelurahan\"</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\">&nbsp;</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-weight: bold; line-height: 24px; color: #fe0e01;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">MISI</span></span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">1. Melaksanakan kegiatan pemberdayaan masyarakat</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">2. Melaksanakan upaya penyelenggaraan ketentraman dan ketertiban umum</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">3. Melaksanakan penerapan dan penegakan peraturan perundang - undangan</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">4. Melaksanakan pemeliharaan sarana dan prasarana umum</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; text-align: justify;\"><span style=\"box-sizing: border-box; font-size: 10pt; font-family: arial, helvetica, sans-serif;\">5. Mengoptimalkan penyelenggara kegiatan pemerintahan ditingkat kelurahan</span></p>', 'motto-visi-misi', 0, '2017-04-21 01:10:39', 2, NULL, NULL, NULL, NULL),
+(2, 2, 'Struktur Organisasi (Contoh)', '<p>HANYA CONTOH</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px;\"><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif; font-size: 10pt;\"><span style=\"box-sizing: border-box; font-weight: bold; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; color: #fe0e01;\">KEPALA KELURAHAN</span><br style=\"box-sizing: border-box;\" />Iswahyudin Muis, S.STP.,M.Adm.KP</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px;\"><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif; font-size: 10pt;\"><span style=\"box-sizing: border-box; font-weight: bold; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; color: #fe0e01;\">SEKRETARIS</span><br style=\"box-sizing: border-box;\" />H. Alis Bugiman, S.Sos</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px;\"><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif; font-size: 10pt;\"><span style=\"box-sizing: border-box; font-weight: bold; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; color: #fe0e01;\">SEKSI PEMERINTAHAN</span><br style=\"box-sizing: border-box;\" />Irawati, S.AB</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px;\"><span style=\"box-sizing: border-box; font-weight: bold; line-height: 24px; color: #fe0e01;\"><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif; font-size: 10pt;\">SEKSI KETENTRAMAN DAN KETERTIBAN UMUM<br style=\"box-sizing: border-box;\" />-</span></span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px;\"><span style=\"box-sizing: border-box; font-weight: bold; line-height: 24px; color: #fe0e01;\"><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif; font-size: 10pt;\">SEKSI KESEJAHTERAAN SOSIAL<br style=\"box-sizing: border-box;\" /></span></span><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif; font-size: 10pt;\">St. Habsah</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px;\"><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif; font-size: 10pt;\"><span style=\"box-sizing: border-box; font-weight: bold; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; color: #fe0e01;\">SEKSI PEREKONOMIAN DAN PEMBANGUNAN</span><br style=\"box-sizing: border-box;\" />Jelita</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px;\"><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif; font-size: 10pt;\"><span style=\"box-sizing: border-box; font-weight: bold; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; color: #fe0e01;\">KA. LINGK. LANTORA</span><br style=\"box-sizing: border-box;\" />Andi Ahmad</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px;\"><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif; font-size: 10pt;\"><span style=\"box-sizing: border-box; font-weight: bold; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; color: #fe0e01;\">KA. LINGK. LANTORA UTARA</span><br style=\"box-sizing: border-box;\" />Drs. Andi Muis</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px;\"><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif;\"><span style=\"box-sizing: border-box; font-size: 13.3333px;\"><span style=\"box-sizing: border-box; font-weight: bold; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; color: #fe0e01;\">KA LINGK. LANTORA TIMUR</span><br style=\"box-sizing: border-box;\" />Andi Sofyan, S.Pd</span></span></p>\r\n<p>&nbsp;</p>\r\n<p style=\"box-sizing: border-box; margin: 0px 0px 10px; color: #5f5f5f; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px;\"><span style=\"box-sizing: border-box; font-family: arial, helvetica, sans-serif;\"><span style=\"box-sizing: border-box; font-size: 13.3333px;\"><span style=\"box-sizing: border-box; font-weight: bold; font-family: \'Open Sans\'; font-size: 13px; line-height: 24px; color: #fe0e01;\">KA. LINGK. KALAWA</span><br style=\"box-sizing: border-box;\" />Hadjar</span></span></p>', 'struktur-organisasi-contoh', 1, '2017-04-21 01:11:44', 2, NULL, NULL, NULL, NULL),
+(3, 1, 'Sekapur Sirih', '<p>Assalamu\'alaikum Wr. Wb.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dengan mengucap puji syukur kehadirat Allah SWT, karena kita sampai hari ini masih diberikan Taufik Hidayat dan Inayah-Nya. Kita sebagai warga Kabupaten Lumajang masih dapat menikmati hasil-hasil pembangunan di era Otonomi Daerah saat ini. Oleh karena itu marilah pelaksanaan Otonomi Daerah ini kita sambut dengan optimis dan dengan penuh rasa tanggung jawab dalam meningkatkan pelayanan publik sesuai dengan standar yang telah dilaksanakan secara konsisten, transparan, akuntabel dan berkelanjutan, dengan diikuti kerja sama yang baik antara Pemerintah Kabupaten Lumajang, masyarakat dan Lembaga Legislatif.<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saya menyambut baik adanya situs Kabupaten Lumajang yang berisi Potensi Kabupaten Lumajang, disamping itu diharapkan gambaran potensi wisata yang ada dapat memberikan daya tarik bagi wisatawan domestik maupun wisatawan manca negara untuk berkunjung ke Kabupaten Lumajang.<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semoga informasi yang disajikan dalam situs ini bermanfaat dalam menunjang pelaksanaan pembangunan, sehingga dapat meningkatkan kesejahteraan masyarakat Kabupaten Lumajang.<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wassalamu\'alaikum Wr. Wb.</p>\r\n<table style=\"font-family: Verdana;\" width=\"95%\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">\r\n<tbody>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt;\">&nbsp;</td>\r\n</tr>\r\n</tbody>\r\n</table>', 'sekapur-sirih', 0, '2017-04-21 01:31:55', 1, NULL, NULL, NULL, NULL),
+(4, 1, 'Lambang Daerah', '<p>&nbsp;</p>\r\n<p style=\"font-family: Verdana; font-size: 10.6667px;\" align=\"center\"><img src=\"https://lumajangkab.go.id/gambar/logo%20kabupaten.png\" width=\"200\" height=\"272\" border=\"0\" /></p>\r\n<p style=\"font-family: Verdana; font-size: 10.6667px;\" align=\"center\"><span style=\"color: #0066cc; font-family: \'Century Gothic\'; font-size: small;\"><strong>Keterangan Arti Dan Makna Lambang Daerah<br />Kabupaten Lumajang</strong></span></p>\r\n<table style=\"font-family: Verdana;\" border=\"0\" width=\"98%\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">\r\n<tbody>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt;\"><span style=\"color: #ff0066; font-family: \'Century Gothic\'; font-size: small;\">Keterangan terbagi atas tiga bagian :</span><br /><br /><span class=\"isi_berita\" style=\"font-size: 8pt;\">I. Keterangan Bentuk Gambar Lambang.<br />II. Keterangan Warna Gambar Lambang.<br />III.Keterangan Makna Gambar Lambang.<br /><br /></span><span style=\"color: #ff0066; font-family: \'Century Gothic\'; font-size: small;\">I. Keterangan Bentuk Gambar Lambang.</span>\r\n<ol>\r\n<ol>\r\n<li>\r\n<p align=\"justify\">Lambang berbentuk perisai segi enam tak beraturan yang distilir secara simetris dengan bingkai pada kelilingnya.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Di bagian tengah lambang terlukis perpaduan yang terdiri atas tugu nasional kota Lumajang latar belakang gunung Semeru dengan nyala api dipuncaknya dan petak-petak sawah dengan dikelilingi untaian daun tembakau yang berjumlah delapan.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Melingkar disebelah kiri dan kanan adalah untaian padi dan kapas yang masing-masing berjumlah berjumlah empat empat puluh lima dan tujuh belas.<br />Di atasnya terlukis bintang segi lima beraturan.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Di bagian atas Lambang bertuliskan bertuliskan kata :\"KABUPATEN LUMAJANG\" dan dibawah lambang didalam sehelai pita tertulis kata : \"AMRETA BRATA WIRA BHAKTI\" sebuah sasanti/motto dalam bahasa Kawi.</p>\r\n</li>\r\n</ol>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<span style=\"color: #ff0066; font-family: \'Century Gothic\'; font-size: small;\">II. Keterangan Warna Gambar Lambang.</span>\r\n<ol>\r\n<ol>\r\n<li>\r\n<p align=\"justify\">Dasar perisai pada Lambang berwarna hijau tua dengan bingkai berwarna Merah Putih.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Tugu tampak sebagai sillouet berwarna putih kontur hitam. Gunung berwarna biru muda dan nyala api berwarna merah putih. Petak-petak sawah berwarna hijau tua dan tembakau berwarna coklat dengan tulang daun hitam.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Padi dan kapas berwarna putih.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Bintang segi lima berwarna kuning dengan kontur putih.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Tulisan \"KABUPATEN LUMAJANG\" berwarna putih. Pita dan sasanti berwarna putih dan tulisan hitam.</p>\r\n</li>\r\n</ol>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<span style=\"color: #ff0066; font-family: \'Century Gothic\'; font-size: small;\">III. Keterangan Makna Gambar Lambang.</span><br /><br />\r\n<ul>\r\n<li>\r\n<p align=\"justify\">Bentuk perisai pada lambang melukiskan sikap jiwa yang tahan uji, tabah dan penuh ketetapan hati sebagai dasar dari tiap perbuatan manusia. Warna hijau mencerminkan rasa kedamaian, persahabatan dan toleransi, sekaligus menggambarkan kesuburan daerah Kabupaten Lumajang.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Bingkai merah putih langsung mengungkapkan hubungan rasa kebangsaan sebagai suatu kesatuan dalam lingkungan Negara Republik Indonesia.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Paduan yang terlukis dibagian tengah menggambarkan tugu Nasional Kota Lumajang yang menunjukkan kekhususan monumental daerah dengan menandai pada Lumajang sebagai ibu kota Kabupaten.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Melatarbelakagi tugu tersebut adalah unsur-unsur geografis daerah Lumajang dengan gunung apinya yang terkenal : Semeru sebagai gunung paling tinggi di Pulau Jawa. Dalam mitos pewayangan dikenal sebagai Mahameru, tempat dewa-dewa bersemayam. Suatu tempat tertinggi dimana garis-garis kebijaksanaan dalam mengatur perikehidupan bersama-sama ditetapkan.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Sedangkan petak-petak sawah melukiskan salah satu unsur terpenting dan yang terutama didaerah Lumajang, ialah unsur agraris. Pertanian didaerah Lumajang, yang utama adalah padi, yang kedua merupakan usaha yang vital dan potensial adalah tembakau, pada lambang dilukiskan sebagai rangkaian daun-daun tembakau yang melingkar ke kiri dan ke kanan.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Nyala api dipuncak gunung merupakan dinamika yang menjiwai setiap unsur kehidupan bagaikan nyala api gunung Semeru yang tak kunjung padam.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Untaian padi dan kapas melukiskan sikap hidup sosialistis bangsa dengan bertujuan mewujudkan masyarakat adil dan makmur material dan spiritual berdasarkan Pancasila adalah merupakan tema yang mengilhami setiap gairah pembangunan.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Bilangan-bilangan tujuh belas pada kapas, delapan pada tembakau dan empat puluh lima pada padi mengungkapkan Semangat Proklamasi Kemerdekaan Indonesia yang menjiwai kerja, setiap unsur pembangunan di Lumajang.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Bintang segilima di bagian atas melukiskan Pancasila, falsafah negara dan sikap hidup bangsa Indonesia yang wajib dijunjung tinggi dan diagungkan, sebagaiman telah disebutkan pada sila Pertama Ke Tuhanan Yang Maha Esa. Merupakan dasar dan tujuan hidup Bangsa Indonesia justru karena Pancasila wajib diikrarkan dan diamalkan.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Tulisan&nbsp;<strong>\"KABUPATEN LUMAJANG\"</strong>&nbsp;di bagian atas menyebutkan nama daerah yang digambarkan dan diungkapkan pada lambang.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Sedangkan pita dibagian lambang menyebutkan sasanti/motto dalam bahasa Kawi :&nbsp;<strong>\"AMRETA BRATA WIRA BHAKTI\"</strong>&nbsp;yang maknanya : kebajikan yang kekal abadi adalah sikap perbuatan Ksatria dan penuh pengabdian. Suatu aspirasi dinamis yang diperlukan dalam mengamalkan jiwa Pancasila demi Amanat Penderitaan Rakyat.</p>\r\n</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>', 'lambang-daerah-1', 1, '2017-04-21 01:32:26', 1, '2017-04-21 01:32:34', 1, NULL, NULL),
+(5, 1, 'Sejarah Lumajang', '<center><span style=\"font-family: Verdana; font-size: small;\"><strong><span style=\"color: #0000ff;\">SEJARAH SINGKAT KOTA LUMAJANG</span></strong></span></center>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bumi LUMAJANG sejak jaman Nirleka dikenal sebagai daerah yang \"<em><strong>PANJANG-PUNJUNG PASIR WUKIR GEMAH RIPAH LOH JINAWI TATA TENTREM KERTA RAHARJA</strong></em>\".<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em><strong>PANJANG-PUNJUNG</strong></em>&nbsp;berarti memiliki sejarah yang lama. Dari peninggalan-peninggalan Nirleka maupun prasasti yang banyak ditemukan di daerah Lumajang cukup membuktikan hal itu.<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Beberapa prasasti yang pernah ditemukan, antara lain Prasasti Ranu Gumbolo. Dalam prasasti tersebut terbaca \"LING DEVA MPU KAMESWARA TIRTAYATRA\". Pokok-pokok isinya adalah bahwa Raja Kameswara dari Kediri pernah melakukan TIRTAYATRA ke dusun Tesirejo kecamatan Pasrujambe, juga pernah ditemukan prasasti yang merujuk pada masa pemerintahan Raja Kediri KERTAJAYA.</p>\r\n<p><span style=\"font-family: Verdana; font-size: small;\"><span class=\"isi_berita\" style=\"font-size: 8pt;\">Beberapa bukti peninggalan yang ada antara lain :</span></span></p>\r\n<ol>\r\n<li>Prasasti Mula Malurung</li>\r\n<li>Naskah Negara Kertagama</li>\r\n<li>Kitab Pararaton</li>\r\n<li>Kidung Harsa Wijaya</li>\r\n<li>Kitab Pujangga Manik</li>\r\n<li>Serat Babat Tanah Jawi</li>\r\n<li>Serat Kanda</li>\r\n</ol>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dari Prasasti Mula Manurung yang ditemukan di Kediri pada tahun 1975 dan ber-angka tahun 1177 Saka (1255 Masehi) diperoleh informasi bahwa NARARYYA KIRANA, salah satu dari anak Raja Sminingrat (Wisnu Wardhana) dari Kerajaan Singosari, dikukuhkan sebagai Adipati (raja kecil) di LAMAJANG(Lumajang). Pada tahun 1255 Masehi, tahun yang merujuk pada pengangkatan NARARYYA KIRANA sebagai Adipati di Lumajang inilah yang kemudian dijadikan sebagai sebagai dasar penetapan Hari Jadi Lumajang (HARJALU).</p>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dalam Buku Pararaton dan KIDUNG HARSYA WIJAYA disebutkan bahwa para pengikut Raden Wijaya atau Kertarajasa dalam mendirikan Majapahit, semuanya diangkat sebagai Pejabat Tinggi Kerajaan. Di antaranya Arya Wiraraja diangkat Maha Wiradikara dan ditempatkan di Lumajang, dan putranya yaitu Pu Tambi atau Nambi diangkat sebagai Rakyan Mapatih.</p>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pengangkatan Nambi sebagai Mapatih inilah yang kemudian memicu terjadinya pemberontakan di Majapahit. Apalagi dengan munculnya Mahapati(Ramapati) seorang yang cerdas, ambisius dan amat licik. Dengan kepandaiannya berbicara, Mahapati berhasil mempengaruhi Raja. Setelah berhasil menyingkirkan Ranggalawe, Kebo Anabrang, Lembu Suro, dan Gajah Biru, target berikutnya adalah Nambi.</p>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nambi yang mengetahui akan maksud jahat itu merasa lebih baik menyingkir dari Majapahit. Kebetulan memang ada alasan, yaitu ayahnya(Arya Wiraraja) sedang sakit, maka Nambi minta izin kepada Raja untuk pulang ke Lumajang. Setelah Wiraraja meninggal pada tahun 1317 Masehi, Nambi tidak mau kembali ke Majapahit, bahkan membangun Beteng di Pajarakan. Pada 1316, Pajarakan diserbu pasukan Majapahit. Lumajang diduduki dan Nambi serta keluarganya dibunuh.</p>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pupuh 22 lontar NAGARA KERTAGAMA yang ditulis oleh Prapanca menguraikan tentang perjalanan Raja Hayam Wuruk ke Lumajang. Selain NAGARA KERTAGAMA, informasi tentang Lumajang diperoleh dari Buku Babad. Dalam beberapa buku babad terdapat nama-nama penguasa Lumajang, yaitu WANGSENGRANA, PUTUT LAWA, MENAK KUNCARA(MENAK KONCAR) dan TUMENGGUNG KERTANEGARA. Oleh karena kemunculan tokoh-tokoh itu tidak disukung adanya bukti-bukti yang berupa bangunan kuno, keramik kuno, ataupun prasasti, maka nama-nama seperti MENAK KONCAR hanyalah tokoh dongeng belaka.</p>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Di tepi Alun-alun Lumajang sebelah utara terdapat bangunan mirip candi, berlubang tembus, terdapat CANDRA SENGKALA yang berbunyi \"TRUSING NGASTA MUKA PRAJA\" (TRUS=9, NGASTA=2, MUKA=9, PRAJA=1). Bangunan ini merupakan tetenger atau penanda, ditujukan untuk mengenang peristiwa bersejarah, yaitu pada tahun 1929. Lumajang dinaikkan statusnya menjadi REGENTSCAH otonom per 1 Januari 1929 sesuai Statblat Nomor 319, 9 Agustus 1928. Regentnya RT KERTO ADIREJO, eks Patih Afdelling Lumajang (sebelumnya Lumajang masuk wilayah administratif Kepatihan dari Afdelling Regentstaschap atau Pemerintah Kabupaten Probolinggo).</p>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pada masa perjuangan merebut dan mempertahankan kemerdekaan tahun 1942-1949, Lumajang dijadikan sebagai basis perjuangan TNI dengan dukungan rakyat.</p>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nama-nama seperti KAPTEN KYAI ILYAS, SUWANDAK, SUKERTIYO, dan lain-lainnya, baik yang gugur maupun tidak, yang dikenal atau tak dikenal, adalah para kusuma bangsa yang dengan meneruskan perjuangan para pahlawan kusuma bangsa itu dengan bekerja secara tulus, menjauhkan kepentingan pribadi, jujur, amanah, dan bersedia berkorban demi kemajuan Lumajang Tercinta.</p>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mengingat keberadaan Negara Lamajang sudah cukup meyakinkan bahwa 1255M itu Lamajang sudah merupakan sebuah negara berpenduduk, mempunyai wilayah, mempunyai raja (pemimpin) dan pemerintahan yang teratur, maka ditetapkanlah tanggal 15 Desember 1255 M sebagai hari jadi Lumajang yang dituangkan dalam Keputusan Bupati Kepala Derah Tingkat II Lumajang Nomor 414 Tahun 1990 tanggal 20 Oktober 1990</p>\r\n<p align=\"justify\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sejak tahun 1928 Pemerintahan Belanda menyerahkan segala urusan segala pemerintahan kepada Bupati Lumajang pertama KRT Kertodirejo. Yang ditandai dengan monumen / tugu yang terletak di depan pintu gerbang Alun-alun sebelah utara.</p>\r\n<p><span style=\"font-family: Verdana; font-size: small;\">&nbsp;</span></p>\r\n<table id=\"AutoNumber2\" style=\"border-collapse: collapse; border-width: 0px;\" border=\"1\" width=\"90%\" cellspacing=\"0\" cellpadding=\"0\">\r\n<tbody>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">1.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">KRT KERTODIREJO</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 1928 - 1941 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">2.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">R. ABU BAKAR&nbsp;</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 1941 - 1948 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">3.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">R. SASTRODIKORO&nbsp;</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 1948 - 1959 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">4.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">R. SUKARDJONO</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 1959 - 1966 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">5.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">N.G. SUBOWO</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 1966 - 1973 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">6.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">SUWANDI</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 1973 - 1983 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">7.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">KARSID</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 1983 - 1988 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">8.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">H.M. SAMSI RIDWAN</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 1988 - 1993 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">9.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">TARMIN HARIYADI</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 1993 - 1998 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">10.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">Drs.H. ACHMAD FAUZI</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 1998 - 2003 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">11.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">Drs.H. ACHMAD FAUZI - H. HARTONO, SH, S.Sos</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 2003 - 2008 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">12.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">DR.H. SJAHRAZAD MASDAR,MA - Drs. AS\'AT, MAg</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 2008 - 2013 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"6%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">13.</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">DR.H. SJAHRAZAD MASDAR,MA - Drs. AS\'AT, MAg</span></td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; border-style: none; border-width: medium;\" width=\"70%\"><span class=\"isi_berita\" style=\"text-decoration: none; font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000;\">( 2013 - 2018 )</span></td>\r\n</tr>\r\n<tr>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; border-style: none; border-width: medium;\" width=\"6%\" height=\"10\">&nbsp;</td>\r\n<td style=\"font-family: Verdana; font-size: 8pt; font-weight: normal; color: #000000; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; border-style: none; border-width: medium;\" width=\"70%\" height=\"10\">&nbsp;</td>\r\n</tr>\r\n</tbody>\r\n</table>', 'sejarah-lumajang', 2, '2017-04-21 01:33:02', 1, NULL, NULL, NULL, NULL),
+(6, 1, 'Visi & Misi', '<p><strong><em><span style=\"color: blue;\">V I S I</span></em></strong></p>\r\n<p align=\"center\"><em><strong>\'\'TERWUJUDNYA MASYARAKAT LUMAJANG YANG SEJAHTERA, DAN BERMARTABAT\'\'</strong></em></p>\r\n<p><strong><em><span style=\"color: blue;\">M I S I</span></em></strong><br /><br /></p>\r\n<ol style=\"font-family: Verdana; font-size: 13.3333px;\">\r\n<ol style=\"font-family: Verdana; font-size: 13.3333px;\">\r\n<li>\r\n<p align=\"justify\">Meningkatkan kesejahteraan masyarakat melalui peningkatan perekonomian daerah dengan pemanfaatan sumber daya alam yang berwawasan lingkungan, menciptakan iklim usaha yang kondusif, serta meningkatkan pengetahuan dan kemampuan pelaku ekonomi.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Meningkatkan masyarakat yang bermartabat melalui peningkatan tata kelola pemerintahan yang baik dengan peningkatan sumber daya manusia dan profesionalisme aparatur.</p>\r\n</li>\r\n<li>\r\n<p align=\"justify\">Meningkatkan kualitas hidup masyarakat melalui peningkatan kehidupan beragama, kualitas pendidikan, penanganan sosial dan pengentasan kemiskinan.</p>\r\n</li>\r\n</ol>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<center style=\"font-family: Verdana; font-size: 13.3333px;\"><strong><em><span style=\"color: blue;\">KOMITMEN BUPATI DAN WAKIL BUPATI LUMAJANG<br />PERIODE 2013-2018</span></em></strong></center>\r\n<ol style=\"font-family: Verdana; font-size: 13.3333px;\">\r\n<li>Bidang Pendidikan<br />\r\n<ol>\r\n<li>Bantuan Non NIP Guru PAUD, SD, SMP dari Rp 100.000 menjadi Rp 200.000</li>\r\n<li>Honor Pesuruh SD, SMP, SMA, SMK @ Rp 200.000</li>\r\n<li>Bantuan Operasional SMA, SMK (SMK Rp 65.000 menjadi Rp 125.000, SMA Rp 65.000 menjadi Rp 100.000)</li>\r\n<li>Program 1 Kecamatan 1 SD Unggulan</li>\r\n</ol>\r\n</li>\r\n<li>Bidang Kesehatan<br />\r\n<ol>\r\n<li>1 Desa 1 Ambulance</li>\r\n<li>Rawat Inap Gratis untuk Lansia di puskesmas</li>\r\n<li>Memantapkan Gerbangmas Siaga</li>\r\n<li>Ambulance untuk Poskestren</li>\r\n<li>Semua Puskesmas jadi Rawat Inap</li>\r\n<li>Pemeriksaan Kesehatan Haji Gratis</li>\r\n</ol>\r\n</li>\r\n<li>Bidang Pertanian<br />\r\n<ol>\r\n<li>Pemantapan Sigarpun Bulat</li>\r\n<li>Pengembangan 1 Desa 1 Lumbung Pangan</li>\r\n<li>Pengembangan Kawasan Agropolitan Seroja, Minapolitan dan Kawasan Utara</li>\r\n<li>Pengamanan Harga Gabah Petani</li>\r\n</ol>\r\n</li>\r\n<li>Bidang Reformasi Birokrasi<br />\r\n<ol>\r\n<li>Kenaikan Honorariun RT/RW dan Peningkatan Kualitas SDM</li>\r\n</ol>\r\n</li>\r\n<li>Bidang Pariwisata<br />\r\n<ol>\r\n<li>Pembangunan Museum Sejarah</li>\r\n<li>Pengembangan Tempat Pariwisata</li>\r\n<li>Pengembangan 1 Kecamatan 1 Desa Wisata</li>\r\n</ol>\r\n</li>\r\n<li>Bidang Infrastruktur<br />\r\n<ol>\r\n<li>Peningkatan Seluruh Ruas Jalan Kabupaten dari Aspal Menjadi Hotmix (Panjang Jalan 1.051.987 km, yang sudah Hotmix 175.448 Km)</li>\r\n</ol>\r\n</li>\r\n<li>Bidang Sosial<br />\r\n<ol>\r\n<li>Santunan Uang Duka Bagi Orang Miskin Yang Meninggal Dunia</li>\r\n<li>Rehabilitasi Rumah Tidak Layak Huni 1000 Rumah Per Tahun</li>\r\n<li>Menaikkan Tunjangan Honor Bagi 3000 Guru Ngaji</li>\r\n</ol>\r\n</li>\r\n<li>Bidang Sumber Daya Alam dan Energi<br />\r\n<ol>\r\n<li>Pendayagunaan Potensi-potensi SDA dan Pemanfaatan Sumber Energi dengan Azas Keberlanjutan serta Pelestarian Lingkungan Hidup</li>\r\n<li>Perluasan Infrastruktur Listrik Pedesaan</li>\r\n</ol>\r\n</li>\r\n<li>Bidang Sumber Daya Alam dan Energi<br />\r\n<ol>\r\n<li>Pemberian Pinjaman Dana Bergulir Tanpa Bunga Bagi Kelompok Usaha masyarakat</li>\r\n<li>1 Kecamatan 1 Sentra Batik</li>\r\n</ol>\r\n</li>\r\n</ol>', 'visi-misi', 3, '2017-04-21 01:33:22', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8179,25 +8181,36 @@ INSERT INTO `kecamatan` (`id`, `id_kabupaten`, `nama`) VALUES
 --
 
 CREATE TABLE `kelahiran` (
-  `id` int(11) NOT NULL,
-  `no_kk` varchar(40) NOT NULL,
+  `id` varchar(10) NOT NULL COMMENT 'SKL',
   `id_organisasi` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `jenis_kelamin` varchar(250) NOT NULL,
-  `tempat_lahir` varchar(200) NOT NULL,
-  `tanggal_lahir` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `nama_ayah` varchar(250) NOT NULL,
-  `nama_ibu` varchar(250) NOT NULL,
-  `alamat` varchar(255) NOT NULL,
-  `rt` int(3) UNSIGNED ZEROFILL NOT NULL,
-  `rw` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `nik_ibu` varchar(40) NOT NULL,
+  `nik_ayah` varchar(40) DEFAULT NULL,
+  `nik_pelapor` varchar(40) NOT NULL,
+  `hubungan_pelapor` varchar(50) NOT NULL,
+  `nama_anak` varchar(100) NOT NULL,
+  `tanggal_kelahiran` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tempat_kelahiran` text NOT NULL,
+  `tanggal_verif` timestamp NULL DEFAULT NULL,
+  `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
+  `nama_pengambil` varchar(50) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` int(11) DEFAULT NULL,
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kelahiran`
+--
+
+INSERT INTO `kelahiran` (`id`, `id_organisasi`, `no_surat`, `nik_ibu`, `nik_ayah`, `nik_pelapor`, `hubungan_pelapor`, `nama_anak`, `tanggal_kelahiran`, `tempat_kelahiran`, `tanggal_verif`, `status`, `keterangan`, `tanggal_ambil`, `nama_pengambil`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+('SKL0000001', 2, NULL, '1050345708900002', '1050241708900001', '1020241708900001', 'Kakek', 'Theresia Prilina Hardika', '2017-04-20 17:00:00', 'Jalan Belimbing 52, Tompokersan, Lumajang', '2017-04-21 01:02:03', '1', NULL, NULL, NULL, '2017-04-21 01:02:03', 2, NULL, NULL, NULL, NULL),
+('SKL0000002', 2, '1/SKK/LMJG/02.2002/2017', '1050345708900002', '1050241708900001', '1050241708900001', 'Ayah kandung', 'Ansem Hardika Loho', '2017-04-21 08:03:32', 'Jember', '2017-04-21 01:02:57', '1', 'Telah diambil di kantor kelurahan Tompokersan', '2017-04-21 01:03:32', 'Andre Hardika', '2017-04-21 01:02:57', 2, '2017-04-21 01:03:32', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8226,9 +8239,8 @@ CREATE TABLE `keluarga` (
 --
 
 INSERT INTO `keluarga` (`no`, `id_organisasi`, `nik`, `alamat`, `rt`, `rw`, `kode_pos`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-('123', 2, '389475932753034750954', 'Lorem ipsum dolor sit amet, consectetur.', 002, 011, '68118', '2017-02-20 05:29:09', 2, '2017-02-20 23:15:28', 2, NULL, NULL),
-('678', 2, '83740927349074', 'Lorem ipsum dolor sit amet, consectetur.', 001, 009, '68118', '2017-02-20 23:01:07', 2, NULL, NULL, NULL, NULL),
-('888', 2, '13241010101044', 'Example street', 002, 011, '68118', '2017-03-16 01:03:36', 2, '2017-03-16 01:04:20', 2, NULL, NULL);
+('3203041711053311', 2, '1020241708900001', 'Jalan Kenanga 13 Gg. IV, Tompokersan, Lumajang', 009, 013, '67311', '2017-04-21 00:59:59', 2, NULL, NULL, NULL, NULL),
+('3203041711053312', 2, '1050241708900001', 'Jalan Belimbing 52, Tompokersan, Lumajang', 002, 011, '67311', '2017-04-21 00:58:24', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13360,6 +13372,39 @@ INSERT INTO `kelurahan` (`id`, `id_kecamatan`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kematian`
+--
+
+CREATE TABLE `kematian` (
+  `id` varchar(10) NOT NULL COMMENT 'SKL',
+  `id_organisasi` int(11) NOT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `nik_meninggal` varchar(40) NOT NULL,
+  `nik_pelapor` varchar(40) NOT NULL,
+  `hubungan_pelapor` varchar(50) NOT NULL,
+  `tanggal_meninggal` timestamp NOT NULL DEFAULT current_timestamp(),
+  `dusun` varchar(100) NOT NULL,
+  `rt_meninggal` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `rw_meninggal` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `kampung` varchar(100) NOT NULL,
+  `kec_meninggal` varchar(100) NOT NULL,
+  `kab_meninggal` varchar(100) NOT NULL,
+  `tanggal_verif` timestamp NULL DEFAULT NULL,
+  `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
+  `nama_pengambil` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `meninggal`
 --
 
@@ -13395,23 +13440,158 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`id`, `link`) VALUES
 (1, 'dashboard/index'),
-(2, 'kelurahan/index'),
-(3, 'kelurahan/simpan'),
-(4, 'keluarga/ubah'),
-(5, 'kelurahan/nonaktifkan'),
-(6, 'kelurahan/aktifkan'),
-(7, 'kelurahan/batal'),
-(8, 'penduduk/index'),
-(9, 'penduduk/search'),
-(10, 'penduduk/page'),
-(11, 'penduduk/refresh'),
-(12, 'penduduk/urut'),
-(13, 'penduduk/tambah'),
-(14, 'penduduk/simpan'),
-(15, 'penduduk/detail'),
-(16, 'penduduk/ubah'),
-(17, 'penduduk/hapus'),
-(18, 'keluarga/index');
+(2, 'dashboard/notifikasi'),
+(3, 'kelurahan/index'),
+(4, 'kelurahan/simpan'),
+(5, 'kelurahan/ubah'),
+(6, 'kelurahan/nonaktifkan'),
+(7, 'kelurahan/aktifkan'),
+(8, 'kelurahan/batal'),
+(9, 'kelurahan/konfirmasi'),
+(10, 'kelurahan/setujui'),
+(11, 'kelurahan/tolak'),
+(12, 'profil/index'),
+(13, 'profil/simpan'),
+(14, 'profil/ubah'),
+(15, 'profil/ganti_password'),
+(16, 'penduduk/page'),
+(17, 'penduduk/index'),
+(18, 'penduduk/urut'),
+(19, 'penduduk/search'),
+(20, 'penduduk/refresh'),
+(21, 'penduduk/tambah'),
+(22, 'penduduk/simpan'),
+(23, 'penduduk/detail'),
+(24, 'penduduk/ubah'),
+(25, 'penduduk/hapus'),
+(26, 'penduduk/ambil_penduduk'),
+(27, 'penduduk/ambil_nama_nik'),
+(28, 'kelahiran/index'),
+(29, 'kelahiran/arsip'),
+(30, 'kelahiran/konfirmasi'),
+(31, 'kelahiran/simpan'),
+(32, 'kelahiran/ambil'),
+(33, 'kelahiran/detail'),
+(34, 'kelahiran/cetak'),
+(35, 'kelahiran/arsipkan'),
+(36, 'kelahiran/kembalikan'),
+(37, 'kelahiran/hapus'),
+(38, 'kematian/index'),
+(39, 'kematian/arsip'),
+(40, 'kematian/konfirmasi'),
+(41, 'kematian/simpan'),
+(42, 'kematian/ambil'),
+(43, 'kematian/detail'),
+(44, 'kematian/cetak'),
+(45, 'kematian/arsipkan'),
+(46, 'kematian/kembalikan'),
+(47, 'kematian/hapus'),
+(48, 'keluarga/index'),
+(49, 'keluarga/page'),
+(50, 'keluarga/urut'),
+(51, 'keluarga/search'),
+(52, 'keluarga/refresh'),
+(53, 'keluarga/detail'),
+(54, 'keluarga/simpan'),
+(55, 'keluarga/sunting'),
+(56, 'keluarga/ambil_kep_nik'),
+(57, 'keluarga/simpan_anggota'),
+(58, 'keluarga/ubah_anggota'),
+(59, 'keluarga/hapus_anggota'),
+(60, 'pindah/index'),
+(61, 'pindah/page'),
+(62, 'pindah/search'),
+(63, 'pindah/refresh'),
+(64, 'pindah/arsip'),
+(65, 'pindah/tambah'),
+(66, 'pindah/simpan'),
+(67, 'pindah/detail'),
+(68, 'pindah/pratinjau'),
+(69, 'pindah/cetak'),
+(70, 'pindah/ubah'),
+(71, 'pindah/arsipkan'),
+(72, 'pindah/kembalikan'),
+(73, 'pindah/getCitiesByProvince'),
+(74, 'pindah/getDistrictByCity'),
+(75, 'pindah/getVillageByDistrict'),
+(76, 'pindah/ambilDataSuratPengajuan'),
+(77, 'surat/blankoktp'),
+(78, 'surat/blankokk'),
+(79, 'surat/skck'),
+(80, 'surat/keterangan_miskin'),
+(81, 'surat/keterangan_miskin_rt'),
+(82, 'surat/simpan'),
+(83, 'surat/konfirmasi'),
+(84, 'surat/ambil'),
+(85, 'surat/arsip'),
+(86, 'surat/arsipkan'),
+(87, 'surat/kembalikan'),
+(88, 'surat/hapus'),
+(89, 'surat/detail'),
+(90, 'surat/cetak'),
+(91, 'berita/index'),
+(92, 'berita/page'),
+(93, 'berita/urut'),
+(94, 'berita/search'),
+(95, 'berita/refresh'),
+(96, 'berita/tambah'),
+(97, 'berita/draf'),
+(98, 'berita/arsip'),
+(99, 'berita/selengkapnya'),
+(100, 'berita/tulis'),
+(101, 'berita/sunting'),
+(102, 'berita/simpan'),
+(103, 'berita/ubah'),
+(104, 'berita/arsipkan'),
+(105, 'berita/publikasikan'),
+(106, 'berita/kembalikan'),
+(107, 'berita/hapus'),
+(108, 'info/index'),
+(109, 'info/tambah'),
+(110, 'info/selengkapnya'),
+(111, 'info/sunting'),
+(112, 'info/simpan'),
+(113, 'info/ubah'),
+(114, 'info/aktifkan'),
+(115, 'info/nonaktifkan'),
+(116, 'info/hapus'),
+(117, 'info/update_pos'),
+(118, 'agenda/index'),
+(119, 'agenda/simpan'),
+(120, 'agenda/ubah'),
+(121, 'agenda/hapus'),
+(122, 'galeri/index'),
+(123, 'galeri/video'),
+(124, 'galeri/detail'),
+(125, 'galeri/simpanAlbum'),
+(126, 'galeri/simpanFoto'),
+(127, 'galeri/simpanVideo'),
+(128, 'regulasi/index'),
+(129, 'regulasi/simpan'),
+(130, 'regulasi/ubah'),
+(131, 'regulasi/hapus'),
+(132, 'pengumuman/index'),
+(133, 'pengumuman/simpan'),
+(134, 'pengumuman/ubah'),
+(135, 'pengumuman/nonaktifkan'),
+(136, 'pengumuman/aktifkan'),
+(137, 'pengumuman/hapus'),
+(138, 'pengaturan/index'),
+(139, 'pengaturan/simpan_banner'),
+(140, 'pengaturan/simpan_sosmed'),
+(141, 'sktm_sekolah/index'),
+(142, 'sktm_sekolah/arsip'),
+(143, 'sktm_sekolah/simpan'),
+(144, 'sktm_sekolah/konfirmasi'),
+(145, 'sktm_sekolah/ambil'),
+(146, 'sktm_sekolah/arsipkan'),
+(147, 'sktm_sekolah/kembalikan'),
+(148, 'sktm_sekolah/hapus'),
+(149, 'surat_ijin_usaha/index'),
+(150, 'sktm_sekolah/simpan'),
+(151, 'sktm_sekolah/ambil'),
+(152, 'sktm_sekolah/arsipkan'),
+(153, 'sktm_sekolah/konfirmasi');
 
 -- --------------------------------------------------------
 
@@ -13441,14 +13621,6 @@ CREATE TABLE `mutasi_keluar` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `mutasi_keluar`
---
-
-INSERT INTO `mutasi_keluar` (`id`, `id_organisasi`, `no_surat`, `nik`, `alamat_asal`, `alamat_tujuan`, `rt_tujuan`, `rw_tujuan`, `id_prov_tujuan`, `id_kab_tujuan`, `id_kec_tujuan`, `id_kel_tujuan`, `keterangan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 18, '389475932753034750954', 'Jalan Bungur 130', 'Jalan Blimbing 52', 011, 004, 11, 1101, 1101010, 1101010001, 'Ketahuan istri pertama', '2017-02-21 17:00:00', 2, NULL, NULL, NULL, 2),
-(2, 2, 19, '83740927349074', 'Jalan Asal', 'Jalan Tujuan', 000, 000, 11, 1101, 1101010, 1101010001, 'Tengkar', '2017-02-24 01:41:43', 2, NULL, NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -13466,15 +13638,6 @@ CREATE TABLE `mutasi_keluar_detail` (
   `deleted_at` timestamp NULL DEFAULT current_timestamp(),
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mutasi_keluar_detail`
---
-
-INSERT INTO `mutasi_keluar_detail` (`id`, `id_mutasi`, `nik`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 1, '3764289649123', '2017-02-21 17:00:00', 2, NULL, NULL, NULL, 2),
-(2, 1, '83740927349074', '2017-02-22 17:00:00', 2, NULL, NULL, NULL, NULL),
-(3, 2, '389475932753034750954', '2017-02-24 01:41:43', 2, '2017-02-24 08:41:43', NULL, '2017-02-24 08:41:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -13509,6 +13672,9 @@ CREATE TABLE `organisasi` (
   `nama_pimpinan` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `banner_atas` text DEFAULT NULL,
+  `banner_samping` text DEFAULT NULL,
+  `banner_bawah` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -13521,12 +13687,9 @@ CREATE TABLE `organisasi` (
 -- Dumping data for table `organisasi`
 --
 
-INSERT INTO `organisasi` (`id`, `nama`, `nip`, `nama_pimpinan`, `slug`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 'Lumajang', '123402302003121002', 'Paimin, AP', 'kecamatan-lumajang', '1', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 'Tompokersan', '198503302003121002', 'Samsul, SH', 'tompokersan', '1', '2017-02-17 17:00:00', 1, NULL, NULL, NULL, NULL),
-(3, 'Patrang edit', 'belum diisi', 'belum diisi', 'patrang-edit', '0', '2017-02-17 17:00:00', 1, '2017-02-19 01:26:50', 1, NULL, NULL),
-(4, 'Deket lapangan', 'belum diisi', 'belum diisi', 'deket-lapangan', '0', '2017-02-19 00:50:15', 1, '2017-02-19 01:03:34', 1, '2017-02-19 01:44:45', 1),
-(5, 'Deket lapangan', 'belum diisi', 'belum diisi', 'deket-lapangan-1', '0', '2017-02-20 04:48:43', 2, NULL, NULL, NULL, NULL);
+INSERT INTO `organisasi` (`id`, `nama`, `nip`, `nama_pimpinan`, `slug`, `status`, `banner_atas`, `banner_samping`, `banner_bawah`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
+(1, 'Lumajang', '123456789', 'John Doe', 'lumajang', '1', NULL, NULL, NULL, '2017-04-09 17:00:00', 1, NULL, NULL, NULL, NULL),
+(2, 'Tompokersan', '', '', 'tompokersan', '1', NULL, 'REGHKN20170421081930.jpg', 'REGB6720170421081858.jpg', '2017-04-10 01:27:23', 1, '2017-04-21 01:19:30', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13561,12 +13724,10 @@ CREATE TABLE `penduduk` (
 --
 
 INSERT INTO `penduduk` (`nik`, `id_organisasi`, `nama`, `tempat_lahir`, `golongan_darah`, `status_nikah`, `jenis_kelamin`, `tanggal_lahir`, `agama`, `pekerjaan`, `rt`, `rw`, `kewarganegaraan`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-('123809123810938', 2, 'Kepala Keluarga A', 'Jember', 'O', 1, '0', '1980-02-26 17:00:00', 1, 1, 011, 001, '0', '2017-02-26 17:00:00', 1, NULL, NULL, NULL, NULL),
-('13241010101044', 2, 'John Doe', 'Jember', 'A', 1, '0', '1995-03-14 17:00:00', 2, 15, 002, 011, '0', '2017-03-16 01:02:56', 2, NULL, NULL, NULL, NULL),
-('3764289649123', 2, 'Rizki', 'Sumenep', 'AB', 0, '0', '1993-01-06 17:00:00', 0, 1, 002, 001, '0', '2017-02-19 02:43:22', 2, '2017-02-19 03:06:21', 2, NULL, NULL),
-('389475932753034750954', 2, 'Farida', 'Sumenep', 'O', 2, '1', '1970-02-23 07:38:04', 1, 4, 002, 001, '0', '2017-02-19 23:08:40', 2, NULL, NULL, NULL, NULL),
-('7289379132', 2, 'Anggota Keluarga A1', 'Jember', 'O', 1, '0', '1980-02-26 17:00:00', 1, 1, 011, 001, '0', '2017-02-26 17:00:00', 1, NULL, NULL, NULL, NULL),
-('83740927349074', 2, 'Rizki Herdatullah', 'Sumenep', 'O', 0, '0', '1992-02-19 17:00:00', 0, 1, 002, 001, '0', '2017-02-19 23:06:40', 2, '2017-02-19 23:10:13', 2, NULL, NULL);
+('1020241708900001', 2, 'Jeni Ardianto', 'Jember', 'B', 1, '0', '1980-02-08 17:00:00', 1, 88, 001, 009, '0', '2017-04-20 03:14:55', 2, NULL, NULL, NULL, NULL),
+('1050241708900001', 2, 'Andre Hardika', 'Jember', 'A', 1, '0', '1995-02-04 17:00:00', 2, 80, 002, 011, '0', '2017-04-20 03:13:16', 2, NULL, NULL, NULL, NULL),
+('1050345708900002', 2, 'Hillary Vonny Prilina', 'Jember', 'AB', 1, '0', '1996-04-13 17:00:00', 0, 71, 002, 011, '0', '2017-04-20 03:14:04', 2, '2017-04-20 03:15:07', 2, NULL, NULL),
+('1053241708900002', 2, 'Theresia Fenny Susita Loho', 'Manado', 'A', 1, '1', '1980-03-14 17:00:00', 2, 88, 002, 011, '0', '2017-04-20 03:15:50', 2, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13595,9 +13756,8 @@ CREATE TABLE `pengumuman` (
 --
 
 INSERT INTO `pengumuman` (`id`, `id_organisasi`, `slug`, `nama`, `isi`, `tanggal_kadaluarsa`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 2, 'cek-berkas-terlebih-dahulu', 'Cek Berkas Terlebih Dahulu', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At debitis, eos facere magni labore delectus.', '2017-03-15', '0', '2017-03-12 17:00:00', 2, '2017-03-13 03:47:57', 2, NULL, NULL),
-(2, 2, 'spread-the-word', 'Spread the word!', 'Spread the word! Save 50% on custom announcements at Shutterfly. We\'re happy to make it easy and affordable to share life\'s joy.', '2017-03-31', '0', '2017-03-13 03:28:16', 2, '2017-03-14 00:40:01', 2, NULL, NULL),
-(4, 2, 'pengumuman-ini-aktif-selamanya', 'Pengumuman ini aktif selamanya', 'Latest News from the Company announcements, reports, corporate announcements & notices.', NULL, '0', '2017-03-13 03:54:48', 2, '2017-03-13 03:59:15', 2, NULL, NULL);
+(1, 2, 'kelurahan-tompokersan-menerapkan-pelayanan-berbasis-online', 'Kelurahan Tompokersan menerapkan pelayanan berbasis online', 'Akses fitur-fitur e-kelurahan gratis untuk seluruh warga kecatan & kelurahan yang berada di kab. Lumajang', NULL, '0', '2017-04-21 01:18:17', 2, NULL, NULL, NULL, NULL),
+(2, 1, 'situs-resmi-kecatamatan-lumajang-resmi-diluncurkan', 'Situs resmi kecatamatan Lumajang resmi diluncurkan!', 'Semoga informasi yang disajikan dalam situs ini bermanfaat dalam menunjang pelaksanaan pembangunan, sehingga dapat meningkatkan kesejahteraan masyarakat Kabupat', NULL, '0', '2017-04-21 01:34:38', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13643,7 +13803,7 @@ CREATE TABLE `pindahrt` (
 CREATE TABLE `profil_organisasi` (
   `no` int(11) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
-  `nip` int(11) DEFAULT NULL,
+  `nip` varchar(18) DEFAULT NULL,
   `nama_lurah` varchar(255) DEFAULT NULL,
   `deskripsi` text NOT NULL,
   `alamat` text NOT NULL,
@@ -13652,6 +13812,7 @@ CREATE TABLE `profil_organisasi` (
   `kode_pos` varchar(20) NOT NULL,
   `facebook` text DEFAULT NULL,
   `twitter` text DEFAULT NULL,
+  `instagram` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -13665,8 +13826,9 @@ CREATE TABLE `profil_organisasi` (
 -- Dumping data for table `profil_organisasi`
 --
 
-INSERT INTO `profil_organisasi` (`no`, `id_organisasi`, `nip`, `nama_lurah`, `deskripsi`, `alamat`, `telepon`, `email`, `kode_pos`, `facebook`, `twitter`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`, `id_golongan`) VALUES
-(1, 2, 2147483647, 'Rizki', 'Deskripsi Tompo', 'Alamat', '08243243', 'rizkiherda@gmail.com', '32343', 'rizki.herdatullah', 'herdatullah', '2017-02-27 16:17:35', 2, '2017-02-27 18:52:57', 2, NULL, NULL, 12);
+INSERT INTO `profil_organisasi` (`no`, `id_organisasi`, `nip`, `nama_lurah`, `deskripsi`, `alamat`, `telepon`, `email`, `kode_pos`, `facebook`, `twitter`, `instagram`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`, `id_golongan`) VALUES
+(0, 1, '19580212198270839', 'Andre', 'Dengan mengucap puji syukur kehadirat Allah SWT, karena kita sampai hari ini masih diberikan Taufik Hidayat dan Inayah-Nya. Kita sebagai warga Kabupaten Lumajang masih dapat menikmati hasil-hasil pembangunan di era Otonomi Daerah saat ini. ', 'Kecamatan Lumajang, Jawa TImur, Indonesia', '085808596142', 'example@lumajangkab.com', '67311', 'lumajang', 'lumajang', NULL, '2017-03-16 22:20:51', 2, '2017-04-21 01:35:19', 1, NULL, NULL, 1),
+(1, 2, '19580212198270739', 'Samsul, SH', 'Tompokersan adalah Kelurahan di Kecamatan Lumajang, Kabupaten Lumajang, Provinsi Jawa Timur, Indonesia.', 'Kelurahan / Desa Tompokersan Kecamatan Lumajang Kabupaten / Kota Kab. Lumajang Provinsi Jawa Timur', '(0331)-485819', 'tompokersan@lumajang.gov', '67311', 'tompokersan', 'tompokersan', 'tompokersan', '2017-02-27 16:17:35', 2, '2017-04-21 01:19:36', 2, NULL, NULL, 12);
 
 -- --------------------------------------------------------
 
@@ -13746,8 +13908,8 @@ CREATE TABLE `regulasi` (
 --
 
 INSERT INTO `regulasi` (`id`, `id_organisasi`, `judul`, `deskripsi`, `tgl_dikeluarkan`, `dikeluarkan_oleh`, `link`, `deleted_by`, `deleted_at`, `updated_by`, `updated_at`, `created_by`, `created_at`) VALUES
-(1, 2, 'Judul', 'Deskripsi', '2017-03-14 10:55:24', 'Bupati', 'REGLZC20170314105628.docx', NULL, NULL, NULL, NULL, 2, '2017-03-14 03:55:24'),
-(2, 2, 'Judul', 'Deskripsi', '2017-03-14 10:56:29', 'Gubernur', 'REGLZC20170314105628.docx', NULL, NULL, NULL, NULL, 2, '2017-03-14 03:56:29');
+(1, 2, 'Peraturan Kabupaten & Kecamtaan', 'Untuk melaksanakan ketentuan Pasal 127 ayat (1) Undang-Undang Nomor 32 Tahun 2004 Tentang Pemerintahan Daerah', '2010-04-10 17:00:00', 'Pemerintahan Kabupaten Lumajang', 'REGEGS20170421081712.pdf', NULL, NULL, NULL, NULL, 2, '2017-04-21 01:17:12'),
+(2, 1, 'Kebijakan Pemerintahan Kecamatan Lumajang', 'Kebijakan Pemerintahan Kecamatan Lumajang', '2017-04-20 17:00:00', 'Lumajang', 'REG8HB20170421083355.pdf', NULL, NULL, NULL, NULL, 1, '2017-04-21 01:33:55');
 
 -- --------------------------------------------------------
 
@@ -13781,13 +13943,16 @@ INSERT INTO `status_keluarga` (`id_statuskeluarga`, `nama_statuskeluarga`) VALUE
 --
 
 CREATE TABLE `surat` (
-  `id` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `id` varchar(10) NOT NULL,
   `no_surat` varchar(50) DEFAULT NULL,
   `nik` varchar(40) NOT NULL,
   `id_organisasi` int(11) NOT NULL,
-  `jenis` enum('0','1','2','3') NOT NULL COMMENT '0=Blanko KTP, 1=SKCK, 2=Ket Miskon, 3=Ket.Miskin(RT)',
+  `jenis` enum('0','1','2','3','4') NOT NULL COMMENT '0=Blanko KTP, 1=SKCK, 2=Ket Miskon, 3=Ket.Miskin(RT)',
   `tanggal_verif` timestamp NULL DEFAULT NULL,
   `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
+  `nama_pengambil` varchar(50) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -13796,23 +13961,61 @@ CREATE TABLE `surat` (
   `deleted_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `surat`
+-- Table structure for table `surat_ijin_usaha`
 --
 
-INSERT INTO `surat` (`id`, `no_surat`, `nik`, `id_organisasi`, `jenis`, `tanggal_verif`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(002, '23/2/02.002/2017', '3764289649123', 2, '0', '2017-02-28 03:33:07', '2', '2017-02-28 03:33:08', 2, NULL, NULL, NULL, NULL),
-(003, '23/7/02.002/2017', '389475932753034750954', 2, '0', '2017-03-15 02:50:51', '1', '2017-03-02 03:40:28', 2, '2017-03-15 02:50:51', 2, NULL, 2),
-(004, '24/1/02.002/2017', '389475932753034750954', 2, '1', '2017-02-28 01:45:40', '1', '2017-02-28 01:45:40', 2, NULL, NULL, NULL, NULL),
-(005, '24/2/02.002/2017', '3764289649123', 2, '1', '2017-02-28 01:49:22', '1', '2017-02-28 01:49:22', 2, NULL, NULL, NULL, NULL),
-(006, '25/1/02.002/2017', '83740927349074', 2, '2', '2017-02-28 01:56:21', '1', '2017-02-28 01:56:21', 2, NULL, NULL, NULL, NULL),
-(007, '26/1/02.002/2017', '7289379132', 2, '3', '2017-02-28 02:10:12', '1', '2017-02-28 02:10:12', 2, NULL, NULL, NULL, NULL),
-(009, '23/4/02.002/2017', '123809123810938', 2, '0', '2017-03-03 01:36:13', '1', '2017-03-03 01:36:13', 2, NULL, NULL, NULL, NULL),
-(010, NULL, '3764289649123', 2, '0', NULL, '0', '2017-03-03 02:56:49', 2, NULL, NULL, NULL, NULL),
-(011, '23/5/02.002/2017', '83740927349074', 2, '0', '2017-03-15 02:48:59', '1', '2017-03-15 02:48:59', 2, NULL, NULL, NULL, NULL),
-(012, '23/6/02.002/2017', '7289379132', 2, '0', '2017-03-15 02:49:21', '1', '2017-03-15 02:49:21', 2, NULL, NULL, NULL, NULL),
-(013, NULL, '389475932753034750954', 2, '0', NULL, '0', '2017-03-15 02:54:03', 2, NULL, NULL, NULL, NULL),
-(014, NULL, '13241010101044', 2, '0', NULL, '0', '2017-03-16 01:18:17', 3, NULL, NULL, NULL, NULL);
+CREATE TABLE `surat_ijin_usaha` (
+  `id` varchar(10) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `nik` varchar(40) NOT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `nama` varchar(255) NOT NULL,
+  `jenis_usaha` varchar(255) NOT NULL,
+  `umur` tinyint(3) NOT NULL,
+  `pekerjaan` varchar(255) NOT NULL,
+  `alamat` text NOT NULL,
+  `pengambilan` enum('0','1') NOT NULL DEFAULT '0',
+  `status` enum('0','1','2') DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `tanggal_verif` timestamp NULL DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
+  `nama_pengambil` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `surat_ktm_sekolah`
+--
+
+CREATE TABLE `surat_ktm_sekolah` (
+  `id` varchar(10) NOT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `nik` varchar(40) NOT NULL,
+  `id_organisasi` int(11) NOT NULL,
+  `jurusan` varchar(30) NOT NULL,
+  `asal_sekolah` varchar(255) NOT NULL,
+  `tanggal_verif` timestamp NULL DEFAULT NULL,
+  `status` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '0=menunggu, 1=disetujui, 2=ditolak',
+  `keterangan` text DEFAULT NULL,
+  `tanggal_ambil` timestamp NULL DEFAULT NULL,
+  `nama_pengambil` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -13824,7 +14027,7 @@ CREATE TABLE `tingkatan` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(30) NOT NULL,
   `description` varchar(100) NOT NULL,
-  `menu` varchar(255) NOT NULL,
+  `menu` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -13838,9 +14041,9 @@ CREATE TABLE `tingkatan` (
 --
 
 INSERT INTO `tingkatan` (`id`, `name`, `description`, `menu`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-(1, 'Admin Kecamatan', 'Mengakses semua fitur kecamatan', '1:2:3:4:5:6:7', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(2, 'Operator', 'Operator Kelurahan', '1:8:9:10:11:12:13:14:15:16:17:18', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
-(3, 'mem', 'mem', '', '2017-02-18 06:12:10', 0, NULL, NULL, NULL, NULL);
+(1, 'Admin Kecamatan', 'Mengakses semua fitur kecamatan', '1:3:4:5:6:7:8:9:12:13:14:15:91:92:93:94:95:96:97:98:99:100:101:102:103:104:105:106:107:108:109:110:111:112:113:114:115:116:117:118:119:120:121:122:123:124:125:126:127:128:129:130:131:132:133:134:135:136:137:138:139:140', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(2, 'Operator', 'Operator Kelurahan', '1:2:12:13:14:15:91:92:93:94:95:96:97:98:99:100:101:102:103:104:105:106:107:108:109:110:111:112:113:114:115:116:117:118:119:120:121:122:123:124:125:126:127:128:129:130:131:132:133:134:135:136:137:138:139:140:16:17:18:19:20:21:22:23:24:25:26:27:28:29:30:31:32:33:34:35:36:37:38:39:40:41:42:43:44:45:46:47:48:49:50:51:52:53:54:55:56:57:58:59:60:61:62:63:64:65:66:67:68:69:70:71:72:73:74:75:76:77:78:79:80:81:82:83:84:85:86:87:88:89:90:141:142:143:144:145:146:147:148:149:150:151:152:153', '2017-02-17 17:00:00', 0, NULL, NULL, NULL, NULL),
+(3, 'member', 'member', '1', '2017-02-18 06:12:10', 0, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -13972,7 +14175,11 @@ ALTER TABLE `kecamatan`
 -- Indexes for table `kelahiran`
 --
 ALTER TABLE `kelahiran`
-  ADD KEY `no_kk` (`no_kk`),
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `no_surat` (`no_surat`),
+  ADD KEY `nik_ibu` (`nik_ibu`),
+  ADD KEY `nik_ayah` (`nik_ayah`),
+  ADD KEY `nik_pelapor` (`nik_pelapor`),
   ADD KEY `id_organisasi` (`id_organisasi`);
 
 --
@@ -13989,6 +14196,16 @@ ALTER TABLE `keluarga`
 ALTER TABLE `kelurahan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_kecamatan` (`id_kecamatan`);
+
+--
+-- Indexes for table `kematian`
+--
+ALTER TABLE `kematian`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `no_surat` (`no_surat`),
+  ADD KEY `nik_ibu` (`nik_meninggal`),
+  ADD KEY `nik_pelapor` (`nik_pelapor`),
+  ADD KEY `id_organisasi` (`id_organisasi`);
 
 --
 -- Indexes for table `meninggal`
@@ -14086,6 +14303,21 @@ ALTER TABLE `surat`
   ADD KEY `nik` (`nik`);
 
 --
+-- Indexes for table `surat_ijin_usaha`
+--
+ALTER TABLE `surat_ijin_usaha`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `surat_ktm_sekolah`
+--
+ALTER TABLE `surat_ktm_sekolah`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `no_surat` (`no_surat`),
+  ADD KEY `id_organisasi` (`id_organisasi`),
+  ADD KEY `nik` (`nik`);
+
+--
 -- Indexes for table `tingkatan`
 --
 ALTER TABLE `tingkatan`
@@ -14099,12 +14331,12 @@ ALTER TABLE `tingkatan`
 -- AUTO_INCREMENT for table `agenda`
 --
 ALTER TABLE `agenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `akun_warga`
 --
@@ -14114,17 +14346,17 @@ ALTER TABLE `akun_warga`
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `detail_kartu_keluarga`
 --
 ALTER TABLE `detail_kartu_keluarga`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `detail_tingkatan`
 --
 ALTER TABLE `detail_tingkatan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `galeri`
 --
@@ -14134,12 +14366,12 @@ ALTER TABLE `galeri`
 -- AUTO_INCREMENT for table `galeri_kategori`
 --
 ALTER TABLE `galeri_kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `info_organisasi`
 --
 ALTER TABLE `info_organisasi`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `jenis_pekerjaan`
 --
@@ -14154,27 +14386,27 @@ ALTER TABLE `meninggal`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 --
 -- AUTO_INCREMENT for table `mutasi_keluar`
 --
 ALTER TABLE `mutasi_keluar`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mutasi_keluar_detail`
 --
 ALTER TABLE `mutasi_keluar_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `organisasi`
 --
 ALTER TABLE `organisasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `percobaan_login`
 --
@@ -14185,11 +14417,6 @@ ALTER TABLE `percobaan_login`
 --
 ALTER TABLE `regulasi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `surat`
---
-ALTER TABLE `surat`
-  MODIFY `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `tingkatan`
 --
