@@ -28,7 +28,7 @@ class MY_Controller extends CI_Controller {
 
   public function _remap($method, $param=array())
   {
-    if (get_class($this) === 'Homepage' && $method !== 'index') {
+    if (get_class($this) === 'Homepage' && $method !== 'index' && $method !== 'berita_selengkapnya') {
       $this->_slug = $method;
       $method = array_shift($param);
     }

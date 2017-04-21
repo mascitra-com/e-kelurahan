@@ -16,13 +16,13 @@ class Berita_m extends MY_Model
 			'name' => array(
 				'field' => 'judul',
 				'label' => 'Judul',
-				'rules' => 'trim|required|min_length[3]|max_length[50]'),
+				'rules' => 'trim|required|min_length[3]|max_length[100]'),
 			),
 		'update' => array(
 			'name' => array(
 				'field' => 'judul',
 				'label' => 'Judul',
-				'rules' => 'trim|required|min_length[3]|max_length[50]'),
+				'rules' => 'trim|required|min_length[3]|max_length[100]'),
 			)
 		);
 

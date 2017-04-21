@@ -25,6 +25,7 @@ class Homepage extends MY_Controller {
         $this->_data['pengumuman'] = $this->pengumuman_m->get_all(array('id_organisasi' => $this->checkSlug($this->uri->segment(2))));
         $this->_data['profil'] = $this->info_m->fields('slug, judul')->get_all(array('id_organisasi' => $this->checkSlug($this->uri->segment(2))));
         $this->_data['list_kelurahan'] = $this->organisasi_m
+        ->fields('slug, nama')
         ->where(array('status' => '1', 'id >' => '1'))
         ->get_all();
     }

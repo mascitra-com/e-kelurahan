@@ -288,8 +288,8 @@
 										<tr>
 											<td>{{ $kelahiran->nama_anak }}</td>
 											<td>{{ $kelahiran->pelapor->nama }}</td>
-											<td>{{ hari_indonesia(date('l', strtotime($surat->created_at))) . ', '. tgl_indo($kelahiran->created_at) }}</td>
-											<td>{{ hari_indonesia(date('l', strtotime($surat->tanggal_verif))) . ', '. tgl_indo($kelahiran->tanggal_verif) }}</td>
+											<td>{{ hari_indonesia(date('l', strtotime($kelahiran->created_at))) . ', '. tgl_indo($kelahiran->created_at) }}</td>
+											<td>{{ hari_indonesia(date('l', strtotime($kelahiran->tanggal_verif))) . ', '. tgl_indo($kelahiran->tanggal_verif) }}</td>
 											<td class="text-center"><div class="label label-{{ ($kelahiran->status == '1') ? ((!is_null($kelahiran->nama_pengambil)) ? 'success' : ((( date('d-m-Y') > date('d-m-Y', strtotime($kelahiran->tanggal_verif. ' + 7 days')) )) ? 'danger' : 'success') ) : (($kelahiran->status == '2') ? 'danger' : 'warning') }}">
 												{{ ($kelahiran->status == '1') ? ((!is_null($kelahiran->nama_pengambil)) ? 'diambil' : ((( date('d-m-Y') > date('d-m-Y', strtotime($kelahiran->tanggal_verif. ' + 7 days')) )) ? 'kadaluarsa' : 'disetujui') ) : (($kelahiran->status == '2') ? 'ditolak' : 'menunggu') }}
 											</div></td>
