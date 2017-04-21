@@ -5,7 +5,6 @@ class Pengajuan extends MY_Controller
 {
 	function __construct()
 	{
-		$this->_accessable = TRUE;
 		$this->_warga = TRUE;
 		parent::__construct();
 
