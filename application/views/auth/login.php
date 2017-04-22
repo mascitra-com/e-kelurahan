@@ -77,7 +77,7 @@
 <body>
   <div id="wrapper">
     <div class="box">
-      <span class="text-size-28 bold">E-KELURAHAN TOMPOKERSO</span><br>
+      <span class="text-size-28 bold">E-KELURAHAN KECAMATAN LUMAJANG</span><br>
       <span class="text-size-18" style="color:rgba(255,255,255,.5)">Kelurahan masa depan</span>
       <?php $message = $this->session->flashdata('message'); ?>
       <div id="infoMessage"><?php echo $message[0];?></div>
@@ -85,7 +85,7 @@
       <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" />
         <div class="form-group">
           <?php echo lang('login_identity_label', 'identity');?>
-          <input type="text" class="form-control input-lg" name="identity" placeholder="masukan username  --  contoh andre@tompokerso">
+          <input type="text" class="form-control input-lg" name="identity" placeholder="masukan username  --  contoh Kelurahan-tompokersan@lumajang">
         </div>
         <div class="form-group">
           <?php echo lang('login_password_label', 'password');?>
@@ -93,6 +93,7 @@
         </div>
         <div class="form-group">
           <button class="btn btn-default btn-lg" type="submit">Masuk</button>
+          <a href="<?= site_url('/') ?>" class="btn btn-default btn-lg" type="button" style="color: #333; background-color: #FFF; border-color: #FFF;"><i style="color: #333;" class="fa fa-home"></i> Kembali</a>
           <a href="#" class="text-white pull-right" id="remember">lupa password? klik disini</a>
         </div>
       </form>

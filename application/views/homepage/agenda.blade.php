@@ -16,12 +16,12 @@ Agenda
 								<div class="navbar-brand">Agenda</div>
 							</div>
                             {{-- TODO Fix This --}}
-							{{--<form action="#" method="post" class="navbar-form navbar-right" role="search">--}}
-								{{--<div class="form-group">--}}
-									{{--<input type="text" class="form-control" placeholder="Cari">--}}
-								{{--</div>--}}
-								{{--<button type="submit" class="btn btn-default">Cari</button>--}}
-							{{--</form>--}}
+							<form action="#" method="post" class="navbar-form navbar-right" role="search">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Cari">
+								</div>
+								<button type="submit" class="btn btn-default">Cari</button>
+							</form>
 						</div>
 					</nav>
 					<table class="table table-striped table-hover table-bordered">
@@ -32,7 +32,7 @@ Agenda
 							<tr>
 								<td class="text-center" width="10%">
 									<h2>{{ date('d', $date) }}</h2>
-									<span>{{ date('M', $date) }}</span>
+									<span>{{ date('M', $date). ' '. date('Y', $date) }}</span>
 								</td>
 								<td>{{ $list->perihal }}</td>
 							</tr>

@@ -64,6 +64,19 @@ h1,h2,h3,h4,h5,h6{
 	padding: 0;
 }
 
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  /*height: 100%;*/
+  padding: 15px;
+  /*width: 30px;*/
+}
+
+.logo-brand .navbar-brand>img {
+  padding: 7px 15px;
+}
+
 #top-menu .navbar-brand{
 	margin: 0;
 	font-weight: 700;

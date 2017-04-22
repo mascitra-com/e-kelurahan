@@ -26,12 +26,13 @@
 			<div class="box">
 				<h3 class="widget-title">SEDANG HANGAT</h3>
 				@if(empty($headline))
+				<p>Tidak ada berita</p>
 				@else
 				<img src="{{ base_url('assets/images/berita/'.cek_file($headline->gambar,'./assets/images/berita/','default.png')) }}" class="news-img-big" alt="thumbnail">
 				<span class="news-date-big">{{ strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $headline->tanggal_publish)))) }}</span>
 				<h2 class="news-title-big">{{ $headline->judul }}</h2>
 				<p class="news-headline-big">{{ potong_teks(strip_tags($headline->isi), 220) }}</p>
-				<a href="#" class="btn btn-default btn-xs btn-line">selengkapnya</a>
+				<a href="{{ site_url('homepage/'.$slug. '/' .'berita_selengkapnya/'.$berita->slug) }}" class="btn btn-default btn-xs btn-line">selengkapnya</a>
 				@endif
 			</div>
 			<hr>
@@ -52,7 +53,7 @@
 						<img src="{{ base_url('assets/images/berita/'.cek_file($berita->gambar,'./assets/images/berita/','default.png')) }}" class="news-img" alt="thumbnail">
 						<span class="news-date">{{ strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $berita->tanggal_publish)))) }}</span>
 						<h2 class="news-title">{{ $berita->judul }}</h2>
-						<p class="news-headline">{{ potong_teks(strip_tags($berita->isi), 118) }} <a href="#">selengkapnya</a></p>
+						<p class="news-headline">{{ potong_teks(strip_tags($berita->isi), 118) }} <a href="{{ site_url('homepage/'.$slug. '/' .'berita_selengkapnya/'.$berita->slug) }}">selengkapnya</a></p>
 					</div>
 					@endforeach
 					@endif
@@ -76,7 +77,7 @@
 						<img src="{{ base_url('assets/images/berita/'.cek_file($berita->gambar,'./assets/images/berita/','default.png')) }}" class="news-img" alt="thumbnail">
 						<span class="news-date">{{ strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $berita->tanggal_publish)))) }}</span>
 						<h2 class="news-title">{{ $berita->judul }}</h2>
-						<p class="news-headline">{{ potong_teks(strip_tags($berita->isi), 118) }} <a href="#">selengkapnya</a></p>
+						<p class="news-headline">{{ potong_teks(strip_tags($berita->isi), 118) }} <a href="{{ site_url('homepage/'.$slug. '/' .'berita_selengkapnya/'.$berita->slug) }}">selengkapnya</a></p>
 					</div>
 					@endforeach
 					@endif
@@ -89,13 +90,13 @@
 			<div class="box widget">
 				<h3 class="widget-title">Profil</h3>
 				<ul class="widget-list">
-					<li><a href="#">Sambutan Lurah</a></li>
-					<li><a href="#">Selayang Pandang</a></li>
-					<li><a href="#">Visi &amp Misi</a></li>
-					<li><a href="#">Program Unggulan</a></li>
-					<li><a href="#">Peta &amp Batas Wilayah</a></li>
-					<li><a href="#">Prestasi Kelurahanh</a></li>
-					<li><a href="#">Moto Kelurahan</a></li>
+					@if($profil)
+					@foreach($profil as $list)
+					<li><a href="{{ site_url('homepage/'.$slug.'/profil/'.$list->slug) }}">{{ $list->judul }}</a></li>
+					@endforeach
+					@else
+					<li><a href="#">Tidak ada Profil</a></li>
+					@endif
 				</ul>
 			</div>
 			<!-- FOTO BUPATI -->
@@ -106,14 +107,16 @@
 			<div class="box widget">
 				<h3 class="widget-title">Pelayanan</h3>
 				<ul class="widget-list">
-					<li><a href="#">Blanko Isian KTP</a></li>
-					<li><a href="#">Blanko Isian KK</a></li>
-					<li><a href="#">SKCK</a></li>
+					<li><a href="{{ site_url('warga/pengajuan/blankoktp') }}">Blanko Isian KTP</a></li>
+					<li><a href="{{ site_url('warga/pengajuan/blankokk') }}">Blanko Isian KK</a></li>
+					<li><a href="{{ site_url('warga/pengajuan/skck') }}">SKCK</a></li>
+					<li><a href="{{ site_url('warga/pengajuan/keterangan_kelahiran') }}">Surat Keterangan Kelahiran</a></li>
+					<li><a href="{{ site_url('warga/pengajuan/keterangan_kematian') }}">Surat Keterangan Kematian</a></li>
 					<li><a href="#">Surat Pengantar Ijin Keramaian</a></li>
-					<li><a href="#">Surat Keterangan Pindah</a></li>
-					<li><a href="#">Surat Keterangan Ijin Berusaha</a></li>
-					<li><a href="#">SKTM (Sekolah)</a></li>
-					<li><a href="#">Surat Keterangan Miskin</a></li>
+					<li><a href="{{ site_url('warga/pengajuan/pindah') }}">Surat Keterangan Pindah</a></li>
+					<li><a href="{{ site_url('warga/pengajuan/ijin_usaha') }}">Surat Keterangan Ijin Berusaha</a></li>
+					<li><a href="{{ site_url('warga/pengajuan/sktm_sekolah') }}">SKTM (Sekolah)</a></li>
+					<li><a href="{{ site_url('warga/pengajuan/keterangan_miskin') }}">Surat Keterangan Miskin</a></li>
 					<li><a href="#">Surat Keterangan Pindah Hak Milik</a></li>
 					<li><a href="#">Surat Keterangan Untuk Nikah</a></li>
 					<li><a href="#">SKTM (Rumah Tangga)</a></li>

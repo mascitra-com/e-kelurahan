@@ -19,7 +19,7 @@
 					<div role="tabpanel" class="tab-pane active" id="tab1">
 						<div class="form-group">
 							<label for="">Gambar Depan</label><br>
-							<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_atas,'.assets/images/banner/','default.png')) }}" width="40%" alt="thumbnail">
+							<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_atas,'./assets/images/banner/','default.png')) }}" width="40%" alt="thumbnail">
 						</div>
 						<div class="form-group">
 							<button class="btn btn-primary" data-form="{{ site_url('pengaturan/simpan_banner/1') }}"><i class="fa fa-refresh"></i> Ubah</button>
@@ -31,7 +31,7 @@
 							<div class="col-xs-12 col-md-6">
 								<div class="form-group">
 									<label for="">Banner Samping</label><br>
-									<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_samping,'.assets/images/banner/','default.png')) }}" width="40%" alt="">
+									<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_samping,'./assets/images/banner/','default.png')) }}" width="40%" alt="">
 								</div>
 								<div class="form-group">
 									<button class="btn btn-primary" data-form="{{ site_url('pengaturan/simpan_banner/2') }}"><i class="fa fa-refresh"></i> Ubah</button>
@@ -41,7 +41,7 @@
 							<div class="col-xs-12 col-md-6">
 								<div class="form-group">
 									<label for="">Banner Besar</label><br>
-									<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_bawah,'.assets/images/banner/','default.png')) }}" width="40%" alt="">
+									<img src="{{ base_url('assets/images/banner/'.cek_file($banner->banner_bawah,'./assets/images/banner/','default.png')) }}" width="40%" alt="">
 								</div>
 								<div class="form-group">
 									<button class="btn btn-primary" data-form="{{ site_url('pengaturan/simpan_banner/3') }}"><i class="fa fa-refresh"></i> Ubah</button>

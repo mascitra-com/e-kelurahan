@@ -114,7 +114,7 @@ class Homepage extends MY_Controller {
         ->get_all('id_organisasi', $id_organisasi);
 
         $data['banner'] = $this->organisasi_m->fields('banner_atas, banner_samping, banner_bawah')
-        ->get('id_organisasi', $id_organisasi);
+        ->get(array('id' => $id_organisasi));
 
         $this->render('homepage/homepage', array_merge($data, $this->_data));
     }

@@ -4,6 +4,10 @@
 judul profil
 @endsection
 
+@section('organisasi_name')
+{{strtoupper("KELURAHAN TOMPOKERSAN")}}
+@endsection
+
 @section('content')
 <div class="container-fluid container-content">
 	<div class="row">
