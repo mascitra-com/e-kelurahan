@@ -5,7 +5,6 @@ class Surat extends MY_Controller
 {	
 	function __construct()
 	{
-		$this->_warga = TRUE;
 		parent::__construct();
 
 		$this->load->helper(array('dump', 'form', 'tanggal_indonesia'));

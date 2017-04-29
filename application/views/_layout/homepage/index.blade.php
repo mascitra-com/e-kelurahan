@@ -25,7 +25,7 @@
 	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-	<title>@yield('page_title')</title>
+	<title>{{ $judul }} | @yield('page_title')</title>
 	<link rel="stylesheet" href="{{base_url('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/plugins/fontawesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/css/theme-homepage.css')}}">
@@ -46,7 +46,7 @@
 							<span class="icon-bar"></span>
 						</button>
 						<a class="logo-brand navbar-brand" href="{{ site_url('homepage/'.$slug) }}">
-							<span><img src="{{ base_url('assets/images/logo-pemda.png') }}" style="width: 8%"></span> @yield('organisasi_name')</a>
+							<span><img src="{{ base_url('assets/images/logo-pemda.png') }}" style="width: 8%"></span> {{ (is_null($slug) || empty($slug)) ? 'KECAMATAN LUMAJANG' : 'KELURAHAN '.(strtoupper(str_replace("-", " ", $slug))) }}</a>
 						</div>
 
 						<!-- Collect the nav links, forms, and other content for toggling -->

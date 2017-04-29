@@ -1,0 +1,370 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:300,500');
+
+*{
+	padding: 0;
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	--main-color:#50bee2;
+	--second-color:#115F9F;
+	transition: background-color 0.5s ease, color 0.5s ease, border-width 0.3s ease, width 0.5s ease, transform 0.5s ease;
+}
+
+div{
+	box-sizing: border-box;
+}
+
+body, html{
+	width: 100%;
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	background-color: #F0F5F8;
+}
+
+h1, h2, h3, h4, h5, h6,
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 *{
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 700;
+	margin: 0;
+}
+
+#wrapper{
+	width: 100%;
+	height: 100%;
+	padding:0;
+}
+
+#sidebar{
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	/*SIDEBAR WIDTH*/
+	width: 240px;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	z-index: 1000;
+	background-color: transparent;
+	direction: rtl;
+	transition: unset;
+}
+
+#sidebar:hover{
+	overflow-y: auto;
+	left:-17px;
+	width: 257px;
+}
+
+#sidebar-wrapper{
+	direction: ltr;
+	position: relative;
+	width: 245px;
+	max-height: none;
+	min-height: 100%;
+	background-color: var(--main-color);
+	background: linear-gradient(var(--main-color), var(--second-color));
+	overflow: hidden;
+}
+
+.sidebar-title{
+	display: block;
+	width: 100%;
+	padding-top: 30px;
+	padding-left: 30px;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 18px;
+	letter-spacing: 1px;
+	color: #FFF;
+}
+
+.sidebar-title h2{
+	margin:0;
+	line-height: 15px;
+}
+
+.sidebar-nav{
+	padding: 0;
+	margin-top: 30px;
+}
+
+.sidebar-nav > li > a,
+.sidebar-nav-child > li > a,
+.sidebar-nav > li.nav-label{
+	display: block;
+	padding: 7px 30px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	font-weight: 500;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: rgba(255,255,255,.6);
+}
+
+.sidebar-nav > li > a > .fa,
+.sidebar-nav-child > li > a > .fa{
+	margin-right: 10px;
+	font-size: 16px;
+	color: #FFF;
+}
+
+.sidebar-nav > li > a:hover,
+.sidebar-nav-child > li > a:hover,
+.sidebar-nav > li.active > a{px;
+	background-color: #14639f;
+	color: #FFF;
+	border-left: 5px yellow solid;
+	cursor: pointer;
+}
+
+.sidebar-nav > li.active > a{
+	padding-left: 25px;
+}
+
+.sidebar-nav-child > li > a{
+	margin: 0;
+	padding-left: 30px;
+	border-left: 5px yellow solid;
+	background-color: rgba(0,0,0,.15);
+}
+
+.sidebar-nav-child > li.active > a{
+	color: #FFF;
+}
+
+.sidebar-nav > li.nav-label{
+	margin-top: 20px;
+}
+
+.sidebar-footer{
+	display: block;
+	width: 100%;
+	position: relative;
+	padding: 25px 20px;
+	margin-top: 30px;
+}
+
+.sidebar-footer button{
+	background-color: rgba(255,255,255,.7);
+}
+
+.sidebar-toggle{
+	position: absolute;
+	left: -35px;
+	padding: 10px;
+	margin-top: 3px;
+	background-color: transparent;
+	border: none;
+	border-radius: 3px;
+	font-size: 18px;
+}
+
+.sidebar-toggle:hover{
+	background-color: #CCC;
+}
+
+.sidebar-toggle, .sidebar-close{
+	display: none;
+}
+
+.sidebar-show #sidebar{
+	transform: translate3d(0, 0, 0);
+}
+
+.nav-label{
+	text-transform: capitalize;
+}
+
+.nav-caret{
+	float: right;
+	margin-right: 5px;
+}
+
+#content{
+	position: relative;
+	width: calc(100% - 240px);
+	float: right;
+	min-height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.content-nav{
+	position: relative;
+	top: 0;
+	width: 100%;
+	padding: 25px 40px;
+}
+
+#content > .container-fluid{
+	padding:20px 40px;
+	padding-top: 10px;
+}
+
+#content > .content-nav > .navbar{
+	background-color: transparent;
+	border:none;
+}
+
+#content > .content-nav > .navbar .input-group button{
+	border-left: none;
+	color: #CCC;
+}
+
+#content > .content-nav > .navbar .container-fluid{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#content > .content-nav > .navbar .navbar-right{
+	padding-right: 0;
+}
+
+.round{
+	border-radius: 30px;
+}
+
+.panel{
+	border-radius: 3px;
+	border: none;
+	box-shadow: 0 3px 8px rgba(0,0,0,.08);
+}
+
+.panel .panel-heading{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.panel-default .panel-heading{
+	background-color: #FFF;
+}
+
+.panel .panel-heading .panel-title.pull-left,
+.panel .panel-footer .panel-footer-text.pull-left{
+	padding-top: 10px;
+}
+
+.panel .panel-heading .form-group{
+	margin:0 5px;
+}
+
+.panel-title{
+	color:#AAA;
+}
+
+.panel-title.pull-left{
+	line-height: 5px;
+}
+
+.panel-theme .panel-heading{
+	background-color: #188ae7;
+}
+
+.panel-theme .panel-heading .panel-title{
+	color: #FFF;
+}
+
+#alerts > .modal-dialog{
+	margin-top: 100px;
+}
+
+#alerts .modal-body{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 0;
+}
+
+#alerts .modal-header{
+	border: none;
+}
+
+#alerts .modal-info .modal-content{background-color: #4FBDE1}
+#alerts .modal-success .modal-content{background-color: #7bf7b7}
+#alerts .modal-warning .modal-content{background-color: #ffe589}
+#alerts .modal-danger .modal-content{background-color: #fc8480}
+
+#alerts .modal-info *,
+#alerts .modal-success *,
+#alerts .modal-warning *,
+#alerts .modal-danger *{
+	color: rgba(0,0,0,.6);!important
+}
+
+/*TABLE*/
+.table > thead > tr > td,
+.table > thead > tr > th{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+}
+
+.table-scroll{
+	overflow-x: scroll!important;
+}
+
+.label, label{
+	font-weight: normal;
+}
+
+/*Notif*/
+.badge-sm{
+	font-size: 7pt;
+	font-weight: 500;
+	padding: 3px;
+	padding-bottom: 2px;
+	background-color: red!important;
+	margin:0;
+	border-radius: 0;
+}
+
+.notifikasi > a > .badge{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	border-radius: 100px;
+}
+
+.notifikasi > .notifikasi-list > li > a > .badge{
+	margin-right: 8px;
+}
+
+/*DROPDOWN*/
+.dropdown-menu > li > a{
+	font-weight: 300!important;
+	padding: 5px 20px;
+}
+
+.dropdown-menu > li > a:hover{
+	background-color: #CCC;
+}
+
+.dropdown-menu > li > a > .fa{
+	margin-right: 10px;
+}
+
+/*RESPONSIVE*/
+@media(max-width: 992px){
+	#sidebar{
+		transform: translate3d(-240px, 0, 0);
+		transition: transform 0.4s ease;
+	}
+
+	.sidebar-toggle, .sidebar-close{
+		display: block;
+	}
+
+	#content{
+		width: 100%;
+	}
+
+	.content-nav{
+		padding: 25px 20px;
+	}
+
+	#content > .container-fluid{
+		padding:20px 20px;
+	}
+}

@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="{{base_url('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/plugins/fontawesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/plugins/jquery-ui/jquery-ui.min.css')}}">
-	<link rel="stylesheet" href="{{base_url('assets/css/theme.css')}}">
+	<link rel="stylesheet" href="{{base_url('assets/css/theme-2.css')}}">
 	<link rel="stylesheet" href="{{base_url('assets/css/theme-helper.css')}}">
 	@yield('style')
 </head>

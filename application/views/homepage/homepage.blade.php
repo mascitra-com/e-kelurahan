@@ -1,11 +1,7 @@
 @layout('_layout/homepage/index')
 
 @section('page_title')
-{{$judul}}
-@endsection
-
-@section('organisasi_name')
-{{strtoupper($judul)}}
+Beranda
 @endsection
 
 @section('content')
@@ -32,7 +28,7 @@
 				<span class="news-date-big">{{ strtoupper(mdate('%l, %d %F %Y', strtotime(str_replace('-', '/', $headline->tanggal_publish)))) }}</span>
 				<h2 class="news-title-big">{{ $headline->judul }}</h2>
 				<p class="news-headline-big">{{ potong_teks(strip_tags($headline->isi), 220) }}</p>
-				<a href="{{ site_url('homepage/'.$slug. '/' .'berita_selengkapnya/'.$berita->slug) }}" class="btn btn-default btn-xs btn-line">selengkapnya</a>
+				<a href="{{ site_url('homepage/'.$slug. '/' .'berita_selengkapnya/'.$headline->slug) }}" class="btn btn-default btn-xs btn-line">selengkapnya</a>
 				@endif
 			</div>
 			<hr>

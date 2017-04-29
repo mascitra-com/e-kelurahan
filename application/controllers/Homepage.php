@@ -22,16 +22,8 @@ class Homepage extends MY_Controller {
             }
         }
         $this->load->model(array('pengumuman_m', 'info_m', 'organisasi_m'));
-        $this->_data['pengumuman'] = $this->pengumuman_m->get_all(array('id_organisasi' => $this->checkSlug($this->uri->segment(2))));
-        $this->_data['profil'] = $this->info_m->fields('slug, judul')->get_all(array('id_organisasi' => $this->checkSlug($this->uri->segment(2))));
-        $this->_data['list_kelurahan'] = $this->organisasi_m
-        ->fields('slug, nama')
-        ->where(array('status' => '1', 'id >' => '1'))
-        ->get_all();
-    }
 
-    public function index()
-    {
+        //judul halaman
         if (is_null($this->_slug))
         {
             $slug = 'kecamatan-lumajang';
@@ -46,7 +38,20 @@ class Homepage extends MY_Controller {
         $id_organisasi = $this->checkSlug($this->_slug);
 
         //JUDUL HALAMAN
-        $data['judul'] = $judul . $this->organisasi_m->get($id_organisasi)->nama;
+        $this->_data['judul'] = $judul . $this->organisasi_m->get($id_organisasi)->nama;
+
+        $this->_data['pengumuman'] = $this->pengumuman_m->get_all(array('id_organisasi' => $this->checkSlug($this->uri->segment(2))));
+        $this->_data['profil'] = $this->info_m->fields('slug, judul')->get_all(array('id_organisasi' => $this->checkSlug($this->uri->segment(2))));
+        $this->_data['list_kelurahan'] = $this->organisasi_m
+        ->fields('slug, nama')
+        ->where(array('status' => '1', 'id >' => '1'))
+        ->get_all();
+    }
+
+    public function index()
+    {
+        //AMBIL ID ORG BERDASARKAN SLUG
+        $id_organisasi = $this->checkSlug($this->_slug);
 
         $this->load->model(array('berita_m', 'agenda_m', 'regulasi_m', 'profil_m'));
 

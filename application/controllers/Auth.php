@@ -54,13 +54,16 @@ class Auth extends MY_Controller {
 				$this->session->set_userdata('warga', TRUE);
 				redirect('warga/surat');
 			}
+			if ($this->session->userdata('warga')) {
+				redirect('warga', 'refresh');
+			}
 			redirect('dashboard', 'refresh');
 		}
-        if($this->uri->segment(1, 0) === 'warga')
-        {
-            $this->session->set_userdata('warga', TRUE);
-        }
-        $this->data['action'] = $action = $this->uri->segment(1, 0);
+		if($this->uri->segment(1, 0) === 'warga')
+		{
+			$this->session->set_userdata('warga', TRUE);
+		}
+		$this->data['action'] = $action = $this->uri->segment(1, 0);
 		$this->data['title'] = $this->lang->line('login_heading');
 
 		//validate form input
@@ -121,7 +124,7 @@ class Auth extends MY_Controller {
 
 		// log the user out
 		$this->ion_auth->logout();
-		session_start();
+		// session_start();
 		$this->session->sess_destroy();
 
 		// redirect them to the login page

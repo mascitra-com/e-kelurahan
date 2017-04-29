@@ -42,13 +42,13 @@ class MY_Controller extends CI_Controller {
 
     if (method_exists($this, $method)) {
       if ($this->ion_auth->logged_in() || $this->_accessable || $this->_wargaAuth || $this->_super) {
-        if ($this->check_privileges(get_class($this), $method) || $this->_accessable || $this->_wargaAuth) {
+        if ($this->check_privileges(get_class($this), $method) || $this->_accessable || $this->_warga) {
           return call_user_func_array(array($this, $method), $param);
         }else{
           die('anda tidak mempunyai hak akses untuk menu ini');
         }
       }else{
-        if ($this->_warga) {
+        if ($this->_wargaAuth) {
           $this->go('warga');
         }
         $this->go('auth');
